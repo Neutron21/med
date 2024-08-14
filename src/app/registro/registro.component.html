@@ -1,1 +1,106 @@
-<p>registro works!</p>
+<table class="table table-striped table-sm">
+    <thead class="text-center"> 
+      <tr>
+        <th scope="col" colspan="6" class="titulo-registro">REGISTRO</th> 
+      </tr>
+      <tr>
+        <th scope="col">Esp/Doc</th>
+        <th scope="col">Paciente</th>
+        <th scope="col">Pagos</th>
+        <th scope="col">Archivos</th>
+        <th scope="col">Direcciones</th>
+        <th scope="col">Citas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr >
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="container">
+    <h1 class="text-center mb-4 titulo-paciente">PACIENTE</h1>
+    <form (ngSubmit)="onSubmit()" #form="ngForm">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="email" class="form-label bold-label">Correo Electrónico</label>
+            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="formData.email" #email="ngModel" required>
+            <div *ngIf="email.invalid && email.touched" class="text-danger">
+              Correo Electrónico es requerido.
+            </div>
+          </div>
+      
+          <div class="col-md-6 mb-3">
+            <label for="nombre" class="form-label bold-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="formData.nombre" (keypress)="onKeyPress($event)" #nombre="ngModel" required>
+            <div *ngIf="nombre.invalid && nombre.touched" class="text-danger">
+              Nombre es requerido y debe contener solo letras.
+            </div>
+          </div>
+        </div>
+      
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="fechaNacimiento" class="form-label bold-label">Fecha de Nacimiento</label>
+            <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" [(ngModel)]="formData.fechaNacimiento" #fechaNacimiento="ngModel" required>
+            <div *ngIf="fechaNacimiento.invalid && fechaNacimiento.touched" class="text-danger">
+              Fecha de Nacimiento es requerida.
+            </div>
+          </div>
+      
+          <div class="col-md-6 mb-3">
+            <label for="doctorId" class="form-label bold-label">ID del Doctor</label>
+            <input type="number" class="form-control" id="doctorId" name="doctorId" [(ngModel)]="formData.doctorId" #doctorId="ngModel" required>
+            <div *ngIf="doctorId.invalid && doctorId.touched" class="text-danger">
+              ID del Doctor es requerido.
+            </div>
+          </div>
+        </div>
+      
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="sexo" class="form-label bold-label">Sexo</label>
+            <select class="form-control" id="sexo" name="sexo" [(ngModel)]="formData.sexo" #sexo="ngModel" required>
+              <option value="" disabled selected>Seleccione una opción</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Femenino">Femenino</option>
+              <option value="Otro">Otro</option>
+            </select>
+            <div *ngIf="sexo.invalid && sexo.touched" class="text-danger">
+              Seleccione una opción para el sexo.
+            </div>
+          </div>
+      
+          <div class="col-md-6 mb-3">
+            <label for="diagnostico" class="form-label bold-label">Diagnóstico</label>
+            <input type="text" class="form-control" id="diagnostico" name="diagnostico" [(ngModel)]="formData.diagnostico" #diagnostico="ngModel" required>
+            <div *ngIf="diagnostico.invalid && diagnostico.touched" class="text-danger">
+              Diagnóstico es requerido.
+            </div>
+          </div>
+        </div>
+      
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <label for="observaciones" class="form-label bold-label">Observaciones</label>
+            <textarea class="form-control" id="observaciones" name="observaciones" [(ngModel)]="formData.observaciones" #observaciones="ngModel"></textarea>
+          </div>
+        </div>
+      
+        <div *ngIf="form.invalid && (form.dirty || form.touched)" class="text-danger mb-3">
+          Por favor, complete todos los campos obligatorios antes de enviar el formulario.
+        </div>
+      
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary btn-full-width" [disabled]="!form.valid">Enviar</button>
+          </div>
+      </form>
+      
+      
+</div>
+  
