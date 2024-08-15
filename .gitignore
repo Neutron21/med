@@ -22,6 +22,12 @@ chrome-profiler-events*.json
 .settings/
 *.sublime-workspace
 
+# Secure
+environments
+/environments
+*/environment.ts
+*/enviroment.ts
+
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json
