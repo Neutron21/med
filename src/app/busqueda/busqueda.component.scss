@@ -1,0 +1,22 @@
+.table {
+    margin-top: 4em;
+}
+.titulo-registro {
+    font-size: 2em; /* Tamaño de fuente más grande */
+    text-align: center; /* Centrado horizontal */
+    font-weight: bold; /* Negrita */
+    padding-bottom: 10px; /* Espaciado inferior opcional */
+    margin-top: 2em;
+  }
+  .lupa {
+    margin: auto;
+    border: #1489fd 2px solid;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    color: #1489fd;
+}
+.lupa:hover {
+    background-color: #1489fd;
+    color: white;
+}
