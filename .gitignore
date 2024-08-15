@@ -1,4 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
+environments
+/environments
+*/environment.ts
+*/environment.prod.ts
 
 # compiled output
 /dist
@@ -21,10 +25,7 @@ chrome-profiler-events*.json
 *.launch
 .settings/
 *.sublime-workspace
-environments
-/environments
-*/environment.ts
-*/environment.prod.ts
+
 
 # IDE - VSCode
 .vscode/*
