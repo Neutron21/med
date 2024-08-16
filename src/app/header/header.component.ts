@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +15,9 @@ export class HeaderComponent implements OnInit {
     rol : '',
   };
   
-  constructor() { }
+  constructor(
+    private router: Router,
+    private authServie: AuthService){}
 
   ngOnInit(): void {
     this.validarSesion();
@@ -26,7 +30,8 @@ export class HeaderComponent implements OnInit {
     this.isCollapsed = true;
   }
   cerrarSesion(){
-  
+    this.authServie.logOut();
+    this.authServie.logOutUser()    
    }
    consulta(){
    }

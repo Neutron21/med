@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
 })
 
 export class LoginComponent implements OnInit {
+
   loginForm!: FormGroup;
   analytics: any;
   mostrarPassword: boolean = false;
@@ -19,6 +21,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
    private router: Router,
+   private authService: AuthService
   ) { 
     this.loginForm = new FormGroup({
       email: new FormControl('', Validators.required),
@@ -37,8 +40,9 @@ export class LoginComponent implements OnInit {
       this.showSpiner = true;
       try {
         this.showSpiner = false;
-        this.router.navigate(['/home']);
-        this.getUserById();
+        this.authService.singIn(email,password);
+        this.router.navigate(['/registro']);
+        // this.getUserById();
       } catch (error) {
         console.log(error);
         this.badCredentials = true;
