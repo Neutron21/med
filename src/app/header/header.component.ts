@@ -21,7 +21,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.validarSesion();
-
   }
   toggleNavbar() {
     this.isCollapsed = !this.isCollapsed;
