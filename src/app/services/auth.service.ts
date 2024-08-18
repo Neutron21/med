@@ -15,34 +15,39 @@ export class AuthService {
     private app = initializeApp(environment.firebaseConfig);
     private auth = getAuth();
     private uid = '';
+    private user = '';
     private isLoggedIn = false;
 
     async singIn(email: string, password: string): Promise<any> {
         try {
           const credentials = await signInWithEmailAndPassword(this.auth, email, password);
           this.uid = credentials.user.uid;
-          this.loginUser();
+          this.user = credentials.user.email + '';
+          this.setLogin();
+          console.log(credentials);
+          
           this.router.navigateByUrl('/registro');
           return credentials.user;
         } catch (error: any) {
           console.log(error);
         }
       }
-      loginUser() {
+      setLogin() {
         sessionStorage.setItem('uid', this.uid);
+        sessionStorage.setItem('user', this.user);
         this.isLoggedIn = true;
       }
       logOut() {
         signOut(this.auth).then(() => {
-        this.logOutUser();
+        this.setLogOut();
         this.router.navigateByUrl('/');
           }).catch((error) => {
             console.log('Error de Logout', error);
           });
         }
-      logOutUser(){
+      setLogOut(){
         sessionStorage.removeItem('uid');
-        sessionStorage.removeItem('currentUser');
+        sessionStorage.removeItem('user');
         this.isLoggedIn = false;
       }
       getIsLoged (){

@@ -31,7 +31,6 @@ export class HeaderComponent implements OnInit {
   }
   cerrarSesion(){
     this.authServie.logOut();
-    this.authServie.logOutUser()    
    }
    consulta(){
    }
