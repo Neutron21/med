@@ -6,15 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registro.component.scss']
 })
 export class RegistroComponent implements OnInit {
-  resultQuery: any;
-  formData: any = {
-    email: '',
-    nombre: '',
-    fechaNacimiento: '',
-    doctorId: null,
-    diagnostico: '',
-    observaciones: ''
-  };
+  formData: any = {};
+  showMedicalForm: boolean = false;
+  showWarning: boolean = false;
+  formData2 : any;
+  showTable = false;
+  formData3: any ;
+  showPerinatalesTable = false;
+  observaciones: string = '';
+
+
+  
+
 
 
   constructor() { }
@@ -22,15 +25,45 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit() {
-    console.log('Formulario enviado', this.formData);
-
-}
-onKeyPress(event: KeyboardEvent) {
-  const inputChar = String.fromCharCode(event.keyCode);
-  const pattern = /^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]*$/;
-  
-  if (!pattern.test(inputChar)) {
-    event.preventDefault();
+    if (this.isFormValid()) {
+      this.showMedicalForm = true;
+      this.showWarning = false;
+    } else {
+      this.showMedicalForm = false;
+      this.showWarning = true;
+    }
   }
-}
+  isFormValid(): boolean {
+    return this.formData.nombre && this.formData.apellidoP && this.formData.apellidoM &&
+           this.formData.fechaNac && this.formData.sexo && this.formData.estadoCivil &&
+           this.formData.tipoSangre && this.formData.telefono && this.formData.email;
+  }
+  validateNumberInput(event: KeyboardEvent) {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+    }
+  }
+  saveData() {
+    const requiredFields = ['pxDeportivo', 'peso', 'temperatura', 'talla', 'fCardiaca'];
+  
+    if (this.formData.pxDeportivo === 'si') {
+      requiredFields.push('disciplina', 'deporte', 'arteCompetitivo');
+    }
+  
+    const isValid = requiredFields.every(field => this.formData[field]);
+    
+    if (!isValid) {
+      alert('Por favor, complete todos los campos requeridos.');
+    } else {
+      // Código para guardar los datos
+    }
+  }
+  onSwitchChange(event: any) {
+    this.showTable = event.target.checked;
+  }
+  
+
+
+
 }
