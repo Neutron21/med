@@ -15,11 +15,6 @@ export class RegistroComponent implements OnInit {
   showPerinatalesTable = false;
   observaciones: string = '';
 
-
-  
-
-
-
   constructor() { }
 
   ngOnInit(): void {

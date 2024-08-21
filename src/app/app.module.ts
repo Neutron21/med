@@ -5,11 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
-import { RegistroComponent } from './registro/registro.component';
+import { RegistroComponent } from './registro-px/registro.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { CajaComponent } from './caja/caja.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableCajaComponent } from './table-caja/table-caja.component';
+import { TablePxComponent } from './table-px/table-px.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TableCajaComponent } from './table-caja/table-caja.component';
     RegistroComponent,
     BusquedaComponent,
     CajaComponent,
-    TableCajaComponent
+    TableCajaComponent,
+    TablePxComponent
   ],
   imports: [
     BrowserModule,

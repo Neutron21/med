@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { RegistroComponent } from './registro/registro.component';
+import { RegistroComponent } from './registro-px/registro.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { CajaComponent } from './caja/caja.component';
 
