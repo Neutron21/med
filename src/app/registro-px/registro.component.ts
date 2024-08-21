@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UtilService } from '../services/util.service';
 
 @Component({
   selector: 'app-registro',
@@ -15,7 +16,9 @@ export class RegistroComponent implements OnInit {
   showPerinatalesTable = false;
   observaciones: string = '';
 
-  constructor() { }
+  constructor(
+    private utilService: UtilService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -34,10 +37,7 @@ export class RegistroComponent implements OnInit {
            this.formData.tipoSangre && this.formData.telefono && this.formData.email;
   }
   validateNumberInput(event: KeyboardEvent) {
-    const charCode = event.which ? event.which : event.keyCode;
-    if (charCode < 48 || charCode > 57) {
-      event.preventDefault();
-    }
+    this.utilService.onlyNumbers(event);
   }
   saveData() {
     const requiredFields = ['pxDeportivo', 'peso', 'temperatura', 'talla', 'fCardiaca'];
