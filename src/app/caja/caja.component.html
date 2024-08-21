@@ -1,1 +1,49 @@
-<p>caja works!</p>
+<div class="container">
+    <h3 class="pago_title">Registrar Pago</h3>
+    <div class="row">
+        <div class="col">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Cantidad</label>
+                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            </div>
+        </div>
+        <div class="col">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Paciente</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            </div>
+        </div>
+        <div class="col">
+            <div class="mb-3">
+                <label for="fechaPago" class="form-label">Fecha</label>
+                <input type="datetime-local" class="form-control" id="fechaPago" placeholder="name@example.com" disabled="true">
+                <input type="checkbox">
+                <label for="fechaPago" class="form-label">&nbsp; Cambiar</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="">
+                <label for="fechaPago" class="form-label">Tipo</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Seleccione</option>
+                    <option value="1">Efectivo</option>
+                    <option value="2">Transferencia</option>
+                </select>
+            </div>
+        </div>
+        <div class="col">
+            <div class="">
+                <label for="Comentarios" class="form-label">Comentarios</label>
+                <input type="text" class="form-control" id="Comentarios" placeholder="Comentarios...">
+            </div>
+        </div>
+        <div class="col">
+            <div class="">
+                <button type="submit" class="btn btn-primary pago_guardar">Guardar</button>
+            </div>
+        </div>
+    </div>
+    
+</div>

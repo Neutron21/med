@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
-import { RegistroComponent } from './registro/registro.component';
+import { RegistroComponent } from './registro-px/registro.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { CajaComponent } from './caja/caja.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,6 +17,8 @@ import { Seccion5Component } from './seccion5/seccion5.component';
 import { Seccion6Component } from './seccion6/seccion6.component';
 import { Seccion7Component } from './seccion7/seccion7.component';
 import { Seccion8Component } from './seccion8/seccion8.component';
+import { TableCajaComponent } from './table-caja/table-caja.component';
+import { TablePxComponent } from './table-px/table-px.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { Seccion8Component } from './seccion8/seccion8.component';
     Seccion5Component,
     Seccion6Component,
     Seccion7Component,
-    Seccion8Component
+    Seccion8Component,
+    TableCajaComponent,
+    TablePxComponent
   ],
   imports: [
     BrowserModule,
