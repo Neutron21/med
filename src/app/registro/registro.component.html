@@ -1,6 +1,7 @@
-<div class="container mt-4">
-  <form (ngSubmit)="onSubmit()" #datosPersonalesForm="ngForm">
-    <h3>Datos Personales</h3>
+<div class="container">
+<div>
+  <form>
+    <h4>Datos Personales</h4>
     <div class="row mb-3">
       <div class="col-md-4">
         <label for="nombre" class="form-label">Nombre:</label>
@@ -15,7 +16,6 @@
         <input type="text" class="form-control" id="apellidoM" name="apellidoM" required [(ngModel)]="formData.apellidoM">
       </div>
     </div>
-
     <div class="row mb-3">
       <div class="col-md-4">
         <label for="fechaNac" class="form-label">Fecha Nac:</label>
@@ -40,40 +40,32 @@
         </select>
       </div>
     </div>
-
     <div class="row mb-3">
       <div class="col-md-4">
         <label for="tipoSangre" class="form-label">Tipo Sangre:</label>
         <input type="text" class="form-control" id="tipoSangre" name="tipoSangre" required [(ngModel)]="formData.tipoSangre">
       </div>
-
-    <div class="col-md-4">
-  <label for="telefono" class="form-label">Teléfono:</label>
-  <input type="text" class="form-control" id="telefono" name="telefono" required
-         [(ngModel)]="formData.telefono" (keypress)="validateNumberInput($event)">
-</div>
-
+      <div class="col-md-4">
+        <label for="telefono" class="form-label">Teléfono:</label>
+        <input type="text" class="form-control" id="telefono" name="telefono" required [(ngModel)]="formData.telefono" (keypress)="validateNumberInput($event)">
+      </div>
       <div class="col-md-4">
         <label for="email" class="form-label">Email:</label>
         <input type="email" class="form-control" id="email" name="email" required [(ngModel)]="formData.email">
       </div>
     </div>
-
     <div class="row">
       <div class="col text-end">
         <button type="submit" class="btn btn-primary">Guardar</button>
       </div>
     </div>
-
-    <!-- Mensaje de advertencia -->
     <div *ngIf="showWarning" class="alert alert-danger mt-3">
       No se puede continuar sin que todos los campos estén llenos.
     </div>
   </form>
-
-  <!-- Segunda sección: Llenar Ficha Médica -->
-  <form *ngIf="showMedicalForm" class="mt-5">
-    <h3>Llenar Ficha Médica</h3>
+  
+  <form >
+    <h4>Llenar Ficha Médica</h4>
     <div class="row mb-3">
       <div class="col-md-4">
         <label for="escolaridad" class="form-label">Escolaridad:</label>
@@ -88,7 +80,6 @@
         <input type="text" class="form-control" id="religion" name="religion">
       </div>
     </div>
-
     <div class="row mb-3">
       <div class="col-md-4">
         <label for="nacionalidad" class="form-label">Nacionalidad:</label>
@@ -103,7 +94,6 @@
         <input type="text" class="form-control" id="nombreTel" name="nombreTel">
       </div>
     </div>
-
     <div class="row mb-3">
       <div class="col-md-4">
         <label for="residencia" class="form-label">Lugar de Residencia:</label>
@@ -115,69 +105,71 @@
       </div>
     </div>
   </form>
-  <div class="container mt-5">
-    <div class="d-flex align-items-center mb-4">
-      <h4 class="me-3">PX Deportivo</h4>
-      <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="switchDeportivo" [(ngModel)]="formData.pacienteDeportivo">
-        <label class="form-check-label" for="switchDeportivo">{{ formData.pacienteDeportivo ? '' : 'Si' }}</label>
+
+   <div class="d-flex align-items-center mb-4">
+    <h4 class="me-3">PX Deportivo</h4>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="switchDeportivo" [(ngModel)]="formData.pacienteDeportivo">
+      <label class="form-check-label" for="switchDeportivo">{{ formData.pacienteDeportivo ? 'Si' : 'No' }}</label>
+    </div>
+  </div>
+
+  <div *ngIf="formData.pacienteDeportivo">
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label for="disciplina" class="form-label">Disciplina:</label>
+        <input type="text" class="form-control" id="disciplina" name="disciplina" [(ngModel)]="formData.disciplina">
+      </div>
+      <div class="col-md-4">
+        <label for="deporteAltoRendimiento" class="form-label">Deporte de Alto Rendimiento:</label>
+        <input type="text" class="form-control" id="deporteAltoRendimiento" name="deporteAltoRendimiento" [(ngModel)]="formData.deporteAltoRendimiento">
+      </div>
+      <div class="col-md-4">
+        <label for="arteCompetitivo" class="form-label">Arte Competitivo:</label>
+        <input type="text" class="form-control" id="arteCompetitivo" name="arteCompetitivo" [(ngModel)]="formData.arteCompetitivo">
       </div>
     </div>
 
-<div *ngIf="formData.pacienteDeportivo">
-  <div class="row mb-3">
-    <div class="col-md-4">
-      <label for="disciplina" class="form-label">Disciplina:</label>
-      <input type="text" class="form-control" id="disciplina" name="disciplina" [(ngModel)]="formData.disciplina">
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label for="categoria" class="form-label">Categoría:</label>
+        <input type="text" class="form-control" id="categoria" name="categoria" [(ngModel)]="formData.categoria">
+      </div>
+      <div class="col-md-4">
+        <label for="nombreEntrenador" class="form-label">Nombre del Entrenador:</label>
+        <input type="text" class="form-control" id="nombreEntrenador" name="nombreEntrenador" [(ngModel)]="formData.nombreEntrenador">
+      </div>
+      <div class="col-md-4">
+        <label for="clubLiga" class="form-label">Club o Liga:</label>
+        <input type="text" class="form-control" id="clubLiga" name="clubLiga" [(ngModel)]="formData.clubLiga">
+      </div>
     </div>
-    <div class="col-md-4">
-      <label for="deporteAltoRendimiento" class="form-label">Deporte de Alto Rendimiento:</label>
-      <input type="text" class="form-control" id="deporteAltoRendimiento" name="deporteAltoRendimiento" [(ngModel)]="formData.deporteAltoRendimiento">
+
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label for="motivoConsulta" class="form-label">Motivo Consulta:</label>
+        <input type="text" class="form-control" id="motivoConsulta" name="motivoConsulta" [(ngModel)]="formData.motivoConsulta">
+      </div>
+      <div class="col-md-4">
+        <label for="diagnosticoMedico" class="form-label">Diagnóstico Médico:</label>
+        <input type="text" class="form-control" id="diagnosticoMedico" name="diagnosticoMedico" [(ngModel)]="formData.diagnosticoMedico">
+      </div>
+      <div class="col-md-4">
+        <label for="mecanismoLesion" class="form-label">Mecanismo de Lesión:</label>
+        <input type="text" class="form-control" id="mecanismoLesion" name="mecanismoLesion" [(ngModel)]="formData.mecanismoLesion">
+      </div>
     </div>
-    <div class="col-md-4">
-      <label for="arteCompetitivo" class="form-label">Arte Competitivo:</label>
-      <input type="text" class="form-control" id="arteCompetitivo" name="arteCompetitivo" [(ngModel)]="formData.arteCompetitivo">
-    </div>
-  </div>
-  <div class="row mb-3">
-    <div class="col-md-4">
-      <label for="categoria" class="form-label">Categoría:</label>
-      <input type="text" class="form-control" id="categoria" name="categoria" [(ngModel)]="formData.categoria">
-    </div>
-    <div class="col-md-4">
-      <label for="nombreEntrenador" class="form-label">Nombre del Entrenador:</label>
-      <input type="text" class="form-control" id="nombreEntrenador" name="nombreEntrenador" [(ngModel)]="formData.nombreEntrenador">
-    </div>
-    <div class="col-md-4">
-      <label for="clubLiga" class="form-label">Club o Liga:</label>
-      <input type="text" class="form-control" id="clubLiga" name="clubLiga" [(ngModel)]="formData.clubLiga">
-    </div>
-  </div>
-  <div class="row mb-3">
-    <div class="col-md-4">
-      <label for="motivoConsulta" class="form-label">Motivo Consulta:</label>
-      <input type="text" class="form-control" id="motivoConsulta" name="motivoConsulta" [(ngModel)]="formData.motivoConsulta">
-    </div>
-    <div class="col-md-4">
-      <label for="diagnosticoMedico" class="form-label">Diagnóstico Médico:</label>
-      <input type="text" class="form-control" id="diagnosticoMedico" name="diagnosticoMedico" [(ngModel)]="formData.diagnosticoMedico">
-    </div>
-    <div class="col-md-4">
-      <label for="mecanismoLesion" class="form-label">Mecanismo de Lesión:</label>
-      <input type="text" class="form-control" id="mecanismoLesion" name="mecanismoLesion" [(ngModel)]="formData.mecanismoLesion">
+
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label for="tratamientosPrevios" class="form-label">Tratamientos Previos:</label>
+        <input type="text" class="form-control" id="tratamientosPrevios" name="tratamientosPrevios" [(ngModel)]="formData.tratamientosPrevios">
+      </div>
     </div>
   </div>
-  <div class="row mb-3">
-    <div class="col-md-4">
-      <label for="tratamientosPrevios" class="form-label">Tratamientos Previos:</label>
-      <input type="text" class="form-control" id="tratamientosPrevios" name="tratamientosPrevios" [(ngModel)]="formData.tratamientosPrevios">
-    </div>
-  </div>
-</div>
-<div class="container mt-5">
   <div class="row">
     <div class="col-md-6">
-      <h5>Medidas Físicas</h5>
+      <h4>Medidas Físicas</h4>
       <div class="row mb-3">
         <div class="col-md-6">
           <label for="peso" class="form-label">Peso:</label>
@@ -200,7 +192,7 @@
       </div>
     </div>
     <div class="col-md-6">
-      <h5>Signos Vitales</h5>
+      <h4>Signos Vitales</h4>
       <div class="row mb-3">
         <div class="col-md-6">
           <label for="temperatura" class="form-label">Temperatura:</label>
@@ -222,9 +214,7 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
-<div class="container mt-5">
+ </div>
   <h4>Antecedentes Heredofamiliares</h4>
   <table class="table table-bordered">
     <thead>
@@ -318,9 +308,7 @@
       </tr>
     </tbody>
   </table>
-</div>
  </div>
- <div class="container mt-5">
   <h4>Antecedentes No Patológicos</h4>
   <table class="table table-bordered">
     <thead>
@@ -357,7 +345,11 @@
         <td><input type="text" class="form-control" name="automedicacionEspecifique" [(ngModel)]="formData.automedicacionEspecifique"></td>
       </tr>
       <tr>
-        <td>Trastornos del sueño</td>
+        <td>
+          Trastornos del sueño
+          <br>
+          <span class="small-text">Tipo y cantidad de tiempo que duerme.</span>
+        </td>
         <td class="text-center">
           <input type="checkbox" name="trastornosSuenoSiNo" [(ngModel)]="formData.trastornosSuenoSiNo">
         </td>
@@ -365,7 +357,10 @@
         <td><input type="text" class="form-control" name="trastornosSuenoEspecifique" [(ngModel)]="formData.trastornosSuenoEspecifique"></td>
       </tr>
       <tr>
-        <td>Alimentación</td>
+        <td>Alimentación
+          <br>
+          <span class="small-text">Núm, cantidad, calidad, litros de agua al dia.</span>
+        </td>
         <td class="text-center">
           <input type="checkbox" name="alimentacionSiNo" [(ngModel)]="formData.alimentacionSiNo">
         </td>
@@ -373,7 +368,10 @@
         <td><input type="text" class="form-control" name="alimentacionEspecifique" [(ngModel)]="formData.alimentacionEspecifique"></td>
       </tr>
       <tr>
-        <td>Habitación</td>
+        <td>Habitación
+          <br>
+          <span class="small-text">Piso, ventilacion, ilumunacion,servicios publicos ,ambiente.</span>
+        </td>
         <td class="text-center">
           <input type="checkbox" name="habitacionSiNo" [(ngModel)]="formData.habitacionSiNo">
         </td>
@@ -381,7 +379,10 @@
         <td><input type="text" class="form-control" name="habitacionEspecifique" [(ngModel)]="formData.habitacionEspecifique"></td>
       </tr>
       <tr>
-        <td>Hábitos higiénicos</td>
+        <td>Hábitos higiénicos
+          <br>
+          <span class="small-text">Baño diario, lavado de manos, higiene bucal, cambio de ropa.</span>
+        </td>
         <td class="text-center">
           <input type="checkbox" name="habitosHigienicosSiNo" [(ngModel)]="formData.habitosHigienicosSiNo">
         </td>
@@ -405,7 +406,10 @@
         <td><input type="text" class="form-control" name="actividadFisicaEspecifique" [(ngModel)]="formData.actividadFisicaEspecifique"></td>
       </tr>
       <tr>
-        <td>Ocupación</td>
+        <td>Ocupación
+          <br>
+          <span class="small-text">Ambiente, higiene, jornada.</span>
+        </td>
         <td class="text-center">
           <input type="checkbox" name="ocupacionSiNo" [(ngModel)]="formData.ocupacionSiNo">
         </td>
@@ -422,9 +426,7 @@
       </tr>
     </tbody>
   </table>
-</div>
 
-<div class="container mt-5">
   <div id="tableContainer" style="display: none;">
     <table class="table table-bordered mt-3">
       <thead>
@@ -511,13 +513,12 @@
       </tbody>
     </table>
   </div>
-</div>
-<div class="container mt-5">
-  <div class="d-flex align-items-center mb-3">
+
+  <div class="d-flex align-items-center mb-4">
     <h4 class="me-3">En caso de ser Mujer (Antecedentes Gineco-Obstétricos)</h4>
     <div class="form-check form-switch">
       <input class="form-check-input" type="checkbox" id="switchGinecoObstetrico" [(ngModel)]="showTable">
-      <label class="form-check-label" for="switchGinecoObstetrico">{{ showTable ? '' : 'Sí' }}</label>
+      <label class="form-check-label" for="switchGinecoObstetrico">{{ showTable ? 'Si' : 'No' }}</label>
     </div>
   </div>
 
@@ -526,7 +527,7 @@
       <thead>
         <tr>
           <th>Antecedente</th>
-          <th>Si / No</th>
+          <th class="text-center">Si / No</th>
           <th>Parentesco</th>
           <th>Especifique</th>
         </tr>
@@ -534,70 +535,121 @@
       <tbody>
         <tr>
           <td>Metrorragia</td>
-          <td><input type="checkbox" [(ngModel)]="formData.metrorragiaSiNo"></td>
-          <td><input type="text" class="form-control" [(ngModel)]="formData.metrorragiaParentesco"></td>
-          <td><input type="text" class="form-control" [(ngModel)]="formData.metrorragiaEspecifique"></td>
+          <td class="text-center">
+            <input type="checkbox" [(ngModel)]="formData.metrorragiaSiNo">
+          </td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="formData.metrorragiaParentesco">
+          </td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="formData.metrorragiaEspecifique">
+          </td>
         </tr>
         <tr>
           <td>Dismenorreas</td>
-          <td><input type="checkbox" [(ngModel)]="formData.dismenorreasSiNo"></td>
-          <td><input type="text" class="form-control" [(ngModel)]="formData.dismenorreasParentesco"></td>
-          <td><input type="text" class="form-control" [(ngModel)]="formData.dismenorreasEspecifique"></td>
+          <td class="text-center">
+            <input type="checkbox" [(ngModel)]="formData.dismenorreasSiNo">
+          </td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="formData.dismenorreasParentesco">
+          </td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="formData.dismenorreasEspecifique">
+          </td>
         </tr>
         <tr>
           <td>Gesta actual</td>
-          <td><input type="checkbox" [(ngModel)]="formData.gestaActualSiNo"></td>
-          <td><input type="text" class="form-control" [(ngModel)]="formData.gestaActualParentesco"></td>
-          <td><input type="text" class="form-control" [(ngModel)]="formData.gestaActualEspecifique"></td>
+          <td class="text-center">
+            <input type="checkbox" [(ngModel)]="formData.gestaActualSiNo">
+          </td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="formData.gestaActualParentesco">
+          </td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="formData.gestaActualEspecifique">
+          </td>
         </tr>
         <tr>
           <td>Número de gestas</td>
-          <td><input type="checkbox" [(ngModel)]="formData.numeroGestasSiNo"></td>
-          <td><input type="text" class="form-control" [(ngModel)]="formData.numeroGestasParentesco"></td>
-          <td><input type="text" class="form-control" [(ngModel)]="formData.numeroGestasEspecifique"></td>
+          <td class="text-center">
+            <input type="checkbox" [(ngModel)]="formData.numeroGestasSiNo">
+          </td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="formData.numeroGestasParentesco">
+          </td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="formData.numeroGestasEspecifique">
+          </td>
         </tr>
         <tr>
           <td>Número de partos</td>
-          <td><input type="checkbox" [(ngModel)]="formData.numeroPartosSiNo"></td>
-          <td><input type="text" class="form-control" [(ngModel)]="formData.numeroPartosParentesco"></td>
-          <td><input type="text" class="form-control" [(ngModel)]="formData.numeroPartosEspecifique"></td>
+          <td class="text-center">
+            <input type="checkbox" [(ngModel)]="formData.numeroPartosSiNo">
+          </td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="formData.numeroPartosParentesco">
+          </td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="formData.numeroPartosEspecifique">
+          </td>
         </tr>
         <tr>
           <td>Cesáreas</td>
-          <td><input type="checkbox" [(ngModel)]="formData.cesareasSiNo"></td>
-          <td><input type="text" class="form-control" [(ngModel)]="formData.cesareasParentesco"></td>
-          <td><input type="text" class="form-control" [(ngModel)]="formData.cesareasEspecifique"></td>
+          <td class="text-center">
+            <input type="checkbox" [(ngModel)]="formData.cesareasSiNo">
+          </td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="formData.cesareasParentesco">
+          </td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="formData.cesareasEspecifique">
+          </td>
         </tr>
         <tr>
           <td>Aborto</td>
-          <td><input type="checkbox" [(ngModel)]="formData.abortoSiNo"></td>
-          <td><input type="text" class="form-control" [(ngModel)]="formData.abortoParentesco"></td>
-          <td><input type="text" class="form-control" [(ngModel)]="formData.abortoEspecifique"></td>
+          <td class="text-center">
+            <input type="checkbox" [(ngModel)]="formData.abortoSiNo">
+          </td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="formData.abortoParentesco">
+          </td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="formData.abortoEspecifique">
+          </td>
         </tr>
         <tr>
           <td>Núm de productos nacidos vivos</td>
-          <td><input type="checkbox" [(ngModel)]="formData.nacidosVivosSiNo"></td>
-          <td><input type="text" class="form-control" [(ngModel)]="formData.nacidosVivosParentesco"></td>
-          <td><input type="text" class="form-control" [(ngModel)]="formData.nacidosVivosEspecifique"></td>
+          <td class="text-center">
+            <input type="checkbox" [(ngModel)]="formData.nacidosVivosSiNo">
+          </td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="formData.nacidosVivosParentesco">
+          </td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="formData.nacidosVivosEspecifique">
+          </td>
         </tr>
         <tr>
           <td>Menopausia</td>
-          <td><input type="checkbox" [(ngModel)]="formData.menopausiaSiNo"></td>
-          <td><input type="text" class="form-control" [(ngModel)]="formData.menopausiaParentesco"></td>
-          <td><input type="text" class="form-control" [(ngModel)]="formData.menopausiaEspecifique"></td>
+          <td class="text-center">
+            <input type="checkbox" [(ngModel)]="formData.menopausiaSiNo">
+          </td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="formData.menopausiaParentesco">
+          </td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="formData.menopausiaEspecifique">
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
-</div>
 
-</div>
-<div class="container mt-5">
   <div class="d-flex align-items-center mb-3">
     <h4 class="me-3">En caso de ser Pediátrico (Antecedentes Perinatales)</h4>
     <div class="form-check form-switch">
       <input class="form-check-input" type="checkbox" id="switchPerinatales" [(ngModel)]="showPerinatalesTable">
-      <label class="form-check-label" for="switchPerinatales">{{ showPerinatalesTable ? 'No' : 'Sí' }}</label>
+      <label class="form-check-label" for="switchPerinatales">{{ showPerinatalesTable ? 'Si' : 'No' }}</label>
     </div>
   </div>
 
@@ -614,92 +666,129 @@
       <tbody>
         <tr>
           <td>Núm de embarazo</td>
-          <td><input type="checkbox" [(ngModel)]="formData.numEmbarazoSiNo"></td>
+          <td  class="text-center"><input type="checkbox" [(ngModel)]="formData.numEmbarazoSiNo"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.numEmbarazoParentesco"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.numEmbarazoEspecifique"></td>
         </tr>
         <tr>
           <td>Embarazo múltiple</td>
-          <td><input type="checkbox" [(ngModel)]="formData.embarazoMultipleSiNo"></td>
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.embarazoMultipleSiNo"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.embarazoMultipleParentesco"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.embarazoMultipleEspecifique"></td>
         </tr>
         <tr>
           <td>Alimentación durante el embarazo</td>
-          <td><input type="checkbox" [(ngModel)]="formData.alimentacionEmbarazoSiNo"></td>
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.alimentacionEmbarazoSiNo"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.alimentacionEmbarazoParentesco"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.alimentacionEmbarazoEspecifique"></td>
         </tr>
         <tr>
           <td>Control perinatal</td>
-          <td><input type="checkbox" [(ngModel)]="formData.controlPerinatalSiNo"></td>
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.controlPerinatalSiNo"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.controlPerinatalParentesco"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.controlPerinatalEspecifique"></td>
         </tr>
         <tr>
-          <td>Periodo de vida uterina</td>
-          <td><input type="checkbox" [(ngModel)]="formData.vidaUterinaSiNo"></td>
+          <td>
+            Periodo de vida uterina
+            <ul class="custom-list">
+              <li>
+                <span class="bold-text">Inmaduro:</span>
+                <span class="small-text">21 a 28 semanas de gestación (500 a 1000 gr)</span>
+              </li>
+              <li>
+                <span class="bold-text">Pretermino:</span>
+                <span class="small-text">28 a 37 semanas de gestación (1000 a 2500 gr)</span>
+              </li>
+              <li>
+                <span class="bold-text">Termino:</span>
+                <span class="small-text">37 a 41 semanas de gestación (2500 a más gr)</span>
+              </li>
+              <li>
+                <span class="bold-text">Postermino:</span>
+                <span class="small-text">42 en adelante</span>
+              </li>
+            </ul>
+            
+          </td>
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.vidaUterinaSiNo"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.vidaUterinaParentesco"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.vidaUterinaEspecifique"></td>
         </tr>
         <tr>
           <td>Parto o cesárea</td>
-          <td><input type="checkbox" [(ngModel)]="formData.partoCesareaSiNo"></td>
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.partoCesareaSiNo"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.partoCesareaParentesco"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.partoCesareaEspecifique"></td>
         </tr>
         <tr>
           <td>Problemas durante el embarazo o parto</td>
-          <td><input type="checkbox" [(ngModel)]="formData.problemasEmbarazoPartoSiNo"></td>
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.problemasEmbarazoPartoSiNo"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.problemasEmbarazoPartoParentesco"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.problemasEmbarazoPartoEspecifique"></td>
         </tr>
         <tr>
           <td>Traumatismo durante el embarazo o parto</td>
-          <td><input type="checkbox" [(ngModel)]="formData.traumatismoEmbarazoPartoSiNo"></td>
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.traumatismoEmbarazoPartoSiNo"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.traumatismoEmbarazoPartoParentesco"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.traumatismoEmbarazoPartoEspecifique"></td>
         </tr>
         <tr>
           <td>Ameritó maniobras de reanimación especiales</td>
-          <td><input type="checkbox" [(ngModel)]="formData.maniobrasReanimacionSiNo"></td>
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.maniobrasReanimacionSiNo"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.maniobrasReanimacionParentesco"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.maniobrasReanimacionEspecifique"></td>
         </tr>
         <tr>
           <td>Ameritó estar en incubadora</td>
-          <td><input type="checkbox" [(ngModel)]="formData.incubadoraSiNo"></td>
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.incubadoraSiNo"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.incubadoraParentesco"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.incubadoraEspecifique"></td>
         </tr>
         <tr>
           <td>Peso y medida del niño</td>
-          <td><input type="checkbox" [(ngModel)]="formData.pesoMedidaSiNo"></td>
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.pesoMedidaSiNo"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.pesoMedidaParentesco"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.pesoMedidaEspecifique"></td>
         </tr>
         <tr>
           <td>Tamiz metabólico: Calificación</td>
-          <td><input type="checkbox" [(ngModel)]="formData.tamizMetabolicoSiNo"></td>
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.tamizMetabolicoSiNo"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.tamizMetabolicoParentesco"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.tamizMetabolicoEspecifique"></td>
         </tr>
         <tr>
-          <td>Puntaje de la escala de APGAR</td>
-          <td><input type="checkbox" [(ngModel)]="formData.puntajeApgarSiNo"></td>
+          <td>Puntaje de la escala de APGAR
+            <ul class="custom-list">
+              <li>
+                <span class="bold-text">7 puntos a mas:</span>
+                <span class="small-text">Normal</span>
+              </li>
+              <li>
+                <span class="bold-text">6 o menos:</span>
+                <span class="small-text">Atencion a nivel hospitalario</span>
+              </li>
+            </ul>
+          </td>
+          <td class="text-center"><input  type="checkbox" [(ngModel)]="formData.puntajeApgarSiNo"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.puntajeApgarParentesco"></td>
           <td><input type="text" class="form-control" [(ngModel)]="formData.puntajeApgarEspecifique"></td>
         </tr>
       </tbody>
     </table>
   </div>
-</div>
-<div class="container mt-5">
+  <h4 class="me-3 text-center">Observaciones</h4>
   <div class="d-flex align-items-center mb-3">
-    <h4 class="me-3">Observaciones</h4>
     <input type="text" class="form-control" [(ngModel)]="observaciones" >
   </div>
 </div>
+
+
+
+
+
+
+
 
 
 

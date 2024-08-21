@@ -12,4 +12,30 @@
   width: 20px;
   height: 20px;
 }
+.small-text {
+  font-size: 0.8rem; /* Ajusta el tamaño según tus necesidades */
+}
+.bold-text {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.no-list-style {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.inline-text {
+  display: inline;
+}
+
+.bold-text {
+  font-weight: bold;
+  font-size: small;
+}
+
+.small-text {
+  font-size: small;
+  margin-left: 0.5rem; /* Ajusta el espaciado entre el texto en negrita y el texto pequeño */
+}
 

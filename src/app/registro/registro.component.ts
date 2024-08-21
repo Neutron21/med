@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistroComponent implements OnInit {
   formData: any = {};
-  showMedicalForm: boolean = false;
   showWarning: boolean = false;
   formData2 : any;
   showTable = false;
@@ -15,21 +14,14 @@ export class RegistroComponent implements OnInit {
   showPerinatalesTable = false;
   observaciones: string = '';
 
-
-  
-
-
-
   constructor() { }
 
   ngOnInit(): void {
   }
   onSubmit() {
     if (this.isFormValid()) {
-      this.showMedicalForm = true;
       this.showWarning = false;
     } else {
-      this.showMedicalForm = false;
       this.showWarning = true;
     }
   }
