@@ -1,25 +1,15 @@
-.titulo-paciente {
-    font-size: 2em; /* Tamaño de fuente más grande */
-    text-align: center; /* Centrado horizontal */
-    font-weight: bold; /* Negrita */
-    padding-bottom: 10px; /* Espaciado inferior opcional */
-    margin-top: 2em;
-  }
-  .text-danger {
-    color: red;
-  }
-  .bold-label {
-    font-weight: bold;
-  }
- 
-  @media (max-width: 767.98px) {
-    .table tfoot .btn {
-      width: 100%;
-    }
-    .btn-full-width {
-        width: 100%;
-      }
-      .btn-full-width {
-        width: 100%;
-      }
-  }
+.table .form-control {
+  border: none;
+  box-shadow: none;
+  padding: 5px;
+}
+
+.table .form-control:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+.table .form-control[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+}
+
