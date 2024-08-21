@@ -9,6 +9,7 @@ import { RegistroComponent } from './registro/registro.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { CajaComponent } from './caja/caja.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TableCajaComponent } from './table-caja/table-caja.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     RegistroComponent,
     BusquedaComponent,
-    CajaComponent
+    CajaComponent,
+    TableCajaComponent
   ],
   imports: [
     BrowserModule,

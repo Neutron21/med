@@ -1,0 +1,20 @@
+.pago_guardar {
+    margin-top: 2rem;
+}
+.pago_title {
+    margin-top: 1rem;
+}
+.buscar_pago_button{
+    margin-top: 1rem;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    text-align: center;
+    white-space: nowrap;
+    background-color: var(--bs-tertiary-bg);
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    height: fit-content;
+}
