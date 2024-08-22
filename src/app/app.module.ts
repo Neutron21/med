@@ -9,16 +9,18 @@ import { RegistroComponent } from './registro-px/registro.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { CajaComponent } from './caja/caja.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Seccion1Component } from './seccion1/seccion1.component';
-import { Seccion2Component } from './seccion2/seccion2.component';
-import { Seccion3Component } from './seccion3/seccion3.component';
-import { Seccion4Component } from './seccion4/seccion4.component';
-import { Seccion5Component } from './seccion5/seccion5.component';
-import { Seccion6Component } from './seccion6/seccion6.component';
-import { Seccion7Component } from './seccion7/seccion7.component';
-import { Seccion8Component } from './seccion8/seccion8.component';
 import { TableCajaComponent } from './table-caja/table-caja.component';
 import { TablePxComponent } from './table-px/table-px.component';
+import { S1datosGeneralesComponent } from './fmContenido/s1datos-generales/s1datos-generales.component';
+import { S2pxDeportivoComponent } from './fmContenido/s2px-deportivo/s2px-deportivo.component';
+import { S3medidasFisicasComponent } from './fmContenido/s3medidas-fisicas/s3medidas-fisicas.component';
+import { S4antHfamiliaresComponent } from './fmContenido/s4ant-hfamiliares/s4ant-hfamiliares.component';
+import { S5antPatologicosComponent } from './fmContenido/s5ant-patologicos/s5ant-patologicos.component';
+import { S6antNopatologicosComponent } from './fmContenido/s6ant-nopatologicos/s6ant-nopatologicos.component';
+import { S7mujerAntGineObtComponent } from './fmContenido/s7mujer-ant-gine-obt/s7mujer-ant-gine-obt.component';
+import { S8pediatricoAntperinatalesComponent } from './fmContenido/s8pediatrico-antperinatales/s8pediatrico-antperinatales.component';
+import { S9observacionesComponent } from './fmContenido/s9observaciones/s9observaciones.component';
+import { FichaMedicaComponent } from './ficha-medica/ficha-medica.component';
 
 @NgModule({
   declarations: [
@@ -28,16 +30,18 @@ import { TablePxComponent } from './table-px/table-px.component';
     RegistroComponent,
     BusquedaComponent,
     CajaComponent,
-    Seccion1Component,
-    Seccion2Component,
-    Seccion3Component,
-    Seccion4Component,
-    Seccion5Component,
-    Seccion6Component,
-    Seccion7Component,
-    Seccion8Component,
     TableCajaComponent,
-    TablePxComponent
+    TablePxComponent,
+    S1datosGeneralesComponent,
+    S2pxDeportivoComponent,
+    S3medidasFisicasComponent,
+    S4antHfamiliaresComponent,
+    S5antPatologicosComponent,
+    S6antNopatologicosComponent,
+    S7mujerAntGineObtComponent,
+    S8pediatricoAntperinatalesComponent,
+    S9observacionesComponent,
+    FichaMedicaComponent
   ],
   imports: [
     BrowserModule,

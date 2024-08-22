@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilService } from '../services/util.service';
+import { SharedDataService } from '../services/shared.service';
 
 @Component({
   selector: 'app-registro',
@@ -14,9 +15,11 @@ export class RegistroComponent implements OnInit {
   formData3: any ;
   showPerinatalesTable = false;
   observaciones: string = '';
+  
 
   constructor(
-    private utilService: UtilService
+    private utilService: UtilService,
+    private sharedDataService: SharedDataService
   ) { }
 
   ngOnInit(): void {
@@ -36,26 +39,14 @@ export class RegistroComponent implements OnInit {
   validateNumberInput(event: KeyboardEvent) {
     this.utilService.onlyNumbers(event);
   }
-  saveData() {
-    const requiredFields = ['pxDeportivo', 'peso', 'temperatura', 'talla', 'fCardiaca'];
   
-    if (this.formData.pxDeportivo === 'si') {
-      requiredFields.push('disciplina', 'deporte', 'arteCompetitivo');
-    }
-  
-    const isValid = requiredFields.every(field => this.formData[field]);
-    
-    if (!isValid) {
-      alert('Por favor, complete todos los campos requeridos.');
-    } else {
-      // Código para guardar los datos
-    }
-  }
   onSwitchChange(event: any) {
     this.showTable = event.target.checked;
   }
+
+  }
   
 
 
 
-}
+

@@ -1,0 +1,143 @@
+<div class="container">
+<h4>Antecedentes Patológicos</h4>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Enfermedad</th>
+      <th>Si / No</th>
+      <th>Parentesco</th>
+      <th>Especifique</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Diabetes</td>
+      <td class="text-center">
+        <input type="checkbox" name="diabetesSiNo" [(ngModel)]="formData.diabetesSiNo">
+      </td>
+      <td><input type="text" class="form-control" name="diabetesParentesco" [(ngModel)]="formData.diabetesParentesco"></td>
+      <td><input type="text" class="form-control" name="diabetesEspecifique" [(ngModel)]="formData.diabetesEspecifique"></td>
+    </tr>
+    <tr>
+      <td>Alergias</td>
+      <td class="text-center">
+        <input type="checkbox" name="neurologicaSiNo" [(ngModel)]="formData.neurologicaSiNo">
+      </td>
+      <td><input type="text" class="form-control" name="neurologicaParentesco" [(ngModel)]="formData.neurologicaParentesco"></td>
+      <td><input type="text" class="form-control" name="neurologicaEspecifique" [(ngModel)]="formData.neurologicaEspecifique"></td>
+    </tr>
+    <tr>
+      <td>Accidentes</td>
+      <td class="text-center">
+        <input type="checkbox" name="hasSiNo" [(ngModel)]="formData.hasSiNo">
+      </td>
+      <td><input type="text" class="form-control" name="hasParentesco" [(ngModel)]="formData.hasParentesco"></td>
+      <td><input type="text" class="form-control" name="hasEspecifique" [(ngModel)]="formData.hasEspecifique"></td>
+    </tr>
+    <tr>
+      <td>Neoplasias</td>
+      <td class="text-center">
+        <input type="checkbox" name="neoplasiasSiNo" [(ngModel)]="formData.neoplasiasSiNo">
+      </td>
+      <td><input type="text" class="form-control" name="neoplasiasParentesco" [(ngModel)]="formData.neoplasiasParentesco"></td>
+      <td><input type="text" class="form-control" name="neoplasiasEspecifique" [(ngModel)]="formData.neoplasiasEspecifique"></td>
+    </tr>
+    <tr>
+      <td>Cardiopatías</td>
+      <td class="text-center">
+        <input type="checkbox" name="cardiopatiasSiNo" [(ngModel)]="formData.cardiopatiasSiNo">
+      </td>
+      <td><input type="text" class="form-control" name="cardiopatiasParentesco" [(ngModel)]="formData.cardiopatiasParentesco"></td>
+      <td><input type="text" class="form-control" name="cardiopatiasEspecifique" [(ngModel)]="formData.cardiopatiasEspecifique"></td>
+    </tr>
+    <tr>
+      <td>Cirugias</td>
+      <td class="text-center">
+        <input type="checkbox" name="reumaticasSiNo" [(ngModel)]="formData.reumaticasSiNo">
+      </td>
+      <td><input type="text" class="form-control" name="reumaticasParentesco" [(ngModel)]="formData.reumaticasParentesco"></td>
+      <td><input type="text" class="form-control" name="reumaticasEspecifique" [(ngModel)]="formData.reumaticasEspecifique"></td>
+    </tr>
+    <tr>
+      <td>Respiratorias</td>
+      <td class="text-center">
+        <input type="checkbox" name="respiratoriasSiNo" [(ngModel)]="formData.respiratoriasSiNo">
+      </td>
+      <td><input type="text" class="form-control" name="respiratoriasParentesco" [(ngModel)]="formData.respiratoriasParentesco"></td>
+      <td><input type="text" class="form-control" name="respiratoriasEspecifique" [(ngModel)]="formData.respiratoriasEspecifique"></td>
+    </tr>
+    <tr>
+      <td>Dolor de cabeza</td>
+      <td class="text-center">
+        <input type="checkbox" name="genericasSiNo" [(ngModel)]="formData.genericasSiNo">
+      </td>
+      <td><input type="text" class="form-control" name="genericasParentesco" [(ngModel)]="formData.genericasParentesco"></td>
+      <td><input type="text" class="form-control" name="genericasEspecifique" [(ngModel)]="formData.genericasEspecifique"></td>
+    </tr>
+    <tr>
+      <td>Malformaciones congenitas</td>
+      <td class="text-center">
+        <input type="checkbox" name="endocrinologicasSiNo" [(ngModel)]="formData.endocrinologicasSiNo">
+      </td>
+      <td><input type="text" class="form-control" name="endocrinologicasParentesco" [(ngModel)]="formData.endocrinologicasParentesco"></td>
+      <td><input type="text" class="form-control" name="endocrinologicasEspecifique" [(ngModel)]="formData.endocrinologicasEspecifique"></td>
+    </tr>
+    <tr>
+      <td>Nuerologias</td>
+      <td class="text-center">
+        <input type="checkbox" name="otrasSiNo" [(ngModel)]="formData.otrasSiNo">
+      </td>
+      <td><input type="text" class="form-control" name="otrasParentesco" [(ngModel)]="formData.otrasParentesco"></td>
+      <td><input type="text" class="form-control" name="otrasEspecifique" [(ngModel)]="formData.otrasEspecifique"></td>
+    </tr>
+    <tr>
+      <td>Convulciones/Epilepsias</td>
+      <td class="text-center">
+        <input type="checkbox" name="otrasSiNo" [(ngModel)]="formData.otrasSiNo">
+      </td>
+      <td><input type="text" class="form-control" name="otrasParentesco" [(ngModel)]="formData.otrasParentesco"></td>
+      <td><input type="text" class="form-control" name="otrasEspecifique" [(ngModel)]="formData.otrasEspecifique"></td>
+    </tr>
+    <tr>
+      <td>Traumatismos</td>
+      <td class="text-center">
+        <input type="checkbox" name="otrasSiNo" [(ngModel)]="formData.otrasSiNo">
+      </td>
+      <td><input type="text" class="form-control" name="otrasParentesco" [(ngModel)]="formData.otrasParentesco"></td>
+      <td><input type="text" class="form-control" name="otrasEspecifique" [(ngModel)]="formData.otrasEspecifique"></td>
+    </tr>
+    <tr>
+      <td>Enfermedades infecciosas</td>
+      <td class="text-center">
+        <input type="checkbox" name="otrasSiNo" [(ngModel)]="formData.otrasSiNo">
+      </td>
+      <td><input type="text" class="form-control" name="otrasParentesco" [(ngModel)]="formData.otrasParentesco"></td>
+      <td><input type="text" class="form-control" name="otrasEspecifique" [(ngModel)]="formData.otrasEspecifique"></td>
+    </tr>
+    <tr>
+      <td>Reumaticas</td>
+      <td class="text-center">
+        <input type="checkbox" name="otrasSiNo" [(ngModel)]="formData.otrasSiNo">
+      </td>
+      <td><input type="text" class="form-control" name="otrasParentesco" [(ngModel)]="formData.otrasParentesco"></td>
+      <td><input type="text" class="form-control" name="otrasEspecifique" [(ngModel)]="formData.otrasEspecifique"></td>
+    </tr>
+    <tr>
+      <td>Hospitalizaciones previas</td>
+      <td class="text-center">
+        <input type="checkbox" name="otrasSiNo" [(ngModel)]="formData.otrasSiNo">
+      </td>
+      <td><input type="text" class="form-control" name="otrasParentesco" [(ngModel)]="formData.otrasParentesco"></td>
+      <td><input type="text" class="form-control" name="otrasEspecifique" [(ngModel)]="formData.otrasEspecifique"></td>
+    </tr>
+    <tr>
+      <td>Otras</td>
+      <td class="text-center">
+        <input type="checkbox" name="otrasSiNo" [(ngModel)]="formData.otrasSiNo">
+      </td>
+      <td><input type="text" class="form-control" name="otrasParentesco" [(ngModel)]="formData.otrasParentesco"></td>
+      <td><input type="text" class="form-control" name="otrasEspecifique" [(ngModel)]="formData.otrasEspecifique"></td>
+    </tr>
+  </tbody>
+</table>
+</div>
