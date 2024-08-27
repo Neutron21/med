@@ -15,7 +15,7 @@
             <div class="col">
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Paciente</label>
-                    <input formControlName="px" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre Paciente">
+                    <input formControlName="px" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre Paciente" (keypress)="validateTextInput($event)" autocomplete="off">
                     <label class="error-label" *ngIf="cajaForm.get('px')?.touched && cajaForm.get('px')?.invalid">Nombre de paciente requerido</label>
                 </div>
             </div>

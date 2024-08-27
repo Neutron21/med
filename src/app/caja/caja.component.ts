@@ -55,6 +55,9 @@ export class CajaComponent implements OnInit {
   validateNumberInput(event: KeyboardEvent) {
     this.utilService.onlyNumbers(event);
   }
+  validateTextInput(event: KeyboardEvent): boolean {
+    return this.utilService.onlyText(event);
+  }
   sendPay(){
     const pago = {...this.cajaForm.value};
     console.log(this.cajaForm.value);
