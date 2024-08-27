@@ -69,4 +69,5 @@ export class RegistroComponent implements OnInit {
   validatePhoneNumber(phone: string): void {
     this.phoneError = phone.length !== 10;
   }
+  
 }
