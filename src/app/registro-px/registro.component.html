@@ -1,5 +1,5 @@
 <div class="container">
-  <form>
+  <form (ngSubmit)="onSubmit()">
     <h4>Datos Personales</h4>
     <div class="row mb-3">
       <div class="col-md-4">
@@ -46,22 +46,41 @@
       </div>
       <div class="col-md-4">
         <label for="telefono" class="form-label">Teléfono:</label>
-        <input type="text" class="form-control" id="telefono" name="telefono" required [(ngModel)]="formData.telefono" (keypress)="validateNumberInput($event)">
+        <input 
+          type="text" 
+          class="form-control" 
+          id="telefono" 
+          name="telefono" 
+          required 
+          maxlength="10" 
+          [(ngModel)]="formData.telefono" 
+          (keypress)="validateNumberInput($event)" 
+          (ngModelChange)="validatePhoneNumber(formData.telefono)">
+        
+        <div *ngIf="phoneError" class="text-danger">
+          Formato de teléfono incorrecto
+        </div>
       </div>
       <div class="col-md-4">
         <label for="email" class="form-label">Email:</label>
-        <input type="email" class="form-control" id="email" name="email" required [(ngModel)]="formData.email">
+        <input type="email" class="form-control" id="email" name="email" required 
+               [(ngModel)]="formData.email" #emailInput="ngModel" 
+               (ngModelChange)="validateEmail(emailInput.value)">
+        
+        <div *ngIf="emailError" class="text-danger">
+          Formato de email incorrecto 
+        </div>
       </div>
     </div>
     <div class="row">
       <div class="col text-end">
-        <button type="submit" class="btn btn-primary" >Guardar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
       </div>
     </div>
     <div *ngIf="showWarning" class="alert alert-danger mt-3">
       No se puede continuar sin que todos los campos estén llenos.
     </div>
   </form>
-  <app-ficha-medica></app-ficha-medica>
   
- 
+  <app-ficha-medica *ngIf="showFichaMedica"></app-ficha-medica>
+</div>
