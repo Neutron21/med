@@ -11,6 +11,7 @@ import { CajaComponent } from './caja/caja.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableCajaComponent } from './table-caja/table-caja.component';
 import { TablePxComponent } from './table-px/table-px.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { TablePxComponent } from './table-px/table-px.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

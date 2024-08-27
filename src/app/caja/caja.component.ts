@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilService } from '../services/util.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CajaService } from '../services/caja.service';
 
 @Component({
   selector: 'app-caja',
@@ -12,16 +13,17 @@ export class CajaComponent implements OnInit {
   cajaForm!: FormGroup;
   currentDateTime: any;
   constructor(
-    private utilService: UtilService
+    private utilService: UtilService,
+    private cajaService: CajaService,
   ) { 
     this.currentDateTime = this.getCurrentDateTime();
 
     this.cajaForm = new FormGroup({
-      cantidad: new FormControl('', Validators.required),
-      px: new FormControl('', Validators.required),
+      cantidad: new FormControl(null, Validators.required),
+      px: new FormControl(null, Validators.required),
       dateTime: new FormControl({ value: this.currentDateTime, disabled: true }, Validators.required),
-      tipo: new FormControl('', Validators.required),
-      comentarios: new FormControl('', Validators.required),
+      tipo: new FormControl(null, Validators.required),
+      comentarios: new FormControl(null,),
       oldDate: new FormControl(false, Validators.required)
     });
     this.toggleDateField();
@@ -54,6 +56,27 @@ export class CajaComponent implements OnInit {
     this.utilService.onlyNumbers(event);
   }
   sendPay(){
+    const pago = {...this.cajaForm.value};
     console.log(this.cajaForm.value);
+    if (!pago.dateTime) { // Fecha actual, el form no la asigna automaticamente
+      pago.dateTime = this.getCurrentDateTime();
+    }
+    if(this.cajaForm.valid){
+      this.cleanForm();
+      this.cajaService.createPay(pago).subscribe((response: any) => {
+        console.log("Pago registrado con éxito, " + response.message);
+      }, (error: any) =>{
+        console.log("Error al registrar el pago: " + error.error.error);
+
+      });
+    } else {
+      console.log("Form no valido!");
+      this.cajaForm.markAllAsTouched();
+    }
   }
+  cleanForm() {
+    this.cajaForm.reset();
+    this.cajaForm.get('dateTime')?.setValue(this.getCurrentDateTime());
+  }
+  
 }

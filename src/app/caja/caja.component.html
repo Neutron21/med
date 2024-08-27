@@ -5,13 +5,18 @@
             <div class="col">
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Cantidad</label>
-                    <input formControlName="cantidad" type="text" class="form-control" id="exampleFormControlInput1" placeholder="800" (keypress)="validateNumberInput($event)">
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1">$</span>
+                        <input formControlName="cantidad" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Cantidad" (keypress)="validateNumberInput($event)">
+                    </div>
+                    <label class="error-label" *ngIf="cajaForm.get('cantidad')?.touched && cajaForm.get('cantidad')?.invalid">Pago requerido</label>
                 </div>
             </div>
             <div class="col">
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Paciente</label>
                     <input formControlName="px" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre Paciente">
+                    <label class="error-label" *ngIf="cajaForm.get('px')?.touched && cajaForm.get('px')?.invalid">Nombre de paciente requerido</label>
                 </div>
             </div>
             <div class="col">
@@ -28,10 +33,11 @@
                 <div class="">
                     <label for="fechaPago" class="form-label">Tipo</label>
                     <select formControlName="tipo" class="form-select" aria-label="Default select example">
-                        <option selected>Seleccione</option>
+                        <option value=null>Seleccione</option>
                         <option value="E">Efectivo</option>
                         <option value="T">Transferencia</option>
                     </select>
+                    <label class="error-label" *ngIf="cajaForm.get('tipo')?.touched && cajaForm.get('tipo')?.invalid">Tipo de pago requerido</label>
                 </div>
             </div>
             <div class="col">
