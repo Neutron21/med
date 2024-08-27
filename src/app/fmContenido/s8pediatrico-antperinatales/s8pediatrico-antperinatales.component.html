@@ -1,0 +1,134 @@
+<div class="container">
+<div class="d-flex align-items-center mb-3">
+    <h4 class="me-3">En caso de ser Pediátrico (Antecedentes Perinatales)</h4>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="switchPerinatales" [(ngModel)]="showPerinatalesTable">
+      <label class="form-check-label" for="switchPerinatales">{{ showPerinatalesTable ? 'Si' : 'No' }}</label>
+    </div>
+  </div>
+
+  <div *ngIf="showPerinatalesTable">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Antecedente</th>
+          <th>Si / No</th>
+          <th>Parentesco</th>
+          <th>Especifique</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Núm de embarazo</td>
+          <td  class="text-center"><input type="checkbox" [(ngModel)]="formData.numEmbarazoSiNo"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.numEmbarazoParentesco"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.numEmbarazoEspecifique"></td>
+        </tr>
+        <tr>
+          <td>Embarazo múltiple</td>
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.embarazoMultipleSiNo"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.embarazoMultipleParentesco"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.embarazoMultipleEspecifique"></td>
+        </tr>
+        <tr>
+          <td>Alimentación durante el embarazo</td>
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.alimentacionEmbarazoSiNo"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.alimentacionEmbarazoParentesco"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.alimentacionEmbarazoEspecifique"></td>
+        </tr>
+        <tr>
+          <td>Control perinatal</td>
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.controlPerinatalSiNo"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.controlPerinatalParentesco"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.controlPerinatalEspecifique"></td>
+        </tr>
+        <tr>
+          <td>
+            Periodo de vida uterina
+            <ul class="custom-list">
+              <li>
+                <span class="bold-text">Inmaduro:</span>
+                <span class="small-text">21 a 28 semanas de gestación (500 a 1000 gr)</span>
+              </li>
+              <li>
+                <span class="bold-text">Pretermino:</span>
+                <span class="small-text">28 a 37 semanas de gestación (1000 a 2500 gr)</span>
+              </li>
+              <li>
+                <span class="bold-text">Termino:</span>
+                <span class="small-text">37 a 41 semanas de gestación (2500 a más gr)</span>
+              </li>
+              <li>
+                <span class="bold-text">Postermino:</span>
+                <span class="small-text">42 en adelante</span>
+              </li>
+            </ul>
+            
+          </td>
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.vidaUterinaSiNo"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.vidaUterinaParentesco"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.vidaUterinaEspecifique"></td>
+        </tr>
+        <tr>
+          <td>Parto o cesárea</td>
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.partoCesareaSiNo"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.partoCesareaParentesco"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.partoCesareaEspecifique"></td>
+        </tr>
+        <tr>
+          <td>Problemas durante el embarazo o parto</td>
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.problemasEmbarazoPartoSiNo"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.problemasEmbarazoPartoParentesco"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.problemasEmbarazoPartoEspecifique"></td>
+        </tr>
+        <tr>
+          <td>Traumatismo durante el embarazo o parto</td>
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.traumatismoEmbarazoPartoSiNo"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.traumatismoEmbarazoPartoParentesco"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.traumatismoEmbarazoPartoEspecifique"></td>
+        </tr>
+        <tr>
+          <td>Ameritó maniobras de reanimación especiales</td>
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.maniobrasReanimacionSiNo"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.maniobrasReanimacionParentesco"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.maniobrasReanimacionEspecifique"></td>
+        </tr>
+        <tr>
+          <td>Ameritó estar en incubadora</td>
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.incubadoraSiNo"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.incubadoraParentesco"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.incubadoraEspecifique"></td>
+        </tr>
+        <tr>
+          <td>Peso y medida del niño</td>
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.pesoMedidaSiNo"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.pesoMedidaParentesco"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.pesoMedidaEspecifique"></td>
+        </tr>
+        <tr>
+          <td>Tamiz metabólico: Calificación</td>
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.tamizMetabolicoSiNo"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.tamizMetabolicoParentesco"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.tamizMetabolicoEspecifique"></td>
+        </tr>
+        <tr>
+          <td>Puntaje de la escala de APGAR
+            <ul class="custom-list">
+              <li>
+                <span class="bold-text">7 puntos a mas:</span>
+                <span class="small-text">Normal</span>
+              </li>
+              <li>
+                <span class="bold-text">6 o menos:</span>
+                <span class="small-text">Atencion a nivel hospitalario</span>
+              </li>
+            </ul>
+          </td>
+          <td class="text-center"><input  type="checkbox" [(ngModel)]="formData.puntajeApgarSiNo"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.puntajeApgarParentesco"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="formData.puntajeApgarEspecifique"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

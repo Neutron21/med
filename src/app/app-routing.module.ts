@@ -5,6 +5,7 @@ import { RegistroComponent } from './registro-px/registro.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { CajaComponent } from './caja/caja.component';
 
+
 const routes: Routes = [
 
   { path:'registro', component: RegistroComponent},
@@ -13,7 +14,7 @@ const routes: Routes = [
   { path:'login', component: LoginComponent },
   { path:'', component: LoginComponent },
   { path:'**', component: LoginComponent },
-  
+
 ];
 
 @NgModule({

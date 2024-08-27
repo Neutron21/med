@@ -1,0 +1,44 @@
+<h2>Ficha Medica</h2>
+<ul class="nav nav-tabs">
+    <li class="nav-item" (click)="mostrarSeccion('s1')">
+      <a class="nav-link" [ngClass]="{'active': showSection.s1}" >Datos Generales</a>
+    </li>
+    <li class="nav-item" (click)="mostrarSeccion('s2')">
+      <a class="nav-link" [ngClass]="{'active': showSection.s2}" >PX Deportivo</a>
+    </li>
+    <li class="nav-item" (click)="mostrarSeccion('s3')">
+      <a class="nav-link" [ngClass]="{'active': showSection.s3}">Medidas Físicas</a>
+    </li>
+    <li class="nav-item" (click)="mostrarSeccion('s4')">
+      <a class="nav-link" [ngClass]="{'active': showSection.s4}" >Antecedentes Familiares</a>
+    </li>
+    <li class="nav-item" (click)="mostrarSeccion('s5')">
+      <a class="nav-link" [ngClass]="{'active': showSection.s5}" >Antecedentes Patológicos</a>
+    </li>
+    <li class="nav-item" (click)="mostrarSeccion('s6')">
+      <a class="nav-link" [ngClass]="{'active': showSection.s6}" >Antecedentes No Patológicos</a>
+    </li>
+    <li class="nav-item" (click)="mostrarSeccion('s7')">
+      <a class="nav-link" [ngClass]="{'active': showSection.s7}" >Gineco-obstétricos</a>
+    </li>
+    <li class="nav-item" (click)="mostrarSeccion('s8')">
+      <a class="nav-link" [ngClass]="{'active': showSection.s8}" >Pediátricos</a>
+    </li>
+    <li class="nav-item" (click)="mostrarSeccion('s9')">
+      <a class="nav-link" [ngClass]="{'active': showSection.s9}" >Observaciones</a>
+    </li>
+  </ul>
+  
+  <app-s1datos-generales *ngIf="showSection.s1"></app-s1datos-generales>
+  <app-s2px-deportivo *ngIf="showSection.s2"></app-s2px-deportivo>
+  <app-s3medidas-fisicas *ngIf="showSection.s3"></app-s3medidas-fisicas>
+  <app-s4ant-hfamiliares *ngIf="showSection.s4"></app-s4ant-hfamiliares>
+  <app-s5ant-patologicos *ngIf="showSection.s5"></app-s5ant-patologicos>
+  <app-s6ant-nopatologicos *ngIf="showSection.s6"></app-s6ant-nopatologicos>
+  <app-s7mujer-ant-gine-obt *ngIf="showSection.s7"></app-s7mujer-ant-gine-obt>
+  <app-s8pediatrico-antperinatales *ngIf="showSection.s8"></app-s8pediatrico-antperinatales>
+  <app-s9observaciones *ngIf="showSection.s9"></app-s9observaciones>
+  
+
+
+
