@@ -74,6 +74,13 @@ export class CajaComponent implements OnInit {
       this.cajaForm.markAllAsTouched();
     }
   }
+  onTipoChange() {
+    const tipoControl = this.cajaForm.get('tipo');
+    
+    if (tipoControl?.value === "null") {
+      tipoControl.setErrors({ required: true });
+    } 
+  }
   cleanForm() {
     this.cajaForm.reset();
     this.cajaForm.get('dateTime')?.setValue(this.getCurrentDateTime());
