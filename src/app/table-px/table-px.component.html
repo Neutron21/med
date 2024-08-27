@@ -1,23 +1,26 @@
-<div class="row d-flex justify-content-between">
-  <div class="col ">
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Nombre Paciente</label>
-      <input formControlName="px" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre Paciente">
+<form [formGroup]="buscarPxForm"  (ngSubmit)="buscarPx()">
+  <div class="row d-flex justify-content-between">
+    <div class="col ">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Nombre Paciente</label>
+        <input formControlName="nombre" type="text" class="form-control" 
+          id="exampleFormControlInput1" placeholder="Nombre Paciente"
+          (keypress)="validateTextInput($event)" autocomplete="off">
+      </div>
+    </div>
+    <div class="col">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Diagnostico</label>
+        <input formControlName="dx" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Diagnostico">
+      </div>
+    </div>
+    <div class="col d-flex justify-content-end">
+      <button type="submit" class="buscar_pago_button">
+        <i class="fas fa-search"></i> 
+      </button>
     </div>
   </div>
-  <div class="col">
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Diagnostico</label>
-      <input formControlName="px" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre Paciente">
-    </div>
-  </div>
-  <div class="col d-flex justify-content-end">
-    <span class="buscar_pago_button">
-      <i class="fas fa-search"></i> 
-    </span>
-  </div>
-    
-</div>
+</form>
 <table class="table table-striped table-sm">
     <thead class="text-center"> 
       <tr>

@@ -15,7 +15,7 @@ export class UtilService {
             event.preventDefault();
         }
     }
-    // (change)="onTipoChange()" autocomplete="off"
+
     onlyText(event: KeyboardEvent) {
         const charCode = event.which ? event.which : event.keyCode;
         // Permitir letras mayúsculas (65-90), letras minúsculas (97-122), espacios (32), y acentos (á: 225, é: 233, í: 237, ó: 243, ú: 250, ü: 252, ñ: 241)
