@@ -32,7 +32,7 @@
             <div class="col">
                 <div class="">
                     <label for="fechaPago" class="form-label">Tipo</label>
-                    <select formControlName="tipo" class="form-select" aria-label="Default select example">
+                    <select formControlName="tipo" class="form-select" aria-label="Default select example" (change)="onTipoChange()">
                         <option value=null>Seleccione</option>
                         <option value="E">Efectivo</option>
                         <option value="T">Transferencia</option>
