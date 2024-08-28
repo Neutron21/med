@@ -4,17 +4,18 @@
     <div class="row mb-3">
       <div class="col-md-4">
         <label for="nombre" class="form-label">Nombre:</label>
-        <input type="text" class="form-control" id="nombre" name="nombre" required [(ngModel)]="formData.nombre">
+        <input type="text" class="form-control" id="nombre" name="nombre" required [(ngModel)]="formData.nombre" (keypress)="onlyText($event)">
       </div>
       <div class="col-md-4">
         <label for="apellidoP" class="form-label">Apellido P:</label>
-        <input type="text" class="form-control" id="apellidoP" name="apellidoP" required [(ngModel)]="formData.apellidoP">
+        <input type="text" class="form-control" id="apellidoP" name="apellidoP" required [(ngModel)]="formData.apellidoP" (keypress)="onlyText($event)">
       </div>
       <div class="col-md-4">
         <label for="apellidoM" class="form-label">Apellido M:</label>
-        <input type="text" class="form-control" id="apellidoM" name="apellidoM" required [(ngModel)]="formData.apellidoM">
+        <input type="text" class="form-control" id="apellidoM" name="apellidoM" required [(ngModel)]="formData.apellidoM" (keypress)="onlyText($event)">
       </div>
     </div>
+    
     <div class="row mb-3">
       <div class="col-md-4">
         <label for="fechaNac" class="form-label">Fecha Nac:</label>
@@ -97,5 +98,7 @@
     </div>
   </form>
   
-  <app-ficha-medica *ngIf="showFichaMedica"></app-ficha-medica>
+  <!-- <app-ficha-medica *ngIf="showFichaMedica"></app-ficha-medica> -->
+  <app-ficha-medica ></app-ficha-medica>
+
 </div>

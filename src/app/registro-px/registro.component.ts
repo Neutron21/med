@@ -34,7 +34,6 @@ export class RegistroComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // Verificar si todos los campos están llenos
     const allFieldsFilled = this.isFormValid();
 
     if (!allFieldsFilled || this.emailError) {
@@ -69,5 +68,7 @@ export class RegistroComponent implements OnInit {
   validatePhoneNumber(phone: string): void {
     this.phoneError = phone.length !== 10;
   }
-  
+  onlyText(event: KeyboardEvent): boolean {
+    return this.utilService.onlyText(event);
+  }
 }

@@ -5,21 +5,21 @@
       <div class="row mb-3">
         <div class="col-md-6">
           <label for="peso" class="form-label">Peso:</label>
-          <input type="number" class="form-control" id="peso" name="peso" [(ngModel)]="formData.peso">
+          <input type="text" class="form-control" id="peso" name="peso" [(ngModel)]="formData.peso" (keypress)="onlyNumbers($event)">
         </div>
         <div class="col-md-6">
           <label for="talla" class="form-label">Talla:</label>
-          <input type="number" class="form-control" id="talla" name="talla" [(ngModel)]="formData.talla">
+          <input type="text" class="form-control" id="talla" name="talla" [(ngModel)]="formData.talla" (keypress)="onlyNumbers($event)">
         </div>
       </div>
       <div class="row mb-3">
         <div class="col-md-6">
           <label for="estatura" class="form-label">Estatura:</label>
-          <input type="number" class="form-control" id="estatura" name="estatura" [(ngModel)]="formData.estatura">
+          <input type="text" class="form-control" id="estatura" name="estatura" [(ngModel)]="formData.estatura">
         </div>
         <div class="col-md-6">
           <label for="imc" class="form-label">IMC:</label>
-          <input type="number" class="form-control" id="imc" name="imc" [(ngModel)]="formData.imc">
+          <input type="text" class="form-control" id="imc" name="imc" [(ngModel)]="formData.imc">
         </div>
       </div>
     </div>
@@ -28,17 +28,17 @@
       <div class="row mb-3">
         <div class="col-md-6">
           <label for="temperatura" class="form-label">Temperatura:</label>
-          <input type="number" class="form-control" id="temperatura" name="temperatura" [(ngModel)]="formData.temperatura">
+          <input type="text" class="form-control" id="temperatura" name="temperatura" [(ngModel)]="formData.temperatura">
         </div>
         <div class="col-md-6">
           <label for="fCardiaca" class="form-label">F. Cardiaca:</label>
-          <input type="number" class="form-control" id="fCardiaca" name="fCardiaca" [(ngModel)]="formData.fCardiaca">
+          <input type="text" class="form-control" id="fCardiaca" name="fCardiaca" [(ngModel)]="formData.fCardiaca">
         </div>
       </div>
       <div class="row mb-3">
         <div class="col-md-6">
           <label for="fRespiratoria" class="form-label">F. Respiratoria:</label>
-          <input type="number" class="form-control" id="fRespiratoria" name="fRespiratoria" [(ngModel)]="formData.fRespiratoria">
+          <input type="text" class="form-control" id="fRespiratoria" name="fRespiratoria" [(ngModel)]="formData.fRespiratoria">
         </div>
         <div class="col-md-6">
           <label for="tensionArterial" class="form-label">Tensión Arterial:</label>
