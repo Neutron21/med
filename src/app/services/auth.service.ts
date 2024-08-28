@@ -30,7 +30,7 @@ export class AuthService {
           this.router.navigateByUrl('/registro');
           return credentials.user;
         } catch (error: any) {
-          console.log(error);
+          console.log('eee', error);
         }
       }
       setLogin() {

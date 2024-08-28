@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -20,7 +19,6 @@ export class LoginComponent implements OnInit {
   nombre : string = ''
 
   constructor(
-   private router: Router,
    private authService: AuthService
   ) { 
     this.loginForm = new FormGroup({
@@ -41,7 +39,6 @@ export class LoginComponent implements OnInit {
       try {
         this.showSpiner = false;
         this.authService.singIn(email,password);
-        this.router.navigate(['/registro']);
         // this.getUserById();
       } catch (error) {
         console.log(error);

@@ -1,32 +1,34 @@
+<form [formGroup]="buscarPagoForm"  (ngSubmit)="buscarPago()">
 <div class="row">
-  <div class="col">
-      <div class="mb-3">
-          <label for="fechaPago" class="form-label">Desde</label>
-          <input type="date" class="form-control" id="fechaPago">
-      </div>
+    <div class="col">
+        <div class="mb-3">
+            <label for="fechaPago" class="form-label">Desde</label>
+            <input formControlName="desde" type="date" class="form-control" id="fechaPago">
+        </div>
+    </div>
+    <div class="col">
+        <div class="mb-3">
+            <label for="fechaPago" class="form-label">Hasta</label>
+            <input formControlName="hasta" type="date" class="form-control" id="fechaPago">
+        </div>
+    </div>
+    <div class="col">
+        <div class="mb-3">
+            <label for="fechaPago" class="form-label">Tipo</label>
+            <select formControlName="tipo" class="form-select" aria-label="Default select example">
+                <option selected>Seleccione</option>
+                <option value="E">Efectivo</option>
+                <option value="T">Transferencia</option>
+            </select>
+        </div>
+    </div>
+    <div class="col d-flex justify-content-end">
+      <button type="submit" class="buscar_pago_button">
+        <i class="fas fa-search"></i> 
+      </button>
+    </div>
   </div>
-  <div class="col">
-      <div class="mb-3">
-          <label for="fechaPago" class="form-label">Hasta</label>
-          <input type="date" class="form-control" id="fechaPago">
-      </div>
-  </div>
-  <div class="col">
-      <div class="mb-3">
-          <label for="fechaPago" class="form-label">Tipo</label>
-          <select class="form-select" aria-label="Default select example">
-              <option selected>Seleccione</option>
-              <option value="E">Efectivo</option>
-              <option value="T">Transferencia</option>
-          </select>
-      </div>
-  </div>
-  <div class="col d-flex justify-content-end">
-    <span class="buscar_pago_button">
-      <i class="fas fa-search"></i> 
-    </span>
-  </div>
-</div>
+</form>
 <table class="table table-striped">
     <thead class="text-center"> 
       <tr>
