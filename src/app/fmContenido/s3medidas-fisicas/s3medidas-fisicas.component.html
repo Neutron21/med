@@ -28,8 +28,12 @@
       <div class="row mb-3">
         <div class="col-md-6">
           <label for="temperatura" class="form-label">Temperatura:</label>
-          <input type="text" class="form-control" id="temperatura" name="temperatura" [(ngModel)]="formData.temperatura">
+          <div class="input-group">
+            <input type="text" class="form-control" id="temperatura" name="temperatura" [(ngModel)]="formData.temperatura">
+            <span class="input-group-text">°C</span>
+          </div>
         </div>
+        
         <div class="col-md-6">
           <label for="fCardiaca" class="form-label">F. Cardiaca:</label>
           <input type="text" class="form-control" id="fCardiaca" name="fCardiaca" [(ngModel)]="formData.fCardiaca">
