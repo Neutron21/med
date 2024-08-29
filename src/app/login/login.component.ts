@@ -32,14 +32,16 @@ export class LoginComponent implements OnInit {
     this.mostrarPassword = !this.mostrarPassword;
   }
   async sendCredentials() {
-    const { email, password } = this.loginForm.value;
-    console.log(email,password)
-    if(!!email && !!password) {
+    this.campoVacio = false;
+    this.badCredentials = false;
+  
+    if (this.loginForm.valid) {
       this.showSpiner = true;
       try {
+        const credentials = await this.authService.singIn(this.loginForm.value.email, this.loginForm.value.password);
+        this.badCredentials = !this.authService.getIsLoged();
+        
         this.showSpiner = false;
-        this.authService.singIn(email,password);
-        // this.getUserById();
       } catch (error) {
         console.log(error);
         this.badCredentials = true;
@@ -47,9 +49,9 @@ export class LoginComponent implements OnInit {
       }
     } else {
       this.campoVacio = true;
-
-    } 
+    }
   }
+  
   getUserById() {
    
   }
