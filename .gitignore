@@ -6,8 +6,12 @@ environments
 
 # compiled output
 /dist
+/public
 /tmp
 /out-tsc
+.firebaserc
+database.rules.json
+firebase.json
 # Only exists if Bazel was run
 /bazel-out
 
