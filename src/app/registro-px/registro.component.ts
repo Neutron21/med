@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilService } from '../services/util.service';
 import { SharedDataService } from '../services/shared.service';
+import { PxService } from '../services/px.service';
 
 @Component({
   selector: 'app-registro',
@@ -27,14 +28,14 @@ export class RegistroComponent implements OnInit {
 
   constructor(
     private utilService: UtilService,
-    private sharedDataService: SharedDataService
+    private sharedDataService: SharedDataService,
+    private pxService: PxService
   ) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(): void {
-    // Verificar si todos los campos están llenos
     const allFieldsFilled = this.isFormValid();
 
     if (!allFieldsFilled || this.emailError) {
@@ -43,8 +44,12 @@ export class RegistroComponent implements OnInit {
       this.showWarning = false;
       // Mostrar el componente FichaMedica al enviar el formulario
       this.showFichaMedica = true;
-      // Aquí puedes agregar la lógica para enviar el formulario o guardar los datos
       console.log('Formulario enviado:', this.formData);
+      this.pxService.createPay(this.formData).subscribe((response: any) => {
+        console.log("Paciente registrado con éxito, " + response.message);
+      }, (error: any) =>{
+        console.log("Error al registrar paciente: " + error.error.error);
+      });
     }
   }
 

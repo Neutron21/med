@@ -70,7 +70,6 @@ export class CajaComponent implements OnInit {
         console.log("Pago registrado con éxito, " + response.message);
       }, (error: any) =>{
         console.log("Error al registrar el pago: " + error.error.error);
-
       });
     } else {
       console.log("Form no valido!");
