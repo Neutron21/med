@@ -1,9 +1,11 @@
 <div class="d-flex justify-content-between align-items-center">
   <h2>Ficha Médica</h2>
   <button class="btn btn-primary" (click)="toggleAllSections()">
-    {{ allSectionsVisible ? 'Editable' : 'Lectura' }}
+    <i class="bi" [ngClass]="{'bi-pencil': allSectionsVisible, 'bi-eye': !allSectionsVisible}"></i>
+    {{ allSectionsVisible ? ' Editable' : ' Lectura' }}
   </button>
 </div>
+
 <ul class="nav nav-tabs">
     <li class="nav-item" (click)="mostrarSeccion('s1')" *ngIf="!allSectionsVisible">
       <a class="nav-link" [ngClass]="{'active': showSection.s1}" >Datos Generales</a>

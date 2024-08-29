@@ -19,6 +19,7 @@ export class FichaMedicaComponent implements OnInit {
     s8: false, 
     s9: false
   };
+  
 
   allSectionsVisible = false;
 
