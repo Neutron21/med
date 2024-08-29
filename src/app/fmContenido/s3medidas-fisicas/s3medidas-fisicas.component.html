@@ -5,7 +5,10 @@
       <div class="row mb-3">
         <div class="col-md-6">
           <label for="peso" class="form-label">Peso:</label>
-          <input type="text" class="form-control" id="peso" name="peso" [(ngModel)]="formData.peso" (keypress)="onlyNumbers($event)">
+          <div class="input-group">
+            <input type="text" class="form-control" id="peso" name="peso" [(ngModel)]="formData.peso" (keypress)="onlyNumbers($event)">
+            <span class="input-group-text">kg</span>
+          </div>
         </div>
         <div class="col-md-6">
           <label for="talla" class="form-label">Talla:</label>
@@ -15,8 +18,11 @@
       <div class="row mb-3">
         <div class="col-md-6">
           <label for="estatura" class="form-label">Estatura:</label>
-          <input type="text" class="form-control" id="estatura" name="estatura" [(ngModel)]="formData.estatura">
-        </div>
+          <div class="input-group">
+            <input type="text" class="form-control" id="estatura" name="estatura" [(ngModel)]="formData.estatura">
+            <span class="input-group-text">cm</span>
+          </div>
+        </div>      
         <div class="col-md-6">
           <label for="imc" class="form-label">IMC:</label>
           <input type="text" class="form-control" id="imc" name="imc" [(ngModel)]="formData.imc">
