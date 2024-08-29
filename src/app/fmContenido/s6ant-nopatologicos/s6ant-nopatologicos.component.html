@@ -1,5 +1,5 @@
 <div class="container">
-<h4>Antecedentes No Patológicos</h4>
+  <h4>Antecedentes No Patológicos</h4>
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -15,24 +15,24 @@
         <td class="text-center">
           <input type="checkbox" name="toxicomaniasSiNo" [(ngModel)]="formData.toxicomaniasSiNo">
         </td>
-        <td><input type="text" class="form-control" name="toxicomaniasParentesco" [(ngModel)]="formData.toxicomaniasParentesco"></td>
-        <td><input type="text" class="form-control" name="toxicomaniasEspecifique" [(ngModel)]="formData.toxicomaniasEspecifique"></td>
+        <td><input type="text" class="form-control" name="toxicomaniasParentesco" [(ngModel)]="formData.toxicomaniasParentesco" [disabled]="!formData.toxicomaniasSiNo"></td>
+        <td><input type="text" class="form-control" name="toxicomaniasEspecifique" [(ngModel)]="formData.toxicomaniasEspecifique" [disabled]="!formData.toxicomaniasSiNo"></td>
       </tr>
       <tr>
         <td>Inmunizaciones</td>
         <td class="text-center">
           <input type="checkbox" name="inmunizacionesSiNo" [(ngModel)]="formData.inmunizacionesSiNo">
         </td>
-        <td><input type="text" class="form-control" name="inmunizacionesParentesco" [(ngModel)]="formData.inmunizacionesParentesco"></td>
-        <td><input type="text" class="form-control" name="inmunizacionesEspecifique" [(ngModel)]="formData.inmunizacionesEspecifique"></td>
+        <td><input type="text" class="form-control" name="inmunizacionesParentesco" [(ngModel)]="formData.inmunizacionesParentesco" [disabled]="!formData.inmunizacionesSiNo"></td>
+        <td><input type="text" class="form-control" name="inmunizacionesEspecifique" [(ngModel)]="formData.inmunizacionesEspecifique" [disabled]="!formData.inmunizacionesSiNo"></td>
       </tr>
       <tr>
         <td>Automedicación</td>
         <td class="text-center">
           <input type="checkbox" name="automedicacionSiNo" [(ngModel)]="formData.automedicacionSiNo">
         </td>
-        <td><input type="text" class="form-control" name="automedicacionParentesco" [(ngModel)]="formData.automedicacionParentesco"></td>
-        <td><input type="text" class="form-control" name="automedicacionEspecifique" [(ngModel)]="formData.automedicacionEspecifique"></td>
+        <td><input type="text" class="form-control" name="automedicacionParentesco" [(ngModel)]="formData.automedicacionParentesco" [disabled]="!formData.automedicacionSiNo"></td>
+        <td><input type="text" class="form-control" name="automedicacionEspecifique" [(ngModel)]="formData.automedicacionEspecifique" [disabled]="!formData.automedicacionSiNo"></td>
       </tr>
       <tr>
         <td>
@@ -43,30 +43,30 @@
         <td class="text-center">
           <input type="checkbox" name="trastornosSuenoSiNo" [(ngModel)]="formData.trastornosSuenoSiNo">
         </td>
-        <td><input type="text" class="form-control" name="trastornosSuenoParentesco" [(ngModel)]="formData.trastornosSuenoParentesco"></td>
-        <td><input type="text" class="form-control" name="trastornosSuenoEspecifique" [(ngModel)]="formData.trastornosSuenoEspecifique"></td>
+        <td><input type="text" class="form-control" name="trastornosSuenoParentesco" [(ngModel)]="formData.trastornosSuenoParentesco" [disabled]="!formData.trastornosSuenoSiNo"></td>
+        <td><input type="text" class="form-control" name="trastornosSuenoEspecifique" [(ngModel)]="formData.trastornosSuenoEspecifique" [disabled]="!formData.trastornosSuenoSiNo"></td>
       </tr>
       <tr>
         <td>Alimentación
           <br>
-          <span class="small-text">Núm, cantidad, calidad, litros de agua al dia.</span>
+          <span class="small-text">Núm, cantidad, calidad, litros de agua al día.</span>
         </td>
         <td class="text-center">
           <input type="checkbox" name="alimentacionSiNo" [(ngModel)]="formData.alimentacionSiNo">
         </td>
-        <td><input type="text" class="form-control" name="alimentacionParentesco" [(ngModel)]="formData.alimentacionParentesco"></td>
-        <td><input type="text" class="form-control" name="alimentacionEspecifique" [(ngModel)]="formData.alimentacionEspecifique"></td>
+        <td><input type="text" class="form-control" name="alimentacionParentesco" [(ngModel)]="formData.alimentacionParentesco" [disabled]="!formData.alimentacionSiNo"></td>
+        <td><input type="text" class="form-control" name="alimentacionEspecifique" [(ngModel)]="formData.alimentacionEspecifique" [disabled]="!formData.alimentacionSiNo"></td>
       </tr>
       <tr>
         <td>Habitación
           <br>
-          <span class="small-text">Piso, ventilacion, ilumunacion,servicios publicos ,ambiente.</span>
+          <span class="small-text">Piso, ventilación, iluminación, servicios públicos, ambiente.</span>
         </td>
         <td class="text-center">
           <input type="checkbox" name="habitacionSiNo" [(ngModel)]="formData.habitacionSiNo">
         </td>
-        <td><input type="text" class="form-control" name="habitacionParentesco" [(ngModel)]="formData.habitacionParentesco"></td>
-        <td><input type="text" class="form-control" name="habitacionEspecifique" [(ngModel)]="formData.habitacionEspecifique"></td>
+        <td><input type="text" class="form-control" name="habitacionParentesco" [(ngModel)]="formData.habitacionParentesco" [disabled]="!formData.habitacionSiNo"></td>
+        <td><input type="text" class="form-control" name="habitacionEspecifique" [(ngModel)]="formData.habitacionEspecifique" [disabled]="!formData.habitacionSiNo"></td>
       </tr>
       <tr>
         <td>Hábitos higiénicos
@@ -76,24 +76,24 @@
         <td class="text-center">
           <input type="checkbox" name="habitosHigienicosSiNo" [(ngModel)]="formData.habitosHigienicosSiNo">
         </td>
-        <td><input type="text" class="form-control" name="habitosHigienicosParentesco" [(ngModel)]="formData.habitosHigienicosParentesco"></td>
-        <td><input type="text" class="form-control" name="habitosHigienicosEspecifique" [(ngModel)]="formData.habitosHigienicosEspecifique"></td>
+        <td><input type="text" class="form-control" name="habitosHigienicosParentesco" [(ngModel)]="formData.habitosHigienicosParentesco" [disabled]="!formData.habitosHigienicosSiNo"></td>
+        <td><input type="text" class="form-control" name="habitosHigienicosEspecifique" [(ngModel)]="formData.habitosHigienicosEspecifique" [disabled]="!formData.habitosHigienicosSiNo"></td>
       </tr>
       <tr>
         <td>Zoonosis</td>
         <td class="text-center">
           <input type="checkbox" name="zoonosisSiNo" [(ngModel)]="formData.zoonosisSiNo">
         </td>
-        <td><input type="text" class="form-control" name="zoonosisParentesco" [(ngModel)]="formData.zoonosisParentesco"></td>
-        <td><input type="text" class="form-control" name="zoonosisEspecifique" [(ngModel)]="formData.zoonosisEspecifique"></td>
+        <td><input type="text" class="form-control" name="zoonosisParentesco" [(ngModel)]="formData.zoonosisParentesco" [disabled]="!formData.zoonosisSiNo"></td>
+        <td><input type="text" class="form-control" name="zoonosisEspecifique" [(ngModel)]="formData.zoonosisEspecifique" [disabled]="!formData.zoonosisSiNo"></td>
       </tr>
       <tr>
         <td>Actividad física</td>
         <td class="text-center">
           <input type="checkbox" name="actividadFisicaSiNo" [(ngModel)]="formData.actividadFisicaSiNo">
         </td>
-        <td><input type="text" class="form-control" name="actividadFisicaParentesco" [(ngModel)]="formData.actividadFisicaParentesco"></td>
-        <td><input type="text" class="form-control" name="actividadFisicaEspecifique" [(ngModel)]="formData.actividadFisicaEspecifique"></td>
+        <td><input type="text" class="form-control" name="actividadFisicaParentesco" [(ngModel)]="formData.actividadFisicaParentesco" [disabled]="!formData.actividadFisicaSiNo"></td>
+        <td><input type="text" class="form-control" name="actividadFisicaEspecifique" [(ngModel)]="formData.actividadFisicaEspecifique" [disabled]="!formData.actividadFisicaSiNo"></td>
       </tr>
       <tr>
         <td>Ocupación
@@ -103,16 +103,16 @@
         <td class="text-center">
           <input type="checkbox" name="ocupacionSiNo" [(ngModel)]="formData.ocupacionSiNo">
         </td>
-        <td><input type="text" class="form-control" name="ocupacionParentesco" [(ngModel)]="formData.ocupacionParentesco"></td>
-        <td><input type="text" class="form-control" name="ocupacionEspecifique" [(ngModel)]="formData.ocupacionEspecifique"></td>
+        <td><input type="text" class="form-control" name="ocupacionParentesco" [(ngModel)]="formData.ocupacionParentesco" [disabled]="!formData.ocupacionSiNo"></td>
+        <td><input type="text" class="form-control" name="ocupacionEspecifique" [(ngModel)]="formData.ocupacionEspecifique" [disabled]="!formData.ocupacionSiNo"></td>
       </tr>
       <tr>
         <td>Actividades de ocio</td>
         <td class="text-center">
           <input type="checkbox" name="actividadesOcioSiNo" [(ngModel)]="formData.actividadesOcioSiNo">
         </td>
-        <td><input type="text" class="form-control" name="actividadesOcioParentesco" [(ngModel)]="formData.actividadesOcioParentesco"></td>
-        <td><input type="text" class="form-control" name="actividadesOcioEspecifique" [(ngModel)]="formData.actividadesOcioEspecifique"></td>
+        <td><input type="text" class="form-control" name="actividadesOcioParentesco" [(ngModel)]="formData.actividadesOcioParentesco" [disabled]="!formData.actividadesOcioSiNo"></td>
+        <td><input type="text" class="form-control" name="actividadesOcioEspecifique" [(ngModel)]="formData.actividadesOcioEspecifique" [disabled]="!formData.actividadesOcioSiNo"></td>
       </tr>
     </tbody>
   </table>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-s3medidas-fisicas',
@@ -8,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 export class S3medidasFisicasComponent implements OnInit {
   formData: any = {};
 
-  constructor() { }
+  constructor(
+    private utilService: UtilService,
+
+  ) { }
 
   ngOnInit(): void {
+  }
+  onlyNumbers(event: KeyboardEvent): void {
+    this.utilService.onlyNumbers(event);
+
   }
 
 }

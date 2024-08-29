@@ -31,6 +31,7 @@ export class AuthService {
           return credentials.user;
         } catch (error: any) {
           console.log('eee', error);
+          return error;
         }
       }
       setLogin() {
