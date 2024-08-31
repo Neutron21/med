@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
       try {
         const credentials = await this.authService.singIn(this.loginForm.value.email, this.loginForm.value.password);
         this.badCredentials = !this.authService.getIsLoged();
-        
+        this.getUserByEmail();
         this.showSpiner = false;
       } catch (error) {
         console.log(error);
@@ -52,8 +52,20 @@ export class LoginComponent implements OnInit {
     }
   }
   
-  getUserById() {
-   
+  getUserByEmail() {
+    const email = sessionStorage.getItem('user');
+    if (email) {
+      this.authService.getById('medicos','email',email).subscribe(
+        (response) => {
+          console.log('Datos del usuario:', response[0]);
+          this.nombre = response.nombre
+          sessionStorage.setItem('currentUser',JSON.stringify(response[0]))
+        },(error) => {
+          console.error('Error al obtener los datos del usuario:', error);
+        });
+    } else {
+      console.error('UID no encontrado en sessionStorage');
+    }
   }
  
   

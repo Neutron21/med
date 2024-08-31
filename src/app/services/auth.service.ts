@@ -3,6 +3,8 @@ import { Router } from "@angular/router";
 import { initializeApp } from 'firebase/app';
 import { environment } from "src/environments/environment";
 import { getAuth, signOut, signInWithEmailAndPassword } from "firebase/auth";
+import { HttpHeaders, HttpParams, HttpErrorResponse, HttpClient } from "@angular/common/http";
+import { Observable, catchError, throwError } from "rxjs";
 
 
 @Injectable({
@@ -11,7 +13,10 @@ import { getAuth, signOut, signInWithEmailAndPassword } from "firebase/auth";
 
 export class AuthService {
     
-    constructor(private router: Router){}
+    constructor(
+      private router: Router,
+      private http: HttpClient,
+    ){}
 
     private app = initializeApp(environment.firebaseConfig);
     private auth = getAuth();
@@ -26,11 +31,10 @@ export class AuthService {
           this.user = credentials.user.email + '';
           this.setLogin();
           console.log(credentials);
-          
           this.router.navigateByUrl('/registro');
           return credentials.user;
         } catch (error: any) {
-          console.log('eee', error);
+          console.log('error', error);
           return error;
         }
       }
@@ -56,6 +60,25 @@ export class AuthService {
         const sessionTrue = sessionStorage.getItem('uid');
         this.isLoggedIn = sessionTrue !== null ? true : false;
         return this.isLoggedIn;
+      }
+      getById(tabla: string, campo: string, valor: string): Observable<any> {
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'X-Auth-Token': environment.auth
+        });
+      
+        let params = new HttpParams()
+          .set('tabla', tabla)
+          .set('campo', campo)
+          .set('valor', valor);
+      
+        return this.http.get(environment.api + environment.query, { headers, params })
+        .pipe(
+          catchError((error: HttpErrorResponse) => {
+            console.error('Error al hacer la solicitud', error);
+            return throwError(() => new Error('Error al hacer la solicitud: ' + error.message));
+          })
+        );
       }
 }
 

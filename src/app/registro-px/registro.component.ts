@@ -45,7 +45,7 @@ export class RegistroComponent implements OnInit {
       // Mostrar el componente FichaMedica al enviar el formulario
       this.showFichaMedica = true;
       console.log('Formulario enviado:', this.formData);
-      this.pxService.createPay(this.formData).subscribe((response: any) => {
+      this.pxService.createPaciente(this.formData).subscribe((response: any) => {
         console.log("Paciente registrado con éxito, " + response.message);
       }, (error: any) =>{
         console.log("Error al registrar paciente: " + error.error.error);

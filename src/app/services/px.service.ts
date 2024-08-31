@@ -11,12 +11,14 @@ export class PxService {
         private http: HttpClient,
     )  { }
     
-    createPay(newPx: any){
+    createPaciente(newPx: any){
+        const currentUser = JSON.parse(sessionStorage.getItem('currentUser')+'');
+        newPx.id_medico = currentUser.id_medico;
         const headers = new HttpHeaders({
            'Content-Type': 'application/json',
            'X-Auth-Token': environment.auth
            });
-           console.log('createPay', newPx);
+           console.log('createPaciente', newPx);
            
         return this.http.post(environment.api + environment.cretePaciente, JSON.stringify(newPx), { headers });
         

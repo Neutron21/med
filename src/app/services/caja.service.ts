@@ -12,6 +12,9 @@ export class CajaService {
     )  { }
     
     createPay(newPay: any){
+        const currentUser = JSON.parse(sessionStorage.getItem('currentUser')+'');
+        newPay.id_medico = currentUser.id_medico;
+        
         const headers = new HttpHeaders({
            'Content-Type': 'application/json',
            'X-Auth-Token': environment.auth

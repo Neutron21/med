@@ -20,7 +20,7 @@ export class CajaComponent implements OnInit {
 
     this.cajaForm = new FormGroup({
       cantidad: new FormControl(null, Validators.required),
-      px: new FormControl(null, Validators.required),
+      concepto: new FormControl(null, Validators.required),
       dateTime: new FormControl({ value: this.currentDateTime, disabled: true }, Validators.required),
       tipo: new FormControl(null, Validators.required),
       comentarios: new FormControl(null,),
@@ -81,6 +81,13 @@ export class CajaComponent implements OnInit {
     
     if (tipoControl?.value === "null") {
       tipoControl.setErrors({ required: true });
+    } 
+  }
+  onConceptoChange() {
+    const conceptoControl = this.cajaForm.get('concepto');
+    
+    if (conceptoControl?.value === "null") {
+      conceptoControl.setErrors({ required: true });
     } 
   }
   cleanForm() {
