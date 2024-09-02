@@ -1,6 +1,6 @@
 <div class="container">
-  <form >
-    <h4>Llenar Ficha Médica</h4>
+  <h4>Datos Generales</h4>
+  <form>
     <div class="row mb-3">
       <div class="col-md-4">
         <label for="escolaridad" class="form-label">Escolaridad:</label>
@@ -12,24 +12,28 @@
       </div>
       <div class="col-md-4">
         <label for="religion" class="form-label">Religión:</label>
-        <input type="text" class="form-control" id="religion" name="religion"(keypress)="onlyText($event)">
+        <input type="text" class="form-control" id="religion" name="religion" (keypress)="onlyText($event)">
       </div>
     </div>
     <div class="row mb-3">
       <div class="col-md-4">
         <label for="nacionalidad" class="form-label">Nacionalidad:</label>
-        <input type="text" class="form-control" id="nacionalidad" name="nacionalidad"(keypress)="onlyText($event)">
+        <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" (keypress)="onlyText($event)">
       </div>
       <div class="col-md-4">
-        <label for="telEmergencia" class="form-label">Tel. Emergencia:</label>
-        <input type="tel" class="form-control" id="telEmergencia" name="telEmergencia" (keypress)="onlyNumbers($event)" >
+        <label for="telEmergencia" class="form-label">Contacto de Emergencia:</label>
+        <input type="tel" class="form-control" id="telEmergencia" name="telEmergencia" (keypress)="onlyText($event)">
       </div>
       <div class="col-md-4">
-        <label for="nombreTel" class="form-label">Nombre Tel.:</label>
+        <label for="nombreTel" class="form-label">Tel. Contacto de Emergencia:</label>
         <input type="text" class="form-control" id="nombreTel" name="nombreTel" (keypress)="onlyNumbers($event)">
       </div>
     </div>
     <div class="row mb-3">
+      <div class="col-md-4">
+        <label for="medicoTratante" class="form-label">Médico Tratante:</label>
+        <input type="text" class="form-control" id="medicoTratante" name="medicoTratante" (keypress)="onlyText($event)">
+      </div>
       <div class="col-md-4">
         <label for="residencia" class="form-label">Lugar de Residencia:</label>
         <input type="text" class="form-control" id="residencia" name="residencia">
