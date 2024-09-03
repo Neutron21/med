@@ -16,7 +16,7 @@
         <div class="mb-3">
             <label for="fechaPago" class="form-label">Tipo</label>
             <select formControlName="tipo" class="form-select" aria-label="Default select example">
-                <option selected>Seleccione</option>
+                <option selected value="null">Seleccione</option>
                 <option value="E">Efectivo</option>
                 <option value="T">Transferencia</option>
             </select>
@@ -29,21 +29,26 @@
     </div>
   </div>
 </form>
-<table class="table table-striped">
+<table class="table table-striped table-hover">
     <thead class="text-center"> 
       <tr>
         <th scope="col">Fecha</th>
         <th scope="col">Cantidad</th>
         <th scope="col">Tipo</th>
-        <th scope="col">Paciente</th>
+        <th scope="col">Concepto</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+      <tr *ngIf="pagos.length == 0">
+        <td colspan="4" class="table-active text-center">Sin resultados para mostrar</td>
       </tr>
+      <tr *ngFor="let pago of pagos">
+          <td class="text-center">{{pago.dateTime}}</td>
+          <td class="text-center">${{pago.cantidad}}</td>
+          <td class="text-center">{{pago.tipo}}</td>
+          <td class="text-center">{{pago.concepto}}</td>
+      </tr>
+     
+     
     </tbody>
   </table>
