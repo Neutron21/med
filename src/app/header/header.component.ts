@@ -37,12 +37,18 @@ export class HeaderComponent implements OnInit {
   }
   validarSesion(){
     if (typeof window !== 'undefined' && typeof window.sessionStorage !== 'undefined') {
-      const uid = sessionStorage.getItem('uid');
-      const usuario = JSON.parse(sessionStorage.getItem('currentUser') + '');
-      this.user.nombre = usuario ? usuario.nombre : "";
-      this.user.owner = usuario ? usuario.owner : "";
-      this.user.rol = usuario ? usuario.paquete : "";
-      return !!uid;
+      try {
+        const uid = sessionStorage.getItem('uid');
+        const usuario = JSON.parse(sessionStorage.getItem('currentUser') + '');
+        this.user.nombre = usuario ? usuario.nombre : "";
+        this.user.owner = usuario ? usuario.owner : "";
+        this.user.rol = usuario ? usuario.paquete : "";
+        return !!uid;
+      } catch (error) {
+        this.authServie.logOut();
+        return false;
+      }
+      
     } else {
       return false;
     }
