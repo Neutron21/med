@@ -43,10 +43,10 @@
         <td colspan="4" class="table-active text-center">Sin resultados para mostrar</td>
       </tr>
       <tr *ngFor="let pago of pagos">
-          <td class="text-center">{{pago.dateTime}}</td>
+          <td class="text-center">{{formatDate(pago.dateTime)}}</td>
           <td class="text-center">${{pago.cantidad}}</td>
-          <td class="text-center">{{pago.tipo}}</td>
-          <td class="text-center">{{pago.concepto}}</td>
+          <td class="text-center">{{formatTipo(pago.tipo)}}</td>
+          <td class="text-center">{{formatConcepto(pago.concepto)}}</td>
       </tr>
      
      

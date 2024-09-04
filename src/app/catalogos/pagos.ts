@@ -1,8 +1,8 @@
 export const concepto = {
-    m: 'Masaje',
-    t: 'Terapia'
+    M: 'Masaje',
+    T: 'Terapia'
 }
 export const tipo = {
-    t: 'Transferencia',
-    e: 'Efectivo'
+    T: 'Transferencia',
+    E: 'Efectivo'
 }

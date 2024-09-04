@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { concepto, tipo } from 'src/app/catalogos/pagos';
 import { CajaService } from '../services/caja.service';
 
 @Component({
@@ -38,4 +39,17 @@ export class TableCajaComponent implements OnInit {
     }
     
   }
+  formatDate(pagoFecha: string) {
+    const [fechaParte, horaParte] = pagoFecha.split(' ');
+    const [anio, mes, dia] = fechaParte.split('-');
+    const fechaFormateada = `${dia}-${mes}-${anio} ${horaParte}`;
+
+    return fechaFormateada;
+  }
+  formatTipo(valor: keyof typeof tipo) {
+    return tipo[valor];
+  }
+  formatConcepto(valor: keyof typeof concepto) {
+    return concepto[valor];
+}
 }
