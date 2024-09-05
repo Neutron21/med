@@ -47,6 +47,9 @@ export class RegistroComponent implements OnInit {
       console.log('Formulario enviado:', this.formData);
       this.pxService.createPaciente(this.formData).subscribe((response: any) => {
         console.log("Paciente registrado con éxito, " + response.message);
+        console.log("Paciente actual, " , response.data);
+        sessionStorage.setItem('currentPxId', response.data.id);
+
       }, (error: any) =>{
         console.log("Error al registrar paciente: " + error.error.error);
       });
