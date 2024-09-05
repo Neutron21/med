@@ -12,6 +12,7 @@ export class TableCajaComponent implements OnInit {
 
   buscarPagoForm: FormGroup;
   pagos: any[] = [];
+  showSpiner: boolean = false;
   constructor(
     private cajaService: CajaService,
   ) { 
@@ -25,6 +26,7 @@ export class TableCajaComponent implements OnInit {
   ngOnInit(): void {
   }
   buscarPago() {
+    this.showSpiner = true;
     const desdeControl = this.buscarPagoForm.get('desde');
     const hastaControl = this.buscarPagoForm.get('hasta');
     const tipoControl = this.buscarPagoForm.get('tipo');
@@ -33,8 +35,10 @@ export class TableCajaComponent implements OnInit {
         (response) => {
           console.log('Pagos:', response);
           this.pagos = response;
+          this.showSpiner = false;
         },(error) => {
           console.error('Error al obtener los datos del usuario:', error);
+          this.showSpiner = false;
         });
     }
     

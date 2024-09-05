@@ -2,7 +2,7 @@
   <div class="d-flex align-items-center mb-4">
     <h4 class="me-3">Buscar</h4>
     <div class="form-check form-switch">
-      <input class="form-check-input" type="checkbox" id="switchDeportivo" (change)="selectBusqueda($event)">
+      <input class="form-check-input" type="checkbox" id="switchDeportivo" (change)="selectBusqueda($event)" [(ngModel)]="busquedaCheck">
       <label class="form-check-label" for="switchDeportivo">{{labelBuqueda}}</label>
     </div>
   </div>
