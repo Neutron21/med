@@ -15,24 +15,30 @@
         <td class="text-center">
           <input type="checkbox" name="toxicomaniasSiNo" [(ngModel)]="formData.toxicomaniasSiNo">
         </td>
-        <td><input type="text" class="form-control" name="toxicomaniasParentesco" [(ngModel)]="formData.toxicomaniasParentesco" [disabled]="!formData.toxicomaniasSiNo"></td>
-        <td><input type="text" class="form-control" name="toxicomaniasEspecifique" [(ngModel)]="formData.toxicomaniasEspecifique" [disabled]="!formData.toxicomaniasSiNo"></td>
+        <td><input type="text" class="form-control" name="toxicomaniasParentesco" [(ngModel)]="body.toxicomanias_p" [disabled]="!formData.toxicomaniasSiNo"
+          (ngModelChange)="guardar()"></td>
+        <td><input type="text" class="form-control" name="toxicomaniasEspecifique" [(ngModel)]="body.toxicomanias_e" [disabled]="!formData.toxicomaniasSiNo"
+          (ngModelChange)="guardar()"></td>
       </tr>
       <tr>
         <td>Inmunizaciones</td>
         <td class="text-center">
           <input type="checkbox" name="inmunizacionesSiNo" [(ngModel)]="formData.inmunizacionesSiNo">
         </td>
-        <td><input type="text" class="form-control" name="inmunizacionesParentesco" [(ngModel)]="formData.inmunizacionesParentesco" [disabled]="!formData.inmunizacionesSiNo"></td>
-        <td><input type="text" class="form-control" name="inmunizacionesEspecifique" [(ngModel)]="formData.inmunizacionesEspecifique" [disabled]="!formData.inmunizacionesSiNo"></td>
+        <td><input type="text" class="form-control" name="inmunizacionesParentesco" [(ngModel)]="body.inmunizaciones_p" [disabled]="!formData.inmunizacionesSiNo"
+          (ngModelChange)="guardar()"></td>
+        <td><input type="text" class="form-control" name="inmunizacionesEspecifique" [(ngModel)]="body.inmunizaciones_e" [disabled]="!formData.inmunizacionesSiNo"
+          (ngModelChange)="guardar()"></td>
       </tr>
       <tr>
         <td>Automedicación</td>
         <td class="text-center">
           <input type="checkbox" name="automedicacionSiNo" [(ngModel)]="formData.automedicacionSiNo">
         </td>
-        <td><input type="text" class="form-control" name="automedicacionParentesco" [(ngModel)]="formData.automedicacionParentesco" [disabled]="!formData.automedicacionSiNo"></td>
-        <td><input type="text" class="form-control" name="automedicacionEspecifique" [(ngModel)]="formData.automedicacionEspecifique" [disabled]="!formData.automedicacionSiNo"></td>
+        <td><input type="text" class="form-control" name="automedicacionParentesco" [(ngModel)]="body.automedicacion_p" [disabled]="!formData.automedicacionSiNo"
+          (ngModelChange)="guardar()"></td>
+        <td><input type="text" class="form-control" name="automedicacionEspecifique" [(ngModel)]="body.automedicacion_e" [disabled]="!formData.automedicacionSiNo"
+          (ngModelChange)="guardar()"></td>
       </tr>
       <tr>
         <td>
@@ -43,8 +49,10 @@
         <td class="text-center">
           <input type="checkbox" name="trastornosSuenoSiNo" [(ngModel)]="formData.trastornosSuenoSiNo">
         </td>
-        <td><input type="text" class="form-control" name="trastornosSuenoParentesco" [(ngModel)]="formData.trastornosSuenoParentesco" [disabled]="!formData.trastornosSuenoSiNo"></td>
-        <td><input type="text" class="form-control" name="trastornosSuenoEspecifique" [(ngModel)]="formData.trastornosSuenoEspecifique" [disabled]="!formData.trastornosSuenoSiNo"></td>
+        <td><input type="text" class="form-control" name="trastornosSuenoParentesco" [(ngModel)]="body.transtornoSueno_p" [disabled]="!formData.trastornosSuenoSiNo"
+          (ngModelChange)="guardar()"></td>
+        <td><input type="text" class="form-control" name="trastornosSuenoEspecifique" [(ngModel)]="body.transtornoSueno_e" [disabled]="!formData.trastornosSuenoSiNo"
+          (ngModelChange)="guardar()"></td>
       </tr>
       <tr>
         <td>Alimentación
@@ -54,8 +62,10 @@
         <td class="text-center">
           <input type="checkbox" name="alimentacionSiNo" [(ngModel)]="formData.alimentacionSiNo">
         </td>
-        <td><input type="text" class="form-control" name="alimentacionParentesco" [(ngModel)]="formData.alimentacionParentesco" [disabled]="!formData.alimentacionSiNo"></td>
-        <td><input type="text" class="form-control" name="alimentacionEspecifique" [(ngModel)]="formData.alimentacionEspecifique" [disabled]="!formData.alimentacionSiNo"></td>
+        <td><input type="text" class="form-control" name="alimentacionParentesco" [(ngModel)]="body.alimentacion_p" [disabled]="!formData.alimentacionSiNo"
+          (ngModelChange)="guardar()"></td>
+        <td><input type="text" class="form-control" name="alimentacionEspecifique" [(ngModel)]="body.alimentacion_e" [disabled]="!formData.alimentacionSiNo"
+          (ngModelChange)="guardar()"></td>
       </tr>
       <tr>
         <td>Habitación
@@ -65,8 +75,10 @@
         <td class="text-center">
           <input type="checkbox" name="habitacionSiNo" [(ngModel)]="formData.habitacionSiNo">
         </td>
-        <td><input type="text" class="form-control" name="habitacionParentesco" [(ngModel)]="formData.habitacionParentesco" [disabled]="!formData.habitacionSiNo"></td>
-        <td><input type="text" class="form-control" name="habitacionEspecifique" [(ngModel)]="formData.habitacionEspecifique" [disabled]="!formData.habitacionSiNo"></td>
+        <td><input type="text" class="form-control" name="habitacionParentesco" [(ngModel)]="body.habitacion_p" [disabled]="!formData.habitacionSiNo"
+          (ngModelChange)="guardar()"></td>
+        <td><input type="text" class="form-control" name="habitacionEspecifique" [(ngModel)]="formData.habitacion_e" [disabled]="!formData.habitacionSiNo"
+          (ngModelChange)="guardar()"></td>
       </tr>
       <tr>
         <td>Hábitos higiénicos
@@ -76,24 +88,30 @@
         <td class="text-center">
           <input type="checkbox" name="habitosHigienicosSiNo" [(ngModel)]="formData.habitosHigienicosSiNo">
         </td>
-        <td><input type="text" class="form-control" name="habitosHigienicosParentesco" [(ngModel)]="formData.habitosHigienicosParentesco" [disabled]="!formData.habitosHigienicosSiNo"></td>
-        <td><input type="text" class="form-control" name="habitosHigienicosEspecifique" [(ngModel)]="formData.habitosHigienicosEspecifique" [disabled]="!formData.habitosHigienicosSiNo"></td>
+        <td><input type="text" class="form-control" name="habitosHigienicosParentesco" [(ngModel)]="body.habitos_higienicos_p" [disabled]="!formData.habitosHigienicosSiNo"
+          (ngModelChange)="guardar()"></td>
+        <td><input type="text" class="form-control" name="habitosHigienicosEspecifique" [(ngModel)]="body.habitos_higienicos_e" [disabled]="!formData.habitosHigienicosSiNo"
+          (ngModelChange)="guardar()"></td>
       </tr>
       <tr>
         <td>Zoonosis</td>
         <td class="text-center">
           <input type="checkbox" name="zoonosisSiNo" [(ngModel)]="formData.zoonosisSiNo">
         </td>
-        <td><input type="text" class="form-control" name="zoonosisParentesco" [(ngModel)]="formData.zoonosisParentesco" [disabled]="!formData.zoonosisSiNo"></td>
-        <td><input type="text" class="form-control" name="zoonosisEspecifique" [(ngModel)]="formData.zoonosisEspecifique" [disabled]="!formData.zoonosisSiNo"></td>
+        <td><input type="text" class="form-control" name="zoonosisParentesco" [(ngModel)]="body.zoonosis_p" [disabled]="!formData.zoonosisSiNo"
+          (ngModelChange)="guardar()"></td>
+        <td><input type="text" class="form-control" name="zoonosisEspecifique" [(ngModel)]="body.zoonosis_e" [disabled]="!formData.zoonosisSiNo"
+          (ngModelChange)="guardar()"></td>
       </tr>
       <tr>
         <td>Actividad física</td>
         <td class="text-center">
           <input type="checkbox" name="actividadFisicaSiNo" [(ngModel)]="formData.actividadFisicaSiNo">
         </td>
-        <td><input type="text" class="form-control" name="actividadFisicaParentesco" [(ngModel)]="formData.actividadFisicaParentesco" [disabled]="!formData.actividadFisicaSiNo"></td>
-        <td><input type="text" class="form-control" name="actividadFisicaEspecifique" [(ngModel)]="formData.actividadFisicaEspecifique" [disabled]="!formData.actividadFisicaSiNo"></td>
+        <td><input type="text" class="form-control" name="actividadFisicaParentesco" [(ngModel)]="body.actividad_fisica_p" [disabled]="!formData.actividadFisicaSiNo"
+          (ngModelChange)="guardar()"></td>
+        <td><input type="text" class="form-control" name="actividadFisicaEspecifique" [(ngModel)]="body.actividad_fisica_e" [disabled]="!formData.actividadFisicaSiNo"
+          (ngModelChange)="guardar()"></td>
       </tr>
       <tr>
         <td>Ocupación
@@ -103,16 +121,20 @@
         <td class="text-center">
           <input type="checkbox" name="ocupacionSiNo" [(ngModel)]="formData.ocupacionSiNo">
         </td>
-        <td><input type="text" class="form-control" name="ocupacionParentesco" [(ngModel)]="formData.ocupacionParentesco" [disabled]="!formData.ocupacionSiNo"></td>
-        <td><input type="text" class="form-control" name="ocupacionEspecifique" [(ngModel)]="formData.ocupacionEspecifique" [disabled]="!formData.ocupacionSiNo"></td>
+        <td><input type="text" class="form-control" name="ocupacionParentesco" [(ngModel)]="body.ocupacion_p" [disabled]="!formData.ocupacionSiNo"
+          (ngModelChange)="guardar()"></td>
+        <td><input type="text" class="form-control" name="ocupacionEspecifique" [(ngModel)]="body.ocupacion_e" [disabled]="!formData.ocupacionSiNo"
+          (ngModelChange)="guardar()"></td>
       </tr>
       <tr>
         <td>Actividades de ocio</td>
         <td class="text-center">
           <input type="checkbox" name="actividadesOcioSiNo" [(ngModel)]="formData.actividadesOcioSiNo">
         </td>
-        <td><input type="text" class="form-control" name="actividadesOcioParentesco" [(ngModel)]="formData.actividadesOcioParentesco" [disabled]="!formData.actividadesOcioSiNo"></td>
-        <td><input type="text" class="form-control" name="actividadesOcioEspecifique" [(ngModel)]="formData.actividadesOcioEspecifique" [disabled]="!formData.actividadesOcioSiNo"></td>
+        <td><input type="text" class="form-control" name="actividadesOcioParentesco" [(ngModel)]="body.actividad_de_ocio_p" [disabled]="!formData.actividadesOcioSiNo" 
+          (ngModelChange)="guardar()"></td>
+        <td><input type="text" class="form-control" name="actividadesOcioEspecifique" [(ngModel)]="body.actividad_de_ocio_e" [disabled]="!formData.actividadesOcioSiNo"
+          (ngModelChange)="guardar()"></td>
       </tr>
     </tbody>
   </table>
