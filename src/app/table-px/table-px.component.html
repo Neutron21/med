@@ -1,17 +1,11 @@
 <form [formGroup]="buscarPxForm"  (ngSubmit)="buscarPx()">
   <div class="row d-flex justify-content-between">
-    <div class="col ">
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Nombre Paciente</label>
-        <input formControlName="nombre" type="text" class="form-control" 
-          id="exampleFormControlInput1" placeholder="Nombre Paciente"
-          (keypress)="validateTextInput($event)" autocomplete="off">
-      </div>
-    </div>
     <div class="col">
       <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Diagnostico</label>
-        <input formControlName="dx" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Diagnostico">
+        <label for="textoFind" class="form-label">Nombre, Apellidos, Diagnóstico</label>
+        <input formControlName="textoFind" type="text" class="form-control" 
+          id="textoFind" placeholder="Buscar..."
+          (keypress)="validateTextInput($event)" autocomplete="off">
       </div>
     </div>
     <div class="col d-flex justify-content-end">
@@ -29,11 +23,21 @@
         <th scope="col">Diagnóstico</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
+    <tbody *ngIf="pxList.length == 0">
+      <tr *ngIf="!showSpiner">
+        <td colspan="4" class="table-active text-center">Sin resultados para mostrar</td>
+      </tr>
+      <tr *ngIf="showSpiner">
+        <td colspan="4" class="spinner-container">
+          <img alt="spiner" src="../../assets/doctor.gif"/>
+        </td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="!showSpiner && pxList.length > 0">
+      <tr *ngFor="let px of pxList">
+        <td class="text-center">{{px.nombre+' '+px.apellido_p+' '+px.apellido_m}}</td>
+        <td class="text-center">${{px.telefono}}</td>
+        <td class="text-center">{{px.diagnostico_medico}}</td>
       </tr>
     </tbody>
   </table>

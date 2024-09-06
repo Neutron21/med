@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UtilService } from '../services/util.service';
+import { PxService } from '../services/px.service';
 
 @Component({
   selector: 'app-table-px',
@@ -10,13 +11,15 @@ import { UtilService } from '../services/util.service';
 export class TablePxComponent implements OnInit {
 
   buscarPxForm!: FormGroup;
+  showSpiner: boolean = false;
+  pxList: any = [];
 
   constructor(
-    private utilService: UtilService
+    private utilService: UtilService,
+    private pxService: PxService
   ) { 
     this.buscarPxForm = new FormGroup({
-      nombre: new FormControl(null,),
-      dx: new FormControl(null, ),
+      textoFind: new FormControl(null,),
     });
   }
 
@@ -26,10 +29,19 @@ export class TablePxComponent implements OnInit {
     return this.utilService.onlyText(event);
   }
   buscarPx() {
-    const pxControl = this.buscarPxForm.get('nombre');
-    const dxControl = this.buscarPxForm.get('dx');
-    if (!!pxControl?.value || !!dxControl?.value) {
-      console.log(this.buscarPxForm);
+    this.showSpiner = true;
+    const pxControl = this.buscarPxForm.get('textoFind');
+    if (!!pxControl?.value) {
+      console.log(pxControl);
+      this.pxService.getPacientes(pxControl.value).subscribe(
+        (response) => {
+          console.log('Pacientes:', response);
+          this.pxList = response;
+          this.showSpiner = false;
+        },(error) => {
+          console.error('Error al obtener los datos del usuario:', error);
+          this.showSpiner = false;
+        });
     }
     
   }
