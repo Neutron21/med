@@ -4,43 +4,52 @@
     <div class="row mb-3">
       <div class="col-md-4">
         <label for="escolaridad" class="form-label">Escolaridad:</label>
-        <input type="text" class="form-control" id="escolaridad" name="escolaridad" (keypress)="onlyText($event)">
+        <input type="text" class="form-control" id="escolaridad" name="escolaridad" [(ngModel)]="body.escolaridad" 
+        (ngModelChange)="guardar()" (keypress)="onlyText($event)">
       </div>
       <div class="col-md-4">
         <label for="ocupacion" class="form-label">Ocupación:</label>
-        <input type="text" class="form-control" id="ocupacion" name="ocupacion" (keypress)="onlyText($event)">
+        <input type="text" class="form-control" id="ocupacion" name="ocupacion" [(ngModel)]="body.ocupacion" 
+        (ngModelChange)="guardar()" (keypress)="onlyText($event)">
       </div>
       <div class="col-md-4">
         <label for="religion" class="form-label">Religión:</label>
-        <input type="text" class="form-control" id="religion" name="religion" (keypress)="onlyText($event)">
+        <input type="text" class="form-control" id="religion" name="religion" [(ngModel)]="body.religion" 
+        (ngModelChange)="guardar()" (keypress)="onlyText($event)">
       </div>
     </div>
     <div class="row mb-3">
       <div class="col-md-4">
         <label for="nacionalidad" class="form-label">Nacionalidad:</label>
-        <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" (keypress)="onlyText($event)">
+        <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" [(ngModel)]="body.nacionalidad"      
+        (ngModelChange)="guardar()"(keypress)="onlyText($event)">
       </div>
       <div class="col-md-4">
         <label for="telEmergencia" class="form-label">Contacto de Emergencia:</label>
-        <input type="tel" class="form-control" id="telEmergencia" name="telEmergencia" (keypress)="onlyText($event)">
+        <input type="tel" class="form-control" id="telEmergencia" name="telEmergencia" [(ngModel)]="body.contacto_de_emergencia" 
+        (ngModelChange)="guardar()" (keypress)="onlyText($event)">
       </div>
       <div class="col-md-4">
         <label for="nombreTel" class="form-label">Tel. Contacto de Emergencia:</label>
-        <input type="text" class="form-control" id="nombreTel" name="nombreTel" (keypress)="onlyNumbers($event)">
+        <input type="text" class="form-control" id="nombreTel" name="nombreTel" [(ngModel)]="body.tel_contacto_de_emergencia" 
+        (ngModelChange)="guardar()" (keypress)="onlyNumbers($event)">
       </div>
     </div>
     <div class="row mb-3">
       <div class="col-md-4">
         <label for="medicoTratante" class="form-label">Médico Tratante:</label>
-        <input type="text" class="form-control" id="medicoTratante" name="medicoTratante" (keypress)="onlyText($event)">
+        <input type="text" class="form-control" id="medicoTratante" name="medicoTratante" [(ngModel)]="body.medico_tratante"
+        (ngModelChange)="guardar()" (keypress)="onlyText($event)">
       </div>
       <div class="col-md-4">
         <label for="residencia" class="form-label">Lugar de Residencia:</label>
-        <input type="text" class="form-control" id="residencia" name="residencia">
+        <input type="text" class="form-control" id="residencia" name="residencia" [(ngModel)]="body.lugar_de_recidencia"
+        (ngModelChange)="guardar()"> 
       </div>
       <div class="col-md-4">
         <label for="remision" class="form-label">Remisión:</label>
-        <input type="text" class="form-control" id="remision" name="remision">
+        <input type="text" class="form-control" id="remision" name="remision" [(ngModel)]="body.remision"
+        (ngModelChange)="guardar()">
       </div>
     </div>
   </form>

@@ -23,4 +23,78 @@ export class PxService {
         return this.http.post(environment.api + environment.cretePaciente, JSON.stringify(newPx), { headers });
         
       }
+      datosGeneralesPost(request: any){
+        const currentPx = sessionStorage.getItem('currentPxId'+'');
+        request.id_paciente = currentPx;
+        const headers = new HttpHeaders({
+           'Content-Type': 'application/json',
+           'X-Auth-Token': environment.auth
+           });
+           console.log('createPaciente', request);
+           
+        return this.http.post(environment.api + environment.postDatosGeneralesFm, JSON.stringify(request), { headers });
+        
+      }
+      deportivoFm(request:any){
+        const currentPx = sessionStorage.getItem('currentPxId'+'');
+        request.id_paciente = currentPx;
+        const headers = new HttpHeaders({
+           'Content-Type': 'application/json',
+           'X-Auth-Token': environment.auth
+           });
+           console.log('createPaciente', request);
+           
+        return this.http.post(environment.api + environment.postDeportivoFm, JSON.stringify(request), { headers });
+        
+      }
+      medidasFm(request:any){
+        const currentPx = sessionStorage.getItem('currentPxId'+'');
+        request.id_paciente = currentPx;
+        const headers = new HttpHeaders({
+           'Content-Type': 'application/json',
+           'X-Auth-Token': environment.auth
+           });
+           console.log('createPaciente', request);
+           
+        return this.http.post(environment.api + environment.postMedidasFm, JSON.stringify(request), { headers });
+        
+      }
+      antecedentesFm(request:any){
+        const currentPx = sessionStorage.getItem('currentPxId'+'');
+        request.id_paciente = currentPx;
+        const headers = new HttpHeaders({
+           'Content-Type': 'application/json',
+           'X-Auth-Token': environment.auth
+           });
+           console.log('createPaciente', request);
+           
+        return this.http.post(environment.api + environment.postAntecedentesFm, JSON.stringify(request), { headers });
+        
+      }
+      antecedentesPatFm(request:any){
+        const currentPx = sessionStorage.getItem('currentPxId'+'');
+        request.id_paciente = currentPx;
+        const headers = new HttpHeaders({
+           'Content-Type': 'application/json',
+           'X-Auth-Token': environment.auth
+           });
+           console.log('createPaciente', request);
+           
+        return this.http.post(environment.api + environment.postAntecedentesPatFm, JSON.stringify(request), { headers });
+        
+      }
+      antecedentesNoPatFm(request:any){
+        const currentPx = sessionStorage.getItem('currentPxId'+'');
+        request.id_paciente = currentPx;
+        const headers = new HttpHeaders({
+           'Content-Type': 'application/json',
+           'X-Auth-Token': environment.auth
+           });
+           console.log('createPaciente', request);
+           
+        return this.http.post(environment.api + environment.postAntecedentesNoPatFm, JSON.stringify(request), { headers });
+        
+      }
+      
+
 }
