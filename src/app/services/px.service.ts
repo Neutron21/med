@@ -118,6 +118,42 @@ export class PxService {
         return this.http.post(environment.api + environment.postAntecedentesNoPatFm, JSON.stringify(request), { headers });
         
     }
-      
+    mujerFm(request:any){
+        const currentPx = sessionStorage.getItem('currentPxId'+'');
+        request.id_paciente = currentPx;
+        const headers = new HttpHeaders({
+           'Content-Type': 'application/json',
+           'X-Auth-Token': environment.auth
+           });
+           console.log('createPaciente', request);
+           
+        return this.http.post(environment.api + environment.postMujerFm, JSON.stringify(request), { headers });
+        
+    }
+    pediatricoFm(request:any){
+        const currentPx = sessionStorage.getItem('currentPxId'+'');
+        request.id_paciente = currentPx;
+        const headers = new HttpHeaders({
+           'Content-Type': 'application/json',
+           'X-Auth-Token': environment.auth
+           });
+           console.log('createPaciente', request);
+           
+        return this.http.post(environment.api + environment.postPediatricoFm, JSON.stringify(request), { headers });
+        
+    }
+    fichamedicaAuxFm(request:any){
+        const currentPx = sessionStorage.getItem('currentPxId'+'');
+        request.id_paciente = currentPx;
+        const headers = new HttpHeaders({
+           'Content-Type': 'application/json',
+           'X-Auth-Token': environment.auth
+           });
+           console.log('createPaciente', request);
+           
+        return this.http.post(environment.api + environment.postFichaMedicaAux, JSON.stringify(request), { headers });
+        
+    }
+   
 
 }

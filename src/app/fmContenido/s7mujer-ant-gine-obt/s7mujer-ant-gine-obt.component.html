@@ -23,10 +23,12 @@
             <input type="checkbox" [(ngModel)]="formData.metrorragiaSiNo">
           </td>
           <td>
-            <input type="text" class="form-control" [(ngModel)]="formData.metrorragiaParentesco" [disabled]="!formData.metrorragiaSiNo">
+            <input type="text" class="form-control" [(ngModel)]="body.mecarca_p" [disabled]="!formData.metrorragiaSiNo"
+            (ngModelChange)="guardar()">
           </td>
           <td>
-            <input type="text" class="form-control" [(ngModel)]="formData.metrorragiaEspecifique" [disabled]="!formData.metrorragiaSiNo">
+            <input type="text" class="form-control" [(ngModel)]="body.mecarca_e" [disabled]="!formData.metrorragiaSiNo"
+            (ngModelChange)="guardar()">
           </td>
         </tr>
         <tr>
@@ -35,10 +37,12 @@
             <input type="checkbox" [(ngModel)]="formData.dismenorreasSiNo">
           </td>
           <td>
-            <input type="text" class="form-control" [(ngModel)]="formData.dismenorreasParentesco" [disabled]="!formData.dismenorreasSiNo">
+            <input type="text" class="form-control" [(ngModel)]="body.dismenorreas_p" [disabled]="!formData.dismenorreasSiNo"
+            (ngModelChange)="guardar()">
           </td>
           <td>
-            <input type="text" class="form-control" [(ngModel)]="formData.dismenorreasEspecifique" [disabled]="!formData.dismenorreasSiNo">
+            <input type="text" class="form-control" [(ngModel)]="formData.dismenorreas_e" [disabled]="!formData.dismenorreasSiNo"
+            (ngModelChange)="guardar()">
           </td>
         </tr>
         <tr>
@@ -47,10 +51,10 @@
             <input type="checkbox" [(ngModel)]="formData.gestaActualSiNo">
           </td>
           <td>
-            <input type="text" class="form-control" [(ngModel)]="formData.gestaActualParentesco" [disabled]="!formData.gestaActualSiNo">
+            <input type="text" class="form-control" [(ngModel)]="body.gestaActual_p" [disabled]="!formData.gestaActualSiNo">
           </td>
           <td>
-            <input type="text" class="form-control" [(ngModel)]="formData.gestaActualEspecifique" [disabled]="!formData.gestaActualSiNo">
+            <input type="text" class="form-control" [(ngModel)]="formData.gestaActual_e" [disabled]="!formData.gestaActualSiNo">
           </td>
         </tr>
         <tr>
@@ -59,22 +63,26 @@
             <input type="checkbox" [(ngModel)]="formData.numeroGestasSiNo">
           </td>
           <td>
-            <input type="text" class="form-control" [(ngModel)]="formData.numeroGestasParentesco" [disabled]="!formData.numeroGestasSiNo">
+            <input type="text" class="form-control" [(ngModel)]="body.numeroGestas_p" [disabled]="!formData.numeroGestasSiNo" 
+            (ngModelChange)="guardar()">
           </td>
           <td>
-            <input type="text" class="form-control" [(ngModel)]="formData.numeroGestasEspecifique" [disabled]="!formData.numeroGestasSiNo">
+            <input type="text" class="form-control" [(ngModel)]="body.numeroGestas_e" [disabled]="!formData.numeroGestasSiNo"
+            (ngModelChange)="guardar()">
           </td>
         </tr>
         <tr>
           <td>Número de partos</td>
           <td class="text-center">
-            <input type="checkbox" [(ngModel)]="formData.numeroPartosSiNo">
+            <input type="checkbox" [(ngModel)]="formData.numeroPartosSiNo"
+            (ngModelChange)="guardar()">
           </td>
           <td>
-            <input type="text" class="form-control" [(ngModel)]="formData.numeroPartosParentesco" [disabled]="!formData.numeroPartosSiNo">
+            <input type="text" class="form-control" [(ngModel)]="body.numeroPartos_p" [disabled]="!formData.numeroPartosSiNo"
+            (ngModelChange)="guardar()">
           </td>
           <td>
-            <input type="text" class="form-control" [(ngModel)]="formData.numeroPartosEspecifique" [disabled]="!formData.numeroPartosSiNo">
+            <input type="text" class="form-control" [(ngModel)]="body.numeroPartos_e" [disabled]="!formData.numeroPartosSiNo">
           </td>
         </tr>
         <tr>
@@ -83,10 +91,12 @@
             <input type="checkbox" [(ngModel)]="formData.cesareasSiNo">
           </td>
           <td>
-            <input type="text" class="form-control" [(ngModel)]="formData.cesareasParentesco" [disabled]="!formData.cesareasSiNo">
+            <input type="text" class="form-control" [(ngModel)]="body.cesareas_p" [disabled]="!formData.cesareasSiNo"
+            (ngModelChange)="guardar()">
           </td>
           <td>
-            <input type="text" class="form-control" [(ngModel)]="formData.cesareasEspecifique" [disabled]="!formData.cesareasSiNo">
+            <input type="text" class="form-control" [(ngModel)]="body.cesareas_e" [disabled]="!formData.cesareasSiNo"
+            (ngModelChange)="guardar()">
           </td>
         </tr>
         <tr>
@@ -95,10 +105,12 @@
             <input type="checkbox" [(ngModel)]="formData.abortoSiNo">
           </td>
           <td>
-            <input type="text" class="form-control" [(ngModel)]="formData.abortoParentesco" [disabled]="!formData.abortoSiNo">
+            <input type="text" class="form-control" [(ngModel)]="body.aborto_p" [disabled]="!formData.abortoSiNo"
+            (ngModelChange)="guardar()">
           </td>
           <td>
-            <input type="text" class="form-control" [(ngModel)]="formData.abortoEspecifique" [disabled]="!formData.abortoSiNo">
+            <input type="text" class="form-control" [(ngModel)]="body.aborto_e" [disabled]="!formData.abortoSiNo"
+            (ngModelChange)="guardar()">
           </td>
         </tr>
         <tr>
@@ -107,10 +119,12 @@
             <input type="checkbox" [(ngModel)]="formData.nacidosVivosSiNo">
           </td>
           <td>
-            <input type="text" class="form-control" [(ngModel)]="formData.nacidosVivosParentesco" [disabled]="!formData.nacidosVivosSiNo">
+            <input type="text" class="form-control" [(ngModel)]="body.nacidosVivos_p" [disabled]="!formData.nacidosVivosSiNo"
+            (ngModelChange)="guardar()">
           </td>
           <td>
-            <input type="text" class="form-control" [(ngModel)]="formData.nacidosVivosEspecifique" [disabled]="!formData.nacidosVivosSiNo">
+            <input type="text" class="form-control" [(ngModel)]="body.nacidosVivos_e" [disabled]="!formData.nacidosVivosSiNo"
+            (ngModelChange)="guardar()">
           </td>
         </tr>
         <tr>
@@ -119,10 +133,12 @@
             <input type="checkbox" [(ngModel)]="formData.menopausiaSiNo">
           </td>
           <td>
-            <input type="text" class="form-control" [(ngModel)]="formData.menopausiaParentesco" [disabled]="!formData.menopausiaSiNo">
+            <input type="text" class="form-control" [(ngModel)]="body.menopausia_p" [disabled]="!formData.menopausiaSiNo"
+            (ngModelChange)="guardar()">
           </td>
           <td>
-            <input type="text" class="form-control" [(ngModel)]="formData.menopausiaEspecifique" [disabled]="!formData.menopausiaSiNo">
+            <input type="text" class="form-control" [(ngModel)]="body.menopausia_e" [disabled]="!formData.menopausiaSiNo"
+            (ngModelChange)="guardar()">
           </td>
         </tr>
       </tbody>

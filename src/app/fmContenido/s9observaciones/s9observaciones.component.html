@@ -1,26 +1,26 @@
 <div class="container">
   <p class="me-3 text-center fw-bold">Motivo de consulta</p>
   <div class="d-flex align-items-center mb-3">
-    <input type="text" class="form-control" [(ngModel)]="motivoConsulta" name="motivoConsulta">
+    <input type="text" class="form-control" [(ngModel)]="body.motivoConsulta" name="motivoConsulta" (ngModelChange)="guardar()" >
   </div>
 
   <p class="me-3 text-center fw-bold">Diagnóstico médico</p>
   <div class="d-flex align-items-center mb-3">
-    <input type="text" class="form-control" [(ngModel)]="diagnosticoMedico" name="diagnosticoMedico">
+    <input type="text" class="form-control" [(ngModel)]="body.diagnosticoMedico" name="diagnosticoMedico" (ngModelChange)="guardar()">
   </div>
 
   <p class="me-3 text-center fw-bold">Mecanismo de lesión</p>
   <div class="d-flex align-items-center mb-3">
-    <input type="text" class="form-control" [(ngModel)]="mecanismoLesion" name="mecanismoLesion">
+    <input type="text" class="form-control" [(ngModel)]="body.mecanismoLesion" name="mecanismoLesion" (ngModelChange)="guardar()">
   </div>
 
   <p class="me-3 text-center fw-bold">Tratamientos previos</p>
   <div class="d-flex align-items-center mb-3">
-    <input type="text" class="form-control" [(ngModel)]="tratamientosPrevios" name="tratamientosPrevios">
+    <input type="text" class="form-control" [(ngModel)]="body.tratamientosPrevios" name="tratamientosPrevios" (ngModelChange)="guardar()">
   </div>
 
   <p class="me-3 text-center fw-bold">Observaciones</p>
   <div class="d-flex align-items-center mb-3">
-    <input type="text" class="form-control" [(ngModel)]="observaciones" name="observaciones">
+    <input type="text" class="form-control" [(ngModel)]="body.observaciones" name="observaciones" (ngModelChange)="guardar()">
   </div>
 </div>
