@@ -36,13 +36,7 @@ export class S7mujerAntGineObtComponent implements OnInit {
 
   ) { }
   ngOnInit(): void {
-    this.pxService.mujerFm(this.body).subscribe((response: any) => {
-      console.log("Paciente registrado con éxito, " + response.message);
-      console.log("Paciente actual, " , response.data);
-
-    }, (error: any) =>{
-      console.log("Error al registrar paciente: " + error.error.error);
-    });
+    
   }
 
   guardar() {

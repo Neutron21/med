@@ -39,37 +39,94 @@ export class SharedDataService {
     switch (seccion) {
       case 's1':
        body = JSON.parse(sessionStorage.getItem('s1')+'');
+       if (!!body) {
         this.pxService.datosGeneralesPost(body).subscribe((response: any) => {
           console.log("Paciente registrado con éxito, " + response.message);    
         }, (error: any) =>{
           console.log("Error al registrar paciente: " + error.error.error);
         });
+      }
         break;
       case 's2':
-        this.pxService.deportivoFm('s2');
+        body = JSON.parse(sessionStorage.getItem('s2')+'');
+        if (!!body) {
+        this.pxService.deportivoFm(body).subscribe((response: any) => {
+          console.log("Paciente registrado con éxito, " + response.message);    
+        }, (error: any) =>{
+          console.log("Error al registrar paciente: " + error.error.error);
+        });
+      }
         break;
       case 's3':
-        this.pxService.medidasFm('s3');
+        body = JSON.parse(sessionStorage.getItem('s3')+'');
+        if (!!body) {
+        this.pxService.medidasFm(body).subscribe((response: any) => {
+          console.log("Paciente registrado con éxito, " + response.message);    
+        }, (error: any) =>{
+          console.log("Error al registrar paciente: " + error.error.error);
+        });
+      }
         break;
       case 's4':
-        this.pxService.antecedentesFm('s4');
+        body = JSON.parse(sessionStorage.getItem('s4')+'');
+        if (!!body) {
+        this.pxService.antecedentesFm(body).subscribe((response: any) => {
+          console.log("Paciente registrado con éxito, " + response.message);    
+        }, (error: any) =>{
+          console.log("Error al registrar paciente: " + error.error.error);
+        });
+      }
         break;
       case 's5':
-        this.pxService.antecedentesPatFm('s5');
+        body = JSON.parse(sessionStorage.getItem('s5')+'');
+        if (!!body) {
+          this.pxService.antecedentesPatFm(body).subscribe((response: any) => {
+            console.log("Paciente registrado con éxito, " + response.message);    
+          }, (error: any) =>{
+            console.log("Error al registrar paciente: " + error.error.error);
+          });
+        }
         break;
       case 's6':
-        this.pxService.antecedentesNoPatFm('s6');
+        body = JSON.parse(sessionStorage.getItem('s6')+'');
+        if (!!body) {
+        this.pxService.antecedentesNoPatFm(body).subscribe((response: any) => {
+          console.log("Paciente registrado con éxito, " + response.message);    
+        }, (error: any) =>{
+          console.log("Error al registrar paciente: " + error.error.error);
+        });
+      }
         break;
       case 's7':
-        this.pxService.mujerFm('s7');
+        body = JSON.parse(sessionStorage.getItem('s7')+'');
+        if (!!body) {
+        this.pxService.mujerFm(body).subscribe((response: any) => {
+          console.log("Paciente registrado con éxito, " + response.message);    
+        }, (error: any) =>{
+          console.log("Error al registrar paciente: " + error.error.error);
+        });
+      }
         break;
       case 's8':
-        this.pxService.pediatricoFm('s8');
+        body = JSON.parse(sessionStorage.getItem('s8')+'');
+        if (!!body) {
+        this.pxService.pediatricoFm(body).subscribe((response: any) => {
+          console.log("Paciente registrado con éxito, " + response.message);    
+        }, (error: any) =>{
+          console.log("Error al registrar paciente: " + error.error.error);
+        });   
+      }     
         break;
       case 's9':
-        this.pxService.fichamedicaAuxFm('s9');
-        break;
-     
+        body = JSON.parse(sessionStorage.getItem('s9')+'');
+        if (!!body) {
+        this.pxService.fichamedicaAuxFm(body).subscribe((response: any) => {
+          console.log("Paciente registrado con éxito, " + response.message);    
+        }, (error: any) =>{
+          console.log("Error al registrar paciente: " + error.error.error);
+        });  
+      }     
+         break;
     }
   };
 }

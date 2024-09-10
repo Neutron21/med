@@ -9,7 +9,8 @@ import { PxService } from '../services/px.service';
   styleUrls: ['./registro.component.scss']
 })
 export class RegistroComponent implements OnInit {
-  formData: any = {
+  formData: any = {}
+    body = {
     nombre: '',
     apellidoP: '',
     apellidoM: '',
@@ -62,22 +63,44 @@ export class RegistroComponent implements OnInit {
            this.formData.tipoSangre && this.formData.telefono && this.formData.email;
   }
 
-  validateNumberInput(event: KeyboardEvent): void {
-    this.utilService.onlyNumbers(event);
-  }
 
   onSwitchChange(event: any): void {
     this.showTable = event.target.checked;
   }
 
-  validateEmail(email: string): void {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    this.emailError = !emailPattern.test(email);
+  validateEmail(): void {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+    if (!emailPattern.test(this.formData.email)) {
+      this.emailError = true;
+    } else {
+      this.emailError = false; 
+    }
   }
-  validatePhoneNumber(phone: string): void {
-    this.phoneError = phone.length !== 10;
+
+  resetEmailError(): void {
+    this.emailError = false;
   }
+  resetPhoneError(): void {
+    this.showPhoneError = false;
+  }
+
   onlyText(event: KeyboardEvent): boolean {
     return this.utilService.onlyText(event);
   }
+  showPhoneError: boolean = false;
+
+validatePhoneNumber(): void {
+  if (this.body.telefono?.length !== 10) {
+    this.showPhoneError = true;
+  } else {
+    this.showPhoneError = false;
+  }
+}
+validateNumberInput(event: KeyboardEvent): void {
+  const inputChar = String.fromCharCode(event.keyCode);
+  if (!/^[0-9]+$/.test(inputChar)) {
+    event.preventDefault(); // Evitar caracteres no numéricos
+  }
+}
+
 }

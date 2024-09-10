@@ -46,6 +46,7 @@ export class FichaMedicaComponent implements OnInit {
     const currSec = sessionStorage.getItem('currentSection');
     console.log('Estbas en ' + currSec);
     this.sharedDataService.seccionesCompletadas(currSec)
+    console.log('Ahora estas en')
 
     const nuevaSeccion: Secciones = {
       s1: false,

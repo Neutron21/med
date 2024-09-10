@@ -20,6 +20,8 @@ export class S1datosGeneralesComponent implements OnInit {
     lugar_de_recidencia: "",
     remision: ""
 }
+showPhoneError: boolean = false;
+
 
   constructor(
     private utilService: UtilService,
@@ -28,13 +30,7 @@ export class S1datosGeneralesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.pxService.datosGeneralesPost(this.body).subscribe((response: any) => {
-      console.log("Paciente registrado con éxito, " + response.message);
-      console.log("Paciente actual, " , response.data);
 
-    }, (error: any) =>{
-      console.log("Error al registrar paciente: " + error.error.error);
-    });
   }
   onlyText(event: KeyboardEvent): boolean {
     return this.utilService.onlyText(event);
@@ -46,4 +42,12 @@ export class S1datosGeneralesComponent implements OnInit {
   guardar() {
     sessionStorage.setItem('s1', JSON.stringify(this.body));
   }
+
+validatePhoneNumber(): void {
+  if (this.body.tel_contacto_de_emergencia?.length !== 10) {
+    this.showPhoneError = true;
+  } else {
+    this.showPhoneError = false;
+  }
+}
 }

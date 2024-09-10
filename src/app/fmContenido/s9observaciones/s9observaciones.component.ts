@@ -21,13 +21,7 @@ export class S9observacionesComponent implements OnInit {
 
   ) { }
   ngOnInit(): void {
-    this.pxService.fichamedicaAuxFm(this.body).subscribe((response: any) => {
-      console.log("Paciente registrado con éxito, " + response.message);
-      console.log("Paciente actual, " , response.data);
-
-    }, (error: any) =>{
-      console.log("Error al registrar paciente: " + error.error.error);
-    });
+  
   }
 
   guardar() {

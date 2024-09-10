@@ -28,13 +28,7 @@ export class S3medidasFisicasComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.pxService.medidasFm(this.body).subscribe((response: any) => {
-      console.log("Paciente registrado con éxito, " + response.message);
-      console.log("Paciente actual, " , response.data);
 
-    }, (error: any) =>{
-      console.log("Error al registrar paciente: " + error.error.error);
-    });
   }
   onlyText(event: KeyboardEvent): boolean {
     return this.utilService.onlyText(event);
