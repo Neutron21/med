@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { PxService } from 'src/app/services/px.service';
 
 @Component({
@@ -32,20 +33,118 @@ export class S5antPatologicosComponent implements OnInit {
   convulsiones_epilepsias_p: '',
   convulsiones_epilepsias_e: '',
   traumatismos_p: '',
-  traumatismos_e: ''
+  traumatismos_e: '',
+  efermedadesInfecciosas_p:'',
+  efermedadesInfecciosas_e:'',
+  reumaticas_p:'',
+  reumaticas_e:'',
+  hospitalizacionesPrevias_p:'',
+  hospitalizacionesPrevias_e:'',
+  otras_p:'',
+  otras_e:''
+
+
+
+
 
 }
 
   constructor( 
-    private pxService: PxService
-
+    private pxService: PxService,
+    private authService: AuthService,    
   ) { }
   ngOnInit(): void {
- 
+    this.checkCurrentPxId();
+  }
+  checkCurrentPxId(): void {
+    let currentPxId = sessionStorage.getItem('currentPxId');
+    if (!!currentPxId) {
+      console.log('ID actual del paciente', currentPxId);
+            this.authService.getById('antecedentesPatFm','id_paciente', currentPxId).subscribe(
+        (response) => {
+          console.log('Datos del paciente:', response);
+          this.body = response [0];
+        },
+        (error) => {
+          console.error('Error al obtener los datos del paciente:', error);
+        }
+      );
+    } else {
+      console.warn('No se encontró el ID del paciente en sessionStorage');
+    }
   }
 
   guardar() {
     sessionStorage.setItem('s5', JSON.stringify(this.body));
-  }
+  };
+  limpiar(id: any) {
+    switch (id) {
+      case 'diabetes':
+        this.body.diabetes_p = '';
+        this.body.diabetes_e = '';
+        break;
+      case 'alergias':
+        this.body.alergias_p = '';
+        this.body.alergias_e = '';
+        break;
+      case 'accidentes':
+        this.body.accidentes_p = '';
+        this.body.accidentes_e = '';
+        break;
+      case 'neoplasias':
+        this.body.neoplasias_p = '';
+        this.body.neoplasias_e = '';
+        break;
+      case 'cardiopatías':
+        this.body.cardiopatias_p = '';
+        this.body.cardiopatias_e = '';
+        break;
+      case 'cirugías':
+        this.body.cirugias_p = '';
+        this.body.cirugias_e = '';
+        break;
+      case 'respiratorias':
+        this.body.respiratorias_p = '';
+        this.body.respiratorias_e = '';
+        break;
+      case 'dolor_cabeza':
+        this.body.dolor_cabeza_p = '';
+        this.body.dolor_cabeza_e = '';
+        break;
+      case 'malformaciones_congenitas':
+        this.body.malformaciones_congenitas_p = '';
+        this.body.malformaciones_congenitas_e = '';
+        break;
+      case 'neurologicas':
+        this.body.neurologicas_p = '';
+        this.body.neurologicas_e = '';
+        break;
+      case 'convulsiones_epilepsias':
+        this.body.convulsiones_epilepsias_p = '';
+        this.body.convulsiones_epilepsias_e = '';
+        break;
+      case 'traumatismos':
+        this.body.traumatismos_p = '';
+        this.body.traumatismos_e = '';
+        break;
+      case 'enfermedadesInfecciosas':
+        this.body.efermedadesInfecciosas_p = '';
+        this.body.efermedadesInfecciosas_e = '';
+        break;
+      case 'reumaticas':
+        this.body.reumaticas_p = '';
+        this.body.reumaticas_e = '';
+        break;
+      case 'hospitalizacionesPrevias':
+        this.body.hospitalizacionesPrevias_p = '';
+        this.body.hospitalizacionesPrevias_e = '';
+        break;
+      case 'otras':
+        this.body.otras_p = '';
+        this.body.otras_e = '';
+        break;
+    }
+    
 
+  }
 }

@@ -9,8 +9,7 @@ import { PxService } from '../services/px.service';
   styleUrls: ['./registro.component.scss']
 })
 export class RegistroComponent implements OnInit {
-  formData: any = {}
-    body = {
+  formData: any = {
     nombre: '',
     apellidoP: '',
     apellidoM: '',
@@ -25,7 +24,8 @@ export class RegistroComponent implements OnInit {
   showTable = false;
   emailError: boolean = false;
   showFichaMedica = false;
-  phoneError: boolean = false; 
+  phoneError: boolean = false;
+  showPhoneError: boolean = false;
 
   constructor(
     private utilService: UtilService,
@@ -37,21 +37,22 @@ export class RegistroComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.validateEmail();
+    this.validatePhoneNumber();
+
     const allFieldsFilled = this.isFormValid();
 
-    if (!allFieldsFilled || this.emailError) {
+    if (!allFieldsFilled || this.emailError || this.phoneError) {
       this.showWarning = true;
     } else {
       this.showWarning = false;
-      // Mostrar el componente FichaMedica al enviar el formulario
       this.showFichaMedica = true;
       console.log('Formulario enviado:', this.formData);
       this.pxService.createPaciente(this.formData).subscribe((response: any) => {
         console.log("Paciente registrado con éxito, " + response.message);
-        console.log("Paciente actual, " , response.data);
+        console.log("Paciente actual, ", response.data);
         sessionStorage.setItem('currentPxId', response.data.id);
-
-      }, (error: any) =>{
+      }, (error: any) => {
         console.log("Error al registrar paciente: " + error.error.error);
       });
     }
@@ -61,11 +62,6 @@ export class RegistroComponent implements OnInit {
     return this.formData.nombre && this.formData.apellidoP && this.formData.apellidoM &&
            this.formData.fechaNac && this.formData.sexo && this.formData.estadoCivil &&
            this.formData.tipoSangre && this.formData.telefono && this.formData.email;
-  }
-
-
-  onSwitchChange(event: any): void {
-    this.showTable = event.target.checked;
   }
 
   validateEmail(): void {
@@ -80,6 +76,7 @@ export class RegistroComponent implements OnInit {
   resetEmailError(): void {
     this.emailError = false;
   }
+
   resetPhoneError(): void {
     this.showPhoneError = false;
   }
@@ -87,20 +84,19 @@ export class RegistroComponent implements OnInit {
   onlyText(event: KeyboardEvent): boolean {
     return this.utilService.onlyText(event);
   }
-  showPhoneError: boolean = false;
 
-validatePhoneNumber(): void {
-  if (this.body.telefono?.length !== 10) {
-    this.showPhoneError = true;
-  } else {
-    this.showPhoneError = false;
+  validatePhoneNumber(): void {
+    if (this.formData.telefono.length !== 10) {
+      this.showPhoneError = true;
+    } else {
+      this.showPhoneError = false;
+    }
   }
-}
-validateNumberInput(event: KeyboardEvent): void {
-  const inputChar = String.fromCharCode(event.keyCode);
-  if (!/^[0-9]+$/.test(inputChar)) {
-    event.preventDefault(); // Evitar caracteres no numéricos
-  }
-}
 
+  validateNumberInput(event: KeyboardEvent): void {
+    const inputChar = String.fromCharCode(event.keyCode);
+    if (!/^[0-9]+$/.test(inputChar)) {
+      event.preventDefault(); // Evitar caracteres no numéricos
+    }
+  }
 }
