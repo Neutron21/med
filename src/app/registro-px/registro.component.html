@@ -90,7 +90,9 @@
     </div>
     <div class="row">
       <div class="col text-end">
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary">
+          Guardar
+        </button>
       </div>
     </div>
     <div *ngIf="showWarning" class="alert alert-danger mt-3">
@@ -98,7 +100,56 @@
     </div>
   </form>
   
-  <!-- <app-ficha-medica *ngIf="showFichaMedica"></app-ficha-medica> -->
-  <app-ficha-medica ></app-ficha-medica>
+  <div class="modal fade" id="responseModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" [ngClass]="{'error-background': saveError, 'success-background': !saveError}">
+          <h5 class="modal-title-confirm" id="staticBackdropLabel">Info</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div *ngIf="!loader" class="modal-body text-center">
+          <p *ngIf="!saveError">
+            Paciente creado con exito! <br>
+            ¿ Deseas continuar con el llenado de la ficha medica ?
+          </p>
+          <p *ngIf="saveError">
+            Ocurrio un error <br>
+            Contacte al administrador
+          </p>
+          <div>
+            <img *ngIf="!saveError" width="48" height="48" src="https://img.icons8.com/color/48/checked--v1.png" alt="checked--v1"/>
+            <img *ngIf="saveError" width="48" height="48" src="https://img.icons8.com/fluency/48/cancel.png" alt="cancel"/>
+          </div>
+        </div>
+        <div *ngIf="loader" class="modal-body text-center">
+          <img alt="spiner" src="../../assets/doctor.gif"/>
+        </div>
+        <div *ngIf="!loader" class="modal-footer">
+          <button *ngIf="saveError" type="button" class="btn btn-danger" data-bs-dismiss="modal">Entendido</button>
+          <button *ngIf="!saveError" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Más tarde</button>
+          <button *ngIf="!saveError" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#fichaModal">Llenar Ficha Médica</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade modal-xl" id="fichaModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Ficha Médica</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- ... -->
+          <app-ficha-medica ></app-ficha-medica>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Understood</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>

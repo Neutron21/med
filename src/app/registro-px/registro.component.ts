@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UtilService } from '../services/util.service';
 import { SharedDataService } from '../services/shared.service';
 import { PxService } from '../services/px.service';
+import { Modal } from 'bootstrap';
 
 @Component({
   selector: 'app-registro',
@@ -21,10 +22,10 @@ export class RegistroComponent implements OnInit {
     email: ''
   };
   showWarning: boolean = false;
-  showTable = false;
   emailError: boolean = false;
-  showFichaMedica = false;
   phoneError: boolean = false; 
+  saveError: boolean = false;
+  loader: boolean = false;
 
   constructor(
     private utilService: UtilService,
@@ -33,25 +34,33 @@ export class RegistroComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
   }
 
   onSubmit(): void {
+    
     const allFieldsFilled = this.isFormValid();
 
     if (!allFieldsFilled || this.emailError) {
       this.showWarning = true;
     } else {
+      this.loader = true;
+      const modalElement = document.getElementById('responseModal');
+      const modal = new Modal(modalElement!);
+      modal.show();
       this.showWarning = false;
-      // Mostrar el componente FichaMedica al enviar el formulario
-      this.showFichaMedica = true;
+    
       console.log('Formulario enviado:', this.formData);
       this.pxService.createPaciente(this.formData).subscribe((response: any) => {
         console.log("Paciente registrado con éxito, " + response.message);
         console.log("Paciente actual, " , response.data);
         sessionStorage.setItem('currentPxId', response.data.id);
-
+        this.saveError = false;
+        this.loader = false;
       }, (error: any) =>{
         console.log("Error al registrar paciente: " + error.error.error);
+        this.saveError = true;
+        this.loader = false;
       });
     }
   }
@@ -64,10 +73,6 @@ export class RegistroComponent implements OnInit {
 
   validateNumberInput(event: KeyboardEvent): void {
     this.utilService.onlyNumbers(event);
-  }
-
-  onSwitchChange(event: any): void {
-    this.showTable = event.target.checked;
   }
 
   validateEmail(email: string): void {

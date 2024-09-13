@@ -6,7 +6,7 @@
   </button>
 </div>
 
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs tabs-custom-margin">
     <li class="nav-item" (click)="mostrarSeccion('s1')" *ngIf="!allSectionsVisible">
       <a class="nav-link" [ngClass]="{'active': showSection.s1}" >Datos Generales</a>
     </li>
@@ -35,13 +35,14 @@
       <a class="nav-link" [ngClass]="{'active': showSection.s9}" >Observaciones</a>
     </li>
 </ul>
-
-<app-s1datos-generales *ngIf="showSection.s1 || allSectionsVisible"></app-s1datos-generales>
-<app-s2px-deportivo *ngIf="showSection.s2 || allSectionsVisible"></app-s2px-deportivo>
-<app-s3medidas-fisicas *ngIf="showSection.s3 || allSectionsVisible"></app-s3medidas-fisicas>
-<app-s4ant-hfamiliares *ngIf="showSection.s4 || allSectionsVisible"></app-s4ant-hfamiliares>
-<app-s5ant-patologicos *ngIf="showSection.s5 || allSectionsVisible"></app-s5ant-patologicos>
-<app-s6ant-nopatologicos *ngIf="showSection.s6 || allSectionsVisible"></app-s6ant-nopatologicos>
-<app-s7mujer-ant-gine-obt *ngIf="showSection.s7 || allSectionsVisible"></app-s7mujer-ant-gine-obt>
-<app-s8pediatrico-antperinatales *ngIf="showSection.s8 || allSectionsVisible"></app-s8pediatrico-antperinatales>
-<app-s9observaciones *ngIf="showSection.s9 || allSectionsVisible"></app-s9observaciones>
+<div class="content-tabs">
+  <app-s1datos-generales *ngIf="showSection.s1 || allSectionsVisible"></app-s1datos-generales>
+  <app-s2px-deportivo *ngIf="showSection.s2 || allSectionsVisible"></app-s2px-deportivo>
+  <app-s3medidas-fisicas *ngIf="showSection.s3 || allSectionsVisible"></app-s3medidas-fisicas>
+  <app-s4ant-hfamiliares *ngIf="showSection.s4 || allSectionsVisible"></app-s4ant-hfamiliares>
+  <app-s5ant-patologicos *ngIf="showSection.s5 || allSectionsVisible"></app-s5ant-patologicos>
+  <app-s6ant-nopatologicos *ngIf="showSection.s6 || allSectionsVisible"></app-s6ant-nopatologicos>
+  <app-s7mujer-ant-gine-obt *ngIf="showSection.s7 || allSectionsVisible"></app-s7mujer-ant-gine-obt>
+  <app-s8pediatrico-antperinatales *ngIf="showSection.s8 || allSectionsVisible"></app-s8pediatrico-antperinatales>
+  <app-s9observaciones *ngIf="showSection.s9 || allSectionsVisible"></app-s9observaciones>
+</div>
