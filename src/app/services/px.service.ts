@@ -53,7 +53,7 @@ export class PxService {
            'Content-Type': 'application/json',
            'X-Auth-Token': environment.auth
            });
-           console.log('createPaciente', request);
+           console.log('Datos Generales', request);
            
         return this.http.post(environment.api + environment.postDatosGeneralesFm, JSON.stringify(request), { headers });
         
@@ -65,7 +65,7 @@ export class PxService {
            'Content-Type': 'application/json',
            'X-Auth-Token': environment.auth
            });
-           console.log('createPaciente', request);
+           console.log('Deportivo', request);
            
         return this.http.post(environment.api + environment.postDeportivoFm, JSON.stringify(request), { headers });
         
@@ -77,7 +77,7 @@ export class PxService {
            'Content-Type': 'application/json',
            'X-Auth-Token': environment.auth
            });
-           console.log('createPaciente', request);
+           console.log('Medidas', request);
            
         return this.http.post(environment.api + environment.postMedidasFm, JSON.stringify(request), { headers });
         
@@ -89,7 +89,7 @@ export class PxService {
            'Content-Type': 'application/json',
            'X-Auth-Token': environment.auth
            });
-           console.log('createPaciente', request);
+           console.log('Antecedentes', request);
            
         return this.http.post(environment.api + environment.postAntecedentesFm, JSON.stringify(request), { headers });
         
@@ -101,7 +101,7 @@ export class PxService {
            'Content-Type': 'application/json',
            'X-Auth-Token': environment.auth
            });
-           console.log('createPaciente', request);
+           console.log('Antecedentes Patologicos', request);
            
         return this.http.post(environment.api + environment.postAntecedentesPatFm, JSON.stringify(request), { headers });
         
@@ -113,11 +113,47 @@ export class PxService {
            'Content-Type': 'application/json',
            'X-Auth-Token': environment.auth
            });
-           console.log('createPaciente', request);
+           console.log('Antecedentes No Patologicos', request);
            
         return this.http.post(environment.api + environment.postAntecedentesNoPatFm, JSON.stringify(request), { headers });
         
     }
-      
+    mujerFm(request:any){
+        const currentPx = sessionStorage.getItem('currentPxId'+'');
+        request.id_paciente = currentPx;
+        const headers = new HttpHeaders({
+           'Content-Type': 'application/json',
+           'X-Auth-Token': environment.auth
+           });
+           console.log('En caso de ser mujer', request);
+           
+        return this.http.post(environment.api + environment.postMujerFm, JSON.stringify(request), { headers });
+        
+    }
+    pediatricoFm(request:any){
+        const currentPx = sessionStorage.getItem('currentPxId'+'');
+        request.id_paciente = currentPx;
+        const headers = new HttpHeaders({
+           'Content-Type': 'application/json',
+           'X-Auth-Token': environment.auth
+           });
+           console.log('Pediatrico', request);
+           
+        return this.http.post(environment.api + environment.postPediatricoFm, JSON.stringify(request), { headers });
+        
+    }
+    fichamedicaAuxFm(request:any){
+        const currentPx = sessionStorage.getItem('currentPxId'+'');
+        request.id_paciente = currentPx;
+        const headers = new HttpHeaders({
+           'Content-Type': 'application/json',
+           'X-Auth-Token': environment.auth
+           });
+           console.log('Ficha medica Aux', request);
+           
+        return this.http.post(environment.api + environment.postFichaMedicaAux, JSON.stringify(request), { headers });
+        
+    }
+   
 
 }

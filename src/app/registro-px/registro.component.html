@@ -59,7 +59,8 @@
           <option value="O+">O+</option>
           <option value="O-">O-</option>
         </select>
-      </div>    
+      </div>  
+
       <div class="col-md-4">
         <label for="telefono" class="form-label">Teléfono:</label>
         <input 
@@ -71,20 +72,25 @@
           maxlength="10" 
           [(ngModel)]="formData.telefono" 
           (keypress)="validateNumberInput($event)" 
-          (ngModelChange)="validatePhoneNumber(formData.telefono)">
-        
-        <div *ngIf="phoneError" class="text-danger">
-          Formato de teléfono incorrecto
+          (blur)="validatePhoneNumber()" 
+          (focus)="resetPhoneError()">
+        <div *ngIf="showPhoneError" class="text-danger">
+          El teléfono debe ser a 10 dìgitos
         </div>
       </div>
       <div class="col-md-4">
         <label for="email" class="form-label">Email:</label>
-        <input type="email" class="form-control" id="email" name="email" required 
-               [(ngModel)]="formData.email" #emailInput="ngModel" 
-               (ngModelChange)="validateEmail(emailInput.value)">
-        
+        <input 
+          type="email" 
+          class="form-control" 
+          id="email" 
+          name="email" 
+          required 
+          [(ngModel)]="formData.email" 
+          (blur)="validateEmail()" 
+          (focus)="resetEmailError()">
         <div *ngIf="emailError" class="text-danger">
-          Formato de email incorrecto 
+          Email no válido 
         </div>
       </div>
     </div>
@@ -132,7 +138,7 @@
       </div>
     </div>
   </div>
-  
+  <app-ficha-medica ></app-ficha-medica> 
   <div class="modal fade modal-xl" id="fichaModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content">
@@ -141,7 +147,6 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <!-- ... -->
           <app-ficha-medica ></app-ficha-medica>
         </div>
         <div class="modal-footer">

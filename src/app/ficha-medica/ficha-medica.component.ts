@@ -7,7 +7,9 @@ import { Secciones } from '../models/secciones';
   templateUrl: './ficha-medica.component.html',
   styleUrls: ['./ficha-medica.component.scss']
 })
+
 export class FichaMedicaComponent implements OnInit {
+  
   showSection: Secciones = {
     s1: true,
     s2: false,
@@ -23,20 +25,28 @@ export class FichaMedicaComponent implements OnInit {
 
   allSectionsVisible = false;
 
-  constructor(private sharedDataService: SharedDataService) {
+  constructor(
+    private sharedDataService: SharedDataService
+
+  ) {
+    sessionStorage.setItem('currentSection', 's1');
+
     this.sharedDataService.seccionObservable.subscribe((activeSection: Secciones) => {
-      console.log('El destino ha cambiado:', activeSection);
+      // console.log('El destino ha cambiado:', activeSection);
       this.showSection = activeSection;
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   mostrarSeccion(seccion: keyof Secciones) {
     if (this.allSectionsVisible) {
       this.toggleAllSections(); 
     }
+    const currSec = sessionStorage.getItem('currentSection');
+    console.log('Estbas en ' + currSec);
+    this.sharedDataService.seccionesCompletadas(currSec)
+    console.log('Ahora estas en')
 
     const nuevaSeccion: Secciones = {
       s1: false,
@@ -51,7 +61,9 @@ export class FichaMedicaComponent implements OnInit {
     };
 
     nuevaSeccion[seccion] = true;
-
+    console.log(seccion);
+    
+    sessionStorage.setItem('currentSection', seccion);
     this.sharedDataService.updateSeccion(nuevaSeccion);
   }
 

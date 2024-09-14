@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UtilService } from '../services/util.service';
 import { PxService } from '../services/px.service';
+import { Modal } from 'bootstrap';
 
 @Component({
   selector: 'app-table-px',
@@ -29,9 +30,9 @@ export class TablePxComponent implements OnInit {
     return this.utilService.onlyText(event);
   }
   buscarPx() {
-    this.showSpiner = true;
     const pxControl = this.buscarPxForm.get('textoFind');
     if (!!pxControl?.value) {
+      this.showSpiner = true;
       console.log(pxControl);
       this.pxService.getPacientes(pxControl.value).subscribe(
         (response) => {
@@ -44,5 +45,12 @@ export class TablePxComponent implements OnInit {
         });
     }
     
+  }
+  openFichaMedica(idPx: number){
+    sessionStorage.setItem('currentPxId', idPx.toString());
+    console.log(idPx);
+    const modalElement = document.getElementById('fichaModalTable');
+    const modal = new Modal(modalElement!);
+    modal.show();
   }
 }

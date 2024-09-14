@@ -31,9 +31,19 @@
       </div>
       <div class="col-md-4">
         <label for="nombreTel" class="form-label">Tel. Contacto de Emergencia:</label>
-        <input type="text" class="form-control" id="nombreTel" name="nombreTel" [(ngModel)]="body.tel_contacto_de_emergencia" 
-        (ngModelChange)="guardar()" (keypress)="onlyNumbers($event)">
+        <input type="text" class="form-control" id="nombreTel" name="nombreTel" maxlength="10"
+               [(ngModel)]="body.tel_contacto_de_emergencia" 
+               (ngModelChange)="guardar()" 
+               (keypress)="onlyNumbers($event)" 
+               (blur)="validatePhoneNumber()">
+        
+        <!-- Mensaje de validación si el teléfono es incorrecto -->
+        <div *ngIf="showPhoneError" class="text-danger mt-1">
+          El número de teléfono debe tener 10 dígitos.
+        </div>
       </div>
+      
+      
     </div>
     <div class="row mb-3">
       <div class="col-md-4">

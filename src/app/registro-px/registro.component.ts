@@ -23,9 +23,11 @@ export class RegistroComponent implements OnInit {
   };
   showWarning: boolean = false;
   emailError: boolean = false;
-  phoneError: boolean = false; 
+   
   saveError: boolean = false;
   loader: boolean = false;
+  showFichaMedica = false;
+  showPhoneError: boolean = false;
 
   constructor(
     private utilService: UtilService,
@@ -38,10 +40,12 @@ export class RegistroComponent implements OnInit {
   }
 
   onSubmit(): void {
-    
+    this.validateEmail();
+    this.validatePhoneNumber();
+
     const allFieldsFilled = this.isFormValid();
 
-    if (!allFieldsFilled || this.emailError) {
+    if (!allFieldsFilled || this.emailError || this.showPhoneError) {
       this.showWarning = true;
     } else {
       this.loader = true;
@@ -53,7 +57,7 @@ export class RegistroComponent implements OnInit {
       console.log('Formulario enviado:', this.formData);
       this.pxService.createPaciente(this.formData).subscribe((response: any) => {
         console.log("Paciente registrado con éxito, " + response.message);
-        console.log("Paciente actual, " , response.data);
+        console.log("Paciente actual, ", response.data);
         sessionStorage.setItem('currentPxId', response.data.id);
         this.saveError = false;
         this.loader = false;
@@ -70,19 +74,25 @@ export class RegistroComponent implements OnInit {
            this.formData.fechaNac && this.formData.sexo && this.formData.estadoCivil &&
            this.formData.tipoSangre && this.formData.telefono && this.formData.email;
   }
-
-  validateNumberInput(event: KeyboardEvent): void {
-    this.utilService.onlyNumbers(event);
+  validatePhoneNumber(): void {
+    this.showPhoneError = this.formData.telefono.length !== 10;
   }
-
-  validateEmail(email: string): void {
+  validateEmail(): void {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    this.emailError = !emailPattern.test(email);
+    this.emailError = !emailPattern.test(this.formData.email);
   }
-  validatePhoneNumber(phone: string): void {
-    this.phoneError = phone.length !== 10;
+  resetPhoneError(): void {
+    this.showPhoneError = false;
   }
+  resetEmailError(): void {
+    this.emailError = false;
+  }
+
   onlyText(event: KeyboardEvent): boolean {
     return this.utilService.onlyText(event);
+  }
+
+  validateNumberInput(event: KeyboardEvent): boolean {
+   return this.utilService.onlyNumbers(event);
   }
 }
