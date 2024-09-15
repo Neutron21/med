@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { PxService } from 'src/app/services/px.service';
+import { SharedDataService } from 'src/app/services/shared.service';
 import { UtilService } from 'src/app/services/util.service';
 
 @Component({
@@ -23,11 +24,18 @@ export class S1datosGeneralesComponent implements OnInit {
     remision: ""
   };
   showPhoneError: boolean = false;
+  idPx: number|null = null;
 
   constructor(
     private utilService: UtilService,
-    private authService: AuthService
-  ) {}
+    private authService: AuthService,
+    private sharedDataService: SharedDataService
+  ) {
+    this.sharedDataService.idPacienteObservable.subscribe(id => {
+      this.idPx = id;
+      this.checkCurrentPxId();
+    })
+  }
 
   ngOnInit(): void {
     this.checkCurrentPxId();

@@ -44,8 +44,8 @@ export class FichaMedicaComponent implements OnInit {
       this.toggleAllSections(); 
     }
     const currSec = sessionStorage.getItem('currentSection');
-    console.log('Estbas en ' + currSec);
-    this.sharedDataService.seccionesCompletadas(currSec)
+    console.log('Estabas en ' + currSec);
+    this.sharedDataService.seccionesCompletadas(currSec);
     console.log('Ahora estas en')
 
     const nuevaSeccion: Secciones = {

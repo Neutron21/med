@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Secciones } from '../models/secciones';
 import { PxService } from './px.service';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +9,6 @@ import { HttpClient } from '@angular/common/http';
 export class SharedDataService {
   constructor (
    private pxService: PxService,
-   private http: HttpClient,
-
   ){}
 
   showSeccion: Secciones = {
@@ -25,6 +22,7 @@ export class SharedDataService {
     s8: false, 
     s9: false
   }
+  idPaciente: number|null = null;
 
   private seccionActiva = new Subject<Secciones>();
   seccionObservable = this.seccionActiva.asObservable();
@@ -32,7 +30,13 @@ export class SharedDataService {
   updateSeccion(newSeccion: Secciones) {
     this.seccionActiva.next(newSeccion);
     this.showSeccion = newSeccion;
-
+  }
+  private idPacienteSubject = new Subject<number|null>();
+  idPacienteObservable = this.idPacienteSubject.asObservable();
+  
+  cambiarIdPaciente(id: number|null) {
+    this.idPacienteSubject.next(id);
+    this.idPaciente = id;
   }
   seccionesCompletadas(seccion: string | null) {
     let body = {}

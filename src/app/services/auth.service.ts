@@ -52,8 +52,7 @@ export class AuthService {
           });
         }
       setLogOut(){
-        sessionStorage.removeItem('uid');
-        sessionStorage.removeItem('user');
+        sessionStorage.clear()
         this.isLoggedIn = false;
       }
       getIsLoged (){

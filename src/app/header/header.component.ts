@@ -16,8 +16,8 @@ export class HeaderComponent implements OnInit {
   };
   
   constructor(
-    private router: Router,
-    private authServie: AuthService){}
+    private authServie: AuthService)
+  {}
 
   ngOnInit(): void {
     this.validarSesion();
@@ -31,10 +31,7 @@ export class HeaderComponent implements OnInit {
   cerrarSesion(){
     this.authServie.logOut();
    }
-   consulta(){
-   }
-  cargarData(){
-  }
+ 
   validarSesion(){
     if (typeof window !== 'undefined' && typeof window.sessionStorage !== 'undefined') {
       try {
