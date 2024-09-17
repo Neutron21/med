@@ -1,9 +1,10 @@
 <div class="d-flex justify-content-between align-items-center">
   <h2></h2>
   <button class="btn btn-primary" (click)="toggleAllSections()">
-    <i class="bi" [ngClass]="{'bi-pencil': allSectionsVisible, 'bi-eye': !allSectionsVisible}"></i>
-    {{ allSectionsVisible ? ' Editable' : ' Lectura' }}
+    <img *ngIf="allSectionsVisible" src="assets/lista.png" width="30" height="30"/>
+    <img *ngIf="!allSectionsVisible" src="assets/pestaña.png" width="30" height="30"/>
   </button>
+  
 </div>
 
 <ul class="nav nav-tabs tabs-custom-margin">

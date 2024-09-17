@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { PxService } from 'src/app/services/px.service';
+import { SharedDataService } from 'src/app/services/shared.service';
 import { UtilService } from 'src/app/services/util.service';
 
 @Component({
@@ -17,15 +18,23 @@ export class S2pxDeportivoComponent implements OnInit {
     categoria: "",
     nombre_del_entrenador: "",
     club_o_liga_deportiva: ""
-     }
+    }
+    idPx: number|null = null;
+
 
 
 
   constructor( 
     private utilService: UtilService,
-    private pxService: PxService,
-    private authService: AuthService
-  ) { }
+    private authService: AuthService,
+    private sharedDataService: SharedDataService
+
+  ) {
+    this.sharedDataService.idPacienteObservable.subscribe(id => {
+      this.idPx = id;
+      this.checkCurrentPxId();
+    })
+   }
 
   ngOnInit(): void {
     this.checkCurrentPxId();
@@ -37,7 +46,7 @@ export class S2pxDeportivoComponent implements OnInit {
             this.authService.getById('deportivoFm','id_paciente', currentPxId).subscribe(
         (response) => {
           console.log('Datos del paciente:', response);
-          this.body = response [0];
+          this.body = response.length > 0 ? response[0] : this.body;
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
@@ -57,5 +66,6 @@ export class S2pxDeportivoComponent implements OnInit {
   guardar() {
     sessionStorage.setItem('s2', JSON.stringify(this.body));
   }
+
 }
 

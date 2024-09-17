@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { PxService } from 'src/app/services/px.service';
+import { SharedDataService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-s4ant-hfamiliares',
@@ -29,19 +30,20 @@ export class S4antHfamiliaresComponent implements OnInit {
       endonocrilogicas_p:'',
       endonocrilogicas_e:'',
       otras_p:'',
-      otras_e:'',
-
-
-
-
-
-
-      
+      otras_e:'', 
   }
+  idPx: number|null = null;
+
 
   constructor( 
     private authService: AuthService,    
-  ) { }
+    private sharedDataService: SharedDataService
+  ) {
+    this.sharedDataService.idPacienteObservable.subscribe(id => {
+      this.idPx = id;
+      this.checkCurrentPxId();
+    })
+   }
 
   ngOnInit(): void {
     this.checkCurrentPxId();
@@ -53,7 +55,7 @@ export class S4antHfamiliaresComponent implements OnInit {
             this.authService.getById('antecedentesFm','id_paciente', currentPxId).subscribe(
         (response) => {
           console.log('Datos del paciente:', response);
-          this.body = response [0];
+          this.body = response.length > 0 ? response[0] : this.body;
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
@@ -68,7 +70,7 @@ export class S4antHfamiliaresComponent implements OnInit {
     sessionStorage.setItem('s4', JSON.stringify(this.body));
   }
   limpiar(id: any) {
-    switch(id){
+    switch(id) {
       case 'diabetes':
         this.body.diabetes_p = '';
         this.body.diabetes_e = '';
@@ -109,7 +111,6 @@ case 'otras':
   this.body.otras_p = '';
   this.body.otras_e = '';
 break;
-     
-    }
+  }
   }
 }

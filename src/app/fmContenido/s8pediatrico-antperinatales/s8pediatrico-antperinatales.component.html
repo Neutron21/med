@@ -28,10 +28,10 @@
         </tr>
         <tr>
           <td>Embarazo múltiple</td>
-          <td class="text-center"><input type="checkbox" [(ngModel)]="body.embarazoMultiple_p"(ngModelChange)="limpiar('embarazoMultiple')"></td>
-          <td><input type="text" class="form-control" [(ngModel)]="body.embarazoMultiple_e" [disabled]="!formData.embarazoMultipleSiNo"
+          <td class="text-center"><input type="checkbox" [(ngModel)]="formData.embarazoMultipleSiNo"(ngModelChange)="limpiar('embarazoMultiple')"></td>
+          <td><input type="text" class="form-control" [(ngModel)]="body.embarazoMultiple_p" [disabled]="!formData.embarazoMultipleSiNo"
             (ngModelChange)="guardar()"></td>
-          <td><input type="text" class="form-control" [(ngModel)]="formData.embarazoMultipleEspecifique" [disabled]="!formData.embarazoMultipleSiNo"
+          <td><input type="text" class="form-control" [(ngModel)]="body.embarazoMultiple_e" [disabled]="!formData.embarazoMultipleSiNo"
             (ngModelChange)="guardar()"></td>
         </tr>
         <tr>

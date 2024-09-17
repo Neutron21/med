@@ -76,4 +76,5 @@ export class S1datosGeneralesComponent implements OnInit {
       this.showPhoneError = false;
     }
   }
+
 }

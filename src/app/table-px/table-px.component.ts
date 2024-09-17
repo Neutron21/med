@@ -72,6 +72,15 @@ export class TablePxComponent implements OnInit {
   resetModal() {
     const currSec = sessionStorage.getItem('currentSection');
     this.sharedDataService.seccionesCompletadas(currSec);
-    sessionStorage.setItem('currentSection','s1');
+    sessionStorage.removeItem('s1');
+    sessionStorage.removeItem('s2');
+    sessionStorage.removeItem('s3');
+    sessionStorage.removeItem('s4');
+    sessionStorage.removeItem('s4');
+    sessionStorage.removeItem('s5');
+    sessionStorage.removeItem('s6');
+    sessionStorage.removeItem('s7');
+    sessionStorage.removeItem('s8');
+    sessionStorage.removeItem('s9');
   }
 }
