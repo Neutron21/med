@@ -22,6 +22,7 @@ import { S7mujerAntGineObtComponent } from './fmContenido/s7mujer-ant-gine-obt/s
 import { S8pediatricoAntperinatalesComponent } from './fmContenido/s8pediatrico-antperinatales/s8pediatrico-antperinatales.component';
 import { S9observacionesComponent } from './fmContenido/s9observaciones/s9observaciones.component';
 import { FichaMedicaComponent } from './ficha-medica/ficha-medica.component';
+import { HistorialComponent } from './historial/historial.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { FichaMedicaComponent } from './ficha-medica/ficha-medica.component';
     S7mujerAntGineObtComponent,
     S8pediatricoAntperinatalesComponent,
     S9observacionesComponent,
-    FichaMedicaComponent
+    FichaMedicaComponent,
+    HistorialComponent
   ],
   imports: [
     BrowserModule,
