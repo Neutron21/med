@@ -40,26 +40,44 @@
         <td class="text-center">{{px.telefono}}</td>
         <td class="text-center">{{px.diagnostico_medico}}</td>
         <td class="d-flex justify-content-evenly">
-          <img class="table-icon-size" src="../../assets/ficha-med-50.png" alt="ficha-icon"/>
-          <img class="table-icon-size" src="../../assets/documentos-64.png" alt="registrar-icon"/>
+          <img class="table-icon-size" src="../../assets/ficha-med-50.png" alt="ficha-icon" (click)="openFichaMedica(px.id)"/>
+          <img class="table-icon-size" src="../../assets/documentos-64.png" alt="registrar-icon" (click)="openHistorial(px.id)"/>
         </td>       
       </tr>
     </tbody>    
-  </table>
+</table>
 
-  <div class="modal fade modal-xl" id="fichaModalTable" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Ficha Médica - {{nameToShow}}</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetModal()"></button>
-        </div>
-        <div class="modal-body">
-          <app-ficha-medica ></app-ficha-medica>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="resetModal()">Cerrar</button>
-         </div>
+<div class="modal fade modal-xl" id="fichaModalTable" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Ficha Médica - {{nameToShow}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetModal()"></button>
+      </div>
+      <div class="modal-body">
+        <app-ficha-medica></app-ficha-medica>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="resetModal()">Cerrar</button>
       </div>
     </div>
   </div>
+</div>
+
+<div class="modal fade modal-xl" id="historialModalTable" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="historialBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="historialBackdropLabel">Historial Médico - {{nameToShow}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetModal()"></button>
+      </div>
+      <div class="modal-body">
+        <app-historial></app-historial>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="resetModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -13,6 +13,29 @@ export class HistorialComponent implements OnInit {
   visitaForm: FormGroup;
   visitas: any = [];
   addVisit: boolean= false;
+  datosHistorial = [
+    {
+      fecha: '2024-09-01',
+      tipo: 'Radiografía',
+      archivoUrl: 'https://example.com/radiografia1.pdf',
+      archivoNombre: 'radiografia1.pdf',
+      notas: 'Fractura leve detectada en el hueso del pie.'
+    },
+    {
+      fecha: '2024-08-15',
+      tipo: 'Análisis de sangre',
+      archivoUrl: 'https://example.com/analisis-sangre.pdf',
+      archivoNombre: 'analisis-sangre.pdf',
+      notas: 'Resultados dentro de los rangos normales.'
+    },
+    {
+      fecha: '2024-07-23',
+      tipo: 'Resonancia magnética',
+      archivoUrl: 'https://example.com/resonancia-magnetica.pdf',
+      archivoNombre: 'resonancia-magnetica.pdf',
+      notas: 'No se encontraron anomalías significativas.'
+    }
+  ];
 
   constructor() {
     this.today = this.formatDate();
