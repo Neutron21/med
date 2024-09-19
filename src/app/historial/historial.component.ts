@@ -35,6 +35,14 @@ export class HistorialComponent implements OnInit {
     const day = ('0' + date.getDate()).slice(-2);
     return `${year}-${month}-${day}`;
   }
+  onFileSelect(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.visitaForm.patchValue({
+        archivo: file
+      });
+    }
+  }
   addVisita() {
     console.log(this.visitaForm);
     

@@ -20,7 +20,7 @@
             <div class="mb-3">
                 <label for="filePx" class="form-label custom-margin">Archivo</label>
                 <!-- <input formControlName="filePx" type="file" class="form-control" id="filePx"> -->
-                <input type="file" id="fichero-tarifas" class="form-control" formControlName="filePx">
+                <input type="file" id="fichero-tarifas" class="form-control" formControlName="filePx" (change)="onFileSelect($event)">
             </div>
                
         </div>
