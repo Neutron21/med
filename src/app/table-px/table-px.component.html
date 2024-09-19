@@ -36,15 +36,15 @@
     </tbody>
     <tbody *ngIf="!showSpiner && pxList.length > 0">
       <tr *ngFor="let px of pxList">
-        <td class="text-center">{{px.nombre+' '+px.apellido_p+' '+px.apellido_m}}</td>
+        <td class="text-center">{{px.nombre + ' ' + px.apellido_p + ' ' + px.apellido_m}}</td>
         <td class="text-center">{{px.telefono}}</td>
         <td class="text-center">{{px.diagnostico_medico}}</td>
         <td class="d-flex justify-content-evenly">
-          <img (click)="openFichaMedica(px.id)" class="table-icon-size" src="../../assets/ficha-med-50.png" alt="ficha-icon"/>
+          <img class="table-icon-size" src="../../assets/ficha-med-50.png" alt="ficha-icon"/>
           <img class="table-icon-size" src="../../assets/documentos-64.png" alt="registrar-icon"/>
-        </td>
+        </td>       
       </tr>
-    </tbody>
+    </tbody>    
   </table>
 
   <div class="modal fade modal-xl" id="fichaModalTable" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

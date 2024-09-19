@@ -1,8 +1,8 @@
 <div class="container">
     <h3 class="pago_title">Registrar Pago</h3>
-    <form [formGroup]="cajaForm"  (ngSubmit)="sendPay()">
+    <form [formGroup]="cajaForm" (ngSubmit)="sendPay()">
         <div class="row">
-            <div class="col">
+            <div class="col-md-4 col-12">
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Cantidad</label>
                     <div class="input-group">
@@ -12,10 +12,9 @@
                     <label class="error-label" *ngIf="cajaForm.get('cantidad')?.touched && cajaForm.get('cantidad')?.invalid">Pago requerido</label>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-md-4 col-12">
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Concepto</label>
-                    <!-- <input formControlName="concepto" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre Paciente" (keypress)="validateTextInput($event)" autocomplete="off"> -->
                     <select formControlName="concepto" class="form-select" aria-label="Default select example" (change)="onConceptoChange()">
                         <option value=null>Seleccione</option>
                         <option value="T">Terapia</option>
@@ -24,7 +23,7 @@
                     <label class="error-label" *ngIf="cajaForm.get('concepto')?.touched && cajaForm.get('concepto')?.invalid">Nombre de paciente requerido</label>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-md-4 col-12">
                 <div class="mb-3">
                     <label for="fechaPago" class="form-label">Fecha</label>
                     <input formControlName="dateTime" type="datetime-local" class="form-control" id="fechaPago" [disabled]="!cajaForm.get('oldDate')?.value">
@@ -34,9 +33,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
+            <div class="col-md-4 col-12">
                 <div class="">
-                    <label for="fechaPago" class="form-label">Tipo</label>
+                    <label for="tipoPago" class="form-label">Tipo</label>
                     <select formControlName="tipo" class="form-select" aria-label="Default select example" (change)="onTipoChange()">
                         <option value=null>Seleccione</option>
                         <option value="E">Efectivo</option>
@@ -45,16 +44,14 @@
                     <label class="error-label" *ngIf="cajaForm.get('tipo')?.touched && cajaForm.get('tipo')?.invalid">Tipo de pago requerido</label>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-md-4 col-12">
                 <div class="">
                     <label for="Comentarios" class="form-label">Comentarios</label>
                     <input formControlName="comentarios" type="text" class="form-control" id="Comentarios" placeholder="Comentarios...">
                 </div>
             </div>
-            <div class="col">
-                <div class="">
-                    <button type="submit" class="btn btn-primary pago_guardar">Guardar</button>
-                </div>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary pago_guardar">Guardar</button>
             </div>
         </div>
     </form>
