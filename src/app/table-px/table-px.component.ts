@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UtilService } from '../services/util.service';
 import { PxService } from '../services/px.service';
 import { Modal } from 'bootstrap';
 import { SharedDataService } from '../services/shared.service';
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-table-px',
   templateUrl: './table-px.component.html',
   styleUrls: ['./table-px.component.scss']
 })
-export class TablePxComponent implements OnInit {
+export class TablePxComponent implements OnInit, AfterViewInit {
 
   buscarPxForm!: FormGroup;
   showSpiner: boolean = false;
@@ -28,6 +29,13 @@ export class TablePxComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+  ngAfterViewInit(): void {
+    console.log('ngAfterViewInit called');
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
   }
   validateTextInput(event: KeyboardEvent): boolean {
     const charCode = event.which ? event.which : event.keyCode;

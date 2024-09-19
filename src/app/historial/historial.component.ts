@@ -12,6 +12,7 @@ export class HistorialComponent implements OnInit {
   today: string;
   visitaForm: FormGroup;
   visitas: any = [];
+  addVisit: boolean= false;
 
   constructor() {
     this.today = this.formatDate();
@@ -38,6 +39,9 @@ export class HistorialComponent implements OnInit {
   addVisita() {
     console.log(this.visitaForm);
     
+  }
+  agregarVisita(){
+    this.addVisit = !this.addVisit;
   }
 
 }

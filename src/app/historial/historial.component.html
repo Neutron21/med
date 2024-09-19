@@ -1,11 +1,13 @@
 <form [formGroup]="visitaForm"  (ngSubmit)="addVisita()">
-    <div class="row">
+  <div *ngIf="addVisit">  
+   <div class="row">
         <div class="col">
             <div class="mb-3">
                 <label for="fecha" class="form-label">Fecha</label>
                 <input formControlName="fecha" type="date" class="form-control" id="fecha">
             </div>
         </div>
+
         <div class="col">
             <div class="mb-3">
                 <label for="tipo" class="form-label">Tipo</label>
@@ -16,39 +18,47 @@
                 </select>
             </div>
         </div>
+
         <div class="col">
             <div class="mb-3">
                 <label for="filePx" class="form-label custom-margin">Archivo</label>
                 <!-- <input formControlName="filePx" type="file" class="form-control" id="filePx"> -->
                 <input type="file" id="fichero-tarifas" class="form-control" formControlName="filePx">
             </div>
-               
         </div>
        
       </div>
       <div class="row">
-        
         <div class="col">
             <div class="mb-3">
                 <label for="comentario" class="form-label">Notas</label>
                 <textarea formControlName="comentario" type="text" class="form-control" id="comentario"></textarea>
             </div>
         </div>
-       
+        
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="btn btn-danger me-md-2" type="button" (click)="agregarVisita()">Cancelar</button>
+          <button class="btn btn-primary" type="button">Agregar</button>
+        </div>
+   </div>
+</div>
+        <div class="d-grid  d-md-flex justify-content-md-end"  *ngIf="!addVisit" >
+          <button class="btn btn-primary" type="button" (click)="agregarVisita()">Agregar visita</button>
+        </div>
+
         <!-- <div class="col d-flex justify-content-end">
           <button type="submit" class="buscar_pago_button">
             <i class="fas fa-search"></i> 
           </button>
         </div> -->
-      </div>
-    </form>
-    <table class="table table-striped table-hover">
+  </form>
+  <table class="table table-striped table-hover">
         <thead class="text-center"> 
           <tr>
             <th scope="col">Fecha</th>
-            <th scope="col">Cantidad</th>
             <th scope="col">Tipo</th>
-            <th scope="col">Concepto</th>
+            <th scope="col">Archivo</th>
+            <th scope="col">Notas</th>
           </tr>
         </thead>
         <tbody *ngIf="visitas.length == 0">
@@ -69,4 +79,4 @@
             <td class="text-center">{{visita.concepto}}</td>
           </tr>
         </tbody>
-      </table>
+    </table>
