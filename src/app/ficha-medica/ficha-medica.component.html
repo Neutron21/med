@@ -4,9 +4,7 @@
     <img *ngIf="allSectionsVisible" src="assets/pestaña.png" width="20" height="20"/>
     <img *ngIf="!allSectionsVisible" src="assets/lista.png" width="20" height="20"/>
   </button>
-  
 </div>
-
 <ul class="nav nav-tabs tabs-custom-margin">
     <li class="nav-item" (click)="mostrarSeccion('s1')" *ngIf="!allSectionsVisible">
       <a class="nav-link" [ngClass]="{'active': showSection.s1}" >Datos Generales</a>

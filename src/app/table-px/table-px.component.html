@@ -40,9 +40,16 @@
         <td class="text-center">{{px.telefono}}</td>
         <td class="text-center">{{px.diagnostico_medico}}</td>
         <td class="d-flex justify-content-evenly">
-          <img class="table-icon-size" src="../../assets/ficha-med-50.png" alt="ficha-icon" (click)="openFichaMedica(px.id)"/>
-          <img class="table-icon-size" src="../../assets/documentos-64.png" alt="registrar-icon" (click)="openHistorial(px.id)"/>
-        </td>       
+          <div class="tooltip-container">
+            <img class="table-icon-size" src="../../assets/ficha-med-50.png" alt="ficha-icon" (click)="openFichaMedica(px.id)"/>
+            <span class="tooltip-text">Ficha Médica</span>
+          </div>
+          <div class="tooltip-container">
+            <img class="table-icon-size" src="../../assets/documentos-64.png" alt="historial-icon" (click)="openHistorial(px.id)"/>
+            <span class="tooltip-text">Historial</span>
+          </div>
+        </td>
+             
       </tr>
     </tbody>    
 </table>
