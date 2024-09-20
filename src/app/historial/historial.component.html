@@ -1,4 +1,4 @@
-<form [formGroup]="visitaForm"  (ngSubmit)="addVisita()">
+<form [formGroup]="visitaForm"  (ngSubmit)="addVisita()" enctype="multipart/form-data">
   <div *ngIf="addVisit">  
    <div class="row">
         <div class="col">
@@ -23,7 +23,7 @@
             <div class="mb-3">
                 <label for="filePx" class="form-label custom-margin">Archivo</label>
                 <!-- <input formControlName="filePx" type="file" class="form-control" id="filePx"> -->
-                <input type="file" id="fichero-tarifas" class="form-control" formControlName="filePx">
+                <input type="file" id="fichero-tarifas" class="form-control" formControlName="filePx" (change)="onFileSelect($event)">
             </div>
         </div>
        
@@ -38,7 +38,7 @@
         
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
           <button class="btn btn-danger me-md-2" type="button" (click)="agregarVisita()">Cancelar</button>
-          <button class="btn btn-primary" type="button">Agregar</button>
+          <button class="btn btn-primary" type="button" (click)="addVisita()">Agregar</button>
         </div>
    </div>
 </div>
@@ -46,11 +46,6 @@
           <button class="btn btn-primary" type="button" (click)="agregarVisita()">Agregar visita</button>
         </div>
 
-        <!-- <div class="col d-flex justify-content-end">
-          <button type="submit" class="buscar_pago_button">
-            <i class="fas fa-search"></i> 
-          </button>
-        </div> -->
   </form>
   <table class="table table-striped table-hover">
     <thead class="text-center">
