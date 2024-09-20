@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PxService } from '../services/px.service';
 
 @Component({
   selector: 'app-historial',
@@ -37,7 +38,7 @@ export class HistorialComponent implements OnInit {
     }
   ];
 
-  constructor() {
+  constructor(private pxService: PxService) {
     this.today = this.formatDate();
 
     this.visitaForm = new FormGroup({
@@ -61,7 +62,7 @@ export class HistorialComponent implements OnInit {
     const file = event.target.files[0];
     if (file) {
       this.visitaForm.patchValue({
-        archivo: file
+        filePx: file
       });
     }
   }
@@ -70,5 +71,31 @@ export class HistorialComponent implements OnInit {
   }
   addVisita() {
     console.log(this.visitaForm.value);
+
+    const formData = new FormData();
+    const idPx = btoa(sessionStorage.getItem('currentPxId')+''); //base64
+    formData.append('fecha', this.visitaForm.get('fecha')?.value);
+    formData.append('tipo', this.visitaForm.get('tipo')?.value);
+    formData.append('comentario', this.visitaForm.get('comentario')?.value);
+    formData.append('directorio', idPx);
+
+    const archivo = this.visitaForm.get('filePx')?.value;
+    if (archivo) {
+      formData.append('archivo', archivo);
+    }
+    console.log(formData);
+    
+    formData.forEach((value, key) => {
+      console.log(`${key}: ${value}`);
+    });
+    this.pxService.subirVisita(formData).subscribe(
+      (response) => {
+        console.log('Éxito!', response);
+      },
+      (error) => {
+        console.error('Error al subir la visita', error);
+      }
+    );
+    
   }
 }

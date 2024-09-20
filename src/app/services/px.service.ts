@@ -154,6 +154,27 @@ export class PxService {
         return this.http.post(environment.api + environment.postFichaMedicaAux, JSON.stringify(request), { headers });
         
     }
+    subirArchivo(archivoSeleccionado: File, nameFile: string) {
+
+        const formData = new FormData();
+        formData.append('archivo', archivoSeleccionado, nameFile);
+        this.http.post(environment.api + environment.postFile, formData)
+          .subscribe(
+            (response) => {
+              console.log('El archivo se ha subido correctamente:', response);
+            },
+            (error) => {
+              console.error('Error al subir el archivo:', error);
+            }
+          );
+    }
+    subirVisita(formData: FormData): Observable<any> {
+        const headers = new HttpHeaders({
+            // 'Content-Type': 'application/json',
+            'X-Auth-Token': environment.auth
+        });
+        return this.http.post(environment.api + environment.postFile, formData, { headers });
+    }
    
 
 }
