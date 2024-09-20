@@ -16,9 +16,9 @@ export class S3medidasFisicasComponent implements OnInit {
   estatura: '',
   imc: '',
   temperatura: '',
-  fCardiaca: '',
-  fRespiratoria: '',
-  tensionArterial: ''
+  f_cardiaca: '',
+  f_respiratoria: '',
+  tension_arterial: ''
  }
  idPx: number|null = null;
 

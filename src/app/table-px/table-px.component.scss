@@ -53,7 +53,7 @@
   .tooltip-container .tooltip-text {
     visibility: hidden;
     width: 120px;
-    background-color: #171621;
+    background-color: #074f8f;
     color: #fff;
     text-align: center;
     border-radius: 6px;
@@ -63,8 +63,8 @@
     bottom: 125%; /* Posiciona el tooltip arriba de la imagen */
     left: 50%;
     margin-left: -60px; /* Alinea el tooltip al centro */
-    opacity: 0;
-    transition: opacity 0.3s;
+    opacity: 0.7;
+    transition: opacity 0.1s;
   }
   
   .tooltip-container .tooltip-text::after {
@@ -75,7 +75,7 @@
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: #171621 transparent transparent transparent;
+    border-color: #074f8f transparent transparent transparent;
   }
   
   .tooltip-container:hover .tooltip-text {

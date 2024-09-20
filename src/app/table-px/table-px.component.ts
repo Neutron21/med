@@ -17,6 +17,17 @@ export class TablePxComponent implements OnInit, AfterViewInit {
   showSpiner: boolean = false;
   pxList: any = [];
   nameToShow: string = '';
+  secciones = {
+    s1: true,
+    s2: false,
+    s3: false,
+    s4: false,
+    s5: false,
+    s6: false,
+    s7: false,
+    s8: false, 
+    s9: false
+  }
 
   constructor(
     private utilService: UtilService,
@@ -64,6 +75,8 @@ export class TablePxComponent implements OnInit, AfterViewInit {
 
   openFichaMedica(idPx: number) {
     sessionStorage.setItem('currentPxId', idPx.toString());
+    sessionStorage.setItem('currentSection', 's1');
+    this.sharedDataService.updateSeccion(this.secciones);
     this.upDateIdPaciente(idPx);
     const modalElement = document.getElementById('fichaModalTable');
     const modal = new Modal(modalElement!);
