@@ -36,4 +36,16 @@
       border-radius: 0.25rem; /* Cambia el radio de la esquina */
     
   }
+  .modal-dialog.modal-fullscreen {
+    height: 100vh; /* Asegura que el modal ocupa toda la pantalla */
+  }
+  
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  
+  
   
