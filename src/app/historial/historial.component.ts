@@ -23,8 +23,6 @@ export class HistorialComponent implements OnInit {
       comentario: new FormControl(null, Validators.required),
       filePx: new FormControl(null)
     });
-    console.log(this.visitaForm);
-    
    }
 
   ngOnInit(): void {
@@ -44,12 +42,10 @@ export class HistorialComponent implements OnInit {
       });
     }
   }
-  addVisita() {
-    console.log(this.visitaForm);
-    
-  }
   agregarVisita(){
     this.addVisit = !this.addVisit;
   }
-
+  addVisita() {
+    console.log(this.visitaForm.value);
+  }
 }
