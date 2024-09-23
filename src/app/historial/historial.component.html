@@ -60,9 +60,7 @@
       <tr *ngFor="let dato of datosHistorial">
         <td>{{dato.fecha}}</td>
         <td>{{dato.tipo}}</td>
-        <td>
-          <a href="{{dato.archivoUrl}}" target="_blank">{{dato.archivoNombre}}</a>
-        </td>
+        <td><a href="{{dato.archivoUrl}}" target="_blank">{{dato.archivoNombre}}</a></td>
         <td>{{dato.notas}}</td>
       </tr>
     </tbody>

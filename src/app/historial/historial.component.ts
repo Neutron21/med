@@ -37,6 +37,8 @@ export class HistorialComponent implements OnInit {
       notas: 'No se encontraron anomalías significativas.'
     }
   ];
+  previewUrl: string | null = null;
+
 
   constructor(private pxService: PxService) {
     this.today = this.formatDate();
@@ -98,4 +100,6 @@ export class HistorialComponent implements OnInit {
     );
     
   }
+  
+  
 }
