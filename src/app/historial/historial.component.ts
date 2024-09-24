@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PxService } from '../services/px.service';
+import { AuthService } from '../services/auth.service';
+import { SharedDataService } from '../services/shared.service';
 
 @Component({
   selector: 'app-historial',
@@ -38,7 +40,10 @@ export class HistorialComponent implements OnInit {
     }
   ];
 
-  constructor(private pxService: PxService) {
+  constructor(
+    private pxService: PxService,
+    private authService: AuthService,
+    private sharedDataService: SharedDataService) {
     this.today = this.formatDate();
 
     this.visitaForm = new FormGroup({
@@ -47,9 +52,13 @@ export class HistorialComponent implements OnInit {
       comentario: new FormControl(null, Validators.required),
       filePx: new FormControl(null)
     });
+    this.sharedDataService.idPacienteObservable.subscribe(id => {
+      this.getHistorial();
+    })
    }
 
   ngOnInit(): void {
+    this.getHistorial();
   }
   formatDate(): string {
     const date =  new Date();
@@ -97,5 +106,15 @@ export class HistorialComponent implements OnInit {
       }
     );
     
+  }
+  getHistorial(){
+    const currentPx = sessionStorage.getItem('currentPxId')+'';
+    this.authService.getById('historial','id_paciente',currentPx).subscribe(
+      (response) => {
+        console.log('Historial de visitas:', response);
+        this.datosHistorial = response
+      },(error) => {
+        console.error('Error al obtener los datos del usuario:', error);
+      });
   }
 }
