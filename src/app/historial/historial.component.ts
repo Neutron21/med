@@ -3,19 +3,22 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PxService } from '../services/px.service';
 import { AuthService } from '../services/auth.service';
 import { SharedDataService } from '../services/shared.service';
+import { servicios } from '../catalogos/servicios';
 
 @Component({
   selector: 'app-historial',
   templateUrl: './historial.component.html',
   styleUrls: ['./historial.component.scss']
 })
-export class HistorialComponent implements OnInit {
 
+export class HistorialComponent implements OnInit {
+  servicios = servicios;
   showSpiner: boolean = false;
   today: string;
   visitaForm: FormGroup;
   visitas: any = [];
   addVisit: boolean= false;
+  filePx: any ;
   datosHistorial = [
     {
       fecha: '2024-09-01',
@@ -50,7 +53,6 @@ export class HistorialComponent implements OnInit {
       fecha: new FormControl(this.today,Validators.required),
       tipo: new FormControl(null, Validators.required),
       comentario: new FormControl(null, Validators.required),
-      filePx: new FormControl(null)
     });
     this.sharedDataService.idPacienteObservable.subscribe(id => {
       this.getHistorial();
@@ -70,9 +72,7 @@ export class HistorialComponent implements OnInit {
   onFileSelect(event: any) {
     const file = event.target.files[0];
     if (file) {
-      this.visitaForm.patchValue({
-        filePx: file
-      });
+    this.filePx = file
     }
   }
   agregarVisita(){
@@ -82,13 +82,13 @@ export class HistorialComponent implements OnInit {
     console.log(this.visitaForm.value);
 
     const formData = new FormData();
-    const idPx = btoa(sessionStorage.getItem('currentPxId')+''); //base64
+    const idPx = btoa(sessionStorage.getItem('currentPxId')+''); 
     formData.append('fecha', this.visitaForm.get('fecha')?.value);
     formData.append('tipo', this.visitaForm.get('tipo')?.value);
-    formData.append('comentario', this.visitaForm.get('comentario')?.value);
+    formData.append('notas', this.visitaForm.get('comentario')?.value);
     formData.append('directorio', idPx);
 
-    const archivo = this.visitaForm.get('filePx')?.value;
+    const archivo = this.filePx;
     if (archivo) {
       formData.append('archivo', archivo);
     }
