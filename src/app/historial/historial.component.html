@@ -9,23 +9,24 @@
         </div>
 
         <div class="col">
-            <div class="mb-3">
-                <label for="tipo" class="form-label">Tipo</label>
-                <select formControlName="tipo" class="form-select" aria-label="Default select example">
-                    <option selected value="null">Seleccione</option>
-                    <option value="E">Efectivo</option>
-                    <option value="T">Transferencia</option>
-                </select>
-            </div>
-        </div>
-
+          <div class="mb-3">
+              <label for="tipo" class="form-label">Tipo</label>
+              <select formControlName="tipo" class="form-select" aria-label="Default select example">
+                  <option selected value="null">Seleccione</option>
+                  <option *ngFor="let servicio of servicios" [value]="servicio.name">
+                      {{ servicio.name }}
+                  </option>
+              </select>
+          </div>
+      </div>
+      
         <div class="col">
-            <div class="mb-3">
-                <label for="filePx" class="form-label custom-margin">Archivo</label>
-                <!-- <input formControlName="filePx" type="file" class="form-control" id="filePx"> -->
-                <input type="file" id="fichero-tarifas" class="form-control" formControlName="filePx" (change)="onFileSelect($event)">
-            </div>
+          <div class="mb-3">
+            <label for="filePx" class="form-label custom-margin">Archivo</label>
+            <input type="file" id="fichero-tarifas" class="form-control" (change)="onFileSelect($event)">
+          </div>
         </div>
+        
        
       </div>
       <div class="row">
