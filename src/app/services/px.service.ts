@@ -10,12 +10,12 @@ import { throwError } from "rxjs/internal/observable/throwError";
 })
 export class PxService {
 
-  headers = new HttpHeaders({
+  headersJson = new HttpHeaders({
     'Content-Type': 'application/json',
     'X-Auth-Token': environment.auth
   });
   
-  headers2 = new HttpHeaders({
+  headers = new HttpHeaders({
     'X-Auth-Token': environment.auth
   });
     
@@ -27,7 +27,7 @@ export class PxService {
         const currentUser = JSON.parse(sessionStorage.getItem('currentUser')+'');
         newPx.id_medico = currentUser.id_medico;
          console.log('createPaciente', newPx);    
-        return this.http.post(environment.api + environment.cretePaciente, JSON.stringify(newPx), {headers: this.headers});
+        return this.http.post(environment.api + environment.cretePaciente, JSON.stringify(newPx), {headers: this.headersJson});
         
       }
     getPacientes(textFind: any): Observable<any> {
@@ -37,7 +37,7 @@ export class PxService {
           .set('texto', textFind)
           .set('id_medico', currentUser.id_medico);
         
-        return this.http.get(environment.api + environment.queryPaciente, { headers: this.headers, params })
+        return this.http.get(environment.api + environment.queryPaciente, { headers: this.headersJson, params })
         .pipe(
           catchError((error: HttpErrorResponse) => {
             console.error('Error al hacer la solicitud', error);
@@ -50,7 +50,7 @@ export class PxService {
         request.id_paciente = currentPx;
            console.log('Datos Generales', request);
            
-        return this.http.post(environment.api + environment.postDatosGeneralesFm, JSON.stringify(request), { headers: this.headers });
+        return this.http.post(environment.api + environment.postDatosGeneralesFm, JSON.stringify(request), { headers: this.headersJson });
         
     }
     deportivoFm(request:any){
@@ -58,7 +58,7 @@ export class PxService {
         request.id_paciente = currentPx;
            console.log('Deportivo', request);
            
-        return this.http.post(environment.api + environment.postDeportivoFm, JSON.stringify(request), { headers: this.headers });
+        return this.http.post(environment.api + environment.postDeportivoFm, JSON.stringify(request), { headers: this.headersJson });
         
     }
     medidasFm(request:any){
@@ -66,7 +66,7 @@ export class PxService {
         request.id_paciente = currentPx;
            console.log('Medidas', request);
            
-        return this.http.post(environment.api + environment.postMedidasFm, JSON.stringify(request), { headers: this.headers });
+        return this.http.post(environment.api + environment.postMedidasFm, JSON.stringify(request), { headers: this.headersJson });
         
     }
     antecedentesFm(request:any){
@@ -74,7 +74,7 @@ export class PxService {
         request.id_paciente = currentPx;
            console.log('Antecedentes', request);
            
-        return this.http.post(environment.api + environment.postAntecedentesFm, JSON.stringify(request), { headers: this.headers });
+        return this.http.post(environment.api + environment.postAntecedentesFm, JSON.stringify(request), { headers: this.headersJson });
         
     }
     antecedentesPatFm(request:any){
@@ -82,7 +82,7 @@ export class PxService {
         request.id_paciente = currentPx;
            console.log('Antecedentes Patologicos', request);
            
-        return this.http.post(environment.api + environment.postAntecedentesPatFm, JSON.stringify(request), { headers: this.headers  });
+        return this.http.post(environment.api + environment.postAntecedentesPatFm, JSON.stringify(request), { headers: this.headersJson  });
         
     }
     antecedentesNoPatFm(request:any){
@@ -90,7 +90,7 @@ export class PxService {
         request.id_paciente = currentPx;
            console.log('Antecedentes No Patologicos', request);
            
-        return this.http.post(environment.api + environment.postAntecedentesNoPatFm, JSON.stringify(request), {headers: this.headers });
+        return this.http.post(environment.api + environment.postAntecedentesNoPatFm, JSON.stringify(request), {headers: this.headersJson });
         
     }
     mujerFm(request:any){
@@ -98,7 +98,7 @@ export class PxService {
         request.id_paciente = currentPx;
            console.log('En caso de ser mujer', request);
            
-        return this.http.post(environment.api + environment.postMujerFm, JSON.stringify(request), { headers: this.headers});
+        return this.http.post(environment.api + environment.postMujerFm, JSON.stringify(request), { headers: this.headersJson});
         
     }
     pediatricoFm(request:any){
@@ -106,7 +106,7 @@ export class PxService {
         request.id_paciente = currentPx;
            console.log('Pediatrico', request);
            
-        return this.http.post(environment.api + environment.postPediatricoFm, JSON.stringify(request), { headers: this.headers});
+        return this.http.post(environment.api + environment.postPediatricoFm, JSON.stringify(request), { headers: this.headersJson});
         
     }
     fichamedicaAuxFm(request:any){
@@ -115,7 +115,7 @@ export class PxService {
       
            console.log('Ficha medica Aux', request);
            
-        return this.http.post(environment.api + environment.postFichaMedicaAux, JSON.stringify(request), { headers: this.headers });
+        return this.http.post(environment.api + environment.postFichaMedicaAux, JSON.stringify(request), { headers: this.headersJson });
         
     }
     subirArchivo(archivoSeleccionado: File, nameFile: string) {
@@ -133,15 +133,15 @@ export class PxService {
           );
     }
     subirVisita(formData: FormData): Observable<any> {
-        return this.http.post(environment.api + environment.postFile, formData, { headers: this.headers2 });
+        return this.http.post(environment.api + environment.postFile, formData, { headers: this.headers });
     }
     
     getArchivo(nombreArchivo: string) {
-      const headers2 = new HttpHeaders({
+      const headers= new HttpHeaders({
         'X-Auth-Token': environment.auth,
       });
       this.http.get(environment.api + environment.getFile, {
-        headers: headers2,
+        headers: headers,
         params: { path: nombreArchivo },
         responseType: 'blob' // Asegúrate de recibir el archivo como un blob
       }).subscribe((response: Blob) => {
