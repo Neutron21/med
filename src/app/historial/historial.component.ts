@@ -20,7 +20,10 @@ export class HistorialComponent implements OnInit {
   visitaForm: FormGroup;
   visitas: any = [];
   addVisit: boolean= false;
-  filePx: any ;
+  filePx: any;
+  selectedFile: any; // Agregada la propiedad selectedFile
+  BaseUrlImage: string = 'https://solu-tec.net/med/historico/';
+  urlImage = '';
   datosHistorial = [
     {
       fecha: '2024-09-01',
@@ -55,39 +58,44 @@ export class HistorialComponent implements OnInit {
     this.today = this.formatDate();
 
     this.visitaForm = new FormGroup({
-      fecha: new FormControl(this.today,Validators.required),
+      fecha: new FormControl(this.today, Validators.required),
       tipo: new FormControl(null, Validators.required),
       comentario: new FormControl(null, Validators.required),
     });
     this.sharedDataService.idPacienteObservable.subscribe(id => {
       this.getHistorial();
-    })
-   }
+    });
+  }
 
   ngOnInit(): void {
     this.getHistorial();
   }
+
   formatDate(): string {
-    const date =  new Date();
+    const date = new Date();
     const year = date.getFullYear();
     const month = ('0' + (date.getMonth() + 1)).slice(-2); 
     const day = ('0' + date.getDate()).slice(-2);
     return `${year}-${month}-${day}`;
   }
+
   onFileSelect(event: any) {
     const file = event.target.files[0];
     if (file) {
-    this.filePx = file
+      this.filePx = file;
+      this.selectedFile = file.name; // Asigna el nombre del archivo a selectedFile
     }
   }
-  agregarVisita(){
+
+  agregarVisita() {
     this.addVisit = !this.addVisit;
   }
+
   addVisita() {
     console.log(this.visitaForm.value);
 
     const formData = new FormData();
-    const idPx = btoa(sessionStorage.getItem('currentPxId')+''); 
+    const idPx = btoa(sessionStorage.getItem('currentPxId') + ''); 
     formData.append('fecha', this.visitaForm.get('fecha')?.value);
     formData.append('tipo', this.visitaForm.get('tipo')?.value);
     formData.append('notas', this.visitaForm.get('comentario')?.value);
@@ -110,18 +118,21 @@ export class HistorialComponent implements OnInit {
         console.error('Error al subir la visita', error);
       }
     );
-    
   }
-  getHistorial(){
-    const currentPx = sessionStorage.getItem('currentPxId')+'';
-    this.authService.getById('historial','id_paciente',currentPx).subscribe(
+
+  getHistorial() {
+    const currentPx = sessionStorage.getItem('currentPxId') + '';
+    this.authService.getById('historial', 'id_paciente', currentPx).subscribe(
       (response) => {
         console.log('Historial de visitas:', response);
-        this.datosHistorial = response
-      },(error) => {
+        this.datosHistorial = response;
+      },
+      (error) => {
         console.error('Error al obtener los datos del usuario:', error);
-      });
+      }
+    );
   }
+
   previsualizarArchivo(nombreArchivo: string) {
     this.pxService.getArchivo(nombreArchivo);
   }

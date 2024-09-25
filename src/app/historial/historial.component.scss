@@ -56,3 +56,22 @@ input[type="file"] {
   cursor: pointer;
   color: #0d6efd;
 }
+.d-flex {
+  display: flex;
+}
+
+.table-container {
+  flex-grow: 1;
+}
+
+
+.modal-recuadro {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-left: 20px; /* Espacio entre la tabla y el recuadro */
+  width: 250px; /* Ajusta el ancho según tus necesidades */
+  height: 250px; /* Ajusta la altura según el contenido */
+  margin-top: 1em;
+}
+

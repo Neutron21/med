@@ -48,33 +48,40 @@
   </div>
 </form>
 
-<table class="table table-striped table-hover">
-  <thead class="text-center">
-    <tr>
-      <th scope="col">Fecha</th>
-      <th scope="col">Tipo</th>
-      <th scope="col">Archivo</th>
-      <th scope="col">Notas</th>
-    </tr>
-  </thead>
-  <tbody *ngIf="showSpiner">
-    <tr>
-      <td colspan="4" class="spinner-container text-center">
-        <img alt="spiner" src="../../assets/doctor.gif" />
-      </td>
-    </tr>
-  </tbody>
-  <tbody *ngIf="!showSpiner && datosHistorial.length === 0">
-    <tr>
-      <td colspan="4" class="table-active text-center">Sin resultados para mostrar</td>
-    </tr>
-  </tbody>
-  <tbody *ngIf="!showSpiner && datosHistorial.length > 0" class="text-center" >
-    <tr *ngFor="let dato of datosHistorial">
-      <td>{{ dato.fecha }}</td>
-      <td>{{ dato.tipo }}</td>
-      <td class="cursor">{{dato.fileName}}</td>
-      <td>{{ dato.notas }}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="d-flex">
+  <table class="table table-striped table-hover">
+    <thead class="text-center">
+      <tr>
+        <th scope="col">Fecha</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Archivo</th>
+        <!-- <th scope="col">Notas</th> -->
+      </tr>
+    </thead>
+    <tbody *ngIf="showSpiner">
+      <tr>
+        <td colspan="4" class="spinner-container text-center">
+          <img alt="spiner" src="../../assets/doctor.gif" />
+        </td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="!showSpiner && datosHistorial.length === 0">
+      <tr>
+        <td colspan="4" class="table-active text-center">Sin resultados para mostrar</td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="!showSpiner && datosHistorial.length > 0" class="text-center">
+      <tr *ngFor="let dato of datosHistorial">
+        <td>{{ dato.fecha }}</td>
+        <td>{{ dato.tipo }}</td>
+        <td class="cursor">{{ dato.fileName }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="modal-recuadro">
+    <p *ngIf="selectedFile">{{ selectedFile }}</p>
+    <p *ngIf="!selectedFile" class="text-center">Ningún archivo seleccionado.</p>
+    <img [src]="urlImage">
+  </div>
+</div>
