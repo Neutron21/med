@@ -69,7 +69,7 @@
       <td colspan="4" class="table-active text-center">Sin resultados para mostrar</td>
     </tr>
   </tbody>
-  <tbody *ngIf="!showSpiner && datosHistorial.length > 0">
+  <tbody *ngIf="!showSpiner && datosHistorial.length > 0" class="text-center" >
     <tr *ngFor="let dato of datosHistorial">
       <td>{{ dato.fecha }}</td>
       <td>{{ dato.tipo }}</td>
