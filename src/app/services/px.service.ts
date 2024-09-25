@@ -175,6 +175,33 @@ export class PxService {
         });
         return this.http.post(environment.api + environment.postFile, formData, { headers });
     }
-   
+    getArchivo(nombreArchivo: string) {
+      const headers = new HttpHeaders({
+        'X-Auth-Token': environment.auth,
+      });
+    
+      this.http.get(environment.api + environment.getFile, {
+        headers: headers,
+        params: { path: nombreArchivo },
+        responseType: 'blob' // Asegúrate de recibir el archivo como un blob
+      }).subscribe((response: Blob) => {
+        const fileURL = URL.createObjectURL(response);
+        console.log(response);
+        
+        // Verificar el tipo de archivo
+        if (response.type === 'application/pdf') {
+          // Para PDFs
+          window.open(fileURL);
+        } else if (response.type.startsWith('image/')) {
+          // Para imágenes
+          // this.imagePreviewSrc = fileURL;
+          // window.open(fileURL);
+          console.log(fileURL);
+          
+        }
+      }, error => {
+        console.error('Error al obtener el archivo', error);
+      });
+    }
 
 }
