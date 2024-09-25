@@ -74,7 +74,7 @@
       <tr *ngFor="let dato of datosHistorial">
         <td>{{ dato.fecha }}</td>
         <td>{{ dato.tipo }}</td>
-        <td class="cursor">{{ dato.fileName }}</td>
+        <td class="cursor" (click)="previsualizarArchivo(dato.pathFile)">{{dato.fileName}}</td>
       </tr>
     </tbody>
   </table>
