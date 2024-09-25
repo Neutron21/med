@@ -4,6 +4,8 @@ import { PxService } from '../services/px.service';
 import { AuthService } from '../services/auth.service';
 import { SharedDataService } from '../services/shared.service';
 import { servicios } from '../catalogos/servicios';
+import { HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-historial',
@@ -23,23 +25,26 @@ export class HistorialComponent implements OnInit {
     {
       fecha: '2024-09-01',
       tipo: 'Radiografía',
-      archivoUrl: 'https://example.com/radiografia1.pdf',
+      pathFile: 'https://example.com/radiografia1.pdf',
       archivoNombre: 'radiografia1.pdf',
-      notas: 'Fractura leve detectada en el hueso del pie.'
+      notas: 'Fractura leve detectada en el hueso del pie.',
+      fileName: 'radiografia1.pdf'
     },
     {
       fecha: '2024-08-15',
       tipo: 'Análisis de sangre',
-      archivoUrl: 'https://example.com/analisis-sangre.pdf',
+      pathFile: 'https://example.com/analisis-sangre.pdf',
       archivoNombre: 'analisis-sangre.pdf',
-      notas: 'Resultados dentro de los rangos normales.'
+      notas: 'Resultados dentro de los rangos normales.',
+      fileName: 'analisis-sangre.pdf'
     },
     {
       fecha: '2024-07-23',
       tipo: 'Resonancia magnética',
-      archivoUrl: 'https://example.com/resonancia-magnetica.pdf',
+      pathFile: 'https://example.com/resonancia-magnetica.pdf',
       archivoNombre: 'resonancia-magnetica.pdf',
-      notas: 'No se encontraron anomalías significativas.'
+      notas: 'No se encontraron anomalías significativas.',
+      fileName: 'resonancia-magnetica.pdf'
     }
   ];
 
@@ -116,5 +121,8 @@ export class HistorialComponent implements OnInit {
       },(error) => {
         console.error('Error al obtener los datos del usuario:', error);
       });
+  }
+  previsualizarArchivo(nombreArchivo: string) {
+    this.pxService.getArchivo(nombreArchivo);
   }
 }
