@@ -6,6 +6,8 @@ import { SharedDataService } from '../services/shared.service';
 import { servicios } from '../catalogos/servicios';
 import { HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-historial',
@@ -21,9 +23,10 @@ export class HistorialComponent implements OnInit {
   visitas: any = [];
   addVisit: boolean= false;
   filePx: any;
-  selectedFile: any; // Agregada la propiedad selectedFile
+  selectedFile: any; 
+  urlImage: SafeResourceUrl | null = null;
   BaseUrlImage: string = 'https://solu-tec.net/med/historico/';
-  urlImage = '';
+  showIframe: any = false;
   datosHistorial = [
     {
       fecha: '2024-09-01',
@@ -52,6 +55,7 @@ export class HistorialComponent implements OnInit {
   ];
 
   constructor(
+    private sanitizer: DomSanitizer,
     private pxService: PxService,
     private authService: AuthService,
     private sharedDataService: SharedDataService) {
@@ -137,6 +141,9 @@ export class HistorialComponent implements OnInit {
     // this.pxService.getArchivo(nombreArchivo);
     this.urlImage = this.BaseUrlImage + nombreArchivo  ;
     // window.open(this.urlImage);
+    this.urlImage = this.sanitizer.bypassSecurityTrustResourceUrl(this.BaseUrlImage + nombreArchivo);
 
   }
+  
+  
 }

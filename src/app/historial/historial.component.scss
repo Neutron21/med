@@ -69,9 +69,19 @@ input[type="file"] {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
-  margin-left: 20px; /* Espacio entre la tabla y el recuadro */
-  width: 250px; /* Ajusta el ancho según tus necesidades */
-  height: 250px; /* Ajusta la altura según el contenido */
   margin-top: 1em;
+  width: 100%;
+  max-width: 350px; /* Ajusta según lo necesites */
+  height: 300px; /* Fija la altura si es necesario */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
 }
+.img-fluid {
+  width: 90%;
+  height: 90%;
+  
+}
+
 
