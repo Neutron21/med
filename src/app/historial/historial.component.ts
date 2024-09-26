@@ -136,5 +136,7 @@ export class HistorialComponent implements OnInit {
   previsualizarArchivo(nombreArchivo: string) {
     // this.pxService.getArchivo(nombreArchivo);
     this.urlImage = this.BaseUrlImage + nombreArchivo  ;
+    // window.open(this.urlImage);
+
   }
 }
