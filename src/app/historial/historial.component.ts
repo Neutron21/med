@@ -83,7 +83,7 @@ export class HistorialComponent implements OnInit {
     const file = event.target.files[0];
     if (file) {
       this.filePx = file;
-      this.selectedFile = file.name; // Asigna el nombre del archivo a selectedFile
+      // this.selectedFile = file.name; // Asigna el nombre del archivo a selectedFile
     }
   }
 
@@ -133,8 +133,8 @@ export class HistorialComponent implements OnInit {
     );
   }
 
-  previsualizarArchivo(nombreArchivo: string) {
-    // this.pxService.getArchivo(nombreArchivo);
-    this.urlImage = this.BaseUrlImage + nombreArchivo  ;
+  previsualizarArchivo(path: string, nombreArchivo: string) {
+    // this.pxService.getArchivo(path, nombreArchivo);
+    this.urlImage = this.BaseUrlImage + path;
   }
 }

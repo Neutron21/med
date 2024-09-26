@@ -118,50 +118,79 @@ export class PxService {
         return this.http.post(environment.api + environment.postFichaMedicaAux, JSON.stringify(request), { headers: this.headersJson });
         
     }
-    subirArchivo(archivoSeleccionado: File, nameFile: string) {
+    // subirArchivo(archivoSeleccionado: File, nameFile: string) {
 
-        const formData = new FormData();
-        formData.append('archivo', archivoSeleccionado, nameFile);
-        this.http.post(environment.api + environment.postFile, formData)
-          .subscribe(
-            (response) => {
-              console.log('El archivo se ha subido correctamente:', response);
-            },
-            (error) => {
-              console.error('Error al subir el archivo:', error);
-            }
-          );
-    }
+    //     const formData = new FormData();
+    //     formData.append('archivo', archivoSeleccionado, nameFile);
+    //     this.http.post(environment.api + environment.postFile, formData)
+    //       .subscribe(
+    //         (response) => {
+    //           console.log('El archivo se ha subido correctamente:', response);
+    //         },
+    //         (error) => {
+    //           console.error('Error al subir el archivo:', error);
+    //         }
+    //       );
+    // }
     subirVisita(formData: FormData): Observable<any> {
         return this.http.post(environment.api + environment.postFile, formData, { headers: this.headers });
     }
     
-    getArchivo(nombreArchivo: string) {
+    // getArchivo(nombreArchivo: string) {
+    //   const headers= new HttpHeaders({
+    //     'X-Auth-Token': environment.auth,
+    //   });
+    //   this.http.get(environment.api + environment.getFile, {
+    //     headers: headers,
+    //     params: { path: nombreArchivo },
+    //     responseType: 'blob' // Asegúrate de recibir el archivo como un blob
+    //   }).subscribe((response: Blob) => {
+    //     const fileURL = URL.createObjectURL(response);
+    //     console.log(response);
+        
+    //     // Verificar el tipo de archivo
+    //     if (response.type === 'application/pdf') {
+    //       // Para PDFs
+    //       window.open(fileURL);
+    //     } else if (response.type.startsWith('image/')) {
+    //       // Para imágenes
+    //       // this.imagePreviewSrc = fileURL;
+    //       // window.open(fileURL);
+    //       console.log(fileURL);
+          
+    //     }
+    //   }, error => {
+    //     console.error('Error al obtener el archivo', error);
+    //   });
+    // }
+    getArchivo(ruta: string, nombreArchivo: string) {
+      ruta = 'Mw==/qr-code.png';
       const headers= new HttpHeaders({
         'X-Auth-Token': environment.auth,
       });
-      this.http.get(environment.api + environment.getFile, {
-        headers: headers,
-        params: { path: nombreArchivo },
-        responseType: 'blob' // Asegúrate de recibir el archivo como un blob
-      }).subscribe((response: Blob) => {
-        const fileURL = URL.createObjectURL(response);
-        console.log(response);
+      
+      this.http.get(environment.api + environment.getFile, { params: { path: ruta },responseType: 'blob' })
+    .subscribe(
+      (response) => {
+        console.log('res',response);
         
-        // Verificar el tipo de archivo
-        if (response.type === 'application/pdf') {
-          // Para PDFs
-          window.open(fileURL);
-        } else if (response.type.startsWith('image/')) {
-          // Para imágenes
-          // this.imagePreviewSrc = fileURL;
-          // window.open(fileURL);
-          console.log(fileURL);
-          
-        }
-      }, error => {
-        console.error('Error al obtener el archivo', error);
-      });
+        const blob = new Blob([response], { type: response.type });
+        const url = window.URL.createObjectURL(blob);   
+
+        const a = document.createElement('a');
+        document.body.appendChild(a);
+        a.setAttribute('style', 'display: none');
+        a.href = url;
+        a.download = nombreArchivo; // Puedes cambiar el nombre del archivo aquí
+        a.click();
+        window.URL.revokeObjectURL(url);
+        a.remove();
+      },
+      (error) => {
+        console.error('Error al descargar la imagen:', error);
+      }
+    );
+      
     }
 
 }

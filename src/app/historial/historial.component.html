@@ -74,7 +74,7 @@
       <tr *ngFor="let dato of datosHistorial">
         <td>{{ dato.fecha }}</td>
         <td>{{ dato.tipo }}</td>
-        <td class="cursor" (click)="previsualizarArchivo(dato.pathFile)">{{dato.fileName}}</td>
+        <td class="cursor" (click)="previsualizarArchivo(dato.pathFile, dato.fileName)">{{dato.fileName}}</td>
       </tr>
     </tbody>
   </table>
@@ -82,6 +82,7 @@
   <div class="modal-recuadro">
     <p *ngIf="selectedFile">{{ selectedFile }}</p>
     <p *ngIf="!selectedFile" class="text-center">Ningún archivo seleccionado.</p>
-    <img [src]="urlImage ">
+    <img [src]="urlImage">
+    <a class="btn btn-primary" [href]="urlImage" download="img.jpg" target="_blank" >Descargar</a>
   </div>
 </div>
