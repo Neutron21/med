@@ -48,41 +48,59 @@
   </div>
 </form>
 
-<div class="d-flex">
-  <table class="table table-striped table-hover">
-    <thead class="text-center">
-      <tr>
-        <th scope="col">Fecha</th>
-        <th scope="col">Tipo</th>
-        <th scope="col">Archivo</th>
-        <!-- <th scope="col">Notas</th> -->
-      </tr>
-    </thead>
-    <tbody *ngIf="showSpiner">
-      <tr>
-        <td colspan="4" class="spinner-container text-center">
-          <img alt="spiner" src="../../assets/doctor.gif" />
-        </td>
-      </tr>
-    </tbody>
-    <tbody *ngIf="!showSpiner && datosHistorial.length === 0">
-      <tr>
-        <td colspan="4" class="table-active text-center">Sin resultados para mostrar</td>
-      </tr>
-    </tbody>
-    <tbody *ngIf="!showSpiner && datosHistorial.length > 0" class="text-center">
-      <tr *ngFor="let dato of datosHistorial">
-        <td>{{ dato.fecha }}</td>
-        <td>{{ dato.tipo }}</td>
-        <td class="cursor" (click)="previsualizarArchivo(dato.pathFile, dato.fileName)">{{dato.fileName}}</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-8 table-container">
+      <table class="table table-striped table-hover">
+        <thead class="text-center">
+          <tr>
+            <th scope="col">Fecha</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Archivo</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="showSpiner">
+          <tr>
+            <td colspan="4" class="spinner-container text-center">
+              <img alt="spiner" src="../../assets/doctor.gif" />
+            </td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="!showSpiner && datosHistorial.length === 0">
+          <tr>
+            <td colspan="4" class="table-active text-center">Sin resultados para mostrar</td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="!showSpiner && datosHistorial.length > 0" class="text-center">
+          <tr *ngFor="let dato of datosHistorial">
+            <td>{{ dato.fecha }}</td>
+            <td>{{ dato.tipo }}</td>
+            <td class="cursor" (click)="previsualizarArchivo(dato)">{{mapFileName(dato.fileName)}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-  <div class="modal-recuadro">
-    <p *ngIf="selectedFile">{{ selectedFile }}</p>
-    <p *ngIf="!selectedFile" class="text-center">Ningún archivo seleccionado.</p>
-    <img [src]="urlImage">
-    <a class="btn btn-primary" [href]="urlImage" download="img.jpg" target="_blank" >Descargar</a>
+    
+    <div class="col-12 col-md-4">
+      <div class="modal-recuadro">
+        <p class="text-center nameFile">{{mapFileName(file.nameFile)}}</p>
+        <div *ngIf="!file.isPDF && urlImage && hasFile" class="center-items">  
+          <img [src]="urlImage" class="img-fluid" alt="imagen">
+          <p  class="text-center">{{file.notas}}</p>
+          <a [href]="urlImage" target="_blank" download="image.jpg" class="btn btn-primary">Descargar</a>
+        </div>
+        <div *ngIf="file.isPDF && hasFile" class="center-items">
+          <iframe [src]="urlImage" width="100%" frameborder="0">
+            Este navegador no soporta iframes.
+          </iframe>
+          <p class="text-center notas">{{file.notas}}</p>
+          <a [href]="urlImage" target="_blank" download="image.jpg" class="btn btn-primary">Descargar</a>
+        </div>
+        <div *ngIf="!hasFile" class="center-items">
+          <p class="text-center notas">{{file.notas}}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

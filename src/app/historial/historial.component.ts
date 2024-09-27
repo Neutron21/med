@@ -6,6 +6,9 @@ import { SharedDataService } from '../services/shared.service';
 import { servicios } from '../catalogos/servicios';
 import { HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Historico } from '../models/historico';
+
 
 @Component({
   selector: 'app-historial',
@@ -21,37 +24,47 @@ export class HistorialComponent implements OnInit {
   visitas: any = [];
   addVisit: boolean= false;
   filePx: any;
-  selectedFile: any; // Agregada la propiedad selectedFile
+  selectedFile: any; 
+  urlImage: SafeResourceUrl | null = null;
   BaseUrlImage: string = 'https://solu-tec.net/med/historico/';
-  urlImage = '';
-  datosHistorial = [
+  showIframe: any = false;
+  hasFile : any = false;
+
+  file = {
+    isPDF : false,
+    nameFile : 'Ningún archivo seleccionado.',
+    notas: ""
+  }
+  
+  datosHistorial:Historico []= [
     {
+      id_paciente: 3,
       fecha: '2024-09-01',
       tipo: 'Radiografía',
       pathFile: 'https://example.com/radiografia1.pdf',
-      archivoNombre: 'radiografia1.pdf',
       notas: 'Fractura leve detectada en el hueso del pie.',
       fileName: 'radiografia1.pdf'
     },
     {
+      id_paciente: 3,
       fecha: '2024-08-15',
       tipo: 'Análisis de sangre',
       pathFile: 'https://example.com/analisis-sangre.pdf',
-      archivoNombre: 'analisis-sangre.pdf',
       notas: 'Resultados dentro de los rangos normales.',
       fileName: 'analisis-sangre.pdf'
     },
     {
+      id_paciente: 3,
       fecha: '2024-07-23',
       tipo: 'Resonancia magnética',
       pathFile: 'https://example.com/resonancia-magnetica.pdf',
-      archivoNombre: 'resonancia-magnetica.pdf',
       notas: 'No se encontraron anomalías significativas.',
       fileName: 'resonancia-magnetica.pdf'
     }
   ];
 
   constructor(
+    private sanitizer: DomSanitizer,
     private pxService: PxService,
     private authService: AuthService,
     private sharedDataService: SharedDataService) {
@@ -83,7 +96,6 @@ export class HistorialComponent implements OnInit {
     const file = event.target.files[0];
     if (file) {
       this.filePx = file;
-      // this.selectedFile = file.name; // Asigna el nombre del archivo a selectedFile
     }
   }
 
@@ -133,8 +145,25 @@ export class HistorialComponent implements OnInit {
     );
   }
 
-  previsualizarArchivo(path: string, nombreArchivo: string) {
-    // this.pxService.getArchivo(path, nombreArchivo);
-    this.urlImage = this.BaseUrlImage + path;
+  previsualizarArchivo(visita: Historico) {
+
+    // this.pxService.getArchivo(nombreArchivo);
+    // window.open(this.urlImage);
+    this.validaVacio(visita.pathFile, visita.fileName);
+    this.file.isPDF = visita.fileName.endsWith('.pdf');
+    this.file.nameFile = visita.fileName;
+    this.file.notas = visita.notas;
+    this.urlImage = this.sanitizer.bypassSecurityTrustResourceUrl(this.BaseUrlImage + visita.pathFile);
+
   }
+  validaVacio(path: string, nameFile: String) {
+    this.hasFile = !!path && !!nameFile;
+    return this.hasFile;
+  }
+  mapFileName(name: string){
+    const value = !!name ? name : 'NA'
+    return value;
+  }
+  
+  
 }

@@ -68,10 +68,32 @@ input[type="file"] {
 .modal-recuadro {
   border: 1px solid #ccc;
   border-radius: 5px;
-  padding: 10px;
-  margin-left: 20px; /* Espacio entre la tabla y el recuadro */
-  width: 250px; /* Ajusta el ancho según tus necesidades */
-  height: 250px; /* Ajusta la altura según el contenido */
+  padding: 10px 0;
   margin-top: 1em;
+  width: 100%;
+  height: auto; 
 }
-
+.center-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+}
+.img-fluid {
+  width: 90%;
+  height: 90%;
+}
+.nameFile {
+  margin-bottom: 0;
+  padding: 1rem;
+}
+// .table-container {
+//   max-height: 60vh;
+//   overflow-y: auto;
+// }
+iframe {
+  height: 55vh;
+}
+.notas {
+  margin-top: 1rem;
+}
