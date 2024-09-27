@@ -8,6 +8,10 @@ import { HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Historico } from '../models/historico';
+import { Modal } from 'bootstrap';
+
+
+
 
 
 @Component({
@@ -18,7 +22,8 @@ import { Historico } from '../models/historico';
 
 export class HistorialComponent implements OnInit {
   servicios = servicios;
-  showSpiner: boolean = false;
+  showSpinner: boolean = false;
+  spinnerModal: boolean = false;
   today: string;
   visitaForm: FormGroup;
   visitas: any = [];
@@ -104,33 +109,49 @@ export class HistorialComponent implements OnInit {
   }
 
   addVisita() {
-    console.log(this.visitaForm.value);
-
+    this.spinnerModal = true; // Mostrar el spinner
+    const modalElement = document.getElementById('successModal');
+    const modal = new Modal(modalElement!);
+    modal.show(); // Mostrar el modal de éxito
     const formData = new FormData();
     const idPx = btoa(sessionStorage.getItem('currentPxId') + ''); 
     formData.append('fecha', this.visitaForm.get('fecha')?.value);
     formData.append('tipo', this.visitaForm.get('tipo')?.value);
     formData.append('notas', this.visitaForm.get('comentario')?.value);
     formData.append('directorio', idPx);
-
-    const archivo = this.filePx;
+    const archivo = this.filePx; 
     if (archivo) {
-      formData.append('archivo', archivo);
+        formData.append('archivo', archivo);
     }
-    console.log(formData);
-    
-    formData.forEach((value, key) => {
-      console.log(`${key}: ${value}`);
-    });
+
     this.pxService.subirVisita(formData).subscribe(
-      (response) => {
-        console.log('Éxito!', response);
-      },
-      (error) => {
-        console.error('Error al subir la visita', error);
-      }
+        (response) => {
+            console.log('Éxito!', response);
+            this.visitaForm.reset();
+            this.selectedFile = null; 
+            const fileInput = document.getElementById('fichero-tarifas') as HTMLInputElement;
+            if (fileInput) {
+                fileInput.value = ''; 
+            }
+            this.spinnerModal = false; // Ocultar el spinner
+       
+        },
+        (error) => {
+            console.error('Error al subir la visita', error);
+            this.spinnerModal = false; // Ocultar el spinner en caso de error
+        }
     );
+  };
+
+
+  
+
+  openSuccessModal() {
+    const modalElement = document.getElementById('successModal');
+    const modal = new Modal(modalElement!);
+    modal.show();
   }
+
 
   getHistorial() {
     const currentPx = sessionStorage.getItem('currentPxId') + '';
@@ -165,5 +186,13 @@ export class HistorialComponent implements OnInit {
     return value;
   }
   
-  
+  showModal() {
+    const modalElement = document.getElementById('staticBackdrop'); // Obtén el elemento del modal
+    if (modalElement) { // Verifica que el elemento no sea null
+      const modal = new Modal(modalElement); // Solo inicializa si existe
+      modal.show(); // Muestra el modal
+    } else {
+      console.error('El modal no se encontró. Asegúrate de que el ID sea correcto.');
+    }
+  }
 }

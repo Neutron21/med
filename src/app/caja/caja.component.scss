@@ -9,3 +9,22 @@
     font-size: 0.75rem;
     margin-left: 2%;
 }
+form {
+    background-color: white;
+    border: 2px solid #0087ff; 
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .table-container {
+    padding: 20px;
+    background-color: #f8f9fa; /* Fondo claro opcional */
+  }
+  
+  .table {
+    border: 2px solid #0087ff; /* Contorno azul alrededor de la tabla */
+  }
+  
+  .table th, .table td {
+    border-color: #0087ff; /* Bordes de las celdas en azul */
+  }
+  

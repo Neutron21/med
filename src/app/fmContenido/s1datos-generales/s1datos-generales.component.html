@@ -37,7 +37,6 @@
                (keypress)="onlyNumbers($event)" 
                (blur)="validatePhoneNumber()">
         
-        <!-- Mensaje de validación si el teléfono es incorrecto -->
         <div *ngIf="showPhoneError" class="text-danger mt-1">
           El número de teléfono debe tener 10 dígitos.
         </div>
