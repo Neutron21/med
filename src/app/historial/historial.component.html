@@ -38,36 +38,35 @@
 
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <button class="btn btn-danger me-md-2" type="button" (click)="agregarVisita()">Cancelar</button>
-        <button class="btn btn-primary" type="button" (click)="addVisita()">Agregar</button>
+        <button type="button" class="btn btn-primary" (click)="addVisita()">
+          Agregar 
+        </button>            
       </div>
     </div>
   </div>
 </form>
 
+
 <!-- Modal de éxito -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">  <div class="modal-dialog">
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title fs-5" id="staticBackdrop">Subiendo archivo...</h5>
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body text-center">
-        <div *ngIf="spinnerModal" class="spinner-container">
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Cargando...</span>
-          </div>
-          <p>Subiendo, por favor espere...</p>
-        </div>
+      
+      <div class="modal-body">
+        ...
+      </div>
+      <div *ngIf="!spinnerModal"></div>
         <p>Archivo subido correctamente.</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
-</div>
-
 
   <div class="d-grid d-md-flex justify-content-md-end" *ngIf="!addVisit">
     <button class="btn btn-primary" type="button" (click)="agregarVisita()">Agregar visita</button>

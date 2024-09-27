@@ -77,6 +77,16 @@
     border-style: solid;
     border-color: #074f8f transparent transparent transparent;
   }
+  .tooltip-container {
+    display: inline-block; /* Asegúrate de que no se expanda fuera de la celda */
+    text-align: center; /* Centra el icono y el texto del tooltip */
+    margin: 0 5px; /* Espaciado horizontal entre íconos */
+  }
+  
+  .table td {
+    white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
+  }
+  
   
   .tooltip-container:hover .tooltip-text {
     visibility: visible;
@@ -87,7 +97,17 @@
   border: 2px solid #0087ff; 
   border-radius: 10px;
   padding: 20px;
+  }.table-icon-size {
+    width: 30px; /* Ajusta el tamaño según sea necesario */
+    height: auto; /* Mantiene la proporción de la imagen */
   }
+  
+  @media (max-width: 576px) {
+    .table-icon-size {
+      width: 25px; /* Tamaño más pequeño para móviles */
+    }
+  }
+  
   
   
 

@@ -8,6 +8,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Historico } from '../models/historico';
+import * as bootstrap from 'bootstrap';
 import { Modal } from 'bootstrap';
 
 
@@ -186,13 +187,5 @@ export class HistorialComponent implements OnInit {
     return value;
   }
   
-  showModal() {
-    const modalElement = document.getElementById('staticBackdrop'); // Obtén el elemento del modal
-    if (modalElement) { // Verifica que el elemento no sea null
-      const modal = new Modal(modalElement); // Solo inicializa si existe
-      modal.show(); // Muestra el modal
-    } else {
-      console.error('El modal no se encontró. Asegúrate de que el ID sea correcto.');
-    }
-  }
+  
 }
