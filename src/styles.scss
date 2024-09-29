@@ -1,4 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+// body {
+//     background-color: aliceblue;
+// }
+// .container {
+//     background-color: white;
+// }
+.form-border {
+    border: 2px solid #0087ff; 
+    border-radius: 10px;
+    padding: 20px;
+  }
 .nav-link {
     cursor: pointer;
 }
+.table {
+    // border-top: 2px solid #0087ff; 
+    // border-left: 2px solid #0087ff; 
+    // border-right: 2px solid #0087ff; 
+   box-shadow: 0px 0px 8px 3px rgba(110 110 110 / 66%);
+  -webkit-box-shadow: 0px 0px 8px 3px rgba(110 110 110 / 66%);
+  -moz-box-shadow: 0px 0px 8px 3px rgba(110 110 110 / 66%);
+  }
+  tbody {
+    border-bottom: 2px solid #0087ff; 
+  }
+  @media (max-width: 576px) {
+    .responsive-table {
+       overflow-x: auto;
+      }
+    .form-border {
+        border: none;
+        padding: 0px;
+      }
+  }

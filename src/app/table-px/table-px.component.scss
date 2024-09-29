@@ -92,19 +92,14 @@
     visibility: visible;
     opacity: 1;
   }
-  .table {
-    background-color: white;
-  border: 2px solid #0087ff; 
-  border-radius: 10px;
-  padding: 20px;
-  }.table-icon-size {
+  .table-icon-size {
     width: 30px; /* Ajusta el tamaño según sea necesario */
     height: auto; /* Mantiene la proporción de la imagen */
   }
   
   @media (max-width: 576px) {
     .table-icon-size {
-      width: 25px; /* Tamaño más pequeño para móviles */
+      width: 25px;
     }
   }
   

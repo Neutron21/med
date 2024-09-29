@@ -4,15 +4,9 @@ import { PxService } from '../services/px.service';
 import { AuthService } from '../services/auth.service';
 import { SharedDataService } from '../services/shared.service';
 import { servicios } from '../catalogos/servicios';
-import { HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Historico } from '../models/historico';
-import * as bootstrap from 'bootstrap';
 import { Modal } from 'bootstrap';
-
-
-
 
 
 @Component({
@@ -22,6 +16,7 @@ import { Modal } from 'bootstrap';
 })
 
 export class HistorialComponent implements OnInit {
+
   servicios = servicios;
   showSpinner: boolean = false;
   spinnerModal: boolean = false;
@@ -35,6 +30,8 @@ export class HistorialComponent implements OnInit {
   BaseUrlImage: string = 'https://solu-tec.net/med/historico/';
   showIframe: any = false;
   hasFile : any = false;
+  resultText: string = 'Cargando...';
+  showError: boolean = false;
 
   file = {
     isPDF : false,
@@ -88,8 +85,16 @@ export class HistorialComponent implements OnInit {
 
   ngOnInit(): void {
     this.getHistorial();
+    // this.openSuccessModal()
   }
-
+  reset() {
+    this.visitaForm.reset();
+    this.selectedFile = null; 
+    const fileInput = document.getElementById('fichero-tarifas') as HTMLInputElement;
+    if (fileInput) {
+        fileInput.value = ''; 
+    }
+  }
   formatDate(): string {
     const date = new Date();
     const year = date.getFullYear();
@@ -110,10 +115,8 @@ export class HistorialComponent implements OnInit {
   }
 
   addVisita() {
-    this.spinnerModal = true; // Mostrar el spinner
-    const modalElement = document.getElementById('successModal');
-    const modal = new Modal(modalElement!);
-    modal.show(); // Mostrar el modal de éxito
+    this.spinnerModal = true; 
+    
     const formData = new FormData();
     const idPx = btoa(sessionStorage.getItem('currentPxId') + ''); 
     formData.append('fecha', this.visitaForm.get('fecha')?.value);
@@ -128,32 +131,19 @@ export class HistorialComponent implements OnInit {
     this.pxService.subirVisita(formData).subscribe(
         (response) => {
             console.log('Éxito!', response);
-            this.visitaForm.reset();
-            this.selectedFile = null; 
-            const fileInput = document.getElementById('fichero-tarifas') as HTMLInputElement;
-            if (fileInput) {
-                fileInput.value = ''; 
-            }
-            this.spinnerModal = false; // Ocultar el spinner
-       
+            this.spinnerModal = false; 
+            this.reset();
+            this.getHistorial();
         },
         (error) => {
-            console.error('Error al subir la visita', error);
-            this.spinnerModal = false; // Ocultar el spinner en caso de error
+            this.showError = true;
+            console.error('Error al registrar visita', error);
+            this.resultText = 'Error al registrar visita'
+            this.spinnerModal = false; 
         }
     );
   };
-
-
   
-
-  openSuccessModal() {
-    const modalElement = document.getElementById('successModal');
-    const modal = new Modal(modalElement!);
-    modal.show();
-  }
-
-
   getHistorial() {
     const currentPx = sessionStorage.getItem('currentPxId') + '';
     this.authService.getById('historial', 'id_paciente', currentPx).subscribe(
@@ -185,6 +175,9 @@ export class HistorialComponent implements OnInit {
   mapFileName(name: string){
     const value = !!name ? name : 'NA'
     return value;
+  }
+  closeError() {
+    this.showError = false;
   }
   
   

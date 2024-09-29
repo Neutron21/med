@@ -1,3 +1,5 @@
+<div class="form-border">
+
 <form [formGroup]="buscarPxForm"  (ngSubmit)="buscarPx()">
   <div class="row d-flex justify-content-between">
     <div class="col">
@@ -15,44 +17,48 @@
     </div>
   </div>
 </form>
-<table class="table table-striped table-sm">
-    <thead class="text-center"> 
-      <tr>
-        <th scope="col">Nombre</th>
-        <th scope="col">Teléfono</th>
-        <th scope="col">Diagnóstico</th>
-        <th scope="col">Opciones</th>
-      </tr>
-    </thead>
-    <tbody *ngIf="pxList.length == 0">
-      <tr *ngIf="!showSpiner">
-        <td colspan="4" class="table-active text-center">Sin resultados para mostrar</td>
-      </tr>
-      <tr *ngIf="showSpiner">
-        <td colspan="4" class="spinner-container">
-          <img alt="spiner" src="../../assets/doctor.gif"/>
-        </td>
-      </tr>
-    </tbody>
-    <tbody *ngIf="!showSpiner && pxList.length > 0">
-      <tr *ngFor="let px of pxList">
-        <td class="text-center">{{px.nombre + ' ' + px.apellido_p + ' ' + px.apellido_m}}</td>
-        <td class="text-center">{{px.telefono}}</td>
-        <td class="text-center">{{px.diagnostico_medico}}</td>
-        <td class="d-flex justify-content-evenly">
-          <div class="tooltip-container">
-            <img class="table-icon-size" src="../../assets/ficha-med-50.png" alt="ficha-icon" (click)="openFichaMedica(px.id)"/>
-            <span class="tooltip-text">Ficha Médica</span>
-          </div>
-          <div class="tooltip-container">
-            <img class="table-icon-size" src="../../assets/documentos-64.png" alt="historial-icon" (click)="openHistorial(px.id)"/>
-            <span class="tooltip-text">Historial</span>
-          </div>
-        </td>      
-      </tr>
-    </tbody>    
-</table>
+  <div class="responsive-table">
+    <table class="table table-striped table-sm">
+        <thead class="text-center"> 
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col">Diagnóstico</th>
+            <th scope="col">Opciones</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="pxList.length == 0">
+          <tr *ngIf="!showSpiner">
+            <td colspan="4" class="table-active text-center">Sin resultados para mostrar</td>
+          </tr>
+          <tr *ngIf="showSpiner">
+            <td colspan="4" class="spinner-container">
+              <img alt="spiner" src="../../assets/doctor.gif"/>
+            </td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="!showSpiner && pxList.length > 0">
+          <tr *ngFor="let px of pxList">
+            <td class="text-center">{{px.nombre + ' ' + px.apellido_p + ' ' + px.apellido_m}}</td>
+            <td class="text-center">{{px.telefono}}</td>
+            <td class="text-center">{{px.diagnostico_medico}}</td>
+            <td class="d-flex justify-content-evenly">
+              <div class="tooltip-container">
+                <img class="table-icon-size" src="../../assets/ficha-med-50.png" alt="ficha-icon" (click)="openFichaMedica(px.id)"/>
+                <span class="tooltip-text">Ficha Médica</span>
+              </div>
+              <div class="tooltip-container">
+                <img class="table-icon-size" src="../../assets/documentos-64.png" alt="historial-icon" (click)="openHistorial(px.id)"/>
+                <span class="tooltip-text">Historial</span>
+              </div>
+            </td>      
+          </tr>
+        </tbody>    
+    </table>
+  </div>
 
+</div>
+<!-- MODAL FICHA MEDICA -->
 <div class="modal fade modal-xl" id="fichaModalTable" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
@@ -69,13 +75,13 @@
     </div>
   </div>
 </div>
-
+<!-- MODAL FICHA HISTORIAL -->
 <div class="modal fade modal-xl" id="historialModalTable" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="historialBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-fullscreen">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="historialBackdropLabel">Historial - {{nameToShow}}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetModal()"></button>
+        <button type="button" class="btn-close btn-danger" data-bs-dismiss="modal" aria-label="Close" (click)="resetModal()"></button>
       </div>
       <div class="modal-body">
         <app-historial></app-historial>

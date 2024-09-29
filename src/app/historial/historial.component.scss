@@ -69,7 +69,6 @@ input[type="file"] {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px 0;
-  margin-top: 1em;
   width: 100%;
   height: auto; 
 }
@@ -97,11 +96,34 @@ iframe {
 .notas {
   margin-top: 1rem;
 }
-.table {
-  background-color: white;
-  border: 2px solid #0087ff; 
-  border-radius: 10px;
-  padding: 20px;
+
+.spiner-carga {
+  padding: 1rem;
 }
-
-
+.container-img {
+    width: 6rem;
+    border-radius: 50%;
+    border: #0d6efd solid 2px;
+    margin: auto;
+}
+.text-result {
+  margin-top: 1rem;
+}
+.error-result {
+  border: red solid 2px;
+  border-radius: 10px;
+  background-color: #f6d1d1;
+  color: red;
+  width: fit-content;
+  padding: 0 1rem;
+  margin: auto;
+}
+.no-padding {
+  padding: 0;
+}
+.btn-transparent {
+  color: #0d6efd;;
+}
+.visor-section {
+  margin-top: 2rem;
+}
