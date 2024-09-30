@@ -9,7 +9,22 @@ import { SharedDataService } from 'src/app/services/shared.service';
   styleUrls: ['./s5ant-patologicos.component.scss']
 })
 export class S5antPatologicosComponent implements OnInit {
-  formData: any = {};
+  formData: any = {
+    diabetesSiNo: false ,
+    alergiasSiNo: false ,
+    accidentesSiNo: false ,
+    neoplasiasSiNo: false ,
+    cardiopatiasSiNo: false ,
+    cirugiasSiNo: false ,
+    respiratoriasSiNo: false ,
+    dolorCabezaSiNo: false ,
+    malformacionesSiNo: false ,
+    neurologicasSiNo: false ,
+    convulsionesSiNo: false ,
+    traumatismosSiNo: false ,
+    enfermedadesInfecciosasSiNo: false ,
+    reumaticasSiNo: false ,
+  };
   body = {
 	diabetes_p: '',
   diabetes_e: '',
@@ -68,6 +83,7 @@ idPx: number|null = null;
         (response) => {
           console.log('Datos del paciente:', response);
           this.body = response.length > 0 ? response[0] : this.body;
+          this.updateFormData();
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
@@ -77,11 +93,32 @@ idPx: number|null = null;
       console.warn('No se encontró el ID del paciente en sessionStorage');
     }
   }
+  updateFormData() {
+    this.formData.diabetesSiNo = Boolean(this.body.diabetes_p || this.body.diabetes_e);
+    this.formData.alergiasSiNo = Boolean(this.body.alergias_p || this.body.alergias_e);
+    this.formData.accidentesSiNo = Boolean(this.body.accidentes_p || this.body.accidentes_e);
+    this.formData.neoplasiasSiNo = Boolean(this.body.neoplasias_p || this.body.neoplasias_e);
+    this.formData.cardiopatiasSiNo = Boolean(this.body.cardiopatias_p || this.body.cardiopatias_e);
+    this.formData.cirugiasSiNo = Boolean(this.body.cirugias_p || this.body.cirugias_e);
+    this.formData.respiratoriasSiNo = Boolean(this.body.respiratorias_p || this.body.respiratorias_e);
+    this.formData.dolorCabezaSiNo = Boolean(this.body.dolor_cabeza_p || this.body.dolor_cabeza_e);
+    this.formData.malformacionesCongenitasSiNo = Boolean(this.body.malformaciones_congenitas_p || this.body.malformaciones_congenitas_e);
+    this.formData.neurologicasSiNo = Boolean(this.body.neurologicas_p || this.body.neurologicas_e);
+    this.formData.convulsionesEpilepsiasSiNo = Boolean(this.body.convulsiones_epilepsias_p || this.body.convulsiones_epilepsias_e);
+    this.formData.traumatismosSiNo = Boolean(this.body.traumatismos_p || this.body.traumatismos_e);
+    this.formData.enfermedadesInfecciosasSiNo = Boolean(this.body.efermedadesInfecciosas_p || this.body.efermedadesInfecciosas_e);
+    this.formData.reumaticasSiNo = Boolean(this.body.reumaticas_p || this.body.reumaticas_e);
+    this.formData.hospitalizacionesPreviasSiNo = Boolean(this.body.hospitalizacionesPrevias_p || this.body.hospitalizacionesPrevias_e);
+    this.formData.otrasSiNo = Boolean(this.body.otras_p || this.body.otras_e);
+}
+
 
   guardar() {
     sessionStorage.setItem('s5', JSON.stringify(this.body));
   };
-  limpiar(id: any) {
+  
+   limpiar($event: any,id: string) {
+    console.log($event);
     switch (id) {
       case 'diabetes':
         this.body.diabetes_p = '';
@@ -148,7 +185,7 @@ idPx: number|null = null;
         this.body.otras_e = '';
         break;
     }
-    
+    this.guardar();
 
   }
 }

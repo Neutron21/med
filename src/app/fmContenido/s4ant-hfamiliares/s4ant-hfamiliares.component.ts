@@ -9,7 +9,18 @@ import { SharedDataService } from 'src/app/services/shared.service';
   styleUrls: ['./s4ant-hfamiliares.component.scss']
 })
 export class S4antHfamiliaresComponent implements OnInit {
-  formData: any = {};
+formData =  {
+    diabetesSiNo: false,
+    alergiasSiNo: false,
+    hasSiNo: false,
+    neoplasiasSiNo: false,
+    cardiopatiasSiNo: false,
+    reumaticasSiNo: false,
+    respiratoriasSiNo: false,
+    geneticasSiNo: false,
+    endonocrilogicasSiNo: false,
+    otrasSiNo: false,
+};
   body= {
       diabetes_p: '',
       diabetes_e: '',
@@ -56,6 +67,7 @@ export class S4antHfamiliaresComponent implements OnInit {
         (response) => {
           console.log('Datos del paciente:', response);
           this.body = response.length > 0 ? response[0] : this.body;
+          this.updateFormData();
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
@@ -69,7 +81,21 @@ export class S4antHfamiliaresComponent implements OnInit {
   guardar() {
     sessionStorage.setItem('s4', JSON.stringify(this.body));
   }
-  limpiar(id: any) {
+  updateFormData() {
+    this.formData.diabetesSiNo = Boolean (this.body.diabetes_p || this.body.diabetes_e);
+    this.formData.alergiasSiNo = Boolean (this.body.neourologicas_p || this.body.neourologicas_e);
+    this.formData.hasSiNo = Boolean (this.body.has_p || this.body.has_e);
+    this.formData.neoplasiasSiNo = Boolean (this.body.neoplasias_p || this.body.neoplasias_e);
+    this.formData.cardiopatiasSiNo = Boolean (this.body.cardiopatias_p || this.body.cardiopatias_e);
+    this.formData.reumaticasSiNo = Boolean (this.body.reumaticas_p || this.body.reumaticas_e);
+    this.formData.respiratoriasSiNo = Boolean (this.body.respiratorias_p || this.body.respiratorias_e);
+    this.formData.geneticasSiNo = Boolean (this.body.geneticas_p || this.body.geneticas_e);
+    this.formData.endonocrilogicasSiNo = Boolean (this.body.endonocrilogicas_p || this.body.endonocrilogicas_e);
+    this.formData.otrasSiNo = Boolean (this.body.otras_p || this.body.otras_e);
+  }
+  limpiar($event: any,id: string) {
+    console.log($event);
+    
     switch(id) {
       case 'diabetes':
         this.body.diabetes_p = '';
@@ -94,23 +120,26 @@ export class S4antHfamiliaresComponent implements OnInit {
   case 'reumaticas':
     this.body.reumaticas_p = '';
     this.body.reumaticas_e = '';
-break;
-case 'respiratorias':
+   break;
+   case 'respiratorias':
   this.body.respiratorias_p = '';
   this.body.respiratorias_e = '';
-break;
-case 'geneticas':
-  this.body.geneticas_p = '';
+   break;
+   case 'geneticas':
+   this.body.geneticas_p = '';
   this.body.geneticas_e = '';
-break;
-case 'endonocrilogicas':
+  break;
+  case 'endonocrilogicas':
   this.body.endonocrilogicas_p = '';
   this.body.endonocrilogicas_e = '';
-break;
-case 'otras':
+  break;
+  case 'otras':
   this.body.otras_p = '';
   this.body.otras_e = '';
-break;
+  break;
   }
+  this.guardar();
+
   }
+
 }

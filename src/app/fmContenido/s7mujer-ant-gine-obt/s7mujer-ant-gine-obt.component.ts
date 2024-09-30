@@ -68,7 +68,8 @@ export class S7mujerAntGineObtComponent implements OnInit {
   guardar() {
     sessionStorage.setItem('s7', JSON.stringify(this.body));
   }
-  limpiar(id: any) {
+  limpiar($event: any,id: string) {
+    console.log($event);
     switch (id) {
       case 'mecarca':
         this.body.mecarca_p = '';

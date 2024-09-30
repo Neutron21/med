@@ -9,7 +9,19 @@ import { SharedDataService } from 'src/app/services/shared.service';
   styleUrls: ['./s6ant-nopatologicos.component.scss']
 })
 export class S6antNopatologicosComponent implements OnInit {
-  formData: any = {};
+  formData: any = {
+    toxicomaniasSiNo: false,
+    inmunizacionesSiNo: false,
+    automedicacionSiNo: false,
+    trastornosSuenoSiNo: false,
+    alimentacionSiNo: false,
+    habitacionSiNo: false,
+    habitosHigienicosSiNo: false,
+    zoonosisSiNo: false,
+    actividadFisicaSiNo: false,
+    ocupacionSiNo: false,
+    actividadesOcioSiNo: false,
+  };
   body = {
     toxicomanias_p: "",
     toxicomanias_e: "",
@@ -58,6 +70,7 @@ export class S6antNopatologicosComponent implements OnInit {
         (response) => {
           console.log('Datos del paciente:', response);
           this.body = response.length > 0 ? response[0] : this.body;
+          this.updateFormData();
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
@@ -67,11 +80,25 @@ export class S6antNopatologicosComponent implements OnInit {
       console.warn('No se encontró el ID del paciente en sessionStorage');
     }
   }
+  updateFormData() {
+    this.formData.toxicomaniasSiNo = Boolean(this.body.toxicomanias_p || this.body.toxicomanias_e);
+    this.formData.inmunizacionesSiNo = Boolean(this.body.inmunizaciones_p || this.body.inmunizaciones_e);
+    this.formData.automedicacionSiNo = Boolean(this.body.automedicacion_p || this.body.automedicacion_e);
+    this.formData.transtornoSuenoSiNo = Boolean(this.body.transtornoSueno_p || this.body.transtornoSueno_e);
+    this.formData.alimentacionSiNo = Boolean(this.body.alimentacion_p || this.body.alimentacion_e);
+    this.formData.habitacionSiNo = Boolean(this.body.habitacion_p || this.body.habitacion_e);
+    this.formData.habitosHigienicosSiNo = Boolean(this.body.habitos_higienicos_p || this.body.habitos_higienicos_e);
+    this.formData.zoonosisSiNo = Boolean(this.body.zoonosis_p || this.body.zoonosis_e);
+    this.formData.actividadFisicaSiNo = Boolean(this.body.actividad_fisica_p || this.body.actividad_fisica_e);
+    this.formData.ocupacionSiNo = Boolean(this.body.ocupacion_p || this.body.ocupacion_e);
+    this.formData.actividadDeOcioSiNo = Boolean(this.body.actividad_de_ocio_p || this.body.actividad_de_ocio_e);
+  };
 
   guardar() {
     sessionStorage.setItem('s6', JSON.stringify(this.body));
   }
-  limpiar(id: any) {
+  limpiar($event: any,id: string) {
+    console.log($event);
     switch (id) {
       case 'toxicomanias':
         this.body.toxicomanias_p = '';
@@ -118,6 +145,8 @@ export class S6antNopatologicosComponent implements OnInit {
         this.body.actividad_de_ocio_e = '';
         break;
     }
+    this.guardar();
   }
+  
   
 }

@@ -20,7 +20,7 @@
         <tr>
           <td>Mecarca</td>
           <td class="text-center">
-            <input type="checkbox" [(ngModel)]="formData.metrorragiaSiNo" (ngModelChange)="limpiar('mecarca')">
+            <input type="checkbox" [(ngModel)]="formData.metrorragiaSiNo" (ngModelChange)="limpiar($event,'mecarca')">
           </td>
           <td>
             <input type="text" class="form-control" [(ngModel)]="body.mecarca_p" [disabled]="!formData.metrorragiaSiNo"
@@ -34,7 +34,7 @@
         <tr>
           <td>Dismenorreas</td>
           <td class="text-center">
-            <input type="checkbox" [(ngModel)]="formData.dismenorreasSiNo" (ngModelChange)="limpiar('dismenorreas')">
+            <input type="checkbox" [(ngModel)]="formData.dismenorreasSiNo" (ngModelChange)="limpiar($event,'dismenorreas')">
           </td>
           <td>
             <input type="text" class="form-control" [(ngModel)]="body.dismenorreas_p" [disabled]="!formData.dismenorreasSiNo"
@@ -48,7 +48,7 @@
         <tr>
           <td>Gesta actual</td>
           <td class="text-center">
-            <input type="checkbox" [(ngModel)]="formData.gestaActualSiNo" (ngModelChange)="limpiar('gestaActual')">
+            <input type="checkbox" [(ngModel)]="formData.gestaActualSiNo" (ngModelChange)="limpiar($event,'gestaActual')">
           </td>
           <td>
             <input type="text" class="form-control" [(ngModel)]="body.gestaActual_p" [disabled]="!formData.gestaActualSiNo">
@@ -60,7 +60,7 @@
         <tr>
           <td>Número de gestas</td>
           <td class="text-center">
-            <input type="checkbox" [(ngModel)]="formData.numeroGestasSiNo" (ngModelChange)="limpiar('numeroGestas')">
+            <input type="checkbox" [(ngModel)]="formData.numeroGestasSiNo" (ngModelChange)="limpiar($event,'numeroGestas')">
           </td>
           <td>
             <input type="text" class="form-control" [(ngModel)]="body.numeroGestas_p" [disabled]="!formData.numeroGestasSiNo" 
@@ -74,7 +74,7 @@
         <tr>
           <td>Número de partos</td>
           <td class="text-center">
-            <input type="checkbox" [(ngModel)]="formData.numeroPartosSiNo"(ngModelChange)="limpiar('numeroPartos')"
+            <input type="checkbox" [(ngModel)]="formData.numeroPartosSiNo"(ngModelChange)="limpiar($event,'numeroPartos')"
             (ngModelChange)="guardar()">
           </td>
           <td>
@@ -88,7 +88,7 @@
         <tr>
           <td>Cesáreas</td>
           <td class="text-center">
-            <input type="checkbox" [(ngModel)]="formData.cesareasSiNo" (ngModelChange)="limpiar('cesareas')">
+            <input type="checkbox" [(ngModel)]="formData.cesareasSiNo" (ngModelChange)="limpiar($event,'cesareas')">
           </td>
           <td>
             <input type="text" class="form-control" [(ngModel)]="body.cesareas_p" [disabled]="!formData.cesareasSiNo"
@@ -102,7 +102,7 @@
         <tr>
           <td>Aborto</td>
           <td class="text-center">
-            <input type="checkbox" [(ngModel)]="formData.abortoSiNo" (ngModelChange)="limpiar('aborto')">
+            <input type="checkbox" [(ngModel)]="formData.abortoSiNo" (ngModelChange)="limpiar($event,'aborto')">
           </td>
           <td>
             <input type="text" class="form-control" [(ngModel)]="body.aborto_p" [disabled]="!formData.abortoSiNo"
@@ -116,7 +116,7 @@
         <tr>
           <td>Núm de productos nacidos vivos</td>
           <td class="text-center">
-            <input type="checkbox" [(ngModel)]="formData.nacidosVivosSiNo" (ngModelChange)="limpiar('nacidosVivos')">
+            <input type="checkbox" [(ngModel)]="formData.nacidosVivosSiNo" (ngModelChange)="limpiar($event,'nacidosVivos')">
           </td>
           <td>
             <input type="text" class="form-control" [(ngModel)]="body.nacidosVivos_p" [disabled]="!formData.nacidosVivosSiNo"
@@ -130,7 +130,7 @@
         <tr>
           <td>Menopausia</td>
           <td class="text-center">
-            <input type="checkbox" [(ngModel)]="formData.menopausiaSiNo" (ngModelChange)="limpiar('menopausia')">
+            <input type="checkbox" [(ngModel)]="formData.menopausiaSiNo" (ngModelChange)="limpiar($event,'menopausia')">
           </td>
           <td>
             <input type="text" class="form-control" [(ngModel)]="body.menopausia_p" [disabled]="!formData.menopausiaSiNo"
