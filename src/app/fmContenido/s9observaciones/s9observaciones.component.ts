@@ -38,10 +38,11 @@ export class S9observacionesComponent implements OnInit {
     let currentPxId = sessionStorage.getItem('currentPxId');
     if (!!currentPxId) {
       console.log('ID actual del paciente', currentPxId);
-            this.authService.getById('pediatricoFm','id_paciente', currentPxId).subscribe(
+            this.authService.getById('fichaMedicaAux','id_paciente', currentPxId).subscribe(
         (response) => {
           console.log('Datos del paciente:', response);
           this.body = response.length > 0 ? response[0] : this.body;
+
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
@@ -56,7 +57,8 @@ export class S9observacionesComponent implements OnInit {
     sessionStorage.setItem('s9', JSON.stringify(this.body));
   }
 
-  limpiar(id: any) {
+  limpiar($event: any,id: string) {
+    console.log($event);
     switch (id) {
       case 'motivoConsulta':
         this.body.motivoConsulta = '';
@@ -74,6 +76,8 @@ export class S9observacionesComponent implements OnInit {
         this.body.observaciones = '';
         break;
     }
+    
   }
-  
 }
+  
+

@@ -9,7 +9,17 @@ import { SharedDataService } from 'src/app/services/shared.service';
   styleUrls: ['./s7mujer-ant-gine-obt.component.scss']
 })
 export class S7mujerAntGineObtComponent implements OnInit {
-  formData: any = {};
+  formData: any = {
+    mecarca:false,
+    dismenorreas:false,
+    gestaActual:false,
+    numeroGestas:false,
+    numeroPartos:false,
+    cesareas:false,
+    aborto:false,
+    nacidosVivos:false,
+    menopausia:false,
+  };
   showTable = false;
   body = {
       mecarca_p:'', 
@@ -55,6 +65,7 @@ export class S7mujerAntGineObtComponent implements OnInit {
         (response) => {
           console.log('Datos del paciente:', response);
           this.body = response.length > 0 ? response[0] : this.body;
+          this.updateFormData();
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
@@ -64,10 +75,22 @@ export class S7mujerAntGineObtComponent implements OnInit {
       console.warn('No se encontró el ID del paciente en sessionStorage');
     }
   }
+  updateFormData() {
+    this.formData.mecarcaSiNo = Boolean(this.body.mecarca_p || this.body.mecarca_e);
+    this.formData.dismenorreasSiNo = Boolean(this.body.dismenorreas_p || this.body.dismenorreas_e);
+    this.formData.gestaActualSiNo = Boolean(this.body.gestaActual_p || this.body.gestaActual_e);
+    this.formData.numeroGestasSiNo = Boolean(this.body.numeroGestas_p || this.body.numeroGestas_e);
+    this.formData.numeroPartosSiNo = Boolean(this.body.numeroPartos_p || this.body.numeroPartos_e);
+    this.formData.cesareasSiNo = Boolean(this.body.cesareas_p || this.body.cesareas_e);
+    this.formData.abortoSiNo = Boolean(this.body.aborto_p || this.body.aborto_e);
+    this.formData.nacidosVivosSiNo = Boolean(this.body.nacidosVivos_p || this.body.nacidosVivos_e);
+    this.formData.menopausiaSiNo = Boolean(this.body.menopausia_p || this.body.menopausia_e);
+  }
 
   guardar() {
     sessionStorage.setItem('s7', JSON.stringify(this.body));
   }
+
   limpiar($event: any,id: string) {
     console.log($event);
     switch (id) {
@@ -109,6 +132,7 @@ export class S7mujerAntGineObtComponent implements OnInit {
         break;
      
     }
+    this.guardar();
   }
-  
+
 }

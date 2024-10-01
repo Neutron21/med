@@ -2,30 +2,30 @@
   <p class="me-3 text-center fw-bold">Motivo de consulta</p>
   <div class="d-flex align-items-center mb-3">
     <input type="text" class="form-control" [(ngModel)]="body.motivoConsulta" name="motivoConsulta" (ngModelChange)="guardar()"
-    (ngModelChange)="limpiar('motivoConsulta')" >
+    (ngModelChange)="limpiar($event,'motivoConsulta')" >
   </div>
 
   <p class="me-3 text-center fw-bold">Diagnóstico médico</p>
   <div class="d-flex align-items-center mb-3">
     <input type="text" class="form-control" [(ngModel)]="body.diagnosticoMedico" name="diagnosticoMedico" (ngModelChange)="guardar()"
-    (ngModelChange)="limpiar('diagnosticoMedico')">
+    (ngModelChange)="limpiar($event,'diagnosticoMedico')">
   </div>
 
   <p class="me-3 text-center fw-bold">Mecanismo de lesión</p>
   <div class="d-flex align-items-center mb-3">
     <input type="text" class="form-control" [(ngModel)]="body.mecanismoLesion" name="mecanismoLesion" (ngModelChange)="guardar()"
-    (ngModelChange)="limpiar('mecanismoLesion')">
+    (ngModelChange)="limpiar($event,'mecanismoLesion')">
   </div>
 
   <p class="me-3 text-center fw-bold">Tratamientos previos</p>
   <div class="d-flex align-items-center mb-3">
     <input type="text" class="form-control" [(ngModel)]="body.tratamientosPrevios" name="tratamientosPrevios" (ngModelChange)="guardar()"
-    (ngModelChange)="limpiar('tratamientosPrevios')">
+    (ngModelChange)="limpiar($event,'tratamientosPrevios')">
   </div>
 
   <p class="me-3 text-center fw-bold">Observaciones</p>
   <div class="d-flex align-items-center mb-3">
     <input type="text" class="form-control" [(ngModel)]="body.observaciones" name="observaciones" (ngModelChange)="guardar()"
-    (ngModelChange)="limpiar('observaciones')">
+    (ngModelChange)="limpiar($event,'observaciones')">
   </div>
 </div>

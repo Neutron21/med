@@ -9,8 +9,22 @@ import { SharedDataService } from 'src/app/services/shared.service';
   styleUrls: ['./s8pediatrico-antperinatales.component.scss']
 })
 export class S8pediatricoAntperinatalesComponent implements OnInit {
-  formData: any = {};
   showPerinatalesTable = false;
+  formData: any = {
+    numEmbarazoSiNo: false,
+    embarazoMultipleSiNo: false,
+    alimentacionEmbarazoSiNo: false,
+    controlPerinatalSiNo: false,
+    vidaUterinaSiNo: false,
+    partoCesareaSiNo: false,
+    problemasEmbarazoPartoSiNo: false,
+    traumatismoEmbarazoPartoSiNo: false,
+    maniobrasReanimacionSiNo: false,
+    incubadoraSiNo: false,
+    pesoMedidaSiNo: false,
+    tamizMetabolicoSiNo: false,
+    puntajeApgarSiNo: false
+  };
 
   body = {
   numEmbarazo_p:'', 
@@ -42,9 +56,6 @@ export class S8pediatricoAntperinatalesComponent implements OnInit {
   }
   idPx: number|null = null;
 
-  
-
-
   constructor( 
     private pxService: PxService,
     private authService: AuthService,    
@@ -57,6 +68,7 @@ export class S8pediatricoAntperinatalesComponent implements OnInit {
   }
   ngOnInit(): void {
     this.checkCurrentPxId();
+    
   }
   checkCurrentPxId(): void {
     let currentPxId = sessionStorage.getItem('currentPxId');
@@ -66,6 +78,7 @@ export class S8pediatricoAntperinatalesComponent implements OnInit {
         (response) => {
           console.log('Datos del paciente:', response);
           this.body = response.length > 0 ? response[0] : this.body;
+          this.updateFormData();
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
@@ -75,11 +88,29 @@ export class S8pediatricoAntperinatalesComponent implements OnInit {
       console.warn('No se encontró el ID del paciente en sessionStorage');
     }
   }
+  updateFormData() {
+    this.formData.numEmbarazoSiNo = Boolean(this.body.numEmbarazo_p || this.body.numEmbarazo_e);
+    this.formData.embarazoMultipleSiNo = Boolean(this.body.embarazoMultiple_p || this.body.embarazoMultiple_e);
+    this.formData.alimentacionEmbarazoSiNo = Boolean(this.body.alimentacionEmbarazo_p || this.body.alimentacionEmbarazo_e);
+    this.formData.controlPerinatalSiNo = Boolean(this.body.controlPerinatal_p || this.body.controlPerinatal_e);
+    this.formData.vidaUterinaSiNo = Boolean(this.body.vidaUterina_p || this.body.vidaUterina_e);
+    this.formData.partoCesareaSiNo = Boolean(this.body.partoCesarea_p || this.body.partoCesarea_e);
+    this.formData.problemasEmbarazoPartoSiNo = Boolean(this.body.problemasEmbarazoParto_p || this.body.problemasEmbarazoParto_e);
+    this.formData.traumatismoEmbarazoPartoSiNo = Boolean(this.body.traumatismoEmbarazoParto_p || this.body.traumatismoEmbarazoParto_e);
+    this.formData.maniobrasReanimacionSiNo = Boolean(this.body.maniobrasReanimacion_p || this.body.maniobrasReanimacion_e);
+    this.formData.incubadoraSiNo = Boolean(this.body.incubadora_p || this.body.incubadora_e);
+    this.formData.pesoMedidaSiNo = Boolean(this.body.pesoMedida_p || this.body.pesoMedida_e);
+    this.formData.tamizMetabolicoSiNo = Boolean(this.body.tamizMetabolico_p || this.body.tamizMetabolico_e);
+    this.formData.puntajeApgarSiNo = Boolean(this.body.PuntajeAPGAR_p || this.body.PuntajeAPGAR_e);
+  }
+  
 
   guardar() {
     sessionStorage.setItem('s8', JSON.stringify(this.body));
   }
-  limpiar(id: any) {
+
+  limpiar($event: any,id: string) {
+    console.log($event);
     switch (id) {
       case 'numEmbarazo':
         this.body.numEmbarazo_p = '';
@@ -135,7 +166,7 @@ export class S8pediatricoAntperinatalesComponent implements OnInit {
         break;
      
     }
+    this.guardar();
   }
   
-
 }
