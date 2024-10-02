@@ -16,7 +16,7 @@ export class S7mujerAntGineObtComponent implements OnInit {
     numeroGestasSiNo:false,
     numeroPartosSiNo:false,
     cesareasSiNo:false,
-    abortoSiNo:false,
+    abortosSiNo:false,
     nacidosVivosSiNo:false,
     menopausiaSiNo:false,
   };
@@ -82,7 +82,7 @@ export class S7mujerAntGineObtComponent implements OnInit {
     this.formData.numeroGestasSiNo = Boolean(this.body.numeroGestas_p || this.body.numeroGestas_e);
     this.formData.numeroPartosSiNo = Boolean(this.body.numeroPartos_p || this.body.numeroPartos_e);
     this.formData.cesareasSiNo = Boolean(this.body.cesareas_p || this.body.cesareas_e);
-    this.formData.abortoSiNo = Boolean(this.body.abortos_p || this.body.abortos_e);
+    this.formData.abortosSiNo = Boolean(this.body.abortos_p || this.body.abortos_e);
     this.formData.nacidosVivosSiNo = Boolean(this.body.nacidosVivos_p || this.body.nacidosVivos_e);
     this.formData.menopausiaSiNo = Boolean(this.body.menopausia_p || this.body.menopausia_e);
   }
@@ -118,7 +118,7 @@ export class S7mujerAntGineObtComponent implements OnInit {
         this.body.cesareas_p = '';
         this.body.cesareas_e = '';
         break;
-      case 'aborto':
+      case 'abortos':
         this.body.abortos_p = '';
         this.body.abortos_e = '';
         break;

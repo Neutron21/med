@@ -13,7 +13,7 @@
       <tr>
         <td>Toxicomanías</td>
         <td class="text-center">
-          <input type="checkbox" name="toxicomaniasSiNo" [(ngModel)]="formData.toxicomaniasSiNo" (ngModelChange)="limpiar($event,'toxicomanías')">
+          <input type="checkbox" name="toxicomaniasSiNo" [(ngModel)]="formData.toxicomaniasSiNo" (ngModelChange)="limpiar($event,'toxicomanias')">
         </td>
         <td><input type="text" class="form-control" name="toxicomaniasParentesco" [(ngModel)]="body.toxicomanias_p" [disabled]="!formData.toxicomaniasSiNo"
           (ngModelChange)="guardar()"></td>
