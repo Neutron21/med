@@ -99,7 +99,14 @@ export class TablePxComponent implements OnInit, AfterViewInit {
     this.sharedDataService.cambiarIdPaciente(id);
   }
 
-  resetModal() {
+  async resetModal() { // GUARDAMOS Y BORRAMOS DATOS DE FICHA MEDICA en SessionStorage
+    
+    const currSec = sessionStorage.getItem('currentSection');
+    await this.sharedDataService.seccionesCompletadas(currSec);
+
+    Object.keys(this.secciones).forEach(key => {
+      sessionStorage.removeItem(key);
+    });
     sessionStorage.removeItem('currentSection');
     sessionStorage.removeItem('currentPxId');
   }
