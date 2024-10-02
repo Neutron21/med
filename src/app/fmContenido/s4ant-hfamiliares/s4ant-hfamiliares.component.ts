@@ -11,6 +11,7 @@ import { SharedDataService } from 'src/app/services/shared.service';
 export class S4antHfamiliaresComponent implements OnInit {
 formData =  {
     diabetesSiNo: false,
+    neurologicasSiNo:false,
     alergiasSiNo: false,
     hasSiNo: false,
     neoplasiasSiNo: false,
@@ -24,8 +25,8 @@ formData =  {
   body= {
       diabetes_p: '',
       diabetes_e: '',
-      neourologicas_p: '',
-      neourologicas_e: '',
+      neurologicas_p: '',
+      neurologicas_e: '',
       has_p:'',
       has_e:'',
       neoplasias_p:'',
@@ -83,7 +84,7 @@ formData =  {
   }
   updateFormData() {
     this.formData.diabetesSiNo = Boolean (this.body.diabetes_p || this.body.diabetes_e);
-    this.formData.alergiasSiNo = Boolean (this.body.neourologicas_p || this.body.neourologicas_e);
+    this.formData.neurologicasSiNo = Boolean (this.body.neurologicas_p || this.body.neurologicas_e);
     this.formData.hasSiNo = Boolean (this.body.has_p || this.body.has_e);
     this.formData.neoplasiasSiNo = Boolean (this.body.neoplasias_p || this.body.neoplasias_e);
     this.formData.cardiopatiasSiNo = Boolean (this.body.cardiopatias_p || this.body.cardiopatias_e);
@@ -101,9 +102,9 @@ formData =  {
         this.body.diabetes_p = '';
         this.body.diabetes_e = '';
       break;
-        case 'neurologica':
-        this.body.neourologicas_p = '';
-        this.body.neourologicas_e = '';
+        case 'neurologicas':
+        this.body.neurologicas_p = '';
+        this.body.neurologicas_e = '';
       break;
         case 'has':
           this.body.has_p = '';
@@ -129,7 +130,7 @@ formData =  {
    this.body.geneticas_p = '';
   this.body.geneticas_e = '';
   break;
-  case 'endonocrilogicas':
+  case 'endocrinologas':
   this.body.endocrinologas_p = '';
   this.body.endocrinologas_e = '';
   break;

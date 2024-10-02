@@ -20,7 +20,7 @@ export class S5antPatologicosComponent implements OnInit {
     dolorCabezaSiNo: false ,
     malformacionesSiNo: false ,
     neurologicasSiNo: false ,
-    convulsionesSiNo: false ,
+    malformacionesGeneticasSiNo: false ,
     traumatismosSiNo: false ,
     enfermedadesInfecciosasSiNo: false ,
     reumaticasSiNo: false ,
@@ -40,14 +40,14 @@ export class S5antPatologicosComponent implements OnInit {
   cirugias_e: '',
   respiratorias_p: '',
   respiratorias_e: '',
-  dolor_cabeza_p: '',
-  dolor_cabeza_e: '',
-  malformaciones_congenitas_p: '',
-  malformaciones_congenitas_e: '',
+  dolorCabeza_p: '',
+  dolorCabeza_e: '',
+  malformacionesGeneticas_p: '',
+  malformacionesGeneticas_e: '',
   neurologicas_p: '',
   neurologicas_e: '',
-  convulsiones_epilepsias_p: '',
-  convulsiones_epilepsias_e: '',
+  convulsiones_p: '',
+  convulsiones_e: '',
   traumatismos_p: '',
   traumatismos_e: '',
   efermedadesInfecciosas_p:'',
@@ -101,10 +101,10 @@ idPx: number|null = null;
     this.formData.cardiopatiasSiNo = Boolean(this.body.cardiopatias_p || this.body.cardiopatias_e);
     this.formData.cirugiasSiNo = Boolean(this.body.cirugias_p || this.body.cirugias_e);
     this.formData.respiratoriasSiNo = Boolean(this.body.respiratorias_p || this.body.respiratorias_e);
-    this.formData.dolorCabezaSiNo = Boolean(this.body.dolor_cabeza_p || this.body.dolor_cabeza_e);
-    this.formData.malformacionesCongenitasSiNo = Boolean(this.body.malformaciones_congenitas_p || this.body.malformaciones_congenitas_e);
+    this.formData.dolorCabezaSiNo = Boolean(this.body.dolorCabeza_p || this.body.dolorCabeza_e);
+    this.formData.malformacionesCongenitasSiNo = Boolean(this.body.malformacionesGeneticas_p || this.body.malformacionesGeneticas_e);
     this.formData.neurologicasSiNo = Boolean(this.body.neurologicas_p || this.body.neurologicas_e);
-    this.formData.convulsionesEpilepsiasSiNo = Boolean(this.body.convulsiones_epilepsias_p || this.body.convulsiones_epilepsias_e);
+    this.formData.convulsionesEpilepsiasSiNo = Boolean(this.body.convulsiones_p || this.body.convulsiones_e);
     this.formData.traumatismosSiNo = Boolean(this.body.traumatismos_p || this.body.traumatismos_e);
     this.formData.enfermedadesInfecciosasSiNo = Boolean(this.body.efermedadesInfecciosas_p || this.body.efermedadesInfecciosas_e);
     this.formData.reumaticasSiNo = Boolean(this.body.reumaticas_p || this.body.reumaticas_e);
@@ -148,21 +148,21 @@ idPx: number|null = null;
         this.body.respiratorias_p = '';
         this.body.respiratorias_e = '';
         break;
-      case 'dolor_cabeza':
-        this.body.dolor_cabeza_p = '';
-        this.body.dolor_cabeza_e = '';
+      case 'dolorCabeza':
+        this.body.dolorCabeza_p = '';
+        this.body.dolorCabeza_e = '';
         break;
-      case 'malformaciones_congenitas':
-        this.body.malformaciones_congenitas_p = '';
-        this.body.malformaciones_congenitas_e = '';
+      case 'malformacionesGeneticas':
+        this.body.malformacionesGeneticas_p = '';
+        this.body.malformacionesGeneticas_e = '';
         break;
       case 'neurologicas':
         this.body.neurologicas_p = '';
         this.body.neurologicas_e = '';
         break;
-      case 'convulsiones_epilepsias':
-        this.body.convulsiones_epilepsias_p = '';
-        this.body.convulsiones_epilepsias_e = '';
+      case 'convulsiones':
+        this.body.convulsiones_p = '';
+        this.body.convulsiones_e = '';
         break;
       case 'traumatismos':
         this.body.traumatismos_p = '';

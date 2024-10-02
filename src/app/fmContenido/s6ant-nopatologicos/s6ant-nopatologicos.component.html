@@ -86,11 +86,11 @@
           <span class="small-text">Baño diario, lavado de manos, higiene bucal, cambio de ropa.</span>
         </td>
         <td class="text-center">
-          <input type="checkbox" name="habitosHigienicosSiNo" [(ngModel)]="formData.habitosHigienicosSiNo" (ngModelChange)="limpiar($event,'habitos_higienicos')">
+          <input type="checkbox" name="habitosHigienicosSiNo" [(ngModel)]="formData.habitosHigienicosSiNo" (ngModelChange)="limpiar($event,'habitosHigienicos')">
         </td>
-        <td><input type="text" class="form-control" name="habitos_higienicosParentesco" [(ngModel)]="body.habitos_higienicos_p" [disabled]="!formData.habitosHigienicosSiNo"
+        <td><input type="text" class="form-control" name="habitosHigienicosParentesco" [(ngModel)]="body.habitosHigienicos_p" [disabled]="!formData.habitosHigienicosSiNo"
           (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="habitos_higienicosEspecifique" [(ngModel)]="body.habitos_higienicos_e" [disabled]="!formData.habitosHigienicosSiNo"
+        <td><input type="text" class="form-control" name="habitosHigienicosEspecifique" [(ngModel)]="body.habitosHigienicos_e" [disabled]="!formData.habitosHigienicosSiNo"
           (ngModelChange)="guardar()"></td>
       </tr>
       <tr>
@@ -106,11 +106,11 @@
       <tr>
         <td>Actividad física</td>
         <td class="text-center">
-          <input type="checkbox" name="actividadFisicaSiNo" [(ngModel)]="formData.actividadFisicaSiNo" (ngModelChange)="limpiar($event,'actividad_fisica')">
+          <input type="checkbox" name="actividadFisicaSiNo" [(ngModel)]="formData.actividadFisicaSiNo" (ngModelChange)="limpiar($event,'actividadFisica')">
         </td>
-        <td><input type="text" class="form-control" name="actividad_fisica_Parentesco" [(ngModel)]="body.actividad_fisica_p" [disabled]="!formData.actividadFisicaSiNo"
+        <td><input type="text" class="form-control" name="actividad_fisica_Parentesco" [(ngModel)]="body.actividadFisica_p" [disabled]="!formData.actividadFisicaSiNo"
           (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="actividad_fisica_Especifoqie" [(ngModel)]="body.actividad_fisica_e" [disabled]="!formData.actividadFisicaSiNo"
+        <td><input type="text" class="form-control" name="actividad_fisica_Especifoqie" [(ngModel)]="body.actividadFisica_e" [disabled]="!formData.actividadFisicaSiNo"
           (ngModelChange)="guardar()"></td>
       </tr>
       <tr>
@@ -129,11 +129,11 @@
       <tr>
         <td>Actividades de ocio</td>
         <td class="text-center">
-          <input type="checkbox" name="actividadesOcioSiNo" [(ngModel)]="formData.actividadesOcioSiNo" (ngModelChange)="limpiar($event,'actividad_de_ocio')">
+          <input type="checkbox" name="actividadesOcioSiNo" [(ngModel)]="formData.actividadesOcioSiNo" (ngModelChange)="limpiar($event,'actividadOcio')">
         </td>
-        <td><input type="text" class="form-control" name="actividad_de_ocio_Parentesco" [(ngModel)]="body.actividad_de_ocio_p" [disabled]="!formData.actividadesOcioSiNo" 
+        <td><input type="text" class="form-control" name="actividadOcioParentesco" [(ngModel)]="body.actividadOcio_p" [disabled]="!formData.actividadesOcioSiNo" 
           (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="actividad_de_ocio_Especifique" [(ngModel)]="body.actividad_de_ocio_e" [disabled]="!formData.actividadesOcioSiNo"
+        <td><input type="text" class="form-control" name="actividadOcioEspecifique" [(ngModel)]="body.actividadOcio_e" [disabled]="!formData.actividadesOcioSiNo"
           (ngModelChange)="guardar()"></td>
       </tr>
     </tbody>

@@ -35,16 +35,16 @@ export class S6antNopatologicosComponent implements OnInit {
     alimentacion_e: "",
     habitacion_p: "",
     habitacion_e: "",
-    habitos_higienicos_p: "",
-    habitos_higienicos_e: "",
+    habitosHigienicos_p: "",
+    habitosHigienicos_e: "",
     zoonosis_p: "",
     zoonosis_e: "",
-    actividad_fisica_p: "",
-    actividad_fisica_e: "",
+    actividadFisica_p: "",
+    actividadFisica_e: "",
     ocupacion_p: "",
     ocupacion_e: "",
-    actividad_de_ocio_p: "",
-    actividad_de_ocio_e: ""
+    actividadOcio_p: "",
+    actividadOcio_e: ""
   }
   idPx: number|null = null;
 
@@ -87,11 +87,11 @@ export class S6antNopatologicosComponent implements OnInit {
     this.formData.transtornoSuenoSiNo = Boolean(this.body.transtornoSueno_p || this.body.transtornoSueno_e);
     this.formData.alimentacionSiNo = Boolean(this.body.alimentacion_p || this.body.alimentacion_e);
     this.formData.habitacionSiNo = Boolean(this.body.habitacion_p || this.body.habitacion_e);
-    this.formData.habitosHigienicosSiNo = Boolean(this.body.habitos_higienicos_p || this.body.habitos_higienicos_e);
+    this.formData.habitosHigienicosSiNo = Boolean(this.body.habitosHigienicos_p || this.body.habitosHigienicos_e);
     this.formData.zoonosisSiNo = Boolean(this.body.zoonosis_p || this.body.zoonosis_e);
-    this.formData.actividadFisicaSiNo = Boolean(this.body.actividad_fisica_p || this.body.actividad_fisica_e);
+    this.formData.actividadFisicaSiNo = Boolean(this.body.actividadFisica_p || this.body.actividadFisica_e);
     this.formData.ocupacionSiNo = Boolean(this.body.ocupacion_p || this.body.ocupacion_e);
-    this.formData.actividadDeOcioSiNo = Boolean(this.body.actividad_de_ocio_p || this.body.actividad_de_ocio_e);
+    this.formData.actividadDeOcioSiNo = Boolean(this.body.actividadOcio_p || this.body.actividadOcio_e);
   };
 
   guardar() {
@@ -125,24 +125,24 @@ export class S6antNopatologicosComponent implements OnInit {
         this.body.habitacion_e = '';
         break;
       case 'habitos_higienicos':
-        this.body.habitos_higienicos_p = '';
-        this.body.habitos_higienicos_e = '';
+        this.body.habitosHigienicos_p = '';
+        this.body.habitosHigienicos_e = '';
         break;
       case 'zoonosis':
         this.body.zoonosis_p = '';
         this.body.zoonosis_e = '';
         break;
       case 'actividad_fisica':
-        this.body.actividad_fisica_p = '';
-        this.body.actividad_fisica_e = '';
+        this.body.actividadFisica_p = '';
+        this.body.actividadFisica_e = '';
         break;
       case 'ocupacion':
         this.body.ocupacion_p = '';
         this.body.ocupacion_e = '';
         break;
       case 'actividad_de_ocio':
-        this.body.actividad_de_ocio_p = '';
-        this.body.actividad_de_ocio_e = '';
+        this.body.actividadOcio_p = '';
+        this.body.actividadOcio_e = '';
         break;
     }
     this.guardar();

@@ -23,11 +23,11 @@
       <tr>
         <td>Neurologica</td>
         <td class="text-center">
-          <input type="checkbox" name="alergiasSiNo" [(ngModel)]="formData.alergiasSiNo" (ngModelChange)="limpiar($event ,'neurologica')" >
+          <input type="checkbox" name="neurologicasSiNo" [(ngModel)]="formData.neurologicasSiNo" (ngModelChange)="limpiar($event ,'neurologicas')" >
         </td>
-        <td><input type="text" class="form-control" name="alergiasParentesco" [(ngModel)]="body.neourologicas_p" [disabled]="!formData.alergiasSiNo"
+        <td><input type="text" class="form-control" name="neurologicaParentesco" [(ngModel)]="body.neurologicas_p" [disabled]="!formData.neurologicasSiNo"
           (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="alergiasEspecifique" [(ngModel)]="body.neourologicas_e" [disabled]="!formData.alergiasSiNo"
+        <td><input type="text" class="form-control" name="neurologicaEspecifique" [(ngModel)]="body.neurologicas_e" [disabled]="!formData.neurologicasSiNo"
           (ngModelChange)="guardar()" ></td>
       </tr>
       <tr>
@@ -93,11 +93,11 @@
       <tr>
         <td>Endocrinologas</td>
         <td class="text-center">
-          <input type="checkbox" name="endonocrilogicasSiNo" [(ngModel)]="formData.endocrinologasSiNo" (ngModelChange)="limpiar($event ,'endocrinologas')">
+          <input type="checkbox" name="endocrinologasSiNo" [(ngModel)]="formData.endocrinologasSiNo" (ngModelChange)="limpiar($event ,'endocrinologas')">
         </td>
-        <td><input type="text" class="form-control" name="endonocrilogicasParentesco" [(ngModel)]="body.endocrinologas_p" [disabled]="!formData.endocrinologasSiNo"
+        <td><input type="text" class="form-control" name="endocrinologasParentesco" [(ngModel)]="body.endocrinologas_p" [disabled]="!formData.endocrinologasSiNo"
           (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="endonocrilogicasEspecifique" [(ngModel)]="body.endocrinologas_e" [disabled]="!formData.endocrinologasSiNo"
+        <td><input type="text" class="form-control" name="endocrinologasEspecifique" [(ngModel)]="body.endocrinologas_e" [disabled]="!formData.endocrinologasSiNo"
           (ngModelChange)="guardar()" ></td>
       </tr>
       <tr>
