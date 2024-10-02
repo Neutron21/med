@@ -42,7 +42,8 @@
             <td class="text-center">{{px.nombre + ' ' + px.apellido_p + ' ' + px.apellido_m}}</td>
             <td class="text-center">{{px.telefono}}</td>
             <td class="text-center">{{px.diagnostico_medico}}</td>
-            <td class="d-flex justify-content-evenly">
+            <td >
+              <div class="d-flex justify-content-evenly">
               <div class="tooltip-container">
                 <img class="table-icon-size" src="../../assets/ficha-med-50.png" alt="ficha-icon" (click)="openFichaMedica(px.id)"/>
                 <span class="tooltip-text">Ficha Médica</span>
@@ -51,6 +52,7 @@
                 <img class="table-icon-size" src="../../assets/documentos-64.png" alt="historial-icon" (click)="openHistorial(px.id)"/>
                 <span class="tooltip-text">Historial</span>
               </div>
+            </div>
             </td>      
           </tr>
         </tbody>    
