@@ -10,15 +10,15 @@ import { SharedDataService } from 'src/app/services/shared.service';
 })
 export class S7mujerAntGineObtComponent implements OnInit {
   formData: any = {
-    mecarca:false,
-    dismenorreas:false,
-    gestaActual:false,
-    numeroGestas:false,
-    numeroPartos:false,
-    cesareas:false,
-    aborto:false,
-    nacidosVivos:false,
-    menopausia:false,
+    mecarcaSiNo:false,
+    dismenorreasSiNo:false,
+    gestaActualSiNo:false,
+    numeroGestasSiNo:false,
+    numeroPartosSiNo:false,
+    cesareasSiNo:false,
+    abortoSiNo:false,
+    nacidosVivosSiNo:false,
+    menopausiaSiNo:false,
   };
   showTable = false;
   body = {
@@ -34,8 +34,8 @@ export class S7mujerAntGineObtComponent implements OnInit {
       numeroPartos_e:'',
       cesareas_p:'', 
       cesareas_e:'',
-      aborto_p:'', 
-      aborto_e:'',
+      abortos_p:'', 
+      abortos_e:'',
       nacidosVivos_p:'', 
       nacidosVivos_e:'',
       menopausia_p:'', 
@@ -82,7 +82,7 @@ export class S7mujerAntGineObtComponent implements OnInit {
     this.formData.numeroGestasSiNo = Boolean(this.body.numeroGestas_p || this.body.numeroGestas_e);
     this.formData.numeroPartosSiNo = Boolean(this.body.numeroPartos_p || this.body.numeroPartos_e);
     this.formData.cesareasSiNo = Boolean(this.body.cesareas_p || this.body.cesareas_e);
-    this.formData.abortoSiNo = Boolean(this.body.aborto_p || this.body.aborto_e);
+    this.formData.abortoSiNo = Boolean(this.body.abortos_p || this.body.abortos_e);
     this.formData.nacidosVivosSiNo = Boolean(this.body.nacidosVivos_p || this.body.nacidosVivos_e);
     this.formData.menopausiaSiNo = Boolean(this.body.menopausia_p || this.body.menopausia_e);
   }
@@ -119,8 +119,8 @@ export class S7mujerAntGineObtComponent implements OnInit {
         this.body.cesareas_e = '';
         break;
       case 'aborto':
-        this.body.aborto_p = '';
-        this.body.aborto_e = '';
+        this.body.abortos_p = '';
+        this.body.abortos_e = '';
         break;
       case 'nacidosVivos':
         this.body.nacidosVivos_p = '';

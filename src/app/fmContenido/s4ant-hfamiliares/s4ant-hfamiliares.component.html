@@ -85,19 +85,19 @@
         <td class="text-center">
           <input type="checkbox" name="reumaticasSiNo" [(ngModel)]="formData.geneticasSiNo" (ngModelChange)="limpiar($event ,'geneticas')">
         </td>
-        <td><input type="text" class="form-control" name="reumaticasParentesco" [(ngModel)]="body.geneticas_p" [disabled]="!formData.geneticasSiNo"
+        <td><input type="text" class="form-control" name="geneticasParentesco" [(ngModel)]="body.geneticas_p" [disabled]="!formData.geneticasSiNo"
           (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="reumaticasEspecifique" [(ngModel)]="body.geneticas_e" [disabled]="!formData.geneticasSiNo"
+        <td><input type="text" class="form-control" name="geneticasEspecifique" [(ngModel)]="body.geneticas_e" [disabled]="!formData.geneticasSiNo"
           (ngModelChange)="guardar()" ></td>
       </tr>
       <tr>
-        <td>Endonocrilogicas</td>
+        <td>Endocrinologas</td>
         <td class="text-center">
-          <input type="checkbox" name="endonocrilogicasSiNo" [(ngModel)]="formData.endonocrilogicasSiNo" (ngModelChange)="limpiar($event ,'endonocrilogicas')">
+          <input type="checkbox" name="endonocrilogicasSiNo" [(ngModel)]="formData.endocrinologasSiNo" (ngModelChange)="limpiar($event ,'endocrinologas')">
         </td>
-        <td><input type="text" class="form-control" name="endonocrilogicasParentesco" [(ngModel)]="body.endonocrilogicas_p" [disabled]="!formData.endonocrilogicasSiNo"
+        <td><input type="text" class="form-control" name="endonocrilogicasParentesco" [(ngModel)]="body.endocrinologas_p" [disabled]="!formData.endocrinologasSiNo"
           (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="endonocrilogicasEspecifique" [(ngModel)]="body.endonocrilogicas_e" [disabled]="!formData.endonocrilogicasSiNo"
+        <td><input type="text" class="form-control" name="endonocrilogicasEspecifique" [(ngModel)]="body.endocrinologas_e" [disabled]="!formData.endocrinologasSiNo"
           (ngModelChange)="guardar()" ></td>
       </tr>
       <tr>
@@ -105,9 +105,9 @@
         <td class="text-center">
           <input type="checkbox" name="otrasSiNo" [(ngModel)]="formData.otrasSiNo" (ngModelChange)="limpiar($event ,'otras')">
         </td>
-        <td><input type="text" class="form-control" name="otrasParentesco" [(ngModel)]="body.otras_p" [disabled]="!formData.otrasSiNo"
+        <td><input type="text" class="form-control" name="otras_p" [(ngModel)]="body.otras_p" [disabled]="!formData.otrasSiNo"
           (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="otrasEspecifique" [(ngModel)]="body.otras_e" [disabled]="!formData.otrasSiNo"
+        <td><input type="text" class="form-control" name="otras_e" [(ngModel)]="body.otras_e" [disabled]="!formData.otrasSiNo"
           (ngModelChange)="guardar()" ></td>
       </tr>
     </tbody>

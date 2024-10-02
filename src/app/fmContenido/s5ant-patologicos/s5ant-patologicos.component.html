@@ -143,21 +143,21 @@
       <tr>
         <td>Reumaticas</td>
         <td class="text-center">
-          <input type="checkbox" name="reumaticas" [(ngModel)]="formData.reumaticas" (ngModelChange)="limpiar($event,'reumaticas')">
+          <input type="checkbox" name="reumaticasSiNo" [(ngModel)]="formData.reumaticasSiNo" (ngModelChange)="limpiar($event,'reumaticas')">
         </td>
-        <td><input type="text" class="form-control" name="reumaticasParentesco" [(ngModel)]="body.reumaticas_p" [disabled]="!formData.reumaticasSiNo"
+        <td><input type="text" class="form-control" name="reumaticas_p" [(ngModel)]="body.reumaticas_p" [disabled]="!formData.reumaticasSiNo"
           (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="reumaticasEspecifique" [(ngModel)]="body.reumaticas_e" [disabled]="!formData.reumaticasSiNo"
+        <td><input type="text" class="form-control" name="reumaticas_e" [(ngModel)]="body.reumaticas_e" [disabled]="!formData.reumaticasSiNo"
           (ngModelChange)="guardar()"></td>
       </tr>
       <tr>
         <td>Hospitalizaciones previas</td>
         <td class="text-center">
-          <input type="checkbox" name="hospitalizacionesPrevias_pSiNo" [(ngModel)]="formData.hospitalizacionesPrevias_pSiNo" (ngModelChange)="limpiar($event,'hospitalizacionesPrevias')">
+          <input type="checkbox" name="hospitalizacionesPreviasSiNo" [(ngModel)]="formData.hospitalizacionesPreviasSiNo" (ngModelChange)="limpiar($event,'hospitalizacionesPrevias')">
         </td>
-        <td><input type="text" class="form-control" name="hospitalizacionesPreviasParentesco" [(ngModel)]="body.hospitalizacionesPrevias_p" [disabled]="!formData.hospitalizacionesPreviasSiNo"
+        <td><input type="text" class="form-control" name="hospitalizacionesPrevias_p" [(ngModel)]="body.hospitalizacionesPrevias_p" [disabled]="!formData.hospitalizacionesPreviasSiNo"
           (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="hospitalizacionesPreviasEspecifique" [(ngModel)]="body.hospitalizacionesPrevias_e" [disabled]="!formData.hospitalizacionesPreviasSiNo"
+        <td><input type="text" class="form-control" name="hospitalizaciones_e" [(ngModel)]="body.hospitalizacionesPrevias_e" [disabled]="!formData.hospitalizacionesPreviasSiNo"
           (ngModelChange)="guardar()"></td>
       </tr>
       <tr>

@@ -18,7 +18,7 @@ formData =  {
     reumaticasSiNo: false,
     respiratoriasSiNo: false,
     geneticasSiNo: false,
-    endonocrilogicasSiNo: false,
+    endocrinologasSiNo: false,
     otrasSiNo: false,
 };
   body= {
@@ -38,8 +38,8 @@ formData =  {
       respiratorias_e:'',
       geneticas_p:'',
       geneticas_e:'',
-      endonocrilogicas_p:'',
-      endonocrilogicas_e:'',
+      endocrinologas_p:'',
+      endocrinologas_e:'',
       otras_p:'',
       otras_e:'', 
   }
@@ -90,7 +90,7 @@ formData =  {
     this.formData.reumaticasSiNo = Boolean (this.body.reumaticas_p || this.body.reumaticas_e);
     this.formData.respiratoriasSiNo = Boolean (this.body.respiratorias_p || this.body.respiratorias_e);
     this.formData.geneticasSiNo = Boolean (this.body.geneticas_p || this.body.geneticas_e);
-    this.formData.endonocrilogicasSiNo = Boolean (this.body.endonocrilogicas_p || this.body.endonocrilogicas_e);
+    this.formData.endocrinologasSiNo = Boolean (this.body.endocrinologas_p || this.body.endocrinologas_e);
     this.formData.otrasSiNo = Boolean (this.body.otras_p || this.body.otras_e);
   }
   limpiar($event: any,id: string) {
@@ -130,8 +130,8 @@ formData =  {
   this.body.geneticas_e = '';
   break;
   case 'endonocrilogicas':
-  this.body.endonocrilogicas_p = '';
-  this.body.endonocrilogicas_e = '';
+  this.body.endocrinologas_p = '';
+  this.body.endocrinologas_e = '';
   break;
   case 'otras':
   this.body.otras_p = '';

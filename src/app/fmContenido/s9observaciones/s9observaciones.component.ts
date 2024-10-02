@@ -76,7 +76,7 @@ export class S9observacionesComponent implements OnInit {
         this.body.observaciones = '';
         break;
     }
-    
+    this.guardar();
   }
 }
   
