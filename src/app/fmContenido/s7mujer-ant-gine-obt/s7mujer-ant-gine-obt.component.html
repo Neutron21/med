@@ -55,9 +55,9 @@
           <td class="text-center">
             <input type="checkbox" name="numeroGestasSiNo" [(ngModel)]="formData.numeroGestasSiNo" (ngModelChange)="limpiar($event,'numeroGestas')">
           </td>
-          <td><input type="text" class="form-control" name="numeroGestas_p" [(ngModel)]="body.numeroGestas_p" [disabled]="!formData.numeroGestasSiNo" 
+          <td><input type="text" class="form-control" name="numeroGestasParentesco" [(ngModel)]="body.numeroGestas_p" [disabled]="!formData.numeroGestasSiNo" 
             (ngModelChange)="guardar()">
-          <td><input type="text" class="form-control" name="numeroGestas_e" [(ngModel)]="body.numeroGestas_e" [disabled]="!formData.numeroGestasSiNo" 
+          <td><input type="text" class="form-control" name="numeroGestasEspecifique" [(ngModel)]="body.numeroGestas_e" [disabled]="!formData.numeroGestasSiNo" 
             (ngModelChange)="guardar()">
           </td>
         </tr>
@@ -88,9 +88,9 @@
           <td class="text-center">
             <input type="checkbox" name="abortosSiNo" [(ngModel)]="formData.abortosSiNo" (ngModelChange)="limpiar($event,'abortos')">
           </td>
-          <td><input type="text" class="form-control" name="abortos_p" [(ngModel)]="body.abortos_p" [disabled]="!formData.abortosSiNo" 
+          <td><input type="text" class="form-control" name="abortosParentesco" [(ngModel)]="body.abortos_p" [disabled]="!formData.abortosSiNo" 
             (ngModelChange)="guardar()">
-          <td><input type="text" class="form-control" name="abortos_e" [(ngModel)]="body.abortos_e" [disabled]="!formData.abortosSiNo" 
+          <td><input type="text" class="form-control" name="abortosEspecifique" [(ngModel)]="body.abortos_e" [disabled]="!formData.abortosSiNo" 
             (ngModelChange)="guardar()">
           </td>
         </tr>
