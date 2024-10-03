@@ -75,6 +75,27 @@
     display: none;
   }
   
+  .header {
+    text-align: center;
+    color: #fff;
+    background-color: #007bff; /* Fondo azul que hace contraste */
+    padding: 2em 0; /* Espacio interno */
+    width: 100%;
+    margin-bottom: 2em; /* Separación con el formulario */
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.header p {
+    margin: 0.5em 0 0;
+    font-size: 1.2em;
+    color: #f0f0f0;
+}
+
   
   @media (max-width: 767px) {
   .header-login {
