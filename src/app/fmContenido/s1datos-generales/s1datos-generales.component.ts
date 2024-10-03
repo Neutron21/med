@@ -12,7 +12,7 @@ import { UtilService } from 'src/app/services/util.service';
 })
 export class S1datosGeneralesComponent implements OnInit {
   body = {
-    id_paciente: 0,
+    id_paciente:0,
     escolaridad: "",
     ocupacion: "",
     religion: "",
@@ -47,7 +47,7 @@ export class S1datosGeneralesComponent implements OnInit {
             this.authService.getById('datosGeneralesFm','id_paciente', currentPxId).subscribe(
         (response) => {
           console.log('Datos del paciente:', response);
-          this.body = response [0];
+          this.body =  response.length > 0 ? response [0] : this.body;
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);

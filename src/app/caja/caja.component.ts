@@ -64,6 +64,7 @@ export class CajaComponent implements OnInit {
     if (!pago.dateTime) { // Fecha actual, el form no la asigna automaticamente
       pago.dateTime = this.getCurrentDateTime();
     }
+    console.log(pago);
     if(this.cajaForm.valid){
       this.cleanForm();
       this.cajaService.createPay(pago).subscribe((response: any) => {
@@ -93,6 +94,12 @@ export class CajaComponent implements OnInit {
   cleanForm() {
     this.cajaForm.reset();
     this.cajaForm.get('dateTime')?.setValue(this.getCurrentDateTime());
+  }
+  validarFormulario(){
+    if (this.cajaForm.get('dateTime')?.value) {
+      
+    }
+
   }
   
 }
