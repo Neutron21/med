@@ -116,7 +116,7 @@
         </tr>
         <tr>
           <td>Tamiz metabólico: Calificación</td>
-          <td class="text-center"><input type="checkbox" name="tamizMetabolicoSiNo" [(ngModel)]="formData.tamizMetabolicoSiNo" (ngModelChange)="limpiar($event, 'menopausia')"></td>
+          <td class="text-center"><input type="checkbox" name="tamizMetabolicoSiNo" [(ngModel)]="formData.tamizMetabolicoSiNo" (ngModelChange)="limpiar($event, 'tamizMetabolico')"></td>
           <td><input type="text" class="form-control" name="tamizMetabolico_p" [(ngModel)]="body.tamizMetabolico_p"[disabled]="!formData.tamizMetabolicoSiNo"
             (ngModelChange)="guardar()"></td>
           <td><input type="text" class="form-control" name="tamizMetabolico_e" [(ngModel)]="body.tamizMetabolico_e"[disabled]="!formData.tamizMetabolicoSiNo"

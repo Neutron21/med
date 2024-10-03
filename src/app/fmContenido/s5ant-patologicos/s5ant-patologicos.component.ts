@@ -136,11 +136,11 @@ idPx: number|null = null;
         this.body.neoplasias_p = '';
         this.body.neoplasias_e = '';
         break;
-      case 'cardiopatías':
+      case 'cardiopatias':
         this.body.cardiopatias_p = '';
         this.body.cardiopatias_e = '';
         break;
-      case 'cirugías':
+      case 'cirugias':
         this.body.cirugias_p = '';
         this.body.cirugias_e = '';
         break;

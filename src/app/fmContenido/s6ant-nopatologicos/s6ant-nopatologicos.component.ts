@@ -124,7 +124,7 @@ export class S6antNopatologicosComponent implements OnInit {
         this.body.habitacion_p = '';
         this.body.habitacion_e = '';
         break;
-      case 'habitos_higienicos':
+      case 'habitosHigienicos':
         this.body.habitosHigienicos_p = '';
         this.body.habitosHigienicos_e = '';
         break;
@@ -132,7 +132,7 @@ export class S6antNopatologicosComponent implements OnInit {
         this.body.zoonosis_p = '';
         this.body.zoonosis_e = '';
         break;
-      case 'actividad_fisica':
+      case 'actividadFisica':
         this.body.actividadFisica_p = '';
         this.body.actividadFisica_e = '';
         break;
@@ -140,7 +140,7 @@ export class S6antNopatologicosComponent implements OnInit {
         this.body.ocupacion_p = '';
         this.body.ocupacion_e = '';
         break;
-      case 'actividad_de_ocio':
+      case 'actividadOcio':
         this.body.actividadOcio_p = '';
         this.body.actividadOcio_e = '';
         break;
