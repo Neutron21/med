@@ -57,27 +57,7 @@ export class S9observacionesComponent implements OnInit {
     sessionStorage.setItem('s9', JSON.stringify(this.body));
   }
 
-  limpiar($event: any,id: string) {
-    console.log($event);
-    switch (id) {
-      case 'motivoConsulta':
-        this.body.motivoConsulta = '';
-        break;
-      case 'diagnosticoMedico':
-        this.body.diagnosticoMedico = '';
-        break;
-      case 'mecanismoLesion':
-        this.body.mecanismoLesion = '';
-        break;
-      case 'tratamientosPrevios':
-        this.body.tratamientosPrevios = '';
-        break;
-      case 'observaciones':
-        this.body.observaciones = '';
-        break;
-    }
-    this.guardar();
-  }
+ 
 }
   
 

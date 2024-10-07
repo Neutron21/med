@@ -1,31 +1,25 @@
 <div class="container">
   <p class="me-3 text-center fw-bold">Motivo de consulta</p>
   <div class="d-flex align-items-center mb-3">
-    <input type="text" class="form-control" [(ngModel)]="body.motivoConsulta" name="motivoConsulta" (ngModelChange)="guardar()"
-    (ngModelChange)="limpiar($event,'motivoConsulta')" >
+    <input type="text" class="form-control" [(ngModel)]="body.motivoConsulta" name="motivoConsulta"  (ngModelChange)="guardar()">
   </div>
-
   <p class="me-3 text-center fw-bold">Diagnóstico médico</p>
   <div class="d-flex align-items-center mb-3">
-    <input type="text" class="form-control" [(ngModel)]="body.diagnosticoMedico" name="diagnosticoMedico" (ngModelChange)="guardar()"
-    (ngModelChange)="limpiar($event,'diagnosticoMedico')">
+    <input type="text" class="form-control" [(ngModel)]="body.diagnosticoMedico" name="diagnosticoMedico" (ngModelChange)="guardar()">
   </div>
 
   <p class="me-3 text-center fw-bold">Mecanismo de lesión</p>
   <div class="d-flex align-items-center mb-3">
-    <input type="text" class="form-control" [(ngModel)]="body.mecanismoLesion" name="mecanismoLesion" (ngModelChange)="guardar()"
-    (ngModelChange)="limpiar($event,'mecanismoLesion')">
+    <input type="text" class="form-control" [(ngModel)]="body.mecanismoLesion" name="mecanismoLesion" (ngModelChange)="guardar()">
   </div>
 
   <p class="me-3 text-center fw-bold">Tratamientos previos</p>
   <div class="d-flex align-items-center mb-3">
-    <input type="text" class="form-control" [(ngModel)]="body.tratamientosPrevios" name="tratamientosPrevios" (ngModelChange)="guardar()"
-    (ngModelChange)="limpiar($event,'tratamientosPrevios')">
+    <input type="text" class="form-control" [(ngModel)]="body.tratamientosPrevios" name="tratamientosPrevios" (ngModelChange)="guardar()">
   </div>
 
   <p class="me-3 text-center fw-bold">Observaciones</p>
   <div class="d-flex align-items-center mb-3">
-    <input type="text" class="form-control" [(ngModel)]="body.observaciones" name="observaciones" (ngModelChange)="guardar()"
-    (ngModelChange)="limpiar($event,'observaciones')">
+    <input type="text" class="form-control" [(ngModel)]="body.observaciones" name="observaciones" (ngModelChange)="guardar()">
   </div>
 </div>
