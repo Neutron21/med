@@ -61,6 +61,11 @@
     </table>
   </div>
 </div>
+
+<div class="text-end me-3" *ngIf="pagos.length > 0 && !showSpiner">
+  <strong>Total Pagos: {{ totalPagos | currency:'MXN':'symbol':'1.2-2' }}</strong>
+</div>
+
   <!-- <div *ngIf="pagos.length > 0" class="d-flex justify-content-center"> PAGINADO
     <nav class="" aria-label="Page navigation example">
       <ul class="pagination">

@@ -9,7 +9,7 @@ import { CajaService } from '../services/caja.service';
   styleUrls: ['./table-caja.component.scss']
 })
 export class TableCajaComponent implements OnInit {
-
+  totalPagos: number = 0;
   buscarPagoForm: FormGroup;
   pagos: any[] = [];
   showSpiner: boolean = false;
@@ -35,14 +35,15 @@ export class TableCajaComponent implements OnInit {
         (response) => {
           console.log('Pagos:', response);
           this.pagos = response;
+          this.calcularTotalPagos(); // Llamar a la función que calcula el total
           this.showSpiner = false;
         },(error) => {
           console.error('Error al obtener los datos del usuario:', error);
           this.showSpiner = false;
         });
     }
-    
   }
+  
   formatDate(pagoFecha: string) {
     const [fechaParte, horaParte] = pagoFecha.split(' ');
     const [anio, mes, dia] = fechaParte.split('-');
@@ -56,4 +57,8 @@ export class TableCajaComponent implements OnInit {
   formatConcepto(valor: keyof typeof concepto) {
     return concepto[valor];
 }
+calcularTotalPagos() {
+  this.totalPagos = this.pagos.reduce((total, pago) => total + pago.cantidad, 0);
+}
+
 }
