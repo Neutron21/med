@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { concepto, tipo } from 'src/app/catalogos/pagos';
 import { CajaService } from '../services/caja.service';
+import { jsPDF } from "jspdf";
+import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable';
+
 
 @Component({
   selector: 'app-table-caja',
@@ -59,6 +63,47 @@ export class TableCajaComponent implements OnInit {
 }
 calcularTotalPagos() {
   this.totalPagos = this.pagos.reduce((total, pago) => total + pago.cantidad, 0);
+}
+descargarPDF() {
+  const doc = new jsPDF();
+  doc.setFont('Fredoka', 'normal');
+  doc.setTextColor(0, 123, 255);
+  doc.setFontSize(20);
+  doc.text('MEDI', 100, 8);
+
+  doc.setTextColor(0, 0, 0);   // Color negro
+  doc.setFontSize(14);
+  doc.text('Reporte de Pagos', 12, 18);
+
+  const currentUserString = sessionStorage.getItem('currentUser');
+  let userEmail = 'Correo no disponible'; // Default por si no hay correo disponible
+  if (currentUserString) {
+    const currentUser = JSON.parse(currentUserString);
+    userEmail = currentUser.email || 'Correo no disponible'; // Accede a la propiedad 'email'
+  }
+  doc.text(` ${userEmail}`, 129, 18);
+
+  const pagosData = this.pagos.map(pago => [
+    this.formatDate(pago.dateTime),
+    `$${pago.cantidad.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
+    this.formatTipo(pago.tipo),
+    this.formatConcepto(pago.concepto)
+  ]);
+
+  autoTable(doc, {
+    head: [['Fecha', 'Cantidad', 'Tipo', 'Concepto']],
+    body: pagosData,
+    startY: 22,
+  });
+
+  const finalY = (doc as any).lastAutoTable.finalY; 
+  const totalPagosFormatted = `$ ${this.totalPagos.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+  doc.text(`Total Pagos: ${totalPagosFormatted}`, 14, finalY + 10);
+
+
+
+  doc.save('reporte-pagos.pdf');
 }
 
 }
