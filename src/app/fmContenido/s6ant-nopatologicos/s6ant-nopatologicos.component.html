@@ -47,11 +47,11 @@
           <span class="small-text">Tipo y cantidad de tiempo que duerme.</span>
         </td>
         <td class="text-center">
-          <input type="checkbox" name="trastornosSuenoSiNo" [(ngModel)]="formData.trastornosSuenoSiNo" (ngModelChange)="limpiar($event,'transtornoSueno')">
+          <input type="checkbox" name="transtornoSuenoSiNo" [(ngModel)]="formData.transtornoSuenoSiNo" (ngModelChange)="limpiar($event,'transtornoSueno')">
         </td>
-        <td><input type="text" class="form-control" name="transtornoSuenoParentesco" [(ngModel)]="body.transtornoSueno_p" [disabled]="!formData.trastornosSuenoSiNo"
+        <td><input type="text" class="form-control" name="transtornoSuenoParentesco" [(ngModel)]="body.transtornoSueno_p" [disabled]="!formData.transtornoSuenoSiNo"
           (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="transtornoSuenoEspecifique" [(ngModel)]="body.transtornoSueno_e" [disabled]="!formData.trastornosSuenoSiNo"
+        <td><input type="text" class="form-control" name="transtornoSuenoEspecifique" [(ngModel)]="body.transtornoSueno_e" [disabled]="!formData.transtornoSuenoSiNo"
           (ngModelChange)="guardar()"></td>
       </tr>
       <tr>
@@ -129,11 +129,11 @@
       <tr>
         <td>Actividades de ocio</td>
         <td class="text-center">
-          <input type="checkbox" name="actividadesOcioSiNo" [(ngModel)]="formData.actividadesOcioSiNo" (ngModelChange)="limpiar($event,'actividadOcio')">
+          <input type="checkbox" name="actividadOcioSiNo" [(ngModel)]="formData.actividadOcioSiNo" (ngModelChange)="limpiar($event,'actividadOcio')">
         </td>
-        <td><input type="text" class="form-control" name="actividadOcioParentesco" [(ngModel)]="body.actividadOcio_p" [disabled]="!formData.actividadesOcioSiNo" 
+        <td><input type="text" class="form-control" name="actividadOcioParentesco" [(ngModel)]="body.actividadOcio_p" [disabled]="!formData.actividadOcioSiNo" 
           (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="actividadOcioEspecifique" [(ngModel)]="body.actividadOcio_e" [disabled]="!formData.actividadesOcioSiNo"
+        <td><input type="text" class="form-control" name="actividadOcioEspecifique" [(ngModel)]="body.actividadOcio_e" [disabled]="!formData.actividadOcioSiNo"
           (ngModelChange)="guardar()"></td>
       </tr>
     </tbody>

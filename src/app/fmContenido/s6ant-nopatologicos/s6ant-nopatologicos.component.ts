@@ -13,14 +13,14 @@ export class S6antNopatologicosComponent implements OnInit {
     toxicomaniasSiNo: false,
     inmunizacionesSiNo: false,
     automedicacionSiNo: false,
-    trastornosSuenoSiNo: false,
+    transtornoSuenoSiNo: false,
     alimentacionSiNo: false,
     habitacionSiNo: false,
     habitosHigienicosSiNo: false,
     zoonosisSiNo: false,
     actividadFisicaSiNo: false,
     ocupacionSiNo: false,
-    actividadesOcioSiNo: false,
+    actividadOcioSiNo: false,
   };
   body = {
     toxicomanias_p: "",
@@ -91,7 +91,7 @@ export class S6antNopatologicosComponent implements OnInit {
     this.formData.zoonosisSiNo = Boolean(this.body.zoonosis_p || this.body.zoonosis_e);
     this.formData.actividadFisicaSiNo = Boolean(this.body.actividadFisica_p || this.body.actividadFisica_e);
     this.formData.ocupacionSiNo = Boolean(this.body.ocupacion_p || this.body.ocupacion_e);
-    this.formData.actividadDeOcioSiNo = Boolean(this.body.actividadOcio_p || this.body.actividadOcio_e);
+    this.formData.actividadOcioSiNo = Boolean(this.body.actividadOcio_p || this.body.actividadOcio_e);
   };
 
   guardar() {

@@ -13,13 +13,13 @@
       <tr>
         <td>Diabetes</td>
         <td class="text-center">
-          <input type="checkbox" name="diabetesSiNo" [(ngModel)]="formData.diabetesSiNo"  (ngModelChange)="limpiar($event,'diabetes')">
+            <input type="checkbox" name="diabetesSiNo" [(ngModel)]="formData.diabetesSiNo" (ngModelChange)="limpiar($event, 'diabetes')">
         </td>
         <td><input type="text" class="form-control" name="diabetesParentesco" [(ngModel)]="body.diabetes_p" [disabled]="!formData.diabetesSiNo"
-          (ngModelChange)="guardar()"></td>
+           (ngModelChange)="guardar()"></td>
         <td><input type="text" class="form-control" name="diabetesEspecifique" [(ngModel)]="body.diabetes_e" [disabled]="!formData.diabetesSiNo"
-          (ngModelChange)="guardar()"></td>
-      </tr>
+           (ngModelChange)="guardar()"></td>
+    </tr>
       <tr>
         <td>Alergias</td>
         <td class="text-center">
@@ -93,11 +93,11 @@
       <tr>
         <td>Malformaciones geneticas</td>
         <td class="text-center">
-          <input type="checkbox" name="malformacionesSiNo" [(ngModel)]="formData.malformacionesSiNo" (ngModelChange)="limpiar($event,'malformacionesGeneticas')">
+          <input type="checkbox" name="malformacionesGeneticasSiNo" [(ngModel)]="formData.malformacionesGeneticasSiNo" (ngModelChange)="limpiar($event,'malformacionesGeneticas')">
         </td>
-        <td><input type="text" class="form-control" name="malformacionesParentesco" [(ngModel)]="body.malformacionesGeneticas_p" [disabled]="!formData.malformacionesSiNo"
+        <td><input type="text" class="form-control" name="malformacionesGeneticasParentesco" [(ngModel)]="body.malformacionesGeneticas_p" [disabled]="!formData.malformacionesGeneticasSiNo"
           (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="malformacionesEspecifique" [(ngModel)]="body.malformacionesGeneticas_e" [disabled]="!formData.malformacionesSiNo"
+        <td><input type="text" class="form-control" name="malformacionesGeneticasEspecifique" [(ngModel)]="body.malformacionesGeneticas_e" [disabled]="!formData.malformacionesGeneticasSiNo"
           (ngModelChange)="guardar()"></td>
       </tr>
       <tr>
@@ -133,11 +133,11 @@
       <tr>
         <td>Efermedades Infecciosas</td>
         <td class="text-center">
-          <input type="checkbox" name="efermedadesInfecciosasSiNo" [(ngModel)]="formData.efermedadesInfecciosasSiNo" (ngModelChange)="limpiar($event,'enfermedadesInfecciosas')">
+          <input type="checkbox" name="enfermedadesInfecciosasSiNo" [(ngModel)]="formData.enfermedadesInfecciosasSiNo" (ngModelChange)="limpiar($event,'enfermedadesInfecciosas')">
         </td>
-        <td><input type="text" class="form-control" name="efermedadesInfecciosasParentesco" [(ngModel)]="body.efermedadesInfecciosas_p" [disabled]="!formData.efermedadesInfecciosasSiNo"
+        <td><input type="text" class="form-control" name="enfermedadesInfecciosasParentesco" [(ngModel)]="body.enfermedadesInfecciosas_p" [disabled]="!formData.enfermedadesInfecciosasSiNo"
           (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="efermedadesInfecciosasEspecifique" [(ngModel)]="body.efermedadesInfecciosas_e" [disabled]="!formData.efermedadesInfecciosasSiNo"
+        <td><input type="text" class="form-control" name="enfermedadesInfecciosasEspecifique" [(ngModel)]="body.enfermedadesInfecciosas_e" [disabled]="!formData.enfermedadesInfecciosasSiNo"
           (ngModelChange)="guardar()"></td>
       </tr>
       <tr>
