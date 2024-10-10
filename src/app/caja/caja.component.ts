@@ -17,6 +17,7 @@ export class CajaComponent implements OnInit {
   saveError: boolean = false;  // Para saber si hubo error o no
   loader: boolean = false;  // Para el estado de carga
 
+
   constructor(
     private utilService: UtilService,
     private cajaService: CajaService,
@@ -58,29 +59,50 @@ export class CajaComponent implements OnInit {
     }
   }
   validateNumberInput(event: KeyboardEvent) {
-    this.utilService.onlyNumbers(event);
+    const isNumber = (event.key >= '0' && event.key <= '9') || event.key === 'Backspace' || event.key === 'Tab' || event.key === 'ArrowLeft' || event.key === 'ArrowRight';
+    
+    if (!isNumber) {
+      event.preventDefault(); // Previene la entrada de caracteres no numéricos
+    }
   }
   validateTextInput(event: KeyboardEvent): boolean {
     return this.utilService.onlyText(event);
   }
-  sendPay(){
-    const pago = {...this.cajaForm.value};
+  sendPay() {
+    const pago = { ...this.cajaForm.value };
     console.log(this.cajaForm.value);
-    if (!pago.dateTime) { // Fecha actual, el form no la asigna automaticamente
+  
+    if (!pago.dateTime) {
       pago.dateTime = this.getCurrentDateTime();
     }
-    if(this.validarFormulario()){
-      this.cleanForm();
-      this.cajaService.createPay(pago).subscribe((response: any) => {
-        console.log("Pago registrado con éxito, " + response.message);
-      }, (error: any) =>{
-        console.log("Error al registrar el pago: " + error.error.error);
-      });
+  
+    if (this.validarFormulario()) {
+      const modalElement = document.getElementById('responsePagosModal');
+      const modal = new bootstrap.Modal(modalElement);
+      this.loader = true;
+  
+      this.cajaService.createPay(pago).subscribe(
+        (response: any) => {
+          console.log("Pago registrado con éxito, " + response.message);
+          this.saveError = false;
+          this.loader = false;
+          modal.show();
+          this.cleanForm();
+
+          },
+        (error: any) => {
+          console.log("Error al registrar el pago: " + error.error.error);
+          this.saveError = true;
+          this.loader = false;
+          modal.show();
+        }
+      );
     } else {
-      console.log("Form no valido!");
+      console.log("Formulario no válido!");
       this.cajaForm.markAllAsTouched();
     }
   }
+  
   onTipoChange() {
     const tipoControl = this.cajaForm.get('tipo');
     
@@ -105,10 +127,8 @@ export class CajaComponent implements OnInit {
         !!this.cajaForm.get('concepto')?.value && !!this.cajaForm.get('tipo')?.value);
 
   }
-  showModal() {
-    const modalElement = document.getElementById('responseModal');
-    const modal = new bootstrap.Modal(modalElement);
-    modal.show();
+  onlyNumbers(event: KeyboardEvent): boolean {
+    return this.utilService.onlyNumbers(event);
   }
-  
+
 }

@@ -14,11 +14,15 @@
   padding: 20px;
   background-color: #f8f9fa; /* Fondo claro opcional */
 }
-.success-background {
-    background-color: #d4edda;
+  .modal-title-confirm {
+    color: whitesmoke;
   }
-  
   .error-background {
-    background-color: #f8d7da;
+    background-color: red;
   }
-  
+  .success-background {
+    background-color: #4db051;
+  }
+  .container {
+    margin-top: 1.5em;
+  }
