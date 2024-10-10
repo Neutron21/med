@@ -71,15 +71,15 @@ descargarPDF() {
   doc.setFontSize(20);
   doc.text('MEDI', 100, 8);
 
-  doc.setTextColor(0, 0, 0);   // Color negro
+  doc.setTextColor(0, 0, 0);  
   doc.setFontSize(14);
   doc.text('Reporte de Pagos', 12, 18);
 
   const currentUserString = sessionStorage.getItem('currentUser');
-  let userEmail = 'Correo no disponible'; // Default por si no hay correo disponible
+  let userEmail = 'Correo no disponible'; 
   if (currentUserString) {
     const currentUser = JSON.parse(currentUserString);
-    userEmail = currentUser.email || 'Correo no disponible'; // Accede a la propiedad 'email'
+    userEmail = currentUser.email || 'Correo no disponible'; 
   }
   doc.text(` ${userEmail}`, 129, 18);
 

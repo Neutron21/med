@@ -18,12 +18,15 @@ export class S5antPatologicosComponent implements OnInit {
     cirugiasSiNo: false ,
     respiratoriasSiNo: false ,
     dolorCabezaSiNo: false ,
-    malformacionesSiNo: false ,
     neurologicasSiNo: false ,
     malformacionesGeneticasSiNo: false ,
     traumatismosSiNo: false ,
     enfermedadesInfecciosasSiNo: false ,
     reumaticasSiNo: false ,
+    hospitalizacionesPreviasSiNo: false,
+    convulsionesSiNo:false,
+    otrasSiNo: false,
+
   };
   body = {
 	diabetes_p: '',
@@ -50,8 +53,8 @@ export class S5antPatologicosComponent implements OnInit {
   convulsiones_e: '',
   traumatismos_p: '',
   traumatismos_e: '',
-  efermedadesInfecciosas_p:'',
-  efermedadesInfecciosas_e:'',
+  enfermedadesInfecciosas_p:'',
+  enfermedadesInfecciosas_e:'',
   reumaticas_p:'',
   reumaticas_e:'',
   hospitalizacionesPrevias_p:'',
@@ -102,11 +105,11 @@ idPx: number|null = null;
     this.formData.cirugiasSiNo = Boolean(this.body.cirugias_p || this.body.cirugias_e);
     this.formData.respiratoriasSiNo = Boolean(this.body.respiratorias_p || this.body.respiratorias_e);
     this.formData.dolorCabezaSiNo = Boolean(this.body.dolorCabeza_p || this.body.dolorCabeza_e);
-    this.formData.malformacionesCongenitasSiNo = Boolean(this.body.malformacionesGeneticas_p || this.body.malformacionesGeneticas_e);
+    this.formData.malformacionesGeneticasSiNo = Boolean(this.body.malformacionesGeneticas_p || this.body.malformacionesGeneticas_e);
     this.formData.neurologicasSiNo = Boolean(this.body.neurologicas_p || this.body.neurologicas_e);
-    this.formData.convulsionesEpilepsiasSiNo = Boolean(this.body.convulsiones_p || this.body.convulsiones_e);
+    this.formData.convulsionesSiNo = Boolean(this.body.convulsiones_p || this.body.convulsiones_e);
     this.formData.traumatismosSiNo = Boolean(this.body.traumatismos_p || this.body.traumatismos_e);
-    this.formData.enfermedadesInfecciosasSiNo = Boolean(this.body.efermedadesInfecciosas_p || this.body.efermedadesInfecciosas_e);
+    this.formData.enfermedadesInfecciosasSiNo = Boolean(this.body.enfermedadesInfecciosas_p || this.body.enfermedadesInfecciosas_e);
     this.formData.reumaticasSiNo = Boolean(this.body.reumaticas_p || this.body.reumaticas_e);
     this.formData.hospitalizacionesPreviasSiNo = Boolean(this.body.hospitalizacionesPrevias_p || this.body.hospitalizacionesPrevias_e);
     this.formData.otrasSiNo = Boolean(this.body.otras_p || this.body.otras_e);
@@ -169,8 +172,8 @@ idPx: number|null = null;
         this.body.traumatismos_e = '';
         break;
       case 'enfermedadesInfecciosas':
-        this.body.efermedadesInfecciosas_p = '';
-        this.body.efermedadesInfecciosas_e = '';
+        this.body.enfermedadesInfecciosas_p = '';
+        this.body.enfermedadesInfecciosas_e = '';
         break;
       case 'reumaticas':
         this.body.reumaticas_p = '';
