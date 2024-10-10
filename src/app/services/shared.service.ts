@@ -146,6 +146,5 @@ export class SharedDataService {
       sessionStorage.removeItem(key);
     });
     sessionStorage.removeItem('currentSection');
-    // sessionStorage.removeItem('currentPxId');
   }
 }

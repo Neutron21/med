@@ -103,14 +103,14 @@ export class TablePxComponent implements OnInit, AfterViewInit {
     console.log('verTodo',this.sharedDataService.verTodo);
     
     const currSec = sessionStorage.getItem('currentSection');
-    await this.sharedDataService.seccionesCompletadas(currSec);
+    // await this.sharedDataService.seccionesCompletadas(currSec);
 
-    // await Object.keys(this.secciones).forEach(key => {
-    //   console.log(key);
-    //    this.sharedDataService.seccionesCompletadas(key);
-    // });
-    // sessionStorage.removeItem('currentSection');
-    // sessionStorage.removeItem('currentPxId');
+    await Object.keys(this.secciones).forEach(key => {
+      console.log(key);
+       this.sharedDataService.seccionesCompletadas(key);
+    });
+ 
     this.sharedDataService.cleanSessionStorage();
+    sessionStorage.removeItem('currentPxId');
   }
 }
