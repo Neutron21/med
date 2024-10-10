@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UtilService } from '../services/util.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CajaService } from '../services/caja.service';
+declare var bootstrap: any; // Importa bootstrap para manejar el modal
+
 
 @Component({
   selector: 'app-caja',
@@ -12,6 +14,9 @@ export class CajaComponent implements OnInit {
 
   cajaForm!: FormGroup;
   currentDateTime: any;
+  saveError: boolean = false;  // Para saber si hubo error o no
+  loader: boolean = false;  // Para el estado de carga
+
   constructor(
     private utilService: UtilService,
     private cajaService: CajaService,
@@ -99,6 +104,11 @@ export class CajaComponent implements OnInit {
      return (!!this.cajaForm.get('cantidad')?.value &&
         !!this.cajaForm.get('concepto')?.value && !!this.cajaForm.get('tipo')?.value);
 
+  }
+  showModal() {
+    const modalElement = document.getElementById('responseModal');
+    const modal = new bootstrap.Modal(modalElement);
+    modal.show();
   }
   
 }
