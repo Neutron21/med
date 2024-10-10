@@ -23,6 +23,7 @@ export class SharedDataService {
     s9: false
   }
   idPaciente: number|null = null;
+  verTodo: boolean = false;
 
   private seccionActiva = new Subject<Secciones>();
   seccionObservable = this.seccionActiva.asObservable();
@@ -37,6 +38,13 @@ export class SharedDataService {
   cambiarIdPaciente(id: number|null) {
     this.idPacienteSubject.next(id);
     this.idPaciente = id;
+  }
+  private allSectionsVisible = new Subject<boolean>();
+  allSectionsVisibleObs = this.allSectionsVisible.asObservable();
+  
+  updateAllSeccionsVisible(showSeccion: boolean) {
+    this.allSectionsVisible.next(showSeccion);
+    this.verTodo = showSeccion;
   }
   seccionesCompletadas(seccion: string | null) {
     let body = {}
@@ -133,4 +141,11 @@ export class SharedDataService {
          break;
     }
   };
+  cleanSessionStorage(){
+    Object.keys(this.showSeccion).forEach(key => {
+      sessionStorage.removeItem(key);
+    });
+    sessionStorage.removeItem('currentSection');
+    // sessionStorage.removeItem('currentPxId');
+  }
 }

@@ -113,4 +113,7 @@ export class RegistroComponent implements OnInit {
   validateNumberInput(event: KeyboardEvent): boolean {
    return this.utilService.onlyNumbers(event);
   }
+  llenarFicha() {
+    this.showFichaMedica = true;
+  }
 }

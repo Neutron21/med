@@ -22,7 +22,6 @@ export class FichaMedicaComponent implements OnInit {
     s9: false
   };
   
-
   allSectionsVisible = false;
 
   constructor(
@@ -30,16 +29,16 @@ export class FichaMedicaComponent implements OnInit {
 
   ) {
     sessionStorage.setItem('currentSection', 's1');
-
     this.sharedDataService.seccionObservable.subscribe((activeSection: Secciones) => {
-      // console.log('El destino ha cambiado:', activeSection);
-      this.showSection = activeSection;
+    // console.log('El destino ha cambiado:', activeSection);
+    this.showSection = activeSection;
     });
   }
 
   ngOnInit(): void {}
 
   mostrarSeccion(seccion: keyof Secciones) {
+    debugger
     if (this.allSectionsVisible) {
       this.toggleAllSections(); 
     }
@@ -83,9 +82,11 @@ export class FichaMedicaComponent implements OnInit {
         s9: true
       };
     } else {
+      this.sharedDataService.cleanSessionStorage();
       this.mostrarSeccion('s1');
     }
 
     this.sharedDataService.updateSeccion(this.showSection);
   }
+  
 }

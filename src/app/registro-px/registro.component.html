@@ -133,7 +133,7 @@
         <div *ngIf="!loader" class="modal-footer">
           <button *ngIf="saveError" type="button" class="btn btn-danger" data-bs-dismiss="modal">Entendido</button>
           <button *ngIf="!saveError" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Más tarde</button>
-          <button *ngIf="!saveError" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#fichaModal">Llenar Ficha Médica</button>
+          <button *ngIf="!saveError" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#fichaModal" (click)="llenarFicha()">Llenar Ficha Médica</button>
         </div>
       </div>
     </div>
@@ -147,7 +147,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <app-ficha-medica ></app-ficha-medica>
+          <app-ficha-medica *ngIf="showFichaMedica"></app-ficha-medica>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
