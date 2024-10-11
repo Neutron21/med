@@ -13,7 +13,7 @@
                         class="form-control" 
                         id="exampleFormControlInput1" 
                         placeholder="Cantidad" 
-                        (keypress)="validateNumberInput($event)"
+                        (keypress)="onlyNumbers($event)"
                       >
                     </div>
                     <label class="error-label" *ngIf="cajaForm.get('cantidad')?.touched && cajaForm.get('cantidad')?.invalid">Pago requerido</label>

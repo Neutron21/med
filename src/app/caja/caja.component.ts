@@ -14,8 +14,8 @@ export class CajaComponent implements OnInit {
 
   cajaForm!: FormGroup;
   currentDateTime: any;
-  saveError: boolean = false;  // Para saber si hubo error o no
-  loader: boolean = false;  // Para el estado de carga
+  saveError: boolean = false; 
+  loader: boolean = false;
 
 
   constructor(
@@ -56,13 +56,6 @@ export class CajaComponent implements OnInit {
     } else {
       dateTimeControl?.disable();
       dateTimeControl?.setValue(this.getCurrentDateTime());
-    }
-  }
-  validateNumberInput(event: KeyboardEvent) {
-    const isNumber = (event.key >= '0' && event.key <= '9') || event.key === 'Backspace' || event.key === 'Tab' || event.key === 'ArrowLeft' || event.key === 'ArrowRight';
-    
-    if (!isNumber) {
-      event.preventDefault(); // Previene la entrada de caracteres no numéricos
     }
   }
   validateTextInput(event: KeyboardEvent): boolean {

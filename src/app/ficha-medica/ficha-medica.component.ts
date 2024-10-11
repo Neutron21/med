@@ -38,7 +38,7 @@ export class FichaMedicaComponent implements OnInit {
   ngOnInit(): void {}
 
   mostrarSeccion(seccion: keyof Secciones) {
-    debugger
+
     if (this.allSectionsVisible) {
       this.toggleAllSections(); 
     }
@@ -48,7 +48,7 @@ export class FichaMedicaComponent implements OnInit {
     console.log('Ahora estas en')
 
     const nuevaSeccion: Secciones = {
-      s1: false,
+      s1: false,  
       s2: false,
       s3: false,
       s4: false,

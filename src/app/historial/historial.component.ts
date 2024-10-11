@@ -39,32 +39,7 @@ export class HistorialComponent implements OnInit {
     notas: ""
   }
   
-  datosHistorial:Historico []= [
-    {
-      id_paciente: 3,
-      fecha: '2024-09-01',
-      tipo: 'Radiografía',
-      pathFile: 'https://example.com/radiografia1.pdf',
-      notas: 'Fractura leve detectada en el hueso del pie.',
-      fileName: 'radiografia1.pdf'
-    },
-    {
-      id_paciente: 3,
-      fecha: '2024-08-15',
-      tipo: 'Análisis de sangre',
-      pathFile: 'https://example.com/analisis-sangre.pdf',
-      notas: 'Resultados dentro de los rangos normales.',
-      fileName: 'analisis-sangre.pdf'
-    },
-    {
-      id_paciente: 3,
-      fecha: '2024-07-23',
-      tipo: 'Resonancia magnética',
-      pathFile: 'https://example.com/resonancia-magnetica.pdf',
-      notas: 'No se encontraron anomalías significativas.',
-      fileName: 'resonancia-magnetica.pdf'
-    }
-  ];
+  datosHistorial:Historico []= [];
 
   constructor(
     private sanitizer: DomSanitizer,
