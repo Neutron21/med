@@ -23,6 +23,7 @@ import { S8pediatricoAntperinatalesComponent } from './fmContenido/s8pediatrico-
 import { S9observacionesComponent } from './fmContenido/s9observaciones/s9observaciones.component';
 import { FichaMedicaComponent } from './ficha-medica/ficha-medica.component';
 import { HistorialComponent } from './historial/historial.component';
+import { InfoComponent } from './info/info.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { HistorialComponent } from './historial/historial.component';
     S8pediatricoAntperinatalesComponent,
     S9observacionesComponent,
     FichaMedicaComponent,
-    HistorialComponent
+    HistorialComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,
