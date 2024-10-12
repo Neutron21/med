@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { GinecoObs } from 'src/app/models/gineco-obs';
 import { AuthService } from 'src/app/services/auth.service';
 import { PxService } from 'src/app/services/px.service';
 import { SharedDataService } from 'src/app/services/shared.service';
@@ -9,6 +10,7 @@ import { SharedDataService } from 'src/app/services/shared.service';
   styleUrls: ['./s7mujer-ant-gine-obt.component.scss']
 })
 export class S7mujerAntGineObtComponent implements OnInit {
+  
   formData: any = {
     mecarcaSiNo:false,
     dismenorreasSiNo:false,
@@ -20,25 +22,16 @@ export class S7mujerAntGineObtComponent implements OnInit {
     nacidosVivosSiNo:false,
     menopausiaSiNo:false,
   };
-  showTable = false;
-  body = {
-      mecarca_p:'', 
+  showTable = true;
+  body: GinecoObs = {
       mecarca_e:'',
-      dismenorreas_p:'', 
       dismenorreas_e:'',
-      gestaActual_p:'',
       gestaActual_e:'',
-      numeroGestas_p:'', 
       numeroGestas_e:'',
-      numeroPartos_p:'', 
       numeroPartos_e:'',
-      cesareas_p:'', 
       cesareas_e:'',
-      abortos_p:'', 
       abortos_e:'',
-      nacidosVivos_p:'', 
       nacidosVivos_e:'',
-      menopausia_p:'', 
       menopausia_e:''
   }
   idPx: number|null = null;
@@ -57,6 +50,7 @@ export class S7mujerAntGineObtComponent implements OnInit {
   ngOnInit(): void {
     this.checkCurrentPxId();
   }
+
   checkCurrentPxId(): void {
     let currentPxId = sessionStorage.getItem('currentPxId');
     if (!!currentPxId) {
@@ -66,6 +60,7 @@ export class S7mujerAntGineObtComponent implements OnInit {
           console.log('Datos del paciente:', response);
           this.body = response.length > 0 ? response[0] : this.body;
           this.updateFormData();
+          this.validarAlturaAll()
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
@@ -76,63 +71,52 @@ export class S7mujerAntGineObtComponent implements OnInit {
     }
   }
   updateFormData() {
-    this.formData.mecarcaSiNo = Boolean(this.body.mecarca_p || this.body.mecarca_e);
-    this.formData.dismenorreasSiNo = Boolean(this.body.dismenorreas_p || this.body.dismenorreas_e);
-    this.formData.gestaActualSiNo = Boolean(this.body.gestaActual_p || this.body.gestaActual_e);
-    this.formData.numeroGestasSiNo = Boolean(this.body.numeroGestas_p || this.body.numeroGestas_e);
-    this.formData.numeroPartosSiNo = Boolean(this.body.numeroPartos_p || this.body.numeroPartos_e);
-    this.formData.cesareasSiNo = Boolean(this.body.cesareas_p || this.body.cesareas_e);
-    this.formData.abortosSiNo = Boolean(this.body.abortos_p || this.body.abortos_e);
-    this.formData.nacidosVivosSiNo = Boolean(this.body.nacidosVivos_p || this.body.nacidosVivos_e);
-    this.formData.menopausiaSiNo = Boolean(this.body.menopausia_p || this.body.menopausia_e);
+    this.formData.mecarcaSiNo = Boolean( this.body.mecarca_e);
+    this.formData.dismenorreasSiNo = Boolean( this.body.dismenorreas_e);
+    this.formData.gestaActualSiNo = Boolean( this.body.gestaActual_e);
+    this.formData.numeroGestasSiNo = Boolean( this.body.numeroGestas_e);
+    this.formData.numeroPartosSiNo = Boolean( this.body.numeroPartos_e);
+    this.formData.cesareasSiNo = Boolean( this.body.cesareas_e);
+    this.formData.abortosSiNo = Boolean( this.body.abortos_e);
+    this.formData.nacidosVivosSiNo = Boolean( this.body.nacidosVivos_e);
+    this.formData.menopausiaSiNo = Boolean( this.body.menopausia_e);
   }
-
   guardar() {
     sessionStorage.setItem('s7', JSON.stringify(this.body));
   }
 
-  limpiar($event: any,id: string) {
-    console.log($event);
-    switch (id) {
-      case 'mecarca':
-        this.body.mecarca_p = '';
-        this.body.mecarca_e = '';
-        break;
-      case 'dismenorreas':
-        this.body.dismenorreas_p = '';
-        this.body.dismenorreas_e = '';
-        break;
-      case 'gestaActual':
-        this.body.gestaActual_p = '';
-        this.body.gestaActual_e = '';
-        break;
-      case 'numeroGestas':
-        this.body.numeroGestas_p = '';
-        this.body.numeroGestas_e = '';
-        break;
-      case 'numeroPartos':
-        this.body.numeroPartos_p = '';
-        this.body.numeroPartos_e = '';
-        break;
-      case 'cesareas':
-        this.body.cesareas_p = '';
-        this.body.cesareas_e = '';
-        break;
-      case 'abortos':
-        this.body.abortos_p = '';
-        this.body.abortos_e = '';
-        break;
-      case 'nacidosVivos':
-        this.body.nacidosVivos_p = '';
-        this.body.nacidosVivos_e = '';
-        break;
-      case 'menopausia':
-        this.body.menopausia_p = '';
-        this.body.menopausia_e = '';
-        break;
-     
-    }
+  limpiar($event: any,id: keyof GinecoObs) {
+   if (!$event) {
+    this.body[id] = ''
+    this.resetTextareaHeight(id);
+   } else {
+     window.setTimeout(function () { 
+      document.getElementById(id)?.focus();
+    }, 0); 
+   }
     this.guardar();
+  }
+  adjustTextareaHeight(id: string): void {
+    const textarea = document.getElementById(id)
+    textarea!.style.height = 'auto';
+    textarea!.style.height = `${textarea!.scrollHeight}px`;
+  }
+  resetTextareaHeight(id: string): void {
+    const textarea = document.getElementById(id)
+    textarea!.style.height = 'auto';
+  }
+  validarAlturaAll() {
+    setTimeout( () => { 
+      this.adjustTextareaHeight('mecarca_e');
+      this.adjustTextareaHeight('dismenorreas_e');
+      this.adjustTextareaHeight('gestaActual_e');
+      this.adjustTextareaHeight('numeroGestas_e');
+      this.adjustTextareaHeight('numeroPartos_e');
+      this.adjustTextareaHeight('cesareas_e');
+      this.adjustTextareaHeight('abortos_e');
+      this.adjustTextareaHeight('nacidosVivos_e');
+      this.adjustTextareaHeight('menopausia_e');
+    }, 0); 
   }
 
 }
