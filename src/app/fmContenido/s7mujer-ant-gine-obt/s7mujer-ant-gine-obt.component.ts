@@ -97,6 +97,7 @@ export class S7mujerAntGineObtComponent implements OnInit {
     this.guardar();
   }
   adjustTextareaHeight(id: string): void {
+    debugger
     const textarea = document.getElementById(id)
     textarea!.style.height = 'auto';
     textarea!.style.height = `${textarea!.scrollHeight}px`;
