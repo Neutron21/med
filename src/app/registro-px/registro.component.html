@@ -32,11 +32,10 @@
       <div class="col-md-4">
         <label for="estadoCivil" class="form-label">Estado Civil:</label>
         <select id="estadoCivil" name="estadoCivil" class="form-select" required [(ngModel)]="formData.estadoCivil">
-          <option value="">Seleccionar</option>
-          <option value="soltero">Soltero</option>
-          <option value="casado">Casado</option>
-          <option value="divorciado">Divorciado</option>
-          <option value="viudo">Viudo</option>
+          <option selected value="">Seleccione</option>
+          <option *ngFor="let estado of estadoCivilArray" [value]="estado[0]">
+            {{ estado[1] }}
+          </option>
         </select>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { UtilService } from '../services/util.service';
 import { SharedDataService } from '../services/shared.service';
 import { PxService } from '../services/px.service';
 import { Modal } from 'bootstrap';
+import { estadoCivil } from '../catalogos/paciente';
 
 @Component({
   selector: 'app-registro',
@@ -28,6 +29,7 @@ export class RegistroComponent implements OnInit {
   loader: boolean = false;
   showFichaMedica = false;
   showPhoneError: boolean = false;
+  estadoCivilArray = Object.entries(estadoCivil);
 
   constructor(
     private utilService: UtilService,
