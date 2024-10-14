@@ -1,0 +1,29 @@
+
+.btn-transparent {
+  color: #0d6efd;
+  font-size: 1.25rem; /* Aumenta el tamaño de la fuente si lo deseas */
+  border: 1px solid #0d6efd;
+}
+
+.material-icons {
+  margin-left: 8px; /* Espacio entre el texto y el ícono */
+}
+
+
+.info-content {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 10px; /* Margen entre el botón y el contenido desplegable */
+  position: relative; /* Necesario para posicionar el botón de cerrar */
+}
+
+.close-btn {
+  position: absolute; /* Para posicionarlo dentro de la info-content */
+  bottom: 10px; /* Espacio desde la parte inferior */
+  right: 10px; /* Espacio desde el lado derecho */
+  background-color: #dc3545; /* Color de fondo del botón de cerrar */
+  color: white; /* Color del texto del botón de cerrar */
+  border: none; /* Sin borde para el botón de cerrar */
+  border-radius: 5px; /* Bordes redondeados para el botón de cerrar */
+}

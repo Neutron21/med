@@ -57,9 +57,21 @@ export class S3medidasFisicasComponent implements OnInit {
   onlyText(event: KeyboardEvent): boolean {
     return this.utilService.onlyText(event);
   }
-  onlyNumbers(event: KeyboardEvent): void {
-    this.utilService.onlyNumbers(event);
-
+  onlyNumbers(event: KeyboardEvent): boolean {
+    const charCode = event.which ? event.which : event.keyCode;
+  
+    // Permitir teclas especiales como backspace, delete, flechas, etc.
+    if (charCode === 8 || charCode === 46 || charCode === 37 || charCode === 39) {
+      return true;
+    }
+  
+    // Permitir solo números (código ASCII para números: 48-57)
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+      return false;
+    }
+  
+    return true;
   }
   guardar() {
     sessionStorage.setItem('s3', JSON.stringify(this.body));

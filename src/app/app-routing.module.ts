@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro-px/registro.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { CajaComponent } from './caja/caja.component';
+import { InfoComponent } from './info/info.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path:'busqueda', component: BusquedaComponent},
   { path:'caja', component: CajaComponent},
   { path:'login', component: LoginComponent },
+  { path:'info', component: InfoComponent},
   { path:'', component: LoginComponent },
   { path:'**', component: LoginComponent },
 

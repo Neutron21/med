@@ -11,7 +11,7 @@ import { Secciones } from '../models/secciones';
 export class FichaMedicaComponent implements OnInit {
   
   showSection: Secciones = {
-    s1: true,
+    s1: false,
     s2: false,
     s3: false,
     s4: false,
@@ -19,7 +19,8 @@ export class FichaMedicaComponent implements OnInit {
     s6: false,
     s7: false,
     s8: false, 
-    s9: false
+    s9: false,
+    
   };
   
   allSectionsVisible = false;
