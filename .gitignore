@@ -12,6 +12,8 @@ environments
 .firebaserc
 database.rules.json
 firebase.json
+.firebase/
+apphosting.yaml
 # Only exists if Bazel was run
 /bazel-out
 
