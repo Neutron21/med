@@ -69,7 +69,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetModal()"></button>
       </div>
       <div class="modal-body">
-        <app-ficha-medica></app-ficha-medica>
+        <app-ficha-medica *ngIf="showFichaMedica"></app-ficha-medica>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="resetModal()">Cerrar</button>
@@ -86,7 +86,7 @@
         <button type="button" class="btn-close btn-danger" data-bs-dismiss="modal" aria-label="Close" (click)="resetModal()"></button>
       </div>
       <div class="modal-body">
-        <app-historial></app-historial>
+        <app-historial *ngIf="showHistorial"></app-historial>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="resetModal()">Cerrar</button>

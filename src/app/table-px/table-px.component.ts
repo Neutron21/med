@@ -17,6 +17,9 @@ export class TablePxComponent implements OnInit, AfterViewInit {
   showSpiner: boolean = false;
   pxList: any = [];
   nameToShow: string = '';
+  showFichaMedica: boolean = false;
+  showHistorial: boolean = false;
+
   secciones = {
     s1: true,
     s2: false,
@@ -82,6 +85,7 @@ export class TablePxComponent implements OnInit, AfterViewInit {
     const modal = new Modal(modalElement!);
     const pxToShow = this.pxList.find((el: { id: number; }) => idPx == el.id);
     this.nameToShow = `${pxToShow.nombre} ${pxToShow.apellido_p} ${pxToShow.apellido_m}`;
+    this.showFichaMedica = true;
     modal.show();
   }
 
@@ -92,6 +96,7 @@ export class TablePxComponent implements OnInit, AfterViewInit {
     const modal = new Modal(modalElement!);
     const pxToShow = this.pxList.find((el: { id: number; }) => idPx == el.id);
     this.nameToShow = `${pxToShow.nombre} ${pxToShow.apellido_p} ${pxToShow.apellido_m}`;
+    this.showHistorial = true;
     modal.show();
   }
 

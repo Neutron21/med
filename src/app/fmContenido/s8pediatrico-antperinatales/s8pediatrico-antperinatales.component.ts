@@ -67,6 +67,7 @@ export class S8pediatricoAntperinatalesComponent implements OnInit {
           console.log('Datos del paciente:', response);
           this.body = response.length > 0 ? response[0] : this.body;
           this.updateFormData();
+          this.validarAlturaAll();
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
