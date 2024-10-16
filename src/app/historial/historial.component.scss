@@ -127,3 +127,49 @@ iframe {
 .visor-section {
   margin-top: 2rem;
 }
+/* Estilo general del modal */
+.modal-content {
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+/* Encabezado del modal */
+.modal-header {
+  background-color: #007bff; /* Color de fondo del encabezado */
+  color: white; /* Color del texto */
+}
+
+/* Título del modal */
+.modal-title {
+  font-weight: bold; /* Negrita */
+}
+
+/* Cuerpo del modal */
+.modal-body {
+  font-size: 16px; /* Tamaño de fuente */
+  color: #333; /* Color del texto */
+}
+
+/* Pie del modal */
+.modal-footer {
+  justify-content: center; /* Centrar los botones en el pie */
+}
+
+/* Estilo del botón de cerrar */
+.btn-close {
+  background: transparent; /* Fondo transparente */
+  border: none; /* Sin borde */
+}
+
+/* Estilo para el botón de cerrar */
+.btn-secondary {
+  background-color: #6c757d; /* Color de fondo */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  padding: 10px 20px; /* Relleno */
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268; /* Color al pasar el ratón */
+  color: white; /* Color del texto al pasar el ratón */
+}
