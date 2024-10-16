@@ -6,7 +6,6 @@ import { SharedDataService } from '../services/shared.service';
 import { servicios } from '../catalogos/servicios';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Historico } from '../models/historico';
-import { Modal } from 'bootstrap';
 
 
 @Component({

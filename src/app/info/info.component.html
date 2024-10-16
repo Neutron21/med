@@ -4,16 +4,14 @@
       <div class="d-grid">
         <button type="button" class="btn btn-transparent w-100 text-start d-flex justify-content-between align-items-center" (click)="toggleInfo(i)">
           <span>{{ info.title }}</span>
-          <span class="material-icons">arrow_drop_down</span> <!-- Icono de flecha hacia abajo -->
+          <span class="material-icons">arrow_drop_down</span> 
         </button>
       </div>
       <div *ngIf="activeIndex === i" class="info-content p-3 border mt-2">
         <div class="content-text mt-2">
-          <!-- Usamos innerHTML para que Angular interprete las etiquetas HTML dentro de content -->
           <div [innerHTML]="info.content"></div>
           <div>
-            <img [src]="info.imgPath"/>
-          </div>
+            <img [src]="info.imgPath" alt="GIF" class="gif-small mt-3"></div>
         </div>
         <button class="btn btn-sm btn-danger close-btn" (click)="toggleInfo(i)">X</button>
       </div>

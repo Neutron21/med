@@ -27,3 +27,8 @@
   border: none; /* Sin borde para el botón de cerrar */
   border-radius: 5px; /* Bordes redondeados para el botón de cerrar */
 }
+.gif-small {
+  width: 100%; /* Ajusta el ancho según sea necesario */
+  height: auto; /* Mantener las proporciones del GIF */
+}
+
