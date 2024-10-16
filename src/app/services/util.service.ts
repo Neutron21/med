@@ -32,7 +32,16 @@ export class UtilService {
             }
             return true;
       }
-     
+      // ESTILOS TEXTAREA
+      adjustTextAreaH(id: string): void {
+        const textarea = document.getElementById(id)
+        textarea!.style.height = 'auto';
+        textarea!.style.height = `${textarea!.scrollHeight}px`;
+      }
+      resetTextareaH(id: string): void {
+        const textarea = document.getElementById(id)
+        textarea!.style.height = 'auto';
+      }
       
 }
 

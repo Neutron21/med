@@ -1,8 +1,8 @@
-import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { GinecoObs } from 'src/app/models/gineco-obs';
 import { AuthService } from 'src/app/services/auth.service';
-import { PxService } from 'src/app/services/px.service';
 import { SharedDataService } from 'src/app/services/shared.service';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-s7mujer-ant-gine-obt',
@@ -38,7 +38,7 @@ export class S7mujerAntGineObtComponent implements OnInit {
 
 
   constructor( 
-    private pxService: PxService,
+    private utilService: UtilService,
     private authService: AuthService,    
     private sharedDataService: SharedDataService
   ) { 
@@ -96,27 +96,24 @@ export class S7mujerAntGineObtComponent implements OnInit {
    }
     this.guardar();
   }
+  // TEXT AREA AUTO AJUSTE
   adjustTextareaHeight(id: string): void {
-    debugger
-    const textarea = document.getElementById(id)
-    textarea!.style.height = 'auto';
-    textarea!.style.height = `${textarea!.scrollHeight}px`;
+    this.utilService.adjustTextAreaH(id);
   }
   resetTextareaHeight(id: string): void {
-    const textarea = document.getElementById(id)
-    textarea!.style.height = 'auto';
+    this.utilService.resetTextareaH(id);
   }
   validarAlturaAll() {
     setTimeout( () => { 
-      this.adjustTextareaHeight('mecarca_e');
-      this.adjustTextareaHeight('dismenorreas_e');
-      this.adjustTextareaHeight('gestaActual_e');
-      this.adjustTextareaHeight('numeroGestas_e');
-      this.adjustTextareaHeight('numeroPartos_e');
-      this.adjustTextareaHeight('cesareas_e');
-      this.adjustTextareaHeight('abortos_e');
-      this.adjustTextareaHeight('nacidosVivos_e');
-      this.adjustTextareaHeight('menopausia_e');
+      this.utilService.adjustTextAreaH('mecarca_e');
+      this.utilService.adjustTextAreaH('dismenorreas_e');
+      this.utilService.adjustTextAreaH('gestaActual_e');
+      this.utilService.adjustTextAreaH('numeroGestas_e');
+      this.utilService.adjustTextAreaH('numeroPartos_e');
+      this.utilService.adjustTextAreaH('cesareas_e');
+      this.utilService.adjustTextAreaH('abortos_e');
+      this.utilService.adjustTextAreaH('nacidosVivos_e');
+      this.utilService.adjustTextAreaH('menopausia_e');
     }, 0); 
   }
 
