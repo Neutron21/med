@@ -6,7 +6,9 @@ import { SharedDataService } from '../services/shared.service';
 import { servicios } from '../catalogos/servicios';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Historico } from '../models/historico';
-import { Modal } from 'bootstrap';
+declare var bootstrap: any; // Importa bootstrap para manejar el modal
+
+
 
 
 @Component({
@@ -90,32 +92,46 @@ export class HistorialComponent implements OnInit {
   }
 
   addVisita() {
-    this.spinnerModal = true; 
-    
+    this.spinnerModal = true;
+  
+    // Validar si hay un archivo seleccionado
+    if (!this.filePx) {
+      this.showError = true; // Muestra el mensaje de error
+      this.resultText = '¡Seleccionar archivo!';
+      this.spinnerModal = false;
+      return; // No continuar si no hay archivo
+    }
+  
     const formData = new FormData();
-    const idPx = btoa(sessionStorage.getItem('currentPxId') + ''); 
+    const idPx = btoa(sessionStorage.getItem('currentPxId') + '');
     formData.append('fecha', this.visitaForm.get('fecha')?.value);
     formData.append('tipo', this.visitaForm.get('tipo')?.value);
     formData.append('notas', this.visitaForm.get('comentario')?.value);
     formData.append('directorio', idPx);
-    const archivo = this.filePx; 
-    if (archivo) {
-        formData.append('archivo', archivo);
-    }
-
+    const archivo = this.filePx;
+  
+    formData.append('archivo', archivo);
+  
     this.pxService.subirVisita(formData).subscribe(
-        (response) => {
-            console.log('Éxito!', response);
-            this.spinnerModal = false; 
-            this.reset();
-            this.getHistorial();
-        },
-        (error) => {
-            this.showError = true;
-            console.error('Error al registrar visita', error);
-            this.resultText = 'Error al registrar visita'
-            this.spinnerModal = false; 
+      (response) => {
+        console.log('Éxito!', response);
+        this.spinnerModal = false;
+        this.reset();
+        this.getHistorial();
+  
+        // Mostrar el modal de éxito al cargar el archivo exitosamente
+        const modalElement = document.getElementById('successModal');
+        if (modalElement) {
+          const modal = new bootstrap.Modal(modalElement);
+          modal.show(); // Abre el modal
         }
+      },
+      (error) => {
+        this.showError = true;
+        console.error('Error al registrar visita', error);
+        this.resultText = 'Error al registrar visita';
+        this.spinnerModal = false;
+      }
     );
   };
   
@@ -155,5 +171,6 @@ export class HistorialComponent implements OnInit {
     this.showError = false;
   }
   
+
   
 }
