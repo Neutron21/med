@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Pediatrico } from 'src/app/models/pediatrico';
 import { AuthService } from 'src/app/services/auth.service';
-import { PxService } from 'src/app/services/px.service';
 import { SharedDataService } from 'src/app/services/shared.service';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-s8pediatrico-antperinatales',
@@ -45,7 +45,7 @@ export class S8pediatricoAntperinatalesComponent implements OnInit {
   idPx: number|null = null;
 
   constructor( 
-    private pxService: PxService,
+    private utilService: UtilService,
     private authService: AuthService,    
     private sharedDataService: SharedDataService
   ) { 
@@ -109,31 +109,28 @@ export class S8pediatricoAntperinatalesComponent implements OnInit {
     }
      this.guardar();
    }
+    // TEXT AREA AUTO AJUSTE
    adjustTextareaHeight(id: string): void {
-    debugger
-    const textarea = document.getElementById(id)
-    textarea!.style.height = 'auto';
-    textarea!.style.height = `${textarea!.scrollHeight}px`;
+    this.utilService.adjustTextAreaH(id);
   }
   resetTextareaHeight(id: string): void {
-    const textarea = document.getElementById(id)
-    textarea!.style.height = 'auto';
+    this.utilService.resetTextareaH(id);
   }
   validarAlturaAll() {
     setTimeout( () => { 
-      this.adjustTextareaHeight('numEmbarazo_e');
-      this.adjustTextareaHeight('embarazoMultiple_e');
-      this.adjustTextareaHeight('alimentacionEmbarazo_e');
-      this.adjustTextareaHeight('controlPerinatal_e');
-      this.adjustTextareaHeight('vidaUterina_e');
-      this.adjustTextareaHeight('partoCesarea_e');
-      this.adjustTextareaHeight('problemasEmbarazoParto_e');
-      this.adjustTextareaHeight('traumatismoEmbarazoParto_e');
-      this.adjustTextareaHeight('maniobrasReanimacion_e');
-      this.adjustTextareaHeight('incubadora_e');
-      this.adjustTextareaHeight('pesoMedida_e');
-      this.adjustTextareaHeight('tamizMetabolico_e');
-      this.adjustTextareaHeight('PuntajeAPGAR_e');
+      this.utilService.adjustTextAreaH('numEmbarazo_e');
+      this.utilService.adjustTextAreaH('embarazoMultiple_e');
+      this.utilService.adjustTextAreaH('alimentacionEmbarazo_e');
+      this.utilService.adjustTextAreaH('controlPerinatal_e');
+      this.utilService.adjustTextAreaH('vidaUterina_e');
+      this.utilService.adjustTextAreaH('partoCesarea_e');
+      this.utilService.adjustTextAreaH('problemasEmbarazoParto_e');
+      this.utilService.adjustTextAreaH('traumatismoEmbarazoParto_e');
+      this.utilService.adjustTextAreaH('maniobrasReanimacion_e');
+      this.utilService.adjustTextAreaH('incubadora_e');
+      this.utilService.adjustTextAreaH('pesoMedida_e');
+      this.utilService.adjustTextAreaH('tamizMetabolico_e');
+      this.utilService.adjustTextAreaH('PuntajeAPGAR_e');
     }, 0); 
   }
 }

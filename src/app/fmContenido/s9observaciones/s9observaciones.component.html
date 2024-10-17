@@ -1,25 +1,45 @@
 <div class="container">
   <p class="me-3 text-center fw-bold">Motivo de consulta</p>
   <div class="d-flex align-items-center mb-3">
-    <input type="text" class="form-control" [(ngModel)]="body.motivoConsulta" name="motivoConsulta"  (ngModelChange)="guardar()">
+    <textarea id='motivoConsulta' rows="1"
+              style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
+              class="form-control"
+              [(ngModel)]="body.motivoConsulta"
+              (input)="adjustTextareaHeight('motivoConsulta')" (ngModelChange)="guardar()"></textarea>
   </div>
   <p class="me-3 text-center fw-bold">Diagnóstico médico</p>
   <div class="d-flex align-items-center mb-3">
-    <input type="text" class="form-control" [(ngModel)]="body.diagnosticoMedico" name="diagnosticoMedico" (ngModelChange)="guardar()">
+    <textarea id='diagnosticoMedico' rows="1"
+              style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
+              class="form-control"
+              [(ngModel)]="body.diagnosticoMedico"
+              (input)="adjustTextareaHeight('diagnosticoMedico')" (ngModelChange)="guardar()"></textarea>
   </div>
 
   <p class="me-3 text-center fw-bold">Mecanismo de lesión</p>
   <div class="d-flex align-items-center mb-3">
-    <input type="text" class="form-control" [(ngModel)]="body.mecanismoLesion" name="mecanismoLesion" (ngModelChange)="guardar()">
+    <textarea id='mecanismoLesion' rows="1"
+              style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
+              class="form-control"
+              [(ngModel)]="body.mecanismoLesion"
+              (input)="adjustTextareaHeight('mecanismoLesion')" (ngModelChange)="guardar()"></textarea>
   </div>
 
   <p class="me-3 text-center fw-bold">Tratamientos previos</p>
   <div class="d-flex align-items-center mb-3">
-    <input type="text" class="form-control" [(ngModel)]="body.tratamientosPrevios" name="tratamientosPrevios" (ngModelChange)="guardar()">
+    <textarea id='tratamientosPrevios' rows="1"
+              style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
+              class="form-control"
+              [(ngModel)]="body.tratamientosPrevios"
+              (input)="adjustTextareaHeight('tratamientosPrevios')" (ngModelChange)="guardar()"></textarea>
   </div>
 
   <p class="me-3 text-center fw-bold">Observaciones</p>
   <div class="d-flex align-items-center mb-3">
-    <input type="text" class="form-control" [(ngModel)]="body.observaciones" name="observaciones" (ngModelChange)="guardar()">
+    <textarea id='observaciones' rows="1"
+              style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
+              class="form-control"
+              [(ngModel)]="body.observaciones"
+              (input)="adjustTextareaHeight('observaciones')" (ngModelChange)="guardar()"></textarea>
   </div>
 </div>
