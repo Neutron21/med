@@ -55,6 +55,19 @@ export class InfoComponent {
         `,
         imgPath: '../../assets/gifts/modalFichaMedica.gif' 
     },
+    { 
+      title: 'Historial', 
+      content: `
+        <ol>
+          <li>En el buscador tenemos acceso al Historial.</li>
+          <li>En el Historial podras agregar una visita ,  algun archivo o nota de tu paciente.</li>
+          <li>Podras ingresar la fecha , el tipo de archivo y poder subir alguna imagen o pdf.</li>
+          <li>Despues de a ver selecionado algun tipo y archivo (esto es opcionales) y llenar las notas 
+          se mostrara una ventana donde indique que se subio la informacion correctamente.</li>
+        </ol>
+        `,
+        imgPath: '../../assets/gifts/historial.gif' 
+    },
 
 ];
 
