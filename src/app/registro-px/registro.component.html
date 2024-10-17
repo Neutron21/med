@@ -3,26 +3,26 @@
   <form (ngSubmit)="onSubmit()" class="form-border">
     <div class="row mb-3">
       <div class="col-md-4">
-        <label for="nombre" class="form-label">Nombre:</label>
+        <label for="nombre" class="form-label">Nombre: <span class="text-danger">*</span></label>
         <input type="text" class="form-control" id="nombre" name="nombre" required [(ngModel)]="formData.nombre" (keypress)="onlyText($event)">
       </div>
       <div class="col-md-4">
-        <label for="apellidoP" class="form-label">Apellido P:</label>
+        <label for="apellidoP" class="form-label">Apellido P: <span class="text-danger">*</span></label>
         <input type="text" class="form-control" id="apellidoP" name="apellidoP" required [(ngModel)]="formData.apellidoP" (keypress)="onlyText($event)">
       </div>
       <div class="col-md-4">
-        <label for="apellidoM" class="form-label">Apellido M:</label>
+        <label for="apellidoM" class="form-label">Apellido M: <span class="text-danger">*</span></label>
         <input type="text" class="form-control" id="apellidoM" name="apellidoM" required [(ngModel)]="formData.apellidoM" (keypress)="onlyText($event)">
       </div>
     </div>
-    
+  
     <div class="row mb-3">
       <div class="col-md-4">
-        <label for="fechaNac" class="form-label">Fecha Nac:</label>
+        <label for="fechaNac" class="form-label">Fecha de Nacimiento: <span class="text-danger">*</span></label>
         <input type="date" class="form-control" id="fechaNac" name="fechaNac" required [(ngModel)]="formData.fechaNac">
       </div>
       <div class="col-md-4">
-        <label for="sexo" class="form-label">Sexo:</label>
+        <label for="sexo" class="form-label">Sexo: <span class="text-danger">*</span></label>
         <select id="sexo" name="sexo" class="form-select" required [(ngModel)]="formData.sexo">
           <option value="">Seleccionar</option>
           <option value="masculino">Masculino</option>
@@ -30,7 +30,7 @@
         </select>
       </div>
       <div class="col-md-4">
-        <label for="estadoCivil" class="form-label">Estado Civil:</label>
+        <label for="estadoCivil" class="form-label">Estado Civil: <span class="text-danger">*</span></label>
         <select id="estadoCivil" name="estadoCivil" class="form-select" required [(ngModel)]="formData.estadoCivil">
           <option selected value="">Seleccione</option>
           <option *ngFor="let estado of estadoCivilArray" [value]="estado[0]">
@@ -39,15 +39,11 @@
         </select>
       </div>
     </div>
+  
     <div class="row mb-3">
       <div class="col-md-4">
-        <label for="tipoSangre" class="form-label">Tipo Sangre:</label>
-        <select 
-          class="form-select" 
-          id="tipoSangre" 
-          name="tipoSangre" 
-          required 
-          [(ngModel)]="formData.tipoSangre">
+        <label for="tipoSangre" class="form-label">Tipo Sangre: <span class="text-danger">*</span></label>
+        <select class="form-select" id="tipoSangre" name="tipoSangre" required [(ngModel)]="formData.tipoSangre">
           <option value="">Seleccionar</option>
           <option value="A+">A+</option>
           <option value="A-">A-</option>
@@ -59,9 +55,9 @@
           <option value="O-">O-</option>
         </select>
       </div>  
-
+  
       <div class="col-md-4">
-        <label for="telefono" class="form-label">Teléfono:</label>
+        <label for="telefono" class="form-label">Teléfono: <span class="text-danger">*</span></label>
         <input 
           type="text" 
           class="form-control" 
@@ -74,11 +70,11 @@
           (blur)="validatePhoneNumber()" 
           (focus)="resetPhoneError()">
         <div *ngIf="showPhoneError" class="text-danger">
-          El teléfono debe ser a 10 dìgitos
+          El teléfono debe ser a 10 dígitos
         </div>
       </div>
       <div class="col-md-4">
-        <label for="email" class="form-label">Email:</label>
+        <label for="email" class="form-label">Email: <span class="text-danger">*</span></label>
         <input 
           type="email" 
           class="form-control" 
@@ -93,6 +89,7 @@
         </div>
       </div>
     </div>
+  
     <div class="row">
       <div class="col text-end">
         <button type="submit" class="btn btn-primary">
@@ -100,9 +97,15 @@
         </button>
       </div>
     </div>
+  
     <div *ngIf="showWarning" class="alert alert-danger mt-3">
       No se puede continuar sin que todos los campos estén llenos.
     </div>
+  
+    <p class="text-muted mt-3">
+      <span class="text-danger">*</span> 
+      <strong>Los campos marcados con asterisco son obligatorios</strong>
+    </p>
   </form>
   
   <div class="modal fade" id="responseModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

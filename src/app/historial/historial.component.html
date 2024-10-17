@@ -1,60 +1,67 @@
-
-  <form *ngIf="!spinnerModal" class="form-border" [ngClass]="{'no-padding': !addVisit}" [formGroup]="visitaForm" (ngSubmit)="addVisita()" enctype="multipart/form-data">
-    <div *ngIf="addVisit">
-      <div class="row">
-        <div class="col">
-          <div class="mb-3">
-            <label for="fecha" class="form-label">Fecha</label>
-            <input formControlName="fecha" type="date" class="form-control" id="fecha">
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="mb-3">
-            <label for="tipo" class="form-label">Tipo</label>
-            <select formControlName="tipo" class="form-select" aria-label="Default select example">
-              <option selected value="null">Seleccione</option>
-              <option *ngFor="let servicio of servicios" [value]="servicio.name">
-                {{ servicio.name }}
-              </option>
-            </select>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="mb-3">
-            <label for="filePx" class="form-label custom-margin">Archivo</label>
-            <input type="file" id="fichero-tarifas" class="form-control" (change)="onFileSelect($event)">
-          </div>
+<form *ngIf="!spinnerModal" class="form-border" [ngClass]="{'no-padding': !addVisit}" [formGroup]="visitaForm" (ngSubmit)="addVisita()" enctype="multipart/form-data">
+  <div *ngIf="addVisit">
+    <div class="row">
+      <div class="col">
+        <div class="mb-3">
+          <label for="fecha" class="form-label">Fecha <span class="text-danger">*</span></label>
+          <input formControlName="fecha" type="date" class="form-control" id="fecha">
         </div>
       </div>
 
-      <div class="row">
-        <div class="col">
-          <div class="mb-3">
-            <label for="comentario" class="form-label">Notas</label>
-            <textarea formControlName="comentario" type="text" class="form-control" id="comentario"></textarea>
-          </div>
+      <div class="col">
+        <div class="mb-3">
+          <label for="tipo" class="form-label">Tipo <span class="text-danger">*</span></label>
+          <select formControlName="tipo" class="form-select" aria-label="Default select example">
+            <option selected value="null">Seleccione</option>
+            <option *ngFor="let servicio of servicios" [value]="servicio.name">
+              {{ servicio.name }}
+            </option>
+          </select>
         </div>
+      </div>
 
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <button class="btn btn-danger me-md-2" type="button" (click)="agregarVisita()">Cancelar</button>
-          <button type="button" class="btn btn-primary" (click)="addVisita()">
-            Agregar 
-          </button>            
+      <div class="col">
+        <div class="mb-3">
+          <label for="filePx" class="form-label custom-margin">Archivo</label>
+          <input type="file" id="fichero-tarifas" class="form-control" (change)="onFileSelect($event)">
         </div>
       </div>
     </div>
-    <div class="d-grid d-md-flex justify-content-md-end" *ngIf="!addVisit">
-      <button class="btn btn-transparent" type="button" (click)="agregarVisita()">Agregar visita</button>
+
+    <div class="row">
+      <div class="col">
+        <div class="mb-3">
+          <label for="comentario" class="form-label">Notas <span class="text-danger">*</span></label>
+          <textarea formControlName="comentario" type="text" class="form-control" id="comentario"></textarea>
+        </div>
+      </div>
+
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-danger me-md-2" type="button" (click)="agregarVisita()">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="addVisita()">
+          Agregar 
+        </button>            
+      </div>
     </div>
-  </form>
+
+    <p class="text-muted mt-3">
+      <span class="text-danger">*</span> 
+      <strong>Los campos marcados con asterisco son obligatorios</strong>
+    </p>  
+  </div>
+
+  <div class="d-grid d-md-flex justify-content-md-end" *ngIf="!addVisit">
+    <button class="btn btn-transparent" type="button" (click)="agregarVisita()">Agregar visita</button>
+  </div>
+</form>
+
+
 
   <div class="modal fade" id="successModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <div class="w-100 text-center"> <!-- Div contenedor centrado -->
+          <div class="w-100 text-center"> 
               <h5 class="modal-title" id="successModalLabel">¡El archivo se ha cargado exitosamente!</h5>
           </div>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
