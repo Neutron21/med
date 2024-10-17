@@ -24,6 +24,7 @@ export class SharedDataService {
   }
   idPaciente: number|null = null;
   verTodo: boolean = false;
+  // cleanHistorial: boolean = false;
 
   private seccionActiva = new Subject<Secciones>();
   seccionObservable = this.seccionActiva.asObservable();
@@ -45,6 +46,14 @@ export class SharedDataService {
   updateAllSeccionsVisible(showSeccion: boolean) {
     this.allSectionsVisible.next(showSeccion);
     this.verTodo = showSeccion;
+  }
+  //Observable para limpiar el historial
+  private resetHistorial = new Subject<boolean>();
+  resetHistorialObs = this.resetHistorial.asObservable();
+  
+  cleanHistorial(showSeccion: boolean) {
+    this.resetHistorial.next(showSeccion);
+    // this.cleanHistorial = showSeccion;
   }
   seccionesCompletadas(seccion: string | null) {
     let body = {}

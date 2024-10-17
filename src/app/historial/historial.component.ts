@@ -58,6 +58,11 @@ export class HistorialComponent implements OnInit {
     this.sharedDataService.idPacienteObservable.subscribe(id => {
       this.getHistorial();
     });
+    this.sharedDataService.resetHistorialObs.subscribe(reset => {
+      if (reset) { 
+        this.resetFileObj();
+      }
+    })
   }
 
   ngOnInit(): void {
@@ -170,7 +175,14 @@ export class HistorialComponent implements OnInit {
   closeError() {
     this.showError = false;
   }
-  
+  resetFileObj() {
+    this.file = {
+      isPDF : false,
+      nameFile : 'Ningún archivo seleccionado.',
+      notas: ""
+    }
+    this.urlImage = null;
+  }  
 
   
 }

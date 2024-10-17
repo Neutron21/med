@@ -11,8 +11,6 @@ export class UtilService {
     
     onlyNumbers(event: KeyboardEvent){
         const charCode = event.which ? event.which : event.keyCode;
-        console.log(charCode);
-        
         if (charCode < 48 || charCode > 57) {
             // event.preventDefault();
             return false;

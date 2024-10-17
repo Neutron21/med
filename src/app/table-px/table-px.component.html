@@ -83,13 +83,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="historialBackdropLabel">Historial - {{nameToShow}}</h5>
-        <button type="button" class="btn-close btn-danger" data-bs-dismiss="modal" aria-label="Close" (click)="resetModal()"></button>
+        <button type="button" class="btn-close btn-danger" data-bs-dismiss="modal" aria-label="Close" (click)="resetHistorial()"></button>
       </div>
       <div class="modal-body">
         <app-historial *ngIf="showHistorial"></app-historial>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="resetModal()">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="resetHistorial()">Cerrar</button>
       </div>
     </div>
   </div>
