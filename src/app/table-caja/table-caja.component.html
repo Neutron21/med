@@ -55,7 +55,17 @@
           <td class="text-center">{{formatDate(pago.dateTime)}}</td>
           <td class="text-center">${{pago.cantidad}}</td>
           <td class="text-center">{{formatTipo(pago.tipo)}}</td>
-          <td class="text-center">{{formatConcepto(pago.concepto)}}</td>
+          <td class="text-center">
+            <ng-container *ngIf="pago.comentarios; else noComentarios">
+              <details>
+                <summary>{{formatConcepto(pago.concepto)}}</summary>
+                <p>{{pago.comentarios}}</p>
+              </details>
+            </ng-container>
+            <ng-template #noComentarios>
+              {{formatConcepto(pago.concepto)}}
+            </ng-template>
+          </td>
         </tr>
       </tbody>
     </table>

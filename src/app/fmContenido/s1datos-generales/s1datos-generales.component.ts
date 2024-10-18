@@ -12,7 +12,7 @@ import { UtilService } from 'src/app/services/util.service';
 })
 export class S1datosGeneralesComponent implements OnInit {
   body = {
-    id_paciente:0,
+    id_paciente: 0,
     escolaridad: "",
     ocupacion: "",
     religion: "",
@@ -23,8 +23,21 @@ export class S1datosGeneralesComponent implements OnInit {
     lugar_de_recidencia: "",
     remision: ""
   };
+
+  // Nuevo objeto para almacenar la información del paciente
+  formData = {
+    nombre: "",
+    apellidoP: "",
+    apellidoM: "",
+    fechaNac: "",
+    sexo: "",
+    estadoCivil: "",
+    tipoSangre: "",
+    telefono: ""
+  };
+
   showPhoneError: boolean = false;
-  idPx: number|null = null;
+  idPx: number | null = null;
 
   constructor(
     private utilService: UtilService,
@@ -39,15 +52,34 @@ export class S1datosGeneralesComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkCurrentPxId();
+    const storedData = sessionStorage.getItem('s1');
+    if (storedData) {
+      this.formData = JSON.parse(storedData);
+    } else {
+      console.warn('No hay datos en sessionStorage para el paciente.');
+    }
   }
+
   checkCurrentPxId(): void {
     let currentPxId = sessionStorage.getItem('currentPxId');
     if (!!currentPxId) {
       console.log('ID actual del paciente', currentPxId);
-            this.authService.getById('datosGeneralesFm','id_paciente', currentPxId).subscribe(
+      this.authService.getById('datosGeneralesFm', 'id_paciente', currentPxId).subscribe(
         (response) => {
           console.log('Datos del paciente:', response);
-          this.body =  response.length > 0 ? response [0] : this.body;
+          if (response.length > 0) {
+            this.body = response[0];
+
+            // Asignar los campos adicionales a formData
+            this.formData.nombre = response[0].nombre; // Asegúrate de que tu API devuelva estos campos
+            this.formData.apellidoP = response[0].apellidoP;
+            this.formData.apellidoM = response[0].apellidoM;
+            this.formData.fechaNac = response[0].fechaNac;
+            this.formData.sexo = response[0].sexo;
+            this.formData.estadoCivil = response[0].estadoCivil;
+            this.formData.tipoSangre = response[0].tipoSangre;
+            this.formData.telefono = response[0].telefono; // O el campo correspondiente
+          }
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
@@ -57,6 +89,7 @@ export class S1datosGeneralesComponent implements OnInit {
       console.warn('No se encontró el ID del paciente en sessionStorage');
     }
   }
+
   onlyText(event: KeyboardEvent): boolean {
     return this.utilService.onlyText(event);
   }
@@ -76,5 +109,4 @@ export class S1datosGeneralesComponent implements OnInit {
       this.showPhoneError = false;
     }
   }
-
 }

@@ -63,3 +63,37 @@
     </div>
   </form>
 </div>
+
+<hr class="line-tenue" />
+
+<div class="container">
+  <h4>Datos del Paciente</h4>
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <label class="form-label">Nombre:</label>
+      <p>{{ formData.nombre }} {{ formData.apellidoP }} {{ formData.apellidoM }}</p>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Fecha de Nacimiento:</label>
+      <p>{{ formData.fechaNac | date }}</p>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Sexo:</label>
+      <p>{{ formData.sexo }}</p>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <label class="form-label">Estado Civil:</label>
+      <p>{{ formData.estadoCivil }}</p>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Tipo de Sangre:</label>
+      <p>{{ formData.tipoSangre }}</p>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Teléfono:</label>
+      <p>{{ formData.telefono }}</p>
+    </div>
+  </div>
+</div>

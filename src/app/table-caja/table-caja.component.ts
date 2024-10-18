@@ -29,24 +29,35 @@ export class TableCajaComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   buscarPago() {
     this.showSpiner = true;
     const desdeControl = this.buscarPagoForm.get('desde');
     const hastaControl = this.buscarPagoForm.get('hasta');
     const tipoControl = this.buscarPagoForm.get('tipo');
+  
     if (!!desdeControl?.value || !!hastaControl?.value) {
       this.cajaService.getPays(this.buscarPagoForm.value).subscribe(
         (response) => {
-          console.log('Pagos:', response);
-          this.pagos = response;
-          this.calcularTotalPagos(); // Llamar a la función que calcula el total
-          this.showSpiner = false;
-        },(error) => {
+          this.pagos = response.map((pago: { comentarios: any; }) => ({
+            ...pago,
+            comentarios: pago.comentarios || null 
+          }));
+          this.calcularTotalPagos();
+        },
+        (error) => {
           console.error('Error al obtener los datos del usuario:', error);
+        },
+        () => {
           this.showSpiner = false;
-        });
+        }
+      );
+    } else {
+      this.showSpiner = false;
     }
   }
+  
+
   
   formatDate(pagoFecha: string) {
     const [fechaParte, horaParte] = pagoFecha.split(' ');
@@ -87,7 +98,7 @@ descargarPDF() {
     this.formatDate(pago.dateTime),
     `$${pago.cantidad.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
     this.formatTipo(pago.tipo),
-    this.formatConcepto(pago.concepto)
+    this.formatConcepto(pago.concepto),
   ]);
 
   autoTable(doc, {

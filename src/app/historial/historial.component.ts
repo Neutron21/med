@@ -87,11 +87,30 @@ export class HistorialComponent implements OnInit {
 
   onFileSelect(event: any) {
     const file = event.target.files[0];
+    const allowedExtensions = [
+      'jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp', // Imágenes
+      'pdf', // PDF
+      'doc', 'docx', // Word
+      'ppt', 'pptx', // PowerPoint
+      'xls', 'xlsx', // Excel
+      'zip' // ZIP
+    ];
+  
     if (file) {
-      this.filePx = file;
+      const fileExtension = file.name.split('.').pop().toLowerCase();
+      
+      if (allowedExtensions.includes(fileExtension)) {
+        // Archivo permitido
+        this.filePx = file;
+        console.log('Archivo permitido:', file.name);
+      } else {
+        // Archivo no permitido
+        console.error('Archivo no permitido. Extensión:', fileExtension);
+        alert('Solo se permiten archivos de tipo imagen, PDF, Word, PowerPoint, Excel o ZIP.');
+      }
     }
-  }
-
+  };
+  
   agregarVisita() {
     this.addVisit = !this.addVisit;
   }
