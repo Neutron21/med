@@ -34,6 +34,7 @@ export class HistorialComponent implements OnInit {
   hasFile : any = false;
   resultText: string = 'Cargando...';
   showError: boolean = false;
+  faltanCampos: boolean = false;
 
   file = {
     isPDF : false,
@@ -60,22 +61,29 @@ export class HistorialComponent implements OnInit {
     });
     this.sharedDataService.resetHistorialObs.subscribe(reset => {
       if (reset) { 
-        this.resetFileObj();
+        this.reset();
       }
     })
   }
 
   ngOnInit(): void {
     this.getHistorial();
-    // this.openSuccessModal()
   }
   reset() {
     this.visitaForm.reset();
     this.selectedFile = null; 
+    this.visitaForm.get('fecha')?.setValue(this.formatDate());
     const fileInput = document.getElementById('fichero-tarifas') as HTMLInputElement;
     if (fileInput) {
         fileInput.value = ''; 
     }
+    this.faltanCampos = false;
+    this.file = {
+      isPDF : false,
+      nameFile : 'Ningún archivo seleccionado.',
+      notas: ""
+    }
+    this.urlImage = null;
   }
   formatDate(): string {
     const date = new Date();
@@ -89,22 +97,20 @@ export class HistorialComponent implements OnInit {
     const file = event.target.files[0];
     const allowedExtensions = [
       'jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp', // Imágenes
-      'pdf', // PDF
+      'pdf', 
       'doc', 'docx', // Word
       'ppt', 'pptx', // PowerPoint
       'xls', 'xlsx', // Excel
-      'zip' // ZIP
+      'zip' 
     ];
   
     if (file) {
       const fileExtension = file.name.split('.').pop().toLowerCase();
       
-      if (allowedExtensions.includes(fileExtension)) {
-        // Archivo permitido
+      if (allowedExtensions.includes(fileExtension)) { // Archivo permitido
         this.filePx = file;
         console.log('Archivo permitido:', file.name);
-      } else {
-        // Archivo no permitido
+      } else { // Archivo no permitido
         console.error('Archivo no permitido. Extensión:', fileExtension);
         alert('Solo se permiten archivos de tipo imagen, PDF, Word, PowerPoint, Excel o ZIP.');
       }
@@ -116,47 +122,45 @@ export class HistorialComponent implements OnInit {
   }
 
   addVisita() {
-    this.spinnerModal = true;
-  
-    // Validar si hay un archivo seleccionado
-    if (!this.filePx) {
-      this.showError = true; // Muestra el mensaje de error
-      this.resultText = '¡Seleccionar archivo!';
-      this.spinnerModal = false;
-      return; // No continuar si no hay archivo
-    }
-  
-    const formData = new FormData();
-    const idPx = btoa(sessionStorage.getItem('currentPxId') + '');
-    formData.append('fecha', this.visitaForm.get('fecha')?.value);
-    formData.append('tipo', this.visitaForm.get('tipo')?.value);
-    formData.append('notas', this.visitaForm.get('comentario')?.value);
-    formData.append('directorio', idPx);
-    const archivo = this.filePx;
-  
-    formData.append('archivo', archivo);
-  
-    this.pxService.subirVisita(formData).subscribe(
-      (response) => {
-        console.log('Éxito!', response);
-        this.spinnerModal = false;
-        this.reset();
-        this.getHistorial();
-  
-        // Mostrar el modal de éxito al cargar el archivo exitosamente
-        const modalElement = document.getElementById('successModal');
-        if (modalElement) {
-          const modal = new bootstrap.Modal(modalElement);
-          modal.show(); // Abre el modal
+    
+    if (this.visitaForm.valid) {
+      this.spinnerModal = true;
+
+      const formData = new FormData();
+      const idPx = btoa(sessionStorage.getItem('currentPxId') + '');
+      formData.append('fecha', this.visitaForm.get('fecha')?.value);
+      formData.append('tipo', this.visitaForm.get('tipo')?.value);
+      formData.append('notas', this.visitaForm.get('comentario')?.value);
+      formData.append('directorio', idPx);
+      const archivo = this.filePx;
+    
+      formData.append('archivo', archivo);
+    
+      this.pxService.subirVisita(formData).subscribe(
+        (response) => {
+          console.log('Éxito!', response);
+          this.spinnerModal = false;
+          this.reset();
+          this.getHistorial();
+    
+          // Mostrar el modal de éxito al cargar el archivo exitosamente
+          const modalElement = document.getElementById('successModal');
+          if (modalElement) {
+            const modal = new bootstrap.Modal(modalElement);
+            modal.show(); 
+          }
+        },
+        (error) => {
+          this.showError = true;
+          console.error('Error al registrar visita', error);
+          this.resultText = 'Error al registrar visita';
+          this.spinnerModal = false;
         }
-      },
-      (error) => {
-        this.showError = true;
-        console.error('Error al registrar visita', error);
-        this.resultText = 'Error al registrar visita';
-        this.spinnerModal = false;
-      }
-    );
+      );
+    } else {
+      this.faltanCampos = true;
+    }
+
   };
   
   getHistorial() {
@@ -194,14 +198,10 @@ export class HistorialComponent implements OnInit {
   closeError() {
     this.showError = false;
   }
-  resetFileObj() {
-    this.file = {
-      isPDF : false,
-      nameFile : 'Ningún archivo seleccionado.',
-      notas: ""
+  checkFormValid(){
+    if (this.faltanCampos) {
+      this.faltanCampos = this.visitaForm.valid ? false : true;
     }
-    this.urlImage = null;
-  }  
-
+  }
   
 }
