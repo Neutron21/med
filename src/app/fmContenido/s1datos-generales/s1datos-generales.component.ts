@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import jsPDF from 'jspdf';
+import { estadoCivil } from 'src/app/catalogos/paciente';
 import { AuthService } from 'src/app/services/auth.service';
 import { PxService } from 'src/app/services/px.service';
 import { SharedDataService } from 'src/app/services/shared.service';
@@ -24,15 +26,14 @@ export class S1datosGeneralesComponent implements OnInit {
     remision: ""
   };
 
-  // Nuevo objeto para almacenar la información del paciente
-  formData = {
+  infoPx = {
     nombre: "",
-    apellidoP: "",
-    apellidoM: "",
-    fechaNac: "",
+    apellido_p: "",
+    apellido_m: "",
+    fecha_nacimiento: "",
     sexo: "",
-    estadoCivil: "",
-    tipoSangre: "",
+    edo_civil: "",
+    tipo_sangre: "",
     telefono: ""
   };
 
@@ -52,13 +53,9 @@ export class S1datosGeneralesComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkCurrentPxId();
-    const storedData = sessionStorage.getItem('s1');
-    if (storedData) {
-      this.formData = JSON.parse(storedData);
-    } else {
-      console.warn('No hay datos en sessionStorage para el paciente.');
-    }
-  }
+   
+}
+
 
   checkCurrentPxId(): void {
     let currentPxId = sessionStorage.getItem('currentPxId');
@@ -69,16 +66,7 @@ export class S1datosGeneralesComponent implements OnInit {
           console.log('Datos del paciente:', response);
           if (response.length > 0) {
             this.body = response[0];
-
-            // Asignar los campos adicionales a formData
-            this.formData.nombre = response[0].nombre; // Asegúrate de que tu API devuelva estos campos
-            this.formData.apellidoP = response[0].apellidoP;
-            this.formData.apellidoM = response[0].apellidoM;
-            this.formData.fechaNac = response[0].fechaNac;
-            this.formData.sexo = response[0].sexo;
-            this.formData.estadoCivil = response[0].estadoCivil;
-            this.formData.tipoSangre = response[0].tipoSangre;
-            this.formData.telefono = response[0].telefono; // O el campo correspondiente
+            this.llenarDatosGen(currentPxId)   
           }
         },
         (error) => {
@@ -89,7 +77,26 @@ export class S1datosGeneralesComponent implements OnInit {
       console.warn('No se encontró el ID del paciente en sessionStorage');
     }
   }
-
+  llenarDatosGen(currentPxId: string | null): void {
+    if (currentPxId !== null) {
+      this.authService.getById('pacientes', 'id', currentPxId)
+        .subscribe(response => {
+          console.log('Respuesta de la API para infoPx:', response);
+          if (response.length > 0) {
+            this.infoPx = response[0]; 
+          } else {
+            console.warn('No se encontraron datos para el ID del paciente:', currentPxId);
+          }
+        }, error => {
+          console.error('Error al obtener los datos:', error);
+        });
+    } else {
+      console.warn('ID del paciente no válido');
+    }
+  }
+  
+  
+  
   onlyText(event: KeyboardEvent): boolean {
     return this.utilService.onlyText(event);
   }
@@ -108,5 +115,19 @@ export class S1datosGeneralesComponent implements OnInit {
     } else {
       this.showPhoneError = false;
     }
+  }
+  getSexoDescription(sexo: string): string {
+    if (sexo.toLowerCase() === 'f') {
+      return 'Femenino';
+    } else if (sexo.toLowerCase() === 'm') {
+      return 'Masculino';
+    } else {
+      return 'No especificado'; 
+    }
+  }
+  catalogoEstadoCivil: { [key: string]: string } = estadoCivil;
+
+  getEstadoCivilDescription(edo_civil: string): string {
+    return this.catalogoEstadoCivil[edo_civil] || 'No especificado';
   }
 }

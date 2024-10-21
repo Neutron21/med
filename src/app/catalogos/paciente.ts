@@ -1,4 +1,4 @@
-export const estadoCivil = {
+export const estadoCivil  = {
     s:'Soltero',
     c: 'Casado',
     u: 'Union Libre',

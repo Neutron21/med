@@ -44,35 +44,40 @@ export class RegistroComponent implements OnInit {
   onSubmit(): void {
     this.validateEmail();
     this.validatePhoneNumber();
-  
+
     const allFieldsFilled = this.isFormValid();
-  
+
     if (!allFieldsFilled || this.emailError || this.showPhoneError) {
-      this.showWarning = true;
+        this.showWarning = true;
     } else {
-      this.loader = true;
-      const modalElement = document.getElementById('responseModal');
-      const modal = new Modal(modalElement!);
-      
-      this.pxService.createPaciente(this.formData).subscribe(
-        (response: any) => {
-          console.log("Paciente registrado con éxito, " + response.message);
-          console.log("Paciente actual, ", response.data);
-          sessionStorage.setItem('currentPxId', response.data.id);
-          this.saveError = false;
-          this.loader = false;
-          this.clearForm();
-          modal.show();
-        },
-        (error: any) => {
-          console.log("Error al registrar paciente: " + error.error.error);
-          this.saveError = true;
-          this.loader = false;
-          modal.show();
-        }
-      );
+        this.loader = true;
+        const modalElement = document.getElementById('responseModal');
+        const modal = new Modal(modalElement!);
+
+        this.pxService.createPaciente(this.formData).subscribe(
+            (response: any) => {
+                console.log("Paciente registrado con éxito, " + response.message);
+                console.log("Paciente actual, ", response.data);
+
+                // Guardar datos en sessionStorage
+                sessionStorage.setItem('currentPxId', response.data.id);
+                sessionStorage.setItem('s1', JSON.stringify(this.formData)); // Guardar formData
+
+                this.saveError = false;
+                this.loader = false;
+                this.clearForm();
+                modal.show();
+            },
+            (error: any) => {
+                console.log("Error al registrar paciente: " + error.error.error);
+                this.saveError = true;
+                this.loader = false;
+                modal.show();
+            }
+        );
     }
-  }
+}
+
   
   clearForm(): void {
     this.formData = {

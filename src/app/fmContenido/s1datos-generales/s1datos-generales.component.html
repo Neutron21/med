@@ -68,32 +68,36 @@
 
 <div class="container">
   <h4>Datos del Paciente</h4>
+  
   <div class="row mb-3">
     <div class="col-md-4">
       <label class="form-label">Nombre:</label>
-      <p>{{ formData.nombre }} {{ formData.apellidoP }} {{ formData.apellidoM }}</p>
+      <p>{{ infoPx.nombre }} {{ infoPx.apellido_p }} {{ infoPx.apellido_m }}</p>
     </div>
     <div class="col-md-4">
       <label class="form-label">Fecha de Nacimiento:</label>
-      <p>{{ formData.fechaNac | date }}</p>
+      <p>{{ infoPx.fecha_nacimiento | date }}</p>
     </div>
     <div class="col-md-4">
       <label class="form-label">Sexo:</label>
-      <p>{{ formData.sexo }}</p>
-    </div>
+      <p>{{ getSexoDescription(infoPx.sexo) }}</p>
+    </div>    
   </div>
+  
   <div class="row mb-3">
     <div class="col-md-4">
       <label class="form-label">Estado Civil:</label>
-      <p>{{ formData.estadoCivil }}</p>
+      <p>{{ getEstadoCivilDescription(infoPx.edo_civil) }}</p>
     </div>
     <div class="col-md-4">
       <label class="form-label">Tipo de Sangre:</label>
-      <p>{{ formData.tipoSangre }}</p>
+      <p>{{ infoPx.tipo_sangre }}</p>
     </div>
     <div class="col-md-4">
       <label class="form-label">Teléfono:</label>
-      <p>{{ formData.telefono }}</p>
+      <p>{{ infoPx.telefono }}</p>
     </div>
   </div>
 </div>
+
+
