@@ -38,9 +38,12 @@
   @media (max-width: 576px) {
     .responsive-table {
        overflow-x: auto;
-      }
+    }
     .form-border {
         border: none;
         padding: 0px;
-      }
+    }
+    .responsive-table {
+      max-height: 60vh;
+    }
   }
