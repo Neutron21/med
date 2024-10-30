@@ -22,7 +22,7 @@ export class S1datosGeneralesComponent implements OnInit {
     contacto_de_emergencia: "",
     tel_contacto_de_emergencia: "",
     medico_tratante: "",
-    lugar_de_recidencia: "",
+    lugar_de_residencia: "",
     remision: ""
   };
 
@@ -128,6 +128,6 @@ export class S1datosGeneralesComponent implements OnInit {
   catalogoEstadoCivil: { [key: string]: string } = estadoCivil;
 
   getEstadoCivilDescription(edo_civil: string): string {
-    return this.catalogoEstadoCivil[edo_civil] || 'No especificado';
+    return this.catalogoEstadoCivil[edo_civil] ;
   }
 }

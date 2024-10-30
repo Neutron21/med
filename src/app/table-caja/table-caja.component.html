@@ -35,7 +35,7 @@
       <thead class="text-center"> 
         <tr>
           <th scope="col">Fecha</th>
-          <th scope="col">Cantidad</th>
+          <th scope="col">Cántidad</th>
           <th scope="col">Tipo</th>
           <th scope="col">Concepto</th>
         </tr>
@@ -73,7 +73,7 @@
 </div>
 
 <div class="text-end me-3" *ngIf="pagos.length > 0 && !showSpiner">
-  <strong>Total Pagos: {{ totalPagos | currency:'MXN':'symbol':'1.2-2' }}</strong>
+  <strong>Total de Pagos: {{ totalPagos | currency:'MXN':'symbol':'1.2-2' }}</strong>
 </div>
 
 <div class="text-end me-3" *ngIf="pagos.length > 0 && !showSpiner">

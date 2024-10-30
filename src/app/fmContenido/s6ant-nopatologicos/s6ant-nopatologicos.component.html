@@ -47,11 +47,11 @@
           <span class="small-text">Tipo y cantidad de tiempo que duerme.</span>
         </td>
         <td class="text-center">
-          <input type="checkbox" name="transtornoSuenoSiNo" [(ngModel)]="formData.transtornoSuenoSiNo" (ngModelChange)="limpiar($event,'transtornoSueno')">
+          <input type="checkbox" name="trastornoSuenoSiNo" [(ngModel)]="formData.trastornoSuenoSiNo" (ngModelChange)="limpiar($event,'trastornoSueno')">
         </td>
-        <td><input type="text" class="form-control" name="transtornoSuenoParentesco" [(ngModel)]="body.transtornoSueno_p" [disabled]="!formData.transtornoSuenoSiNo"
+        <td><input type="text" class="form-control" name="trastornoSuenoParentesco" [(ngModel)]="body.trastornoSueno_p" [disabled]="!formData.trastornoSuenoSiNo"
           (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="transtornoSuenoEspecifique" [(ngModel)]="body.transtornoSueno_e" [disabled]="!formData.transtornoSuenoSiNo"
+        <td><input type="text" class="form-control" name="trastornoSuenoEspecifique" [(ngModel)]="body.trastornoSueno_e" [disabled]="!formData.trastornoSuenoSiNo"
           (ngModelChange)="guardar()"></td>
       </tr>
       <tr>

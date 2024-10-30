@@ -4,16 +4,19 @@ import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro-px/registro.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { CajaComponent } from './caja/caja.component';
+import { AuthGuard } from './services/guard.service';
+
+
 
 
 const routes: Routes = [
 
-  { path:'registro', component: RegistroComponent},
-  { path:'busqueda', component: BusquedaComponent},
-  { path:'caja', component: CajaComponent},
-  { path:'login', component: LoginComponent },
-  { path:'', component: LoginComponent },
-  { path:'**', component: LoginComponent },
+  { path: 'registro', component: RegistroComponent, canActivate: [AuthGuard] },
+  { path: 'busqueda', component: BusquedaComponent, canActivate: [AuthGuard] },
+  { path: 'caja', component: CajaComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: '', component: LoginComponent },
+  { path: '**', component: LoginComponent },
 
 ];
 

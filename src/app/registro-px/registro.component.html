@@ -1,5 +1,5 @@
 <div class="container">
-  <h3>Registar Paciente</h3>
+  <h3>Registro de Paciente</h3>
   <form (ngSubmit)="onSubmit()" class="form-border">
     <div class="row mb-3">
       <div class="col-md-4">
@@ -7,11 +7,11 @@
         <input type="text" class="form-control" id="nombre" name="nombre" required [(ngModel)]="formData.nombre" (keypress)="onlyText($event)">
       </div>
       <div class="col-md-4">
-        <label for="apellidoP" class="form-label">Apellido P: <span class="text-danger">*</span></label>
+        <label for="apellidoP" class="form-label">Apellido Paterno: <span class="text-danger">*</span></label>
         <input type="text" class="form-control" id="apellidoP" name="apellidoP" required [(ngModel)]="formData.apellidoP" (keypress)="onlyText($event)">
       </div>
       <div class="col-md-4">
-        <label for="apellidoM" class="form-label">Apellido M: <span class="text-danger">*</span></label>
+        <label for="apellidoM" class="form-label">Apellido Materno: <span class="text-danger">*</span></label>
         <input type="text" class="form-control" id="apellidoM" name="apellidoM" required [(ngModel)]="formData.apellidoM" (keypress)="onlyText($event)">
       </div>
     </div>
@@ -42,7 +42,7 @@
   
     <div class="row mb-3">
       <div class="col-md-4">
-        <label for="tipoSangre" class="form-label">Tipo Sangre: <span class="text-danger">*</span></label>
+        <label for="tipoSangre" class="form-label">Tipo de Sangre: <span class="text-danger">*</span></label>
         <select class="form-select" id="tipoSangre" name="tipoSangre" required [(ngModel)]="formData.tipoSangre">
           <option value="">Seleccionar</option>
           <option value="A+">A+</option>
@@ -70,8 +70,7 @@
           (blur)="validatePhoneNumber()" 
           (focus)="resetPhoneError()">
         <div *ngIf="showPhoneError" class="text-danger">
-          El teléfono debe ser a 10 dígitos
-        </div>
+          El teléfono debe tener 10 dígitos. </div>
       </div>
       <div class="col-md-4">
         <label for="email" class="form-label">Email: <span class="text-danger">*</span></label>
@@ -117,11 +116,11 @@
         </div>
         <div *ngIf="!loader" class="modal-body text-center">
           <p *ngIf="!saveError">
-            Paciente creado con exito! <br>
-            ¿ Deseas continuar con el llenado de la ficha medica ?
+            ¡Paciente creado con éxito! <br>
+            ¿Deseas continuar con el llenado de la ficha médica?".
           </p>
           <p *ngIf="saveError">
-            Ocurrio un error <br>
+            Ocurrió un error <br>
             Contacte al administrador
           </p>
           <div>

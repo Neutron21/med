@@ -12,7 +12,7 @@ export class S3medidasFisicasComponent implements OnInit {
   formData: any = {};
  body= {
   peso: '',
-  talla: '',
+  glucosa: '',
   estatura: '',
   imc: '',
   temperatura: '',

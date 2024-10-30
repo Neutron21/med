@@ -13,7 +13,7 @@ export class S6antNopatologicosComponent implements OnInit {
     toxicomaniasSiNo: false,
     inmunizacionesSiNo: false,
     automedicacionSiNo: false,
-    transtornoSuenoSiNo: false,
+    trastornoSuenoSiNo: false,
     alimentacionSiNo: false,
     habitacionSiNo: false,
     habitosHigienicosSiNo: false,
@@ -29,8 +29,8 @@ export class S6antNopatologicosComponent implements OnInit {
     inmunizaciones_e: "",
     automedicacion_p: "",
     automedicacion_e: "",
-    transtornoSueno_p: "",
-    transtornoSueno_e: "",
+    trastornoSueno_p: "",
+    trastornoSueno_e: "",
     alimentacion_p: "",
     alimentacion_e: "",
     habitacion_p: "",
@@ -84,7 +84,7 @@ export class S6antNopatologicosComponent implements OnInit {
     this.formData.toxicomaniasSiNo = Boolean(this.body.toxicomanias_p || this.body.toxicomanias_e);
     this.formData.inmunizacionesSiNo = Boolean(this.body.inmunizaciones_p || this.body.inmunizaciones_e);
     this.formData.automedicacionSiNo = Boolean(this.body.automedicacion_p || this.body.automedicacion_e);
-    this.formData.transtornoSuenoSiNo = Boolean(this.body.transtornoSueno_p || this.body.transtornoSueno_e);
+    this.formData.trastornoSuenoSiNo = Boolean(this.body.trastornoSueno_p || this.body.trastornoSueno_e);
     this.formData.alimentacionSiNo = Boolean(this.body.alimentacion_p || this.body.alimentacion_e);
     this.formData.habitacionSiNo = Boolean(this.body.habitacion_p || this.body.habitacion_e);
     this.formData.habitosHigienicosSiNo = Boolean(this.body.habitosHigienicos_p || this.body.habitosHigienicos_e);
@@ -113,8 +113,8 @@ export class S6antNopatologicosComponent implements OnInit {
         this.body.automedicacion_e = '';
         break;
       case 'transtornoSueno':
-        this.body.transtornoSueno_p = '';
-        this.body.transtornoSueno_e = '';
+        this.body.trastornoSueno_p = '';
+        this.body.trastornoSueno_e = '';
         break;
       case 'alimentacion':
         this.body.alimentacion_p = '';

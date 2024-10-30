@@ -22,7 +22,7 @@
       <div class="col-md-4">
         <label for="nacionalidad" class="form-label">Nacionalidad:</label>
         <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" [(ngModel)]="body.nacionalidad"      
-        (ngModelChange)="guardar()"(keypress)="onlyText($event)">
+        (ngModelChange)="guardar()" (keypress)="onlyText($event)">
       </div>
       <div class="col-md-4">
         <label for="telEmergencia" class="form-label">Contacto de Emergencia:</label>
@@ -41,8 +41,6 @@
           El número de teléfono debe tener 10 dígitos.
         </div>
       </div>
-      
-      
     </div>
     <div class="row mb-3">
       <div class="col-md-4">
@@ -52,7 +50,7 @@
       </div>
       <div class="col-md-4">
         <label for="residencia" class="form-label">Lugar de Residencia:</label>
-        <input type="text" class="form-control" id="residencia" name="residencia" [(ngModel)]="body.lugar_de_recidencia"
+        <input type="text" class="form-control" id="residencia" name="residencia" [(ngModel)]="body.lugar_de_residencia"
         (ngModelChange)="guardar()"> 
       </div>
       <div class="col-md-4">
@@ -99,5 +97,3 @@
     </div>
   </div>
 </div>
-
-
