@@ -38,8 +38,9 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.showSpiner = true;
       try {
-        const credentials = await this.authService.singIn(this.loginForm.value.email, this.loginForm.value.password);
-        this.badCredentials = !this.authService.getIsLoged();
+       // login.component.ts
+      const credentials = await this.authService.signIn(this.loginForm.value.email, this.loginForm.value.password);
+      this.badCredentials = !this.authService.getIsLogged();
         this.getUserByEmail();
         this.showSpiner = false;
       } catch (error) {

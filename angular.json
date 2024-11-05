@@ -38,11 +38,14 @@
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "src/styles.scss"
             ],
+            
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
 
-            ]
+            ],
+            "allowedCommonJsDependencies": ["jspdf-autotable"]
           },
+          
           "configurations": {
             "production": {
               "budgets": [

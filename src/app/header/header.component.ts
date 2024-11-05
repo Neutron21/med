@@ -31,6 +31,9 @@ export class HeaderComponent implements OnInit {
   cerrarSesion(){
     this.authServie.logOut();
    }
+   validacionUsuario(): boolean {
+    return this.authServie.getIsLogged();
+  }
  
   validarSesion(){
     if (typeof window !== 'undefined' && typeof window.sessionStorage !== 'undefined') {
