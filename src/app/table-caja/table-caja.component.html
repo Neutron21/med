@@ -76,7 +76,7 @@
   <strong>Total de Pagos: {{ totalPagos | currency:'MXN':'symbol':'1.2-2' }}</strong>
 </div>
 
-<div class="text-end me-3" *ngIf="pagos.length > 0 && !showSpiner">
+<div class="text-end me-3 space-bottom" *ngIf="pagos.length > 0 && !showSpiner">
   <button (click)="descargarPDF()" class="btn btn-primary">
     Descargar PDF
   </button>

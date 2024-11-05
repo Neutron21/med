@@ -12,19 +12,6 @@
     border-radius: var(--bs-border-radius);
     height: fit-content;
 }
-.spinner-container {
-    text-align: center; 
-    vertical-align: middle; 
-    height: 100px; 
-  }
-  
-  .spinner-container img {
-    max-width: 100%; 
-    height: auto;
-    padding: 1rem;
-    border: rgb(106, 177, 239) solid 2px;
-    border-radius: 25%;
-  }
   .paginator {
     text-align: center; 
     vertical-align: middle;
@@ -34,4 +21,12 @@
   .paginator nav {
     max-width: 100%; 
     height: auto;
+  }
+  .space-bottom {
+    margin-bottom: 1rem;
+  }
+  @media (max-width: 576px) {
+    .responsive-table {
+      max-height: 60vh;
+    }
   }

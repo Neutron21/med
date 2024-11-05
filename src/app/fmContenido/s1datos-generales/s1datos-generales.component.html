@@ -70,30 +70,30 @@
   <div class="row mb-3">
     <div class="col-md-4">
       <label class="form-label">Nombre:</label>
-      <p>{{ infoPx.nombre }} {{ infoPx.apellido_p }} {{ infoPx.apellido_m }}</p>
+      <p class="data-px">{{ infoPx.nombre }} {{ infoPx.apellido_p }} {{ infoPx.apellido_m }}</p>
     </div>
     <div class="col-md-4">
       <label class="form-label">Fecha de Nacimiento:</label>
-      <p>{{ infoPx.fecha_nacimiento | date }}</p>
+      <p class="data-px">{{ infoPx.fecha_nacimiento | date }}</p>
     </div>
     <div class="col-md-4">
       <label class="form-label">Sexo:</label>
-      <p>{{ getSexoDescription(infoPx.sexo) }}</p>
+      <p class="data-px">{{ getSexoDescription(infoPx.sexo) }}</p>
     </div>    
   </div>
   
   <div class="row mb-3">
     <div class="col-md-4">
       <label class="form-label">Estado Civil:</label>
-      <p>{{ getEstadoCivilDescription(infoPx.edo_civil) }}</p>
+      <p class="data-px">{{ getEstadoCivilDescription(infoPx.edo_civil) }}</p>
     </div>
     <div class="col-md-4">
       <label class="form-label">Tipo de Sangre:</label>
-      <p>{{ infoPx.tipo_sangre }}</p>
+      <p class="data-px">{{ infoPx.tipo_sangre }}</p>
     </div>
     <div class="col-md-4">
       <label class="form-label">Teléfono:</label>
-      <p>{{ infoPx.telefono }}</p>
+      <p class="data-px">{{ infoPx.telefono }}</p>
     </div>
   </div>
 </div>

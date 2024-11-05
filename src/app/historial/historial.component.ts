@@ -20,7 +20,7 @@ declare var bootstrap: any; // Importa bootstrap para manejar el modal
 export class HistorialComponent implements OnInit {
 
   servicios = servicios;
-  showSpinner: boolean = false;
+  showSpiner: boolean = false;
   spinnerModal: boolean = false;
   today: string;
   visitaForm: FormGroup;
@@ -164,14 +164,17 @@ export class HistorialComponent implements OnInit {
   };
   
   getHistorial() {
+    this.showSpiner = true;
     const currentPx = sessionStorage.getItem('currentPxId') + '';
     this.authService.getById('historial', 'id_paciente', currentPx).subscribe(
       (response) => {
         console.log('Historial de visitas:', response);
         this.datosHistorial = response;
+        this.showSpiner = false;
       },
       (error) => {
         console.error('Error al obtener los datos del usuario:', error);
+        this.showSpiner = false;
       }
     );
   }

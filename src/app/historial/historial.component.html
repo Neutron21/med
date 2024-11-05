@@ -94,19 +94,24 @@
             <th scope="col">Archivo</th>
           </tr>
         </thead>
-        <tbody *ngIf="showSpinner">
+        <!-- <tbody *ngIf="showSpiner">
           <tr>
             <td colspan="4" class="spinner-container text-center">
               <img alt="spiner" src="../../assets/doctor.gif" />
             </td>
           </tr>
-        </tbody>
-        <tbody *ngIf="!showSpinner && datosHistorial.length === 0">
-          <tr>
+        </tbody> -->
+        <tbody *ngIf="datosHistorial.length === 0">
+          <tr *ngIf="!showSpiner">
             <td colspan="4" class="table-active text-center">Sin resultados para mostrar</td>
           </tr>
+          <tr *ngIf="showSpiner">
+            <td colspan="4" class="spinner-container">
+              <img alt="spiner" src="../../assets/doctor.gif"/>
+            </td>
+          </tr>
         </tbody>
-        <tbody *ngIf="!showSpinner && datosHistorial.length > 0" class="text-center">
+        <tbody *ngIf="!showSpiner && datosHistorial.length > 0" class="text-center">
           <tr *ngFor="let dato of datosHistorial">
             <td>{{ dato.fecha }}</td>
             <td>{{ dato.tipo }}</td>
