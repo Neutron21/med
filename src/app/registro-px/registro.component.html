@@ -1,5 +1,6 @@
 <div class="container">
-  <h3>Registro de Paciente</h3>
+  <div class="form-wrapper">
+  <h3 class="titulo" >Registro de Paciente </h3>
   <form (ngSubmit)="onSubmit()" class="form-border">
     <div class="row mb-3">
       <div class="col-md-4">
@@ -106,6 +107,8 @@
       <strong>Los campos marcados con asterisco son obligatorios</strong>
     </p>
   </form>
+</div>
+</div>
   
   <div class="modal fade" id="responseModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -156,4 +159,3 @@
       </div>
     </div>
   </div>
-</div>

@@ -1,5 +1,6 @@
 .buscador{
     margin-top: 1.5rem;
+    background-color: white;
 }
 .table {
     margin-top: 4em;
@@ -23,3 +24,12 @@
     background-color: #1489fd;
     color: white;
 }
+.container {
+    margin-top: 0;
+    padding: 1em;
+    background-color: white;
+    width: 85%; /* Ajusta el ancho según tu preferencia, también puedes usar un valor fijo como 600px */
+    height: calc(100vh - 2em); /* Altura completa menos el margen superior */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra opcional para resaltar el formulario */
+    overflow-y: auto; /* Añade scroll si el contenido es mayor al espacio disponible */
+  }

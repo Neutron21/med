@@ -60,3 +60,11 @@
       max-height: 60vh;
     }
   }
+  // styles.scss
+
+html, body {
+  height: 100%; /* Asegura que el cuerpo cubra toda la altura de la ventana */
+  margin: 0; /* Elimina los márgenes predeterminados */
+}
+
+

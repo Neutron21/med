@@ -30,6 +30,7 @@ export class RegistroComponent implements OnInit {
   showFichaMedica = false;
   showPhoneError: boolean = false;
   estadoCivilArray = Object.entries(estadoCivil);
+redirectToFichaMedica: any;
 
   constructor(
     private utilService: UtilService,
