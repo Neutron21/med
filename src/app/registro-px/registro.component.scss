@@ -56,9 +56,13 @@
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra opcional para resaltar el formulario */
   overflow-y: auto; /* Añade scroll si el contenido es mayor al espacio disponible */
 }
-.titulo {
-
+.header-img {
+  width: 65px;
+  height: 65px;
+  margin-left: auto; /* Esto empuja la imagen hacia la derecha */
 }
+
+
 
 
 

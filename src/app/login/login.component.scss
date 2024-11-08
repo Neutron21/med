@@ -14,9 +14,7 @@
       padding: 1rem;
       box-shadow: 0 0 6px 3px gray;
       }
-    .header {
-      text-align: center;
-    }
+   
   
     .header-login {
       background-color: #be82c5;
@@ -54,14 +52,11 @@
     margin-bottom: -5em;
     font-size: 5rem;
   }
-  .larp {
-    height: 6.3em;
-  }
+
   .err-message {
     text-align: center;
-    color: red !important; /* Añade !important para asegurarte de que este estilo tenga prioridad */
     font-weight: 500;
-    margin-top: 5px; /* Agrega un pequeño margen superior para separar los mensajes de error del resto del contenido */
+    margin-top: 5px; 
 }
 
   .text-light {
@@ -86,51 +81,43 @@
     font-family: "Fredoka", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-    font-variation-settings:
-      "wdth" 100;
-  }
-  
+    font-variation-settings: "wdth" 100;
+}
 
 .header h1 {
     margin: 0;
-    font-size: 4em;
-    
+    font-size: 4em; /* Tamaño de texto para escritorio */
 }
-  
-  @media (max-width: 767px) {
-  .header-login {
-         background-color: #002e5d; 
-         color: white;
-         padding-top: 20px; 
-         text-align: center;
-         position: fixed; 
-         top: 0; 
-         left: 0; 
-         z-index: 1000;
-     }
-     .texto-movil {
-         font-size: 43px;
-         margin: auto;
-         padding: 16px; 
-     }
-     .larp {
-           display: none;    
-     }
-     .footer {
-       text-align: center; 
-       background-color: #f0f0f0; 
-       padding: 20px 0; 
-       display: flex !important; 
-     }
-     .footer-image {
-       width: 100%; 
-       height: auto; 
-       max-height: 6em; 
-     }
-     .desktop{
-     display: none;
-     }
-     .movil {
-      display: block;
-     }
-     }
+
+@media (max-width: 767px) {
+    .header h1 {
+        font-size: 2em; /* Tamaño de texto reducido en móvil */
+    }
+
+    .header-login {
+        background-color: #002e5d;
+        color: white;
+        padding-top: 20px;
+        text-align: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+    
+    .desktop {
+        display: none;
+    }
+
+    .movil {
+        display: block;
+    }
+
+    h1 {
+        flex-direction: column;
+    }
+
+    h1 img {
+        margin-left: 5px;
+    }
+}
