@@ -23,6 +23,8 @@ import { S8pediatricoAntperinatalesComponent } from './fmContenido/s8pediatrico-
 import { S9observacionesComponent } from './fmContenido/s9observaciones/s9observaciones.component';
 import { FichaMedicaComponent } from './ficha-medica/ficha-medica.component';
 import { HistorialComponent } from './historial/historial.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { CalendarioComponent } from './calendario/calendario.component';
 
 @NgModule({
   declarations: [
@@ -44,14 +46,16 @@ import { HistorialComponent } from './historial/historial.component';
     S8pediatricoAntperinatalesComponent,
     S9observacionesComponent,
     FichaMedicaComponent,
-    HistorialComponent
+    HistorialComponent,
+    CalendarioComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
