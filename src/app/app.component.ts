@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CalendarOptions } from '@fullcalendar/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +10,15 @@ import { CalendarOptions } from '@fullcalendar/core';
 })
 export class AppComponent {
   title = 'MED Proyect';
-calendarOptions: CalendarOptions|undefined;
+  calendarOptions: CalendarOptions|undefined;
+  constructor(
+    private authService: AuthService
+  ) {
+    this.setLogoutTimer();
+  }
+  setLogoutTimer() {
+    setTimeout(() => {
+      this.authService.logOut()
+    }, 10000);  // 3600000 milisegundos = 1 hora
+  }
 }
