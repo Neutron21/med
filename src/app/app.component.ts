@@ -18,7 +18,7 @@ export class AppComponent {
   }
   setLogoutTimer() {
     setTimeout(() => {
-      this.authService.logOut()
-    }, 10000);  // 3600000 milisegundos = 1 hora
+      this.authService.logOut();
+    }, 14400000); 
   }
 }
