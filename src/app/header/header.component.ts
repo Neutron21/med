@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { SharedDataService } from '../services/shared.service';
 
 @Component({
   selector: 'app-header',
@@ -13,11 +14,16 @@ export class HeaderComponent implements OnInit {
     nombre : '',
     owner : false,
     rol : '',
+    idDoctor: ''
   };
   
   constructor(
-    private authServie: AuthService)
-  {}
+    private authService: AuthService,
+    private sharedservice: SharedDataService) {
+      this.sharedservice.idDoctorObservable.subscribe((usuarioLogueado) => {
+        this.user = usuarioLogueado;
+      });
+    }
 
   ngOnInit(): void {
     this.validarSesion();
@@ -29,29 +35,32 @@ export class HeaderComponent implements OnInit {
     this.isCollapsed = true;
   }
   cerrarSesion(){
-    this.authServie.logOut();
+    this.authService.logOut();
    }
    validacionUsuario(): boolean {
-    return this.authServie.getIsLogged();
+    return this.authService.getIsLogged();
   }
  
-  validarSesion(){
+  validarSesion() {
     if (typeof window !== 'undefined' && typeof window.sessionStorage !== 'undefined') {
       try {
         const uid = sessionStorage.getItem('uid');
         const usuario = JSON.parse(sessionStorage.getItem('currentUser') + '');
+  
         this.user.nombre = usuario ? usuario.nombre : "";
         this.user.owner = usuario ? usuario.owner : "";
-        this.user.rol = usuario ? usuario.paquete : "";
+        this.user.rol = usuario ? usuario.paquete : "";  
+        
+  
         return !!uid;
       } catch (error) {
-        this.authServie.logOut();
+        this.authService.logOut();
         return false;
       }
-      
     } else {
       return false;
     }
   }
+  
 
 }
