@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { SharedDataService } from '../services/shared.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   nombre : string = ''
 
   constructor(
-   private authService: AuthService
+   private authService: AuthService,
+   private sharedservice: SharedDataService
   ) { 
     this.loginForm = new FormGroup({
       email: new FormControl('', Validators.required),
@@ -56,18 +58,25 @@ export class LoginComponent implements OnInit {
   getUserByEmail() {
     const email = sessionStorage.getItem('user');
     if (email) {
-      this.authService.getById('medicos','email',email).subscribe(
+      this.authService.getById('medicos', 'email', email).subscribe(
         (response) => {
           console.log('Datos del usuario:', response[0]);
-          this.nombre = response.nombre
-          sessionStorage.setItem('currentUser',JSON.stringify(response[0]))
-        },(error) => {
+          this.nombre = response.nombre;
+  
+          // Al obtener los datos, emites el idDoctor
+          const user = response[0]; // Asegúrate de que `response[0]` contiene el idDoctor
+          this.sharedservice.cambiarIdDoctor(user);  // Emite el idDoctor
+          sessionStorage.setItem('currentUser', JSON.stringify(user));
+        },
+        (error) => {
           console.error('Error al obtener los datos del usuario:', error);
-        });
+        }
+      );
     } else {
       console.error('UID no encontrado en sessionStorage');
     }
   }
+  
  
   
   }
