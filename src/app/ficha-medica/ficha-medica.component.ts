@@ -66,7 +66,8 @@ export class FichaMedicaComponent implements OnInit {
     this.sharedDataService.updateSeccion(nuevaSeccion);
   }
 
-  toggleAllSections() {
+  async toggleAllSections() {
+
     this.allSectionsVisible = !this.allSectionsVisible;
 
     if (this.allSectionsVisible) {
@@ -82,6 +83,10 @@ export class FichaMedicaComponent implements OnInit {
         s9: true
       };
     } else {
+      await Object.keys(this.showSection).forEach(key => {
+        console.log(key);
+         this.sharedDataService.seccionesCompletadas(key);
+      });
       this.sharedDataService.cleanSessionStorage();
       this.mostrarSeccion('s1');
     }

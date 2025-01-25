@@ -27,7 +27,7 @@ export class AuthService {
     async signIn(email: string, password: string): Promise<any> {
         try {
             const credentials = await signInWithEmailAndPassword(this.auth, email, password);
-            console.log(credentials,"HOLA")
+            // console.log(credentials,"HOLA")
             this.uid = credentials.user.uid;
             this.user = credentials.user.email || '';
             this.setLogin();
