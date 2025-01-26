@@ -44,6 +44,7 @@ formData =  {
       otras_p:'',
       otras_e:'', 
   }
+  initBody = JSON.parse(JSON.stringify(this.body)); 
   idPx: number|null = null;
 
 
@@ -67,7 +68,7 @@ formData =  {
             this.authService.getById('antecedentesFm','id_paciente', currentPxId).subscribe(
         (response) => {
           console.log('Datos del paciente:', response);
-          this.body = response.length > 0 ? response[0] : this.body;
+          this.body = response.length > 0 ? response[0] : this.initBody;
           this.updateFormData();
         },
         (error) => {

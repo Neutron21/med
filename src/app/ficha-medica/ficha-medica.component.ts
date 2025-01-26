@@ -30,8 +30,8 @@ export class FichaMedicaComponent implements OnInit {
   ) {
     sessionStorage.setItem('currentSection', 's1');
     this.sharedDataService.seccionObservable.subscribe((activeSection: Secciones) => {
-    // console.log('El destino ha cambiado:', activeSection);
-    this.showSection = activeSection;
+      console.log('El destino ha cambiado:', activeSection);
+      this.showSection = activeSection;
     });
   }
 

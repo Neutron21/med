@@ -46,6 +46,7 @@ export class S6antNopatologicosComponent implements OnInit {
     actividadOcio_p: "",
     actividadOcio_e: ""
   }
+  initBody = JSON.parse(JSON.stringify(this.body)); 
   idPx: number|null = null;
 
 
@@ -69,7 +70,7 @@ export class S6antNopatologicosComponent implements OnInit {
             this.authService.getById('antecedentesNoPatFm','id_paciente', currentPxId).subscribe(
         (response) => {
           console.log('Datos del paciente:', response);
-          this.body = response.length > 0 ? response[0] : this.body;
+          this.body = response.length > 0 ? response[0] : this.initBody;
           this.updateFormData();
         },
         (error) => {

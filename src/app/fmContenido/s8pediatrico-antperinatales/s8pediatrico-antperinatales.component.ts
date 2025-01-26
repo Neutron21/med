@@ -28,20 +28,21 @@ export class S8pediatricoAntperinatalesComponent implements OnInit {
   };
 
   body: Pediatrico = { 
-  numEmbarazo_e:'',  
-  embarazoMultiple_e:'',  
-  alimentacionEmbarazo_e:'',     
-  controlPerinatal_e:'',    
-  vidaUterina_e:'',   
-  partoCesarea_e:'',  
-  problemasEmbarazoParto_e:'',  
-  traumatismoEmbarazoParto_e:'',    
-  maniobrasReanimacion_e:'',  
-  incubadora_e:'',    
-  pesoMedida_e:'',  
-  tamizMetabolico_e:'', 
-  PuntajeAPGAR_e:'' 
+    numEmbarazo_e:'',  
+    embarazoMultiple_e:'',  
+    alimentacionEmbarazo_e:'',     
+    controlPerinatal_e:'',    
+    vidaUterina_e:'',   
+    partoCesarea_e:'',  
+    problemasEmbarazoParto_e:'',  
+    traumatismoEmbarazoParto_e:'',    
+    maniobrasReanimacion_e:'',  
+    incubadora_e:'',    
+    pesoMedida_e:'',  
+    tamizMetabolico_e:'', 
+    PuntajeAPGAR_e:'' 
   }
+  initBody = JSON.parse(JSON.stringify(this.body)); 
   idPx: number|null = null;
 
   constructor( 
@@ -65,7 +66,7 @@ export class S8pediatricoAntperinatalesComponent implements OnInit {
             this.authService.getById('pediatricoFm','id_paciente', currentPxId).subscribe(
         (response) => {
           console.log('Datos del paciente:', response);
-          this.body = response.length > 0 ? response[0] : this.body;
+          this.body = response.length > 0 ? response[0] : this.initBody;
           this.updateFormData();
           this.validarAlturaAll();
         },

@@ -34,6 +34,7 @@ export class S7mujerAntGineObtComponent implements OnInit {
       nacidosVivos_e:'',
       menopausia_e:''
   }
+  initBody = JSON.parse(JSON.stringify(this.body)); 
   idPx: number|null = null;
 
 
@@ -58,7 +59,7 @@ export class S7mujerAntGineObtComponent implements OnInit {
             this.authService.getById('mujerFm','id_paciente', currentPxId).subscribe(
         (response) => {
           console.log('Datos del paciente:', response);
-          this.body = response.length > 0 ? response[0] : this.body;
+          this.body = response.length > 0 ? response[0] : this.initBody;
           this.updateFormData();
           this.validarAlturaAll();
         },

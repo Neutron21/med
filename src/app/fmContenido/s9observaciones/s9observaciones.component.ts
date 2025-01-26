@@ -17,6 +17,7 @@ export class S9observacionesComponent implements OnInit {
     tratamientosPrevios: '',
     observaciones: ''
   }
+  initBody = JSON.parse(JSON.stringify(this.body)); 
   idPx: number|null = null;
 
   
@@ -40,8 +41,8 @@ export class S9observacionesComponent implements OnInit {
       console.log('ID actual del paciente', currentPxId);
             this.authService.getById('fichaMedicaAux','id_paciente', currentPxId).subscribe(
         (response) => {
-          console.log('Datos del paciente:', response);
-          this.body = response.length > 0 ? response[0] : this.body;
+          console.log('S9 Datos del paciente:', response);
+          this.body = response.length > 0 ? response[0] : this.initBody;
           this.validarAlturaAll();
         },
         (error) => {

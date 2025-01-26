@@ -25,7 +25,7 @@ export class S1datosGeneralesComponent implements OnInit {
     lugar_de_residencia: "",
     remision: ""
   };
-
+  initBody = JSON.parse(JSON.stringify(this.body)); 
   infoPx = {
     nombre: "",
     apellido_p: "",
@@ -65,7 +65,7 @@ export class S1datosGeneralesComponent implements OnInit {
         (response) => {
           console.log('Datos del paciente:', response);
           if (response.length > 0) {
-            this.body = response[0];
+            this.body = response.length > 0 ? response[0] : this.initBody;
             this.llenarDatosGen(currentPxId)   
           }
         },
