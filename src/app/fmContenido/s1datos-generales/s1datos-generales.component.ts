@@ -1,9 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import jsPDF from 'jspdf';
 import { estadoCivil } from 'src/app/catalogos/paciente';
 import { AuthService } from 'src/app/services/auth.service';
-import { PxService } from 'src/app/services/px.service';
 import { SharedDataService } from 'src/app/services/shared.service';
 import { UtilService } from 'src/app/services/util.service';
 
@@ -39,6 +36,7 @@ export class S1datosGeneralesComponent implements OnInit {
 
   showPhoneError: boolean = false;
   idPx: number | null = null;
+  isLoading: boolean = false;
 
   constructor(
     private utilService: UtilService,
@@ -48,31 +46,36 @@ export class S1datosGeneralesComponent implements OnInit {
     this.sharedDataService.idPacienteObservable.subscribe(id => {
       this.idPx = id;
       this.checkCurrentPxId();
-    })
+    });
   }
 
   ngOnInit(): void {
     this.checkCurrentPxId();
-   
-}
-
+    this.llenarDatosGen(sessionStorage.getItem('currentPxId'));
+  }
 
   checkCurrentPxId(): void {
+    this.isLoading = true; 
     let currentPxId = sessionStorage.getItem('currentPxId');
     if (!!currentPxId) {
       console.log('ID actual del paciente', currentPxId);
+      
       this.authService.getById('datosGeneralesFm', 'id_paciente', currentPxId).subscribe(
         (response) => {
-          this.llenarDatosGen(currentPxId) 
+          this.body = response[0];
+          this.llenarDatosGen(currentPxId);
+          this.isLoading = false; 
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
+          this.isLoading = false; 
         }
       );
     } else {
       console.warn('No se encontró el ID del paciente en sessionStorage');
     }
   }
+
   llenarDatosGen(currentPxId: string | null): void {
     if (currentPxId !== null) {
       this.authService.getById('pacientes', 'id', currentPxId)
@@ -83,16 +86,16 @@ export class S1datosGeneralesComponent implements OnInit {
           } else {
             console.warn('No se encontraron datos para el ID del paciente:', currentPxId);
           }
+          this.isLoading = false
         }, error => {
           console.error('Error al obtener los datos:', error);
+          this.isLoading = false
+
         });
-    } else {
-      console.warn('ID del paciente no válido');
-    }
+    } 
+    
   }
-  
-  
-  
+
   onlyText(event: KeyboardEvent): boolean {
     return this.utilService.onlyText(event);
   }
@@ -112,6 +115,7 @@ export class S1datosGeneralesComponent implements OnInit {
       this.showPhoneError = false;
     }
   }
+
   getSexoDescription(sexo: string): string {
     if (sexo.toLowerCase() === 'f') {
       return 'Femenino';
@@ -121,9 +125,10 @@ export class S1datosGeneralesComponent implements OnInit {
       return 'No especificado'; 
     }
   }
+
   catalogoEstadoCivil: { [key: string]: string } = estadoCivil;
 
   getEstadoCivilDescription(edo_civil: string): string {
-    return this.catalogoEstadoCivil[edo_civil] ;
+    return this.catalogoEstadoCivil[edo_civil];
   }
 }

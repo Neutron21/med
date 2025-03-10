@@ -42,4 +42,13 @@
               [(ngModel)]="body.observaciones"
               (input)="adjustTextareaHeight('observaciones')" (ngModelChange)="guardar()"></textarea>
   </div>
+  <p class="me-3 text-center fw-bold">Tratamiento</p>
+<div class="d-flex align-items-center mb-3">
+  <textarea id='tratamiento' rows="1"
+            style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
+            class="form-control"
+            [(ngModel)]="body.tratamiento"
+            (input)="adjustTextareaHeight('tratamiento')" (ngModelChange)="guardar()"></textarea>
+</div>
+
 </div>
