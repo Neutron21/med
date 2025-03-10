@@ -62,8 +62,10 @@ export class S1datosGeneralesComponent implements OnInit {
       
       this.authService.getById('datosGeneralesFm', 'id_paciente', currentPxId).subscribe(
         (response) => {
-          this.body = response[0];
-          this.llenarDatosGen(currentPxId);
+          if (response.length > 0) {
+            this.body = response.length > 0 ? response[0] : this.initBody;
+            this.llenarDatosGen(currentPxId)   
+          }
           this.isLoading = false; 
         },
         (error) => {

@@ -22,6 +22,8 @@ export class S3medidasFisicasComponent implements OnInit {
  }
  initBody = JSON.parse(JSON.stringify(this.body)); 
  idPx: number|null = null;
+ isLoading: boolean = false;
+
 
 
   constructor(
@@ -42,13 +44,16 @@ export class S3medidasFisicasComponent implements OnInit {
     let currentPxId = sessionStorage.getItem('currentPxId');
     if (!!currentPxId) {
       console.log('ID actual del paciente', currentPxId);
+      this.isLoading = true; 
             this.authService.getById('medidasFm','id_paciente', currentPxId).subscribe(
         (response) => {
           console.log('Datos del paciente:', response);
           this.body = response.length > 0 ? response[0] : this.initBody;
+          this.isLoading = false;
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
+          this.isLoading = false;
         }
       );
     } else {
@@ -63,6 +68,7 @@ export class S3medidasFisicasComponent implements OnInit {
 
   }
   guardar() {
+    this.isLoading = true;
     sessionStorage.setItem('s3', JSON.stringify(this.body));
   }
 

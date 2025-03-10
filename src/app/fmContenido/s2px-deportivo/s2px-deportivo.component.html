@@ -1,47 +1,49 @@
- <div class="container">
- <div class="d-flex align-items-center mb-4">
-    <h4 class="me-3">PX Deportivo</h4>
-    <div class="form-check form-switch">
-      <input class="form-check-input" type="checkbox" id="switchDeportivo" [(ngModel)]="formData.pacienteDeportivo">
-      <label class="form-check-label" for="switchDeportivo">{{ formData.pacienteDeportivo ? 'Si' : 'No' }}</label>
+<div class="container">
+  <div *ngIf="!isLoading">
+    <div class="d-flex align-items-center mb-4">
+      <h4 class="me-3">PX Deportivo</h4>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="switchDeportivo" [(ngModel)]="formData.pacienteDeportivo">
+        <label class="form-check-label" for="switchDeportivo">{{ formData.pacienteDeportivo ? 'Si' : 'No' }}</label>
+      </div>
+    </div>
+
+    <div *ngIf="formData.pacienteDeportivo">
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label for="disciplina" class="form-label">Disciplina:</label>
+          <input type="text" class="form-control" id="disciplina" name="disciplina" [(ngModel)]="body.disciplina" 
+          (ngModelChange)="guardar()" (keypress)="onlyText($event)">
+        </div>
+        <div class="col-md-4">
+          <label for="deporteAltoRendimiento" class="form-label">Deporte de Alto Rendimiento:</label>
+          <input type="text" class="form-control" id="deporteAltoRendimiento" name="deporteAltoRendimiento" [(ngModel)]="body.deporte_de_alto_rendimiento"  
+          (ngModelChange)="guardar()" (keypress)="onlyText($event)">
+        </div>
+        <div class="col-md-4">
+          <label for="arteCompetitivo" class="form-label">Arte Competitivo:</label>
+          <input type="text" class="form-control" id="arteCompetitivo" name="arteCompetitivo" [(ngModel)]="body.arte_competitivo"  
+          (ngModelChange)="guardar()" (keypress)="onlyText($event)">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label for="categoria" class="form-label">Categoría:</label>
+          <input type="text" class="form-control" id="categoria" name="categoria" [(ngModel)]="body.categoria"  
+          (ngModelChange)="guardar()" (keypress)="onlyText($event)">
+        </div>
+        <div class="col-md-4">
+          <label for="nombreEntrenador" class="form-label">Nombre del Entrenador:</label>
+          <input type="text" class="form-control" id="nombreEntrenador" name="nombreEntrenador" [(ngModel)]="body.nombre_del_entrenador" 
+          (ngModelChange)="guardar()" (keypress)="onlyText($event)">
+        </div>
+        <div class="col-md-4">
+          <label for="clubLiga" class="form-label">Club o Liga:</label>
+          <input type="text" class="form-control" id="clubLiga" name="clubLiga" [(ngModel)]="body.club_o_liga_deportiva"  
+          (ngModelChange)="guardar()"  (keypress)="onlyText($event)">
+        </div>
+      </div>
     </div>
   </div>
-
-  <div *ngIf="formData.pacienteDeportivo">
-    <div class="row mb-3">
-      <div class="col-md-4">
-        <label for="disciplina" class="form-label">Disciplina:</label>
-        <input type="text" class="form-control" id="disciplina" name="disciplina" [(ngModel)]="body.disciplina" 
-        (ngModelChange)="guardar()" (keypress)="onlyText($event)">
-      </div>
-      <div class="col-md-4">
-        <label for="deporteAltoRendimiento" class="form-label">Deporte de Alto Rendimiento:</label>
-        <input type="text" class="form-control" id="deporteAltoRendimiento" name="deporteAltoRendimiento" [(ngModel)]="body.deporte_de_alto_rendimiento"  
-        (ngModelChange)="guardar()" (keypress)="onlyText($event)" >
-      </div>
-      <div class="col-md-4">
-        <label for="arteCompetitivo" class="form-label">Arte Competitivo:</label>
-        <input type="text" class="form-control" id="arteCompetitivo" name="arteCompetitivo" [(ngModel)]="body.arte_competitivo"  
-        (ngModelChange)="guardar()" (keypress)="onlyText($event)">
-      </div>
-    </div>
-
-    <div class="row mb-3">
-      <div class="col-md-4">
-        <label for="categoria" class="form-label">Categoría:</label>
-        <input type="text" class="form-control" id="categoria" name="categoria" [(ngModel)]="body.categoria"  
-        (ngModelChange)="guardar()" (keypress)="onlyText($event)">
-      </div>
-      <div class="col-md-4">
-        <label for="nombreEntrenador" class="form-label">Nombre del Entrenador:</label>
-        <input type="text" class="form-control" id="nombreEntrenador" name="nombreEntrenador" [(ngModel)]="body.nombre_del_entrenador" 
-        (ngModelChange)="guardar()" (keypress)="onlyText($event)">
-      </div>
-      <div class="col-md-4">
-        <label for="clubLiga" class="form-label">Club o Liga:</label>
-        <input type="text" class="form-control" id="clubLiga" name="clubLiga" [(ngModel)]="body.club_o_liga_deportiva"  
-        (ngModelChange)="guardar()"  (keypress)="onlyText($event)">
-      </div>
-    </div>
-
-   
+</div>

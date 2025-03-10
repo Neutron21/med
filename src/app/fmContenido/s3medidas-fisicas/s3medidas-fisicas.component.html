@@ -1,6 +1,9 @@
 <div class="container">
   <h4>Medidas Físicas y Signos Vitales</h4>
-  <div class="row mb-3">
+  <div *ngIf="isLoading" class="spinner-overlay">
+    <img alt="spiner" src="../../assets/doctor.gif" class="spinner-image"/>
+  </div>
+  <div class="row mb-3"  *ngIf="!isLoading" >
     <div class="col-md-3 mb-3">
       <label for="peso" class="form-label">Peso:</label>
       <div class="input-group">
