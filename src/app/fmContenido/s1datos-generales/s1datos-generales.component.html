@@ -1,6 +1,10 @@
 <div class="container">
   <h4>Datos Generales</h4>
-  <form>
+  <div *ngIf="isLoading" class="spinner-overlay">
+    <img alt="spiner" src="../../assets/doctor.gif" class="spinner-image"/>
+  </div>
+  
+  <form *ngIf="!isLoading">
     <div class="row mb-3">
       <div class="col-md-4">
         <label for="escolaridad" class="form-label">Escolaridad:</label>
@@ -64,7 +68,7 @@
 
 <hr class="line-tenue" />
 
-<div class="container">
+<div *ngIf="!isLoading" class="container">
   <h4>Datos del Paciente</h4>
   
   <div class="row mb-3">

@@ -15,7 +15,8 @@ export class S9observacionesComponent implements OnInit {
     diagnosticoMedico: '',
     mecanismoLesion: '',
     tratamientosPrevios: '',
-    observaciones: ''
+    observaciones: '',
+    tratamiento: ""
   }
   initBody = JSON.parse(JSON.stringify(this.body)); 
   idPx: number|null = null;
