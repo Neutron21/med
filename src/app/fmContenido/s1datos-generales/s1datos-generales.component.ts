@@ -53,17 +53,18 @@ export class S1datosGeneralesComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkCurrentPxId();
-   
-}
-
-
+    this.llenarDatosGen(sessionStorage.getItem('currentPxId'));
+  }
+  
   checkCurrentPxId(): void {
     let currentPxId = sessionStorage.getItem('currentPxId');
     if (!!currentPxId) {
       console.log('ID actual del paciente', currentPxId);
+      
       this.authService.getById('datosGeneralesFm', 'id_paciente', currentPxId).subscribe(
         (response) => {
-          this.llenarDatosGen(currentPxId) 
+          this.body = response[0];
+          this.llenarDatosGen(currentPxId); 
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
@@ -73,6 +74,7 @@ export class S1datosGeneralesComponent implements OnInit {
       console.warn('No se encontró el ID del paciente en sessionStorage');
     }
   }
+  
   llenarDatosGen(currentPxId: string | null): void {
     if (currentPxId !== null) {
       this.authService.getById('pacientes', 'id', currentPxId)
