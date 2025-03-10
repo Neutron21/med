@@ -68,7 +68,6 @@ export class S3medidasFisicasComponent implements OnInit {
 
   }
   guardar() {
-    this.isLoading = true;
     sessionStorage.setItem('s3', JSON.stringify(this.body));
   }
 

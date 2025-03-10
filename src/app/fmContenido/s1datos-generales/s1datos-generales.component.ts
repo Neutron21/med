@@ -66,7 +66,7 @@ export class S1datosGeneralesComponent implements OnInit {
             this.body = response.length > 0 ? response[0] : this.initBody;
             this.llenarDatosGen(currentPxId)   
           }
-          this.isLoading = false; 
+
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
@@ -85,10 +85,11 @@ export class S1datosGeneralesComponent implements OnInit {
           console.log('Respuesta de la API para infoPx:', response);
           if (response.length > 0) {
             this.infoPx = response[0]; 
+            this.isLoading = false
           } else {
             console.warn('No se encontraron datos para el ID del paciente:', currentPxId);
+            this.isLoading = false
           }
-          this.isLoading = false
         }, error => {
           console.error('Error al obtener los datos:', error);
           this.isLoading = false

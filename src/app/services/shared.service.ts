@@ -80,7 +80,6 @@ export class SharedDataService {
         break;
       case 's2':
         body = JSON.parse(sessionStorage.getItem('s2')+'');
-        body = JSON.parse(sessionStorage.getItem('s1') + '');
         if (!!body) {
         this.pxService.deportivoFm(body).subscribe((response: any) => {
           console.log("deportivoFm registrado con éxito, " + response.message);    

@@ -1,6 +1,9 @@
 <div class="container">
   <h4>Antecedentes Heredofamiliares</h4>
-  <table class="table table-bordered">
+  <div *ngIf="isLoading" class="spinner-overlay">
+    <img alt="spiner" src="../../assets/doctor.gif" class="spinner-image"/>
+  </div>
+  <table class="table table-bordered" *ngIf="!isLoading">
     <thead>
       <tr>
         <th>Enfermedad</th>
