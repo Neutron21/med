@@ -1,12 +1,16 @@
 <div class="container">
   <div class="d-flex align-items-center mb-3">
     <h4 class="me-3">En caso de ser Pediátrico (Antecedentes Perinatales)</h4>
+    <div *ngIf="isLoading" class="spinner-overlay">
+      <img alt="spiner" src="../../assets/doctor.gif" class="spinner-image"/>
+    </div>
     <div class="form-check form-switch">
       <input class="form-check-input" type="checkbox" id="switchPerinatales" [(ngModel)]="showPerinatalesTable">
       <label class="form-check-label" for="switchPerinatales">{{ showPerinatalesTable ? 'Si' : 'No' }}</label>
     </div>
   </div>
 
+  <div *ngIf="!isLoading">
   <div *ngIf="showPerinatalesTable">
     <table class="table table-bordered responsive-table">
       <thead>
@@ -189,4 +193,5 @@
       </tbody>
     </table>
   </div>
+</div>
 </div>

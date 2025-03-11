@@ -46,9 +46,10 @@ export class S6antNopatologicosComponent implements OnInit {
     actividadOcio_p: "",
     actividadOcio_e: ""
   }
+  
   initBody = JSON.parse(JSON.stringify(this.body)); 
   idPx: number|null = null;
-
+  isLoading: boolean = false;
 
   constructor( 
     private pxService: PxService,
@@ -64,23 +65,30 @@ export class S6antNopatologicosComponent implements OnInit {
     this.checkCurrentPxId();
   }
   checkCurrentPxId(): void {
+    this.isLoading = true;
     let currentPxId = sessionStorage.getItem('currentPxId');
+  
     if (!!currentPxId) {
       console.log('ID actual del paciente', currentPxId);
-            this.authService.getById('antecedentesNoPatFm','id_paciente', currentPxId).subscribe(
+      
+      this.authService.getById('antecedentesNoPatFm', 'id_paciente', currentPxId).subscribe(
         (response) => {
           console.log('Datos del paciente:', response);
           this.body = response.length > 0 ? response[0] : this.initBody;
           this.updateFormData();
+          this.isLoading = false;
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
+          this.isLoading = false;
         }
       );
     } else {
       console.warn('No se encontró el ID del paciente en sessionStorage');
+      this.isLoading = false;
     }
   }
+  
   updateFormData() {
     this.formData.toxicomaniasSiNo = Boolean(this.body.toxicomanias_p || this.body.toxicomanias_e);
     this.formData.inmunizacionesSiNo = Boolean(this.body.inmunizaciones_p || this.body.inmunizaciones_e);
@@ -113,7 +121,7 @@ export class S6antNopatologicosComponent implements OnInit {
         this.body.automedicacion_p = '';
         this.body.automedicacion_e = '';
         break;
-      case 'transtornoSueno':
+      case 'trastornoSueno':
         this.body.trastornoSueno_p = '';
         this.body.trastornoSueno_e = '';
         break;

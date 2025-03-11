@@ -1,6 +1,9 @@
 <div class="container">
   <div class="d-flex align-items-center mb-4">
     <h4 class="me-3">En caso de ser Mujer (Antecedentes Gineco-Obstétricos)</h4>
+    <div *ngIf="isLoading" class="spinner-overlay">
+      <img alt="spiner" src="../../assets/doctor.gif" class="spinner-image"/>
+    </div>
     <div class="form-check form-switch">
       <input class="form-check-input" type="checkbox" id="switchGinecoObstetrico" [(ngModel)]="showTable">
       <label class="form-check-label" for="switchGinecoObstetrico">{{ showTable ? 'Si' : 'No' }}</label>
@@ -146,3 +149,4 @@
     </table>
   </div>
 </div>
+

@@ -36,7 +36,7 @@ export class S7mujerAntGineObtComponent implements OnInit {
   }
   initBody = JSON.parse(JSON.stringify(this.body)); 
   idPx: number|null = null;
-
+  isLoading: boolean = false;
 
   constructor( 
     private utilService: UtilService,
@@ -53,24 +53,31 @@ export class S7mujerAntGineObtComponent implements OnInit {
   }
 
   checkCurrentPxId(): void {
+    this.isLoading = true; 
     let currentPxId = sessionStorage.getItem('currentPxId');
+    
     if (!!currentPxId) {
       console.log('ID actual del paciente', currentPxId);
-            this.authService.getById('mujerFm','id_paciente', currentPxId).subscribe(
+  
+      this.authService.getById('mujerFm', 'id_paciente', currentPxId).subscribe(
         (response) => {
           console.log('Datos del paciente:', response);
           this.body = response.length > 0 ? response[0] : this.initBody;
           this.updateFormData();
           this.validarAlturaAll();
+          this.isLoading = false; 
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
+          this.isLoading = false; 
         }
       );
     } else {
       console.warn('No se encontró el ID del paciente en sessionStorage');
+      this.isLoading = false;
     }
   }
+  
   updateFormData() {
     this.formData.mecarcaSiNo = Boolean( this.body.mecarca_e);
     this.formData.dismenorreasSiNo = Boolean( this.body.dismenorreas_e);
@@ -117,5 +124,6 @@ export class S7mujerAntGineObtComponent implements OnInit {
       this.utilService.adjustTextAreaH('menopausia_e');
     }, 0); 
   }
+  
 
 }

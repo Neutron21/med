@@ -1,6 +1,9 @@
 <div class="container">
   <h4>Antecedentes No Patológicos</h4>
-  <table class="table table-bordered">
+  <div *ngIf="isLoading" class="spinner-overlay">
+    <img alt="spiner" src="../../assets/doctor.gif" class="spinner-image"/>
+  </div>
+  <table class="table table-bordered" *ngIf="!isLoading">
     <thead>
       <tr>
         <th>Antecedentes</th>
@@ -41,9 +44,7 @@
           (ngModelChange)="guardar()"></td>
       </tr>
       <tr>
-        <td>
-          Trastornos del sueño
-          <br>
+        <td>Trastornos del sueño <br>
           <span class="small-text">Tipo y cantidad de tiempo que duerme.</span>
         </td>
         <td class="text-center">

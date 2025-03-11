@@ -20,8 +20,7 @@ export class S9observacionesComponent implements OnInit {
   }
   initBody = JSON.parse(JSON.stringify(this.body)); 
   idPx: number|null = null;
-
-  
+  isLoading: boolean = false;
 
   constructor( 
     private utilService: UtilService,
@@ -37,6 +36,7 @@ export class S9observacionesComponent implements OnInit {
     this.checkCurrentPxId();
   }
   checkCurrentPxId(): void {
+    this.isLoading = true;
     let currentPxId = sessionStorage.getItem('currentPxId');
     if (!!currentPxId) {
       console.log('ID actual del paciente', currentPxId);
@@ -45,14 +45,16 @@ export class S9observacionesComponent implements OnInit {
           console.log('S9 Datos del paciente:', response);
           this.body = response.length > 0 ? response[0] : this.initBody;
           this.validarAlturaAll();
+          this.isLoading = false;
+
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
+          this.isLoading = false;
+
         }
       );
-    } else {
-      console.warn('No se encontró el ID del paciente en sessionStorage');
-    }
+    } 
   }
 
   guardar() {

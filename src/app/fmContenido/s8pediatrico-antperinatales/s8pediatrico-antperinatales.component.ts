@@ -44,6 +44,8 @@ export class S8pediatricoAntperinatalesComponent implements OnInit {
   }
   initBody = JSON.parse(JSON.stringify(this.body)); 
   idPx: number|null = null;
+  isLoading: boolean = false;
+
 
   constructor( 
     private utilService: UtilService,
@@ -60,24 +62,26 @@ export class S8pediatricoAntperinatalesComponent implements OnInit {
     
   }
   checkCurrentPxId(): void {
+    this.isLoading = true;
     let currentPxId = sessionStorage.getItem('currentPxId');
     if (!!currentPxId) {
-      console.log('ID actual del paciente', currentPxId);
-            this.authService.getById('pediatricoFm','id_paciente', currentPxId).subscribe(
+      this.authService.getById('pediatricoFm', 'id_paciente', currentPxId).subscribe(
         (response) => {
-          console.log('Datos del paciente:', response);
           this.body = response.length > 0 ? response[0] : this.initBody;
           this.updateFormData();
           this.validarAlturaAll();
+          this.isLoading = false;
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
+          this.isLoading = false;
         }
       );
     } else {
-      console.warn('No se encontró el ID del paciente en sessionStorage');
+      this.isLoading = false;
     }
   }
+  
   updateFormData() {
     this.formData.numEmbarazoSiNo = Boolean(this.body.numEmbarazo_e);
     this.formData.embarazoMultipleSiNo = Boolean(this.body.embarazoMultiple_e);
