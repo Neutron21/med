@@ -76,6 +76,7 @@ export class S9observacionesComponent implements OnInit {
       this.utilService.adjustTextAreaH('mecanismoLesion');
       this.utilService.adjustTextAreaH('tratamientosPrevios');
       this.utilService.adjustTextAreaH('observaciones');
+      this.utilService.adjustTextAreaH('tratamiento');
     }, 500); 
   }
 }

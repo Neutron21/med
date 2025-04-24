@@ -80,8 +80,16 @@
     opacity: 1;
   }
   .table-icon-size {
-    width: 30px; /* Ajusta el tamaño según sea necesario */
+    width: 30px; 
     height: auto; /* Mantiene la proporción de la imagen */
+  }
+  .elipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;  
+    max-width: 250px; 
+    display: inline-block;
   }
   
   @media (max-width: 576px) {
