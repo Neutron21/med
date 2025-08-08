@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedDataService } from '../services/shared.service';
 
 @Component({
   selector: 'app-busqueda',
@@ -11,7 +12,7 @@ export class BusquedaComponent implements OnInit {
   tipoBusqueda = 'p';
   busquedaCheck: boolean = false;
   labelBuqueda = 'Pacientes';
-  constructor() { 
+  constructor(private sharedService: SharedDataService) { 
     const busqueda = sessionStorage.getItem('busquedaCheck');
     this.busquedaCheck = busqueda === 'true'; 
     this.tipoBusqueda = this.busquedaCheck ? 'c' : 'p';
@@ -19,6 +20,7 @@ export class BusquedaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.sharedService.cleanSessionStorage();
   }
   selectBusqueda(event: any){
     console.log('Click', event.target.checked);
