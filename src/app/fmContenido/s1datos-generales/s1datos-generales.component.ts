@@ -37,6 +37,7 @@ export class S1datosGeneralesComponent implements OnInit {
   showPhoneError: boolean = false;
   idPx: number | null = null;
   isLoading: boolean = false;
+  catalogoEstadoCivil: { [key: string]: string } = estadoCivil;
 
   constructor(
     private utilService: UtilService,
@@ -66,7 +67,6 @@ export class S1datosGeneralesComponent implements OnInit {
             this.body = response.length > 0 ? response[0] : this.initBody;
             this.llenarDatosGen(currentPxId)   
           }
-
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
@@ -128,8 +128,6 @@ export class S1datosGeneralesComponent implements OnInit {
       return 'No especificado'; 
     }
   }
-
-  catalogoEstadoCivil: { [key: string]: string } = estadoCivil;
 
   getEstadoCivilDescription(edo_civil: string): string {
     return this.catalogoEstadoCivil[edo_civil];

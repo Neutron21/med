@@ -35,7 +35,7 @@ export class FichaMedicaComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {  }
 
   mostrarSeccion(seccion: keyof Secciones) {
 

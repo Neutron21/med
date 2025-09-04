@@ -14,6 +14,93 @@
     height: fit-content;
     width: fit-content;
 }
+  .table-icon-size {
+    height: 1.7rem;
+    cursor: pointer;
+  }
+  .custom-tooltip {
+      background-color: #333; /* Cambia el color de fondo */
+      color: #fff; /* Cambia el color del texto */
+      border-radius: 0.25rem; /* Cambia el radio de la esquina */
+    
+  }
+  .modal-dialog.modal-fullscreen {
+    height: 100vh; /* Asegura que el modal ocupa toda la pantalla */
+  }
+  
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .tooltip-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .tooltip-container .tooltip-text {
+    visibility: hidden;
+    width: 120px;
+    background-color: #074f8f;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Posiciona el tooltip arriba de la imagen */
+    left: 50%;
+    margin-left: -60px; /* Alinea el tooltip al centro */
+    opacity: 0.7;
+    transition: opacity 0.1s;
+  }
+  
+  .tooltip-container .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* Flecha hacia abajo */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #074f8f transparent transparent transparent;
+  }
+  .tooltip-container {
+    display: inline-block; /* Asegúrate de que no se expanda fuera de la celda */
+    text-align: center; /* Centra el icono y el texto del tooltip */
+    margin: 0 5px; /* Espaciado horizontal entre íconos */
+  }
+  
+  .table td {
+    white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
+  }
+  
+  
+  .tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+  .table-icon-size {
+    width: 30px; 
+    height: auto; /* Mantiene la proporción de la imagen */
+  }
+  .elipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;  
+    max-width: 250px; 
+    display: inline-block;
+  }
+  
+  @media (max-width: 576px) {
+    .table-icon-size {
+      width: 25px;
+    }
+  }
+  
+  
+  
 
 /* Contenedor de la tabla */
 .table-container {

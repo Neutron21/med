@@ -27,7 +27,7 @@ export class PxService {
         const currentUser = JSON.parse(sessionStorage.getItem('currentUser')+'');
         newPx.id_medico = currentUser.id_medico;
          console.log('createPaciente', newPx);    
-        return this.http.post(environment.api + environment.cretePaciente, JSON.stringify(newPx), {headers: this.headersJson});
+        return this.http.post(environment.api + environment.createPaciente, JSON.stringify(newPx), {headers: this.headersJson});
         
       }
     getPacientes(textFind: any): Observable<any> {

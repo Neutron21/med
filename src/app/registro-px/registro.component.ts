@@ -11,6 +11,18 @@ import { estadoCivil } from '../catalogos/paciente';
   styleUrls: ['./registro.component.scss']
 })
 export class RegistroComponent implements OnInit {
+
+  secciones = {
+    s1: true,
+    s2: false,
+    s3: false,
+    s4: false,
+    s5: false,
+    s6: false,
+    s7: false,
+    s8: false, 
+    s9: false
+  }
   formData: any = {
     nombre: '',
     apellidoP: '',
@@ -22,6 +34,18 @@ export class RegistroComponent implements OnInit {
     telefono: '',
     email: ''
   };
+  bodyS1: any = {
+    contacto_de_emergencia: "",
+    escolaridad: "",
+    id_paciente: 0,
+    lugar_de_residencia: "",
+    medico_tratante: "",
+    nacionalidad: "",
+    ocupacion: "",
+    religion: "",
+    remision: "",
+    tel_contacto_de_emergencia: ""
+  }
   showWarning: boolean = false;
   emailError: boolean = false;
    
@@ -30,7 +54,9 @@ export class RegistroComponent implements OnInit {
   showFichaMedica = false;
   showPhoneError: boolean = false;
   estadoCivilArray = Object.entries(estadoCivil);
-redirectToFichaMedica: any;
+  redirectToFichaMedica: any;
+  responseModal: any;
+  fichaModal: any;
 
   constructor(
     private utilService: UtilService,
@@ -39,7 +65,10 @@ redirectToFichaMedica: any;
   ) { }
 
   ngOnInit(): void {
-    
+    const responseModal = document.getElementById('responseModal');
+    const fichaModal = document.getElementById('fichaModal');
+    this.responseModal = new Modal(responseModal!);
+    this.fichaModal = new Modal(fichaModal!);
   }
 
   onSubmit(): void {
@@ -52,8 +81,6 @@ redirectToFichaMedica: any;
         this.showWarning = true;
     } else {
         this.loader = true;
-        const modalElement = document.getElementById('responseModal');
-        const modal = new Modal(modalElement!);
 
         this.pxService.createPaciente(this.formData).subscribe(
             (response: any) => {
@@ -62,18 +89,19 @@ redirectToFichaMedica: any;
 
                 // Guardar datos en sessionStorage
                 sessionStorage.setItem('currentPxId', response.data.id);
-                sessionStorage.setItem('s1', JSON.stringify(this.formData)); // Guardar formData
+                this.bodyS1.id_paciente = response.data.id;
+                sessionStorage.setItem('s1', JSON.stringify(this.bodyS1));
 
                 this.saveError = false;
                 this.loader = false;
                 this.clearForm();
-                modal.show();
+                this.responseModal.show();
             },
             (error: any) => {
                 console.log("Error al registrar paciente: " + error.error.error);
                 this.saveError = true;
                 this.loader = false;
-                modal.show();
+                this.responseModal.show();
             }
         );
     }
@@ -93,7 +121,9 @@ redirectToFichaMedica: any;
       email: ''
     };
   }
-  
+  masTarde() {
+    this.sharedDataService.cleanSessionStorage();
+  }
 
   isFormValid(): boolean {
     return this.formData.nombre && this.formData.apellidoP && this.formData.apellidoM &&
@@ -123,5 +153,20 @@ redirectToFichaMedica: any;
   }
   llenarFicha() {
     this.showFichaMedica = true;
+    sessionStorage.setItem('currentSection', 's1');
+    this.sharedDataService.updateSeccion(this.secciones);
+
+    this.fichaModal.show();
+  }
+  async resetModal() { // GUARDAMOS Y BORRAMOS DATOS DE FICHA MEDICA en SessionStorage
+  
+    this.fichaModal.hide();
+    await Object.keys(this.secciones).forEach(key => {
+      console.log(key);
+       this.sharedDataService.seccionesCompletadas(key);
+    });
+ 
+    this.sharedDataService.cleanSessionStorage();
+    sessionStorage.removeItem('currentPxId');
   }
 }
