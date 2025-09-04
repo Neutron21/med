@@ -1,3 +1,4 @@
+/* Botón de buscar / lupa */
 .buscar_pago_button {
     margin-top: 2rem;
     padding: .375rem .75rem;
@@ -13,86 +14,142 @@
     height: fit-content;
     width: fit-content;
 }
-  .table-icon-size {
-    height: 1.7rem;
-    cursor: pointer;
-  }
-  .custom-tooltip {
-      background-color: #333; /* Cambia el color de fondo */
-      color: #fff; /* Cambia el color del texto */
-      border-radius: 0.25rem; /* Cambia el radio de la esquina */
-    
-  }
-  .modal-dialog.modal-fullscreen {
-    height: 100vh; /* Asegura que el modal ocupa toda la pantalla */
-  }
-  
-  .modal-content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-  .tooltip-container {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .tooltip-container .tooltip-text {
-    visibility: hidden;
-    width: 120px;
-    background-color: #074f8f;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%; /* Posiciona el tooltip arriba de la imagen */
-    left: 50%;
-    margin-left: -60px; /* Alinea el tooltip al centro */
-    opacity: 0.7;
-    transition: opacity 0.1s;
-  }
-  
-  .tooltip-container .tooltip-text::after {
-    content: "";
-    position: absolute;
-    top: 100%; /* Flecha hacia abajo */
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #074f8f transparent transparent transparent;
-  }
-  .tooltip-container {
-    display: inline-block; /* Asegúrate de que no se expanda fuera de la celda */
-    text-align: center; /* Centra el icono y el texto del tooltip */
-    margin: 0 5px; /* Espaciado horizontal entre íconos */
-  }
-  
-  .table td {
-    white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
-  }
-  
-  
-  .tooltip-container:hover .tooltip-text {
-    visibility: visible;
-    opacity: 1;
-  }
-  .table-icon-size {
-    width: 30px; /* Ajusta el tamaño según sea necesario */
-    height: auto; /* Mantiene la proporción de la imagen */
-  }
-  
-  @media (max-width: 576px) {
-    .table-icon-size {
-      width: 25px;
-    }
-  }
-  
-  
-  
 
-  
-  
-  
+/* Contenedor de la tabla */
+.table-container {
+    display: flex;
+    justify-content: center;  /* centra horizontalmente */
+    width: 100%;
+    overflow-x: auto;         /* scroll si la tabla es más ancha que la pantalla */
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
+
+/* Tabla base */
+.table {
+    width: 100%;
+    max-width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+}
+
+/* Ajustes de celdas */
+.table th,
+.table td {
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.5rem;
+    word-break: break-word;
+}
+
+/* Inputs dentro de celdas */
+.table td input.form-control {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0.3rem 0.4rem;
+}
+
+/* --- AJUSTES PARA PANTALLAS PEQUEÑAS --- */
+@media (max-width: 767px) {
+    .container {
+        padding-left: 0;    
+        padding-right: 0;
+        width: 100vw;       
+    }
+
+    .table-container {
+        width: 100vw;       
+        padding: 0;         
+        justify-content: center;
+    }
+
+    .table th,
+    .table td {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.2rem;
+    }
+
+    .table td input.form-control {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.15rem;
+    }
+
+    /* Ocultar columnas si es necesario */
+    th:nth-child(2),
+    th:nth-child(3),
+    td:nth-child(2),
+    td:nth-child(3) {
+        display: none;
+    }
+
+    /* Botón pegado al input */
+    .buscar_pago_button {
+        margin-top: 0;        /* ajusta al tamaño del input */
+        margin-left: 5px;     /* pegado al input */
+        height: 38px;         /* igual altura del input */
+        vertical-align: middle;
+    }
+
+    .input-group {
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* Ajustes para móviles muy pequeños */
+@media (max-width: 480px) {
+    .table th,
+    .table td {
+        font-size: 0.75rem;
+        padding: 0.15rem 0.1rem;
+    }
+
+    .table td input.form-control {
+        font-size: 0.75rem;
+        padding: 0.1rem 0.1rem;
+    }
+
+    .table-container {
+        width: 100vw;
+        padding: 0;
+    }
+
+    .container {
+        width: 100vw;
+        padding: 0;
+    }
+
+    .buscar_pago_button {
+        width: 35px; /* cuadrado como lupa */
+        height: 35px;
+        margin-left: 5px;
+    }
+}
+@media (max-width: 767px) {
+    /* Apilar input y botón solo dentro del formulario buscar-form */
+    .buscar-form .row {
+        flex-direction: column;
+    }
+
+    /* Input ocupa todo el ancho */
+    .buscar-form #textoFind {
+        width: 100%;
+    }
+
+    /* Botón debajo del input, ancho completo, azul con icono blanco */
+    .buscar-form .buscar_pago_button {
+        width: 100%;
+        margin-top: 0.5rem;
+        margin-left: 0;
+        background-color: #007bff; /* azul */
+        color: #fff;               /* icono blanco */
+        border-color: #007bff;
+    }
+
+    .buscar-form .buscar_pago_button i {
+        color: #fff;
+    }
+}
+
+
+

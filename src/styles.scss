@@ -65,5 +65,38 @@ html, body {
   height: 100%; /* Asegura que el cuerpo cubra toda la altura de la ventana */
   margin: 0; /* Elimina los márgenes predeterminados */
 }
+/* Ajustes globales para pantallas pequeñas */
+@media (max-width: 768px) {
+  .container {
+    width: 100% !important;
+    padding: 0.8rem !important;
+    box-shadow: none !important;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-size: 1rem; /* títulos más chicos en móvil */
+    text-align: center;
+  }
+
+  .btn {
+    width: 100%;     /* botones ocupan todo el ancho */
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .form-control, .form-select, textarea {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .table {
+    font-size: 0.85rem; /* tablas más compactas */
+  }
+
+  .modal-dialog {
+    margin: 0.5rem;
+    max-width: 100%; /* modales ajustados */
+  }
+}
 
 
