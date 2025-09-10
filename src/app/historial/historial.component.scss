@@ -162,3 +162,39 @@ iframe {
   background-color: #5a6268; /* Color al pasar el ratón */
   color: white; /* Color del texto al pasar el ratón */
 }
+/* Solo aplica en pantallas pequeñas */
+@media (max-width: 768px) {
+  .visor-section .col-12.col-md-8,
+  form.form-border {
+    max-width: 90%;   /* no ocupa todo el ancho */
+    margin: 0 auto;   /* centrado horizontal */
+  }
+
+  table {
+    width: 100%; /* la tabla se adapta al ancho disponible */
+  }
+}
+@media (max-width: 768px) {
+  /* Forzar que la fila se apile verticalmente */
+  form.form-border .row:first-child {
+    flex-direction: column !important;
+  }
+
+  /* Cada columna ocupa 100% y margen inferior */
+  form.form-border .row:first-child > .col {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  /* Ajustar input file */
+  input[type="file"] {
+    width: 100%;
+  }
+
+  /* Botones se apilan en vertical */
+  form.form-border .d-grid.d-md-flex {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: stretch;
+  }
+}

@@ -47,3 +47,30 @@
         color: #fff;
     }
 }
+@media (max-width: 767px) {
+  /* Apilar columnas dentro del row */
+  .form-border .row {
+    display: flex;
+    flex-direction: column; /* fuerza que se vean uno debajo del otro */
+  }
+
+  .form-border .row .col {
+    width: 100%;       /* cada campo ocupa toda la fila */
+    margin-bottom: 0.75rem;
+  }
+
+  /* El botón de búsqueda (lupa) hasta abajo */
+  .buscar_pago_button {
+    width: 100%;           
+    margin-top: 0.5rem;    
+    background-color: #007bff; 
+    color: #fff;              
+    border-color: #007bff;    
+    display: block;           /* ocupa toda la fila */
+  }
+
+  .buscar_pago_button i {
+    color: #fff;
+  }
+}
+
