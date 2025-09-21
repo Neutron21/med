@@ -114,6 +114,7 @@ export class TablePxComponent implements OnInit, AfterViewInit {
  
     this.sharedDataService.cleanSessionStorage();
     sessionStorage.removeItem('currentPxId');
+    this.showFichaMedica = false;
   }
   resetHistorial() {
     this.sharedDataService.cleanHistorial(true);
