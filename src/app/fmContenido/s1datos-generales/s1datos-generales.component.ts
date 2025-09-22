@@ -61,7 +61,7 @@ export class S1datosGeneralesComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-    console.log('Suscripción destruida ✅');
+    // console.log('Suscripción destruida ✅ S1');
   }
   checkCurrentPxId(): void {
     this.isLoading = true; 

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+import { Subject } from 'rxjs/internal/Subject';
 import { AuthService } from 'src/app/services/auth.service';
 import { SharedDataService } from 'src/app/services/shared.service';
 import { UtilService } from 'src/app/services/util.service';
@@ -8,7 +10,7 @@ import { UtilService } from 'src/app/services/util.service';
   templateUrl: './s9observaciones.component.html',
   styleUrls: ['./s9observaciones.component.scss']
 })
-export class S9observacionesComponent implements OnInit {
+export class S9observacionesComponent implements OnInit, OnDestroy {
 
   body = {
     motivoConsulta:'',
@@ -21,19 +23,25 @@ export class S9observacionesComponent implements OnInit {
   initBody = JSON.parse(JSON.stringify(this.body)); 
   idPx: number|null = null;
   isLoading: boolean = false;
+  private destroy$ = new Subject<void>();
 
   constructor( 
     private utilService: UtilService,
     private authService: AuthService,    
     private sharedDataService: SharedDataService
-  ) { 
-    this.sharedDataService.idPacienteObservable.subscribe(id => {
-      this.idPx = id;
-      this.checkCurrentPxId();
-    })
-  }
+  ) {  }
   ngOnInit(): void {
     this.checkCurrentPxId();
+
+    this.sharedDataService.idPacienteObservable.pipe(takeUntil(this.destroy$)).subscribe(id => {
+          this.idPx = id;
+          this.checkCurrentPxId();
+        })
+  }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+    // console.log('Suscripción destruida ✅ S9');
   }
   checkCurrentPxId(): void {
     this.isLoading = true;

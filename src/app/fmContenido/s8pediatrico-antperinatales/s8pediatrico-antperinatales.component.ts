@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+import { Subject } from 'rxjs/internal/Subject';
 import { Pediatrico } from 'src/app/models/pediatrico';
 import { AuthService } from 'src/app/services/auth.service';
 import { SharedDataService } from 'src/app/services/shared.service';
@@ -9,7 +11,7 @@ import { UtilService } from 'src/app/services/util.service';
   templateUrl: './s8pediatrico-antperinatales.component.html',
   styleUrls: ['./s8pediatrico-antperinatales.component.scss']
 })
-export class S8pediatricoAntperinatalesComponent implements OnInit {
+export class S8pediatricoAntperinatalesComponent implements OnInit, OnDestroy {
   showPerinatalesTable = true;
   formData: any = {
     numEmbarazoSiNo: false,
@@ -45,21 +47,27 @@ export class S8pediatricoAntperinatalesComponent implements OnInit {
   initBody = JSON.parse(JSON.stringify(this.body)); 
   idPx: number|null = null;
   isLoading: boolean = false;
-
+  private destroy$ = new Subject<void>();
 
   constructor( 
     private utilService: UtilService,
     private authService: AuthService,    
     private sharedDataService: SharedDataService
   ) { 
-    this.sharedDataService.idPacienteObservable.subscribe(id => {
+    
+  }
+  ngOnInit(): void {
+    this.checkCurrentPxId();
+
+    this.sharedDataService.idPacienteObservable.pipe(takeUntil(this.destroy$)).subscribe(id => {
       this.idPx = id;
       this.checkCurrentPxId();
     })
   }
-  ngOnInit(): void {
-    this.checkCurrentPxId();
-    
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+    // console.log('Suscripción destruida ✅ S8');
   }
   checkCurrentPxId(): void {
     this.isLoading = true;
