@@ -1,35 +1,83 @@
-.buscador{
-    margin-top: 1.5rem;
-    background-color: white;
+/* --- Estilos generales que ya tienes --- */
+.buscador {
+  margin-top: 1.5rem;
+  background-color: white;
 }
+
 .table {
-    margin-top: 4em;
+  margin-top: 4em;
 }
+
 .titulo-registro {
-    font-size: 2em; /* Tamaño de fuente más grande */
-    text-align: center; /* Centrado horizontal */
-    font-weight: bold; /* Negrita */
-    padding-bottom: 10px; /* Espaciado inferior opcional */
-    margin-top: 2em;
-  }
-  .lupa {
-    margin: auto;
-    border: #1489fd 2px solid;
-    border-radius: 5px;
-    padding: 5px;
-    cursor: pointer;
-    color: #1489fd;
+  font-size: 2em;
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: 10px;
+  margin-top: 2em;
 }
+
+.lupa {
+  margin: auto;
+  border: #1489fd 2px solid;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  color: #1489fd;
+}
+
 .lupa:hover {
-    background-color: #1489fd;
-    color: white;
+  background-color: #1489fd;
+  color: white;
 }
+
 .container {
-    margin-top: 0;
-    padding: 1em;
-    background-color: white;
-    width: 85%; /* Ajusta el ancho según tu preferencia, también puedes usar un valor fijo como 600px */
-    height: calc(100vh - 2em); /* Altura completa menos el margen superior */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra opcional para resaltar el formulario */
-    overflow-y: auto; /* Añade scroll si el contenido es mayor al espacio disponible */
+  margin-top: 0;
+  padding: 1em;
+  background-color: white;
+  width: 85%;
+  height: calc(100vh - 2em);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+/* --- Ajustes de la lupa junto al input --- */
+.buscador-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Estilo general de la lupa */
+.lupa {
+  border: #1489fd 2px solid;
+  border-radius: 5px;
+  padding: 5px 8px;
+  cursor: pointer;
+  color: #1489fd;
+}
+
+/* Hover */
+.lupa:hover {
+  background-color: #1489fd;
+  color: white;
+}
+
+/* SOLO en móvil */
+@media (max-width: 767px) {
+  .lupa {
+    display: inline-block;  /* visible */
   }
+  .buscador-input input {
+    flex: 1;
+  }
+}
+
+/* Ocultar en escritorio */
+@media (min-width: 768px) {
+  .lupa {
+    display: none;
+  }
+}
+
+
+

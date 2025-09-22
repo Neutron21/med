@@ -1,10 +1,43 @@
+/* Ajustes generales */
 .nav-link {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+.tabs-custom-margin {
+  margin-top: -2.5rem;
+}
+
+.content-tabs {
+  padding-top: 5px;
+}
+
+/* --- Estilos para móviles --- */
+@media (max-width: 767px) {
+
+  /* Ocultar el botón toggleAllSections */
+  .d-flex.justify-content-between.align-items-center button {
+    display: none;
   }
+
+  /* Mostrar los tabs uno debajo de otro */
   .tabs-custom-margin {
-    margin-top: -2.5rem;
+    display: flex;
+    flex-direction: column; /* apila los li verticalmente */
+    margin-top: 0; /* ajusta margen si quieres */
   }
+
+  .tabs-custom-margin .nav-item {
+    width: 100%; /* cada tab ocupa todo el ancho */
+    margin-bottom: 0.3rem; /* separador opcional */
+  }
+
+  .tabs-custom-margin .nav-link {
+    text-align: left; /* opcional, para que el texto no esté centrado */
+    font-size: 0.95rem; /* opcional: más pequeño */
+    padding: 0.5rem 0.75rem; /* ajusta padding si quieres */
+  }
+
   .content-tabs {
-    padding-top: 5px;
+    padding-top: 2px; /* menos espacio arriba */
   }
-  
+}

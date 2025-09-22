@@ -32,3 +32,22 @@
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra opcional para resaltar el formulario */
   overflow-y: auto; /* Añade scroll si el contenido es mayor al espacio disponible */
   }
+/* Para pantallas pequeñas (menor a 576px) */
+@media (max-width: 576px) {
+  .modal-dialog {
+    max-width: 85% !important;  /* Reduce ancho */
+    margin: 1.5rem auto !important; /* Centramos */
+  }
+
+  .modal-content {
+    border-radius: 15px; /* Para que no se vea tan "cuadro grande" */
+  }
+}
+
+/* Para pantallas muy pequeñas (ej. celulares chicos < 400px) */
+@media (max-width: 400px) {
+  .modal-dialog {
+    max-width: 90% !important;
+    margin: 1rem auto !important;
+  }
+}

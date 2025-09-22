@@ -1,13 +1,13 @@
 <div class="form-border">
 
-<form [formGroup]="buscarPxForm"  (ngSubmit)="buscarPx()">
+<form [formGroup]="buscarPxForm" (ngSubmit)="buscarPx()" class="buscar-form">
   <div class="row d-flex justify-content-between">
     <div class="col">
       <div class="mb-3">
         <label for="textoFind" class="form-label">Nombre, Apellidos, Diagnóstico</label>
         <input formControlName="textoFind" type="text" class="form-control" 
-          id="textoFind" placeholder="Buscar..."
-          (keypress)="validateTextInput($event)" autocomplete="off">
+               id="textoFind" placeholder="Buscar..."
+               (keypress)="validateTextInput($event)" autocomplete="off">
       </div>
     </div>
     <div class="col d-flex justify-content-end">
@@ -17,6 +17,7 @@
     </div>
   </div>
 </form>
+
   <div class="responsive-table">
     <table class="table table-striped table-sm">
         <thead class="text-center"> 

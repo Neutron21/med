@@ -62,7 +62,120 @@
   margin-left: auto; /* Esto empuja la imagen hacia la derecha */
 }
 
+/* Tablets (pantallas medianas, <= 992px) */
+@media (max-width: 992px) {
+  .container {
+    width: 95%; /* más ancho en tablets */
+    height: auto; /* que no se deforme */
+  }
 
+  .form-label {
+    font-size: 0.9rem; /* texto un poco más pequeño */
+  }
+}
+
+/* Celulares (pantallas pequeñas, <= 768px) */
+@media (max-width: 768px) {
+  .container {
+    width: 100%; 
+    padding: 0.8em;
+    margin: 0;
+    box-shadow: none; /* quitar sombra en móvil para más espacio */
+    border-radius: 0; /* ocupa todo el ancho */
+  }
+
+  .row .col-md-4 {
+    flex: 0 0 100%; /* cada input ocupa el 100% del ancho */
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .form-control,
+  .form-select {
+    font-size: 0.9rem; 
+    padding: 0.5rem;
+  }
+
+  .titulo {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+}
+
+/* Celulares muy pequeños (<= 480px) */
+@media (max-width: 480px) {
+  .container {
+    width: 100%;
+    padding: 0.5em;
+  }
+
+  .form-label {
+    font-size: 0.8rem;
+  }
+
+  .btn {
+    width: 100%; /* botón ocupa todo el ancho */
+    font-size: 1rem;
+    padding: 0.7rem;
+  }
+}
+/* Tablets (pantallas medianas, <= 992px) */
+@media (max-width: 992px) {
+  .container {
+    width: 95%; /* más ancho en tablets */
+    height: auto; /* que no se deforme */
+  }
+
+  .form-label {
+    font-size: 0.9rem; /* texto un poco más pequeño */
+  }
+}
+
+/* Celulares (pantallas pequeñas, <= 768px) */
+@media (max-width: 768px) {
+  .container {
+    width: 100%; 
+    padding: 0.8em;
+    margin: 0;
+    box-shadow: none; /* quitar sombra en móvil para más espacio */
+    border-radius: 0; /* ocupa todo el ancho */
+  }
+
+  .row .col-md-4 {
+    flex: 0 0 100%; /* cada input ocupa el 100% del ancho */
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .form-control,
+  .form-select {
+    font-size: 0.9rem; 
+    padding: 0.5rem;
+  }
+
+  .titulo {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+}
+
+/* Celulares muy pequeños (<= 480px) */
+@media (max-width: 480px) {
+  .container {
+    width: 100%;
+    padding: 0.5em;
+  }
+
+  .form-label {
+    font-size: 0.8rem;
+  }
+
+  .btn {
+    width: 100%; /* botón ocupa todo el ancho */
+    font-size: 1rem;
+    padding: 0.7rem;
+  }
+}
 
 
 

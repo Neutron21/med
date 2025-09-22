@@ -30,3 +30,47 @@
       max-height: 60vh;
     }
   }
+  @media (max-width: 767px) {
+    /* Apilar elementos si es necesario (input arriba, botón abajo) */
+    .buscar_pago_button {
+        width: 100%;           /* ancho completo */
+        margin-top: 0.5rem;    /* separar un poco del input */
+        margin-left: 0;         /* quitar margen lateral */
+        background-color: #007bff; /* azul */
+        color: #fff;               /* texto e icono blanco */
+        border-color: #007bff;     /* borde azul */
+        display: block;            /* asegurar que ocupe toda la fila */
+    }
+
+    /* Asegurar que el icono dentro del botón sea blanco */
+    .buscar_pago_button i {
+        color: #fff;
+    }
+}
+@media (max-width: 767px) {
+  /* Apilar columnas dentro del row */
+  .form-border .row {
+    display: flex;
+    flex-direction: column; /* fuerza que se vean uno debajo del otro */
+  }
+
+  .form-border .row .col {
+    width: 100%;       /* cada campo ocupa toda la fila */
+    margin-bottom: 0.75rem;
+  }
+
+  /* El botón de búsqueda (lupa) hasta abajo */
+  .buscar_pago_button {
+    width: 100%;           
+    margin-top: 0.5rem;    
+    background-color: #007bff; 
+    color: #fff;              
+    border-color: #007bff;    
+    display: block;           /* ocupa toda la fila */
+  }
+
+  .buscar_pago_button i {
+    color: #fff;
+  }
+}
+
