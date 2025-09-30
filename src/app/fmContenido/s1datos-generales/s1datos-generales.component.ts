@@ -71,10 +71,8 @@ export class S1datosGeneralesComponent implements OnInit, OnDestroy {
       
       this.authService.getById('datosGeneralesFm', 'id_paciente', currentPxId).subscribe(
         (response) => {
-          if (response.length > 0) {
             this.body = response.length > 0 ? response[0] : this.initBody;
             this.llenarDatosGen(currentPxId)   
-          }
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
