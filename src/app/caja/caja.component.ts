@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilService } from '../services/util.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { CajaService } from '../services/caja.service';
 declare var bootstrap: any; // Importa bootstrap para manejar el modal
 
@@ -12,7 +12,7 @@ declare var bootstrap: any; // Importa bootstrap para manejar el modal
 })
 export class CajaComponent implements OnInit {
 
-  cajaForm!: FormGroup;
+  cajaForm!: UntypedFormGroup;
   currentDateTime: any;
   saveError: boolean = false; 
   loader: boolean = false;
@@ -24,13 +24,13 @@ export class CajaComponent implements OnInit {
   ) { 
     this.currentDateTime = this.getCurrentDateTime();
 
-    this.cajaForm = new FormGroup({
-      cantidad: new FormControl(null, Validators.required),
-      concepto: new FormControl(null, Validators.required),
-      dateTime: new FormControl({ value: this.currentDateTime, disabled: true }, Validators.required),
-      tipo: new FormControl(null, Validators.required),
-      comentarios: new FormControl(null,),
-      oldDate: new FormControl(false, Validators.required)
+    this.cajaForm = new UntypedFormGroup({
+      cantidad: new UntypedFormControl(null, Validators.required),
+      concepto: new UntypedFormControl(null, Validators.required),
+      dateTime: new UntypedFormControl({ value: this.currentDateTime, disabled: true }, Validators.required),
+      tipo: new UntypedFormControl(null, Validators.required),
+      comentarios: new UntypedFormControl(null,),
+      oldDate: new UntypedFormControl(false, Validators.required)
     });
     this.toggleDateField();
   }
