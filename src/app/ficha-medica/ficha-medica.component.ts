@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SharedDataService } from '../services/shared.service';
 import { Secciones } from '../models/secciones';
+import { Subject } from 'rxjs/internal/Subject';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 
 @Component({
   selector: 'app-ficha-medica',
@@ -8,7 +10,7 @@ import { Secciones } from '../models/secciones';
   styleUrls: ['./ficha-medica.component.scss']
 })
 
-export class FichaMedicaComponent implements OnInit {
+export class FichaMedicaComponent implements OnInit, OnDestroy {
   
   showSection: Secciones = {
     s1: true,
@@ -23,19 +25,27 @@ export class FichaMedicaComponent implements OnInit {
   };
   
   allSectionsVisible = false;
+  private destroy$ = new Subject<void>();
 
   constructor(
     private sharedDataService: SharedDataService
 
   ) {
     sessionStorage.setItem('currentSection', 's1');
-    this.sharedDataService.seccionObservable.subscribe((activeSection: Secciones) => {
-      console.log('El destino ha cambiado:', activeSection);
-      this.showSection = activeSection;
-    });
   }
 
-  ngOnInit(): void {  }
+  ngOnInit(): void { 
+      this.sharedDataService.seccionObservable.pipe(takeUntil(this.destroy$))
+      .subscribe((activeSection: Secciones) => {
+        console.log('El destino ha cambiado:', activeSection);
+        this.showSection = activeSection;
+    });
+   }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+    console.log('Suscripción destruida ✅');
+  }
 
   mostrarSeccion(seccion: keyof Secciones) {
 

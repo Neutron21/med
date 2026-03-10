@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { concepto, tipo } from 'src/app/catalogos/pagos';
 import { CajaService } from '../services/caja.service';
 import { jsPDF } from "jspdf";
@@ -14,16 +14,16 @@ import autoTable from 'jspdf-autotable';
 })
 export class TableCajaComponent implements OnInit {
   totalPagos: number = 0;
-  buscarPagoForm: FormGroup;
+  buscarPagoForm: UntypedFormGroup;
   pagos: any[] = [];
   showSpiner: boolean = false;
   constructor(
     private cajaService: CajaService,
   ) { 
-    this.buscarPagoForm = new FormGroup({
-      desde: new FormControl(null,Validators.required),
-      hasta: new FormControl(null, Validators.required),
-      tipo: new FormControl(null, ),
+    this.buscarPagoForm = new UntypedFormGroup({
+      desde: new UntypedFormControl(null,Validators.required),
+      hasta: new UntypedFormControl(null, Validators.required),
+      tipo: new UntypedFormControl(null, ),
     });
   }
 

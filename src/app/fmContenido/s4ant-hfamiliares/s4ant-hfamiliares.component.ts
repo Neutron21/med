@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+import { Subject } from 'rxjs/internal/Subject';
 import { AuthService } from 'src/app/services/auth.service';
-import { PxService } from 'src/app/services/px.service';
 import { SharedDataService } from 'src/app/services/shared.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { SharedDataService } from 'src/app/services/shared.service';
   templateUrl: './s4ant-hfamiliares.component.html',
   styleUrls: ['./s4ant-hfamiliares.component.scss']
 })
-export class S4antHfamiliaresComponent implements OnInit {
+export class S4antHfamiliaresComponent implements OnInit, OnDestroy {
 formData =  {
     diabetesSiNo: false,
     neurologicasSiNo:false,
@@ -47,19 +48,24 @@ formData =  {
   initBody = JSON.parse(JSON.stringify(this.body)); 
   idPx: number|null = null;
   isLoading: boolean = false;
+  private destroy$ = new Subject<void>();
 
   constructor( 
     private authService: AuthService,    
     private sharedDataService: SharedDataService
-  ) {
-    this.sharedDataService.idPacienteObservable.subscribe(id => {
-      this.idPx = id;
-      this.checkCurrentPxId();
-    })
-   }
+  ) {  }
 
   ngOnInit(): void {
     this.checkCurrentPxId();
+    this.sharedDataService.idPacienteObservable.pipe(takeUntil(this.destroy$)).subscribe(id => {
+          this.idPx = id;
+          this.checkCurrentPxId();
+        })
+  }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+    // console.log('Suscripción destruida ✅ S4');
   }
   checkCurrentPxId(): void {
     this.isLoading = true;

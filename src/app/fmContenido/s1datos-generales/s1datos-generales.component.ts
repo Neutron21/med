@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject } from 'rxjs/internal/Subject';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { estadoCivil } from 'src/app/catalogos/paciente';
 import { AuthService } from 'src/app/services/auth.service';
 import { SharedDataService } from 'src/app/services/shared.service';
@@ -9,7 +11,7 @@ import { UtilService } from 'src/app/services/util.service';
   templateUrl: './s1datos-generales.component.html',
   styleUrls: ['./s1datos-generales.component.scss']
 })
-export class S1datosGeneralesComponent implements OnInit {
+export class S1datosGeneralesComponent implements OnInit, OnDestroy {
   body = {
     id_paciente: 0,
     escolaridad: "",
@@ -38,23 +40,29 @@ export class S1datosGeneralesComponent implements OnInit {
   idPx: number | null = null;
   isLoading: boolean = false;
   catalogoEstadoCivil: { [key: string]: string } = estadoCivil;
+  private destroy$ = new Subject<void>();
 
   constructor(
     private utilService: UtilService,
     private authService: AuthService,
     private sharedDataService: SharedDataService
   ) {
-    this.sharedDataService.idPacienteObservable.subscribe(id => {
-      this.idPx = id;
-      this.checkCurrentPxId();
-    });
+   
   }
 
   ngOnInit(): void {
     this.checkCurrentPxId();
-    this.llenarDatosGen(sessionStorage.getItem('currentPxId'));
-  }
 
+    this.sharedDataService.idPacienteObservable.pipe(takeUntil(this.destroy$)).subscribe(id => {
+      this.idPx = id;
+      this.checkCurrentPxId();
+    });
+  }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+    // console.log('Suscripción destruida ✅ S1');
+  }
   checkCurrentPxId(): void {
     this.isLoading = true; 
     let currentPxId = sessionStorage.getItem('currentPxId');
@@ -63,10 +71,8 @@ export class S1datosGeneralesComponent implements OnInit {
       
       this.authService.getById('datosGeneralesFm', 'id_paciente', currentPxId).subscribe(
         (response) => {
-          if (response.length > 0) {
             this.body = response.length > 0 ? response[0] : this.initBody;
             this.llenarDatosGen(currentPxId)   
-          }
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);

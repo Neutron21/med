@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { PxService } from '../services/px.service';
 import { AuthService } from '../services/auth.service';
 import { SharedDataService } from '../services/shared.service';
@@ -23,7 +23,7 @@ export class HistorialComponent implements OnInit {
   showSpiner: boolean = false;
   spinnerModal: boolean = false;
   today: string;
-  visitaForm: FormGroup;
+  visitaForm: UntypedFormGroup;
   visitas: any = [];
   addVisit: boolean= false;
   filePx: any;
@@ -51,10 +51,10 @@ export class HistorialComponent implements OnInit {
     private sharedDataService: SharedDataService) {
     this.today = this.formatDate();
 
-    this.visitaForm = new FormGroup({
-      fecha: new FormControl(this.today, Validators.required),
-      tipo: new FormControl(null, Validators.required),
-      comentario: new FormControl(null, Validators.required),
+    this.visitaForm = new UntypedFormGroup({
+      fecha: new UntypedFormControl(this.today, Validators.required),
+      tipo: new UntypedFormControl(null, Validators.required),
+      comentario: new UntypedFormControl(null, Validators.required),
     });
     this.sharedDataService.idPacienteObservable.subscribe(id => {
       this.getHistorial();

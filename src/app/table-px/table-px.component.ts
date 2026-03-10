@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { UtilService } from '../services/util.service';
 import { PxService } from '../services/px.service';
 import { Modal } from 'bootstrap';
@@ -13,7 +13,7 @@ import * as bootstrap from 'bootstrap';
 })
 export class TablePxComponent implements OnInit, AfterViewInit {
 
-  buscarPxForm!: FormGroup;
+  buscarPxForm!: UntypedFormGroup;
   showSpiner: boolean = false;
   pxList: any = [];
   nameToShow: string = '';
@@ -37,8 +37,8 @@ export class TablePxComponent implements OnInit, AfterViewInit {
     private pxService: PxService,
     private sharedDataService: SharedDataService
   ) { 
-    this.buscarPxForm = new FormGroup({
-      textoFind: new FormControl(null),
+    this.buscarPxForm = new UntypedFormGroup({
+      textoFind: new UntypedFormControl(null),
     });
   }
 
@@ -128,6 +128,7 @@ buscarPx() {
  
     this.sharedDataService.cleanSessionStorage();
     sessionStorage.removeItem('currentPxId');
+    this.showFichaMedica = false;
   }
   resetHistorial() {
     this.sharedDataService.cleanHistorial(true);

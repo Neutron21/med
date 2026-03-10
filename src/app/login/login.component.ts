@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { SharedDataService } from '../services/shared.service';
 
@@ -11,7 +11,7 @@ import { SharedDataService } from '../services/shared.service';
 
 export class LoginComponent implements OnInit {
 
-  loginForm!: FormGroup;
+  loginForm!: UntypedFormGroup;
   analytics: any;
   mostrarPassword: boolean = false;
   badCredentials: boolean = false;
@@ -23,9 +23,9 @@ export class LoginComponent implements OnInit {
    private authService: AuthService,
    private sharedservice: SharedDataService
   ) { 
-    this.loginForm = new FormGroup({
-      email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required)
+    this.loginForm = new UntypedFormGroup({
+      email: new UntypedFormControl('', Validators.required),
+      password: new UntypedFormControl('', Validators.required)
     });
   }
 
