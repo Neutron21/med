@@ -42,8 +42,16 @@ export class TablePxComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngOnInit(): void {}
-
+ngOnInit(): void {
+  this.pxService.getPacientes('').subscribe(
+    (response) => {
+      this.pxList = response;
+    },
+    (error) => {
+      console.error('Error al cargar pacientes:', error);
+    }
+  );
+}
   ngAfterViewInit(): void {
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     tooltipTriggerList.map(function (tooltipTriggerEl) {
@@ -59,22 +67,28 @@ export class TablePxComponent implements OnInit, AfterViewInit {
     return this.utilService.onlyText(event);
   }
 
-  buscarPx() {
-    const pxControl = this.buscarPxForm.get('textoFind');
-    if (!!pxControl?.value) {
-      this.showSpiner = true;
-      this.pxService.getPacientes(pxControl.value).subscribe(
-        (response) => {
-          this.pxList = response;
-          this.showSpiner = false;
-        },
-        (error) => {
-          this.showSpiner = false;
-          console.error('Error al obtener los datos del usuario:', error);
-        }
-      );
-    }
+buscarPx() {
+
+  let texto = this.buscarPxForm.get('textoFind')?.value;
+
+  // si está vacío, volver a traer todos
+  if (!texto || texto.trim() === '') {
+    texto = '';
   }
+
+  this.showSpiner = true;
+
+  this.pxService.getPacientes(texto).subscribe(
+    (response) => {
+      this.pxList = response;
+      this.showSpiner = false;
+    },
+    (error) => {
+      this.showSpiner = false;
+      console.error('Error al obtener pacientes:', error);
+    }
+  );
+}
 
   openFichaMedica(idPx: number) {
     sessionStorage.setItem('currentPxId', idPx.toString());
