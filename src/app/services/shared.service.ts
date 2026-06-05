@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable, of } from 'rxjs';
 import { Secciones } from '../models/secciones';
 import { PxService } from './px.service';
 
@@ -174,5 +174,28 @@ export class SharedDataService {
       sessionStorage.removeItem(key);
     });
     sessionStorage.removeItem('currentSection');
+  }
+
+  /**
+   * Carga datos de una sección desde sessionStorage, o desde API si no existe
+   * @param sectionKey - Clave de la sección (s1, s2, etc.)
+   * @param apiCall - Observable de la llamada API como fallback
+   * @param initBody - Objeto inicial vacío si no hay datos
+   */
+  loadSectionData(sectionKey: string, apiCall: Observable<any>, initBody: any): Observable<any> {
+    // 1. Intenta cargar de sessionStorage
+    const cached = sessionStorage.getItem(sectionKey);
+    if (cached) {
+      console.log(`✅ Cargando ${sectionKey} desde sessionStorage`);
+      try {
+        return of(JSON.parse(cached));
+      } catch (e) {
+        console.error(`Error al parsear ${sectionKey} de sessionStorage`, e);
+      }
+    }
+    
+    // 2. Si no existe en sesión, consulta API
+    console.log(`🔄 ${sectionKey} no en sesión, consultando API...`);
+    return apiCall;
   }
 }

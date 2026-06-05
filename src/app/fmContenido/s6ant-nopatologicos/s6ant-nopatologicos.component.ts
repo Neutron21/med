@@ -77,8 +77,8 @@ export class S6antNopatologicosComponent implements OnInit, OnDestroy {
   
     if (!!currentPxId) {
       console.log('ID actual del paciente', currentPxId);
-      
-      this.authService.getById('antecedentesNoPatFm', 'id_paciente', currentPxId).subscribe(
+      const apiCall = this.authService.getById('antecedentesNoPatFm', 'id_paciente', currentPxId);
+      this.sharedDataService.loadSectionData('s6', apiCall, this.initBody).subscribe(
         (response) => {
           console.log('Datos del paciente:', response);
           this.body = response.length > 0 ? response[0] : this.initBody;

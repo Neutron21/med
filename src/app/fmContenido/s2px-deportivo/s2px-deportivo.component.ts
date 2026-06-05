@@ -48,7 +48,8 @@ export class S2pxDeportivoComponent implements OnInit, OnDestroy {
     let currentPxId = sessionStorage.getItem('currentPxId');
     if (!!currentPxId) {
       console.log('ID actual del paciente', currentPxId);
-            this.authService.getById('deportivoFm','id_paciente', currentPxId).subscribe(
+      const apiCall = this.authService.getById('deportivoFm','id_paciente', currentPxId);
+      this.sharedDataService.loadSectionData('s2', apiCall, this.initBody).subscribe(
         (response) => {
           console.log('Datos del paciente:', response);
           this.body = response.length > 0 ? response[0] : this.initBody;

@@ -73,7 +73,8 @@ export class S8pediatricoAntperinatalesComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     let currentPxId = sessionStorage.getItem('currentPxId');
     if (!!currentPxId) {
-      this.authService.getById('pediatricoFm', 'id_paciente', currentPxId).subscribe(
+      const apiCall = this.authService.getById('pediatricoFm', 'id_paciente', currentPxId);
+      this.sharedDataService.loadSectionData('s8', apiCall, this.initBody).subscribe(
         (response) => {
           this.body = response.length > 0 ? response[0] : this.initBody;
           this.updateFormData();

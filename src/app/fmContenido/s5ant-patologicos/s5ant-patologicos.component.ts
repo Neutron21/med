@@ -91,7 +91,8 @@ private destroy$ = new Subject<void>();
     let currentPxId = sessionStorage.getItem('currentPxId');
     if (!!currentPxId) {
       console.log('ID actual del paciente', currentPxId);
-            this.authService.getById('antecedentesPatFm','id_paciente', currentPxId).subscribe(
+      const apiCall = this.authService.getById('antecedentesPatFm','id_paciente', currentPxId);
+      this.sharedDataService.loadSectionData('s5', apiCall, this.initBody).subscribe(
         (response) => {
           console.log('Datos del paciente:', response);
           this.body = response.length > 0 ? response[0] : this.initBody;
@@ -102,8 +103,7 @@ private destroy$ = new Subject<void>();
           console.error('Error al obtener los datos del paciente:', error);
         }
       );
-    } 
-    
+    }
   }
   updateFormData() {
     this.formData.diabetesSiNo = Boolean(this.body.diabetes_p || this.body.diabetes_e);

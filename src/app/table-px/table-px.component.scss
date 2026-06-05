@@ -135,10 +135,12 @@
     font-size: 0.9rem;
     padding: 0.3rem 0.4rem;
 }
-.responsive-table {
-  max-height: 500px;   /* altura de la tabla */
-  overflow-y: auto;    /* scroll vertical */
-  border: 1px solid #dee2e6;
+.responsive-table table tbody tr:hover,
+.responsive-table table tbody tr:hover td {
+  background-color: #b6e5f5 !important;
+}
+.responsive-table table tbody tr:hover td {
+  transition: background-color 0.2s ease;
 }
 
 .responsive-table table {

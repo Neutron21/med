@@ -48,21 +48,20 @@ export class S9observacionesComponent implements OnInit, OnDestroy {
     let currentPxId = sessionStorage.getItem('currentPxId');
     if (!!currentPxId) {
       console.log('ID actual del paciente', currentPxId);
-            this.authService.getById('fichaMedicaAux','id_paciente', currentPxId).subscribe(
+      const apiCall = this.authService.getById('fichaMedicaAux','id_paciente', currentPxId);
+      this.sharedDataService.loadSectionData('s9', apiCall, this.initBody).subscribe(
         (response) => {
           console.log('S9 Datos del paciente:', response);
           this.body = response.length > 0 ? response[0] : this.initBody;
           this.validarAlturaAll();
           this.isLoading = false;
-
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
           this.isLoading = false;
-
         }
       );
-    } 
+    }
   }
 
   guardar() {

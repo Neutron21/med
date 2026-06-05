@@ -51,7 +51,8 @@ export class S3medidasFisicasComponent implements OnInit, OnDestroy {
     if (!!currentPxId) {
       console.log('ID actual del paciente', currentPxId);
       this.isLoading = true; 
-            this.authService.getById('medidasFm','id_paciente', currentPxId).subscribe(
+      const apiCall = this.authService.getById('medidasFm','id_paciente', currentPxId);
+      this.sharedDataService.loadSectionData('s3', apiCall, this.initBody).subscribe(
         (response) => {
           console.log('Datos del paciente:', response);
           this.body = response.length > 0 ? response[0] : this.initBody;

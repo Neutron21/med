@@ -69,7 +69,8 @@ export class S1datosGeneralesComponent implements OnInit, OnDestroy {
     if (!!currentPxId) {
       console.log('ID actual del paciente', currentPxId);
       
-      this.authService.getById('datosGeneralesFm', 'id_paciente', currentPxId).subscribe(
+      const apiCall = this.authService.getById('datosGeneralesFm', 'id_paciente', currentPxId);
+      this.sharedDataService.loadSectionData('s1', apiCall, this.initBody).subscribe(
         (response) => {
             this.body = response.length > 0 ? response[0] : this.initBody;
             this.llenarDatosGen(currentPxId)   
