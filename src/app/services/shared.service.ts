@@ -43,7 +43,7 @@ export class SharedDataService {
   private idDoctorSubject = new Subject<any>();
   idDoctorObservable = this.idDoctorSubject.asObservable();
 
-  cambiarIdDoctor(user: any): void {
+  setIdDoctor(user: any): void {
     this.idDoctorSubject.next(user);
     this.idDoctor = user;
   }

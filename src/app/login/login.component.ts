@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
   
           // Al obtener los datos, emites el idDoctor
           const user = response[0]; // Asegúrate de que `response[0]` contiene el idDoctor
-          this.sharedservice.cambiarIdDoctor(user);  // Emite el idDoctor
+          this.sharedservice.setIdDoctor(user);  // Emite el idDoctor
           sessionStorage.setItem('currentUser', JSON.stringify(user));
         },
         (error) => {
