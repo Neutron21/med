@@ -185,10 +185,12 @@ export class SharedDataService {
   loadSectionData(sectionKey: string, apiCall: Observable<any>, initBody: any): Observable<any> {
     // 1. Intenta cargar de sessionStorage
     const cached = sessionStorage.getItem(sectionKey);
+
     if (cached) {
       console.log(`✅ Cargando ${sectionKey} desde sessionStorage`);
       try {
-        return of(JSON.parse(cached));
+        const data = JSON.parse(cached);
+        return of(Array.isArray(data) ? data : [data]);
       } catch (e) {
         console.error(`Error al parsear ${sectionKey} de sessionStorage`, e);
       }
