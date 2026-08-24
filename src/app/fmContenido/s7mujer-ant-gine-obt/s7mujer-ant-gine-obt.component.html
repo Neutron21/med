@@ -9,7 +9,7 @@
       <label class="form-check-label" for="switchGinecoObstetrico">{{ showTable ? 'Si' : 'No' }}</label>
     </div>
   </div>
-  <div *ngIf="showTable">
+  <div *ngIf="!isLoading && showTable">
     <table class="table table-bordered">
       <thead>
         <tr>

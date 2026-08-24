@@ -1,4 +1,14 @@
 /* Botón de buscar / lupa */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+}
+
+.spinner-image {
+  width: 8rem;
+  height: 8rem;
+}
+
 .buscar_pago_button {
     margin-top: 2rem;
     padding: .375rem .75rem;

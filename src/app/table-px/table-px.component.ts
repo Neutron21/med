@@ -43,12 +43,15 @@ export class TablePxComponent implements OnInit, AfterViewInit {
   }
 
 ngOnInit(): void {
+  this.showSpiner = true;
   this.pxService.getPacientes('').subscribe(
     (response) => {
       this.pxList = response;
+      this.showSpiner = false;
     },
     (error) => {
       console.error('Error al cargar pacientes:', error);
+      this.showSpiner = false;
     }
   );
 }

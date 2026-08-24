@@ -1,14 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-// body {
-//     background-color: aliceblue;
-// }
-// .container {
-//     background-color: white;
-// }
+
 .form-border {
     border: 2px solid #0087ff; 
     border-radius: 10px;
     padding: 20px;
+    min-height: 17rem
   }
 .nav-link {
     cursor: pointer;

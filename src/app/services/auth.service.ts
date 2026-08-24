@@ -13,7 +13,7 @@ export class AuthService {
 
     private app = initializeApp(environment.firebaseConfig);
     private auth = getAuth();
-    private uid = '';
+    private uid = ''; // Nos informa si el usario esta loegeado
     private user = '';
     private isLoggedIn = false;
 

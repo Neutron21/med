@@ -51,6 +51,7 @@ export class S1datosGeneralesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.isLoading = true; 
     this.checkCurrentPxId();
 
     this.sharedDataService.idPacienteObservable.pipe(takeUntil(this.destroy$)).subscribe(id => {
@@ -64,7 +65,7 @@ export class S1datosGeneralesComponent implements OnInit, OnDestroy {
     // console.log('Suscripción destruida ✅ S1');
   }
   checkCurrentPxId(): void {
-    this.isLoading = true; 
+    // this.isLoading = true; 
     let currentPxId = sessionStorage.getItem('currentPxId');
     if (!!currentPxId) {
       console.log('ID actual del paciente', currentPxId);

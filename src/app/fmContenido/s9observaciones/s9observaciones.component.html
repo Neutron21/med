@@ -1,11 +1,11 @@
 <div class="container">
-  <p class="me-3 text-center fw-bold">Motivo de consulta</p>
   
   <div *ngIf="isLoading" class="spinner-overlay">
     <img alt="spiner" src="../../assets/doctor.gif" class="spinner-image"/>
   </div>
-
+  
   <div *ngIf="!isLoading">
+    <p class="me-3 text-center fw-bold">Motivo de consulta</p>
     <div class="d-flex align-items-center mb-3">
       <textarea id='motivoConsulta' rows="1"
                 style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"

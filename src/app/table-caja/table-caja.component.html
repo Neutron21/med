@@ -31,7 +31,10 @@
   </div>
 </form>
   <div class="responsive-table">
-   <table class="table table-striped table-hover">
+    <div *ngIf="showSpiner">
+        <img alt="spiner" src="../../assets/doctor.gif"/>
+    </div>
+   <table *ngIf="showSpiner" class="table table-striped table-hover">
       <thead class="text-center"> 
         <tr>
           <th scope="col">Fecha</th>
@@ -44,11 +47,11 @@
         <tr *ngIf="!showSpiner">
           <td colspan="4" class="table-active text-center">Sin resultados para mostrar</td>
         </tr>
-        <tr *ngIf="showSpiner">
+        <!-- <tr *ngIf="showSpiner">
           <td colspan="4" class="spinner-container">
             <img alt="spiner" src="../../assets/doctor.gif"/>
           </td>
-        </tr>
+        </tr> -->
       </tbody>
       <tbody *ngIf="!showSpiner && pagos.length > 0">
         <tr *ngFor="let pago of pagos">

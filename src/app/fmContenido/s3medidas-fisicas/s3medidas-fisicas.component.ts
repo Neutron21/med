@@ -34,6 +34,7 @@ export class S3medidasFisicasComponent implements OnInit, OnDestroy {
   ) {  }
 
   ngOnInit(): void {
+    this.isLoading = true; 
     this.checkCurrentPxId();
     
     this.sharedDataService.idPacienteObservable.pipe(takeUntil(this.destroy$)).subscribe(id => {
@@ -50,7 +51,7 @@ export class S3medidasFisicasComponent implements OnInit, OnDestroy {
     let currentPxId = sessionStorage.getItem('currentPxId');
     if (!!currentPxId) {
       console.log('ID actual del paciente', currentPxId);
-      this.isLoading = true; 
+      
       const apiCall = this.authService.getById('medidasFm','id_paciente', currentPxId);
       this.sharedDataService.loadSectionData('s3', apiCall, this.initBody).subscribe(
         (response) => {
