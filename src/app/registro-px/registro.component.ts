@@ -72,17 +72,24 @@ export class RegistroComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (this.loader) {
+      return;
+    }
+
     this.validateEmail();
     this.validatePhoneNumber();
 
     const allFieldsFilled = this.isFormValid();
 
     if (!allFieldsFilled || this.emailError || this.showPhoneError) {
-        this.showWarning = true;
-    } else {
-        this.loader = true;
+      this.showWarning = !allFieldsFilled;
+      return;
+    }
 
-        this.pxService.createPaciente(this.formData).subscribe(
+    this.showWarning = false;
+    this.loader = true;
+        
+    this.pxService.createPaciente(this.formData).subscribe(
             (response: any) => {
                 console.log("Paciente registrado con éxito, " + response.message);
                 console.log("Paciente actual, ", response.data);
@@ -93,18 +100,17 @@ export class RegistroComponent implements OnInit {
                 sessionStorage.setItem('s1', JSON.stringify(this.bodyS1));
 
                 this.saveError = false;
-                this.loader = false;
                 this.clearForm();
                 this.responseModal.show();
+                this.loader = false;
             },
             (error: any) => {
-                console.log("Error al registrar paciente: " + error.error.error);
+              this.loader = false;
+              console.log("Error al registrar paciente: " + (error.error?.error || error.message));
                 this.saveError = true;
-                this.loader = false;
                 this.responseModal.show();
             }
-        );
-    }
+            );
 }
 
   
@@ -126,16 +132,16 @@ export class RegistroComponent implements OnInit {
   }
 
   isFormValid(): boolean {
-    return this.formData.nombre && this.formData.apellidoP && this.formData.apellidoM &&
+    return Boolean(this.formData.nombre && this.formData.apellidoP && this.formData.apellidoM &&
            this.formData.fechaNac && this.formData.sexo && this.formData.estadoCivil &&
-           this.formData.tipoSangre && this.formData.telefono && this.formData.email;
+           this.formData.tipoSangre && this.formData.telefono && this.formData.email);
   }
   validatePhoneNumber(): void {
-    this.showPhoneError = this.formData.telefono.length !== 10;
+    this.showPhoneError = !/^\d{10}$/.test(this.formData.telefono || '');
   }
   validateEmail(): void {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    this.emailError = !emailPattern.test(this.formData.email);
+    this.emailError = !emailPattern.test(this.formData.email || '');
   }
   resetPhoneError(): void {
     this.showPhoneError = false;

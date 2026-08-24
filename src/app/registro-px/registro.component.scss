@@ -47,6 +47,35 @@
 .success-background {
   background-color: #4db051;
 }
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.55);
+  cursor: wait;
+}
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem 2rem;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  color: #212529;
+  text-align: center;
+}
+.loading-spinner {
+  width: 8rem;
+  height: 8rem;
+}
+.loading-content p {
+  margin: 0;
+  font-weight: 600;
+}
 .container {
   margin-top: 0;
   padding: 1em;
