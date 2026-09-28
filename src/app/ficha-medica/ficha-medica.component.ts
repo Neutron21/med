@@ -25,6 +25,7 @@ export class FichaMedicaComponent implements OnInit, OnDestroy {
   };
   
   allSectionsVisible = false;
+  selectedSection = 's1';
   private destroy$ = new Subject<void>();
 
   constructor(
@@ -50,7 +51,11 @@ export class FichaMedicaComponent implements OnInit, OnDestroy {
   mostrarSeccion(seccion: keyof Secciones) {
 
     if (this.allSectionsVisible) {
-      this.toggleAllSections(); 
+      Object.keys(this.showSection).forEach(key => {
+        this.sharedDataService.seccionesCompletadas(key);
+      });
+      this.sharedDataService.cleanSessionStorage();
+      this.allSectionsVisible = false;
     }
     const currSec = sessionStorage.getItem('currentSection');
     console.log('Estabas en ' + currSec);
@@ -71,16 +76,15 @@ export class FichaMedicaComponent implements OnInit, OnDestroy {
 
     nuevaSeccion[seccion] = true;
     console.log(seccion);
-    
+    this.selectedSection = seccion;
     sessionStorage.setItem('currentSection', seccion);
     this.sharedDataService.updateSeccion(nuevaSeccion);
   }
 
-  async toggleAllSections() {
-
-    this.allSectionsVisible = !this.allSectionsVisible;
-
-    if (this.allSectionsVisible) {
+  seleccionarVista(vista: string): void {
+    if (vista === 'all') {
+      this.allSectionsVisible = true;
+      this.selectedSection = 'all';
       this.showSection = {
         s1: true,
         s2: true,
@@ -92,16 +96,10 @@ export class FichaMedicaComponent implements OnInit, OnDestroy {
         s8: true,
         s9: true
       };
-    } else {
-      await Object.keys(this.showSection).forEach(key => {
-        console.log(key);
-         this.sharedDataService.seccionesCompletadas(key);
-      });
-      this.sharedDataService.cleanSessionStorage();
-      this.mostrarSeccion('s1');
+      this.sharedDataService.updateSeccion(this.showSection);
+    } else if (vista in this.showSection) {
+      this.mostrarSeccion(vista as keyof Secciones);
     }
-
-    this.sharedDataService.updateSeccion(this.showSection);
   }
   
 }

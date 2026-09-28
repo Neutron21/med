@@ -1,39 +1,22 @@
-<div class="d-flex justify-content-between align-items-center">
-  <h2></h2>
-  <button class="btn btn-primary" (click)="toggleAllSections()">
-    <img *ngIf="allSectionsVisible" src="assets/pestaña.png" width="20" height="20"/>
-    <img *ngIf="!allSectionsVisible" src="assets/lista.png" width="20" height="20"/>
-  </button>
+<div class="section-selector mb-3">
+  <label for="sectionSelect" class="form-label">Sección de la ficha médica</label>
+  <select
+    id="sectionSelect"
+    class="form-select"
+    [ngModel]="selectedSection"
+    (ngModelChange)="seleccionarVista($event)">
+    <option value="s1">Datos Generales</option>
+    <option value="s2">PX Deportivo</option>
+    <option value="s3">Medidas Físicas</option>
+    <option value="s4">Antecedentes Familiares</option>
+    <option value="s5">Antecedentes Patológicos</option>
+    <option value="s6">Antecedentes No Patológicos</option>
+    <option value="s7">Gineco-obstétricos</option>
+    <option value="s8">Pediátricos</option>
+    <option value="s9">Observaciones</option>
+    <option value="all">Ver todo</option>
+  </select>
 </div>
-<ul class="nav nav-tabs tabs-custom-margin">
-    <li class="nav-item" (click)="mostrarSeccion('s1')" *ngIf="!allSectionsVisible">
-      <a class="nav-link" [ngClass]="{'active': showSection.s1}" >Datos Generales</a>
-    </li>
-    <li class="nav-item" (click)="mostrarSeccion('s2')" *ngIf="!allSectionsVisible">
-      <a class="nav-link" [ngClass]="{'active': showSection.s2}" >PX Deportivo</a>
-    </li>
-    <li class="nav-item" (click)="mostrarSeccion('s3')" *ngIf="!allSectionsVisible">
-      <a class="nav-link" [ngClass]="{'active': showSection.s3}">Medidas Físicas</a>
-    </li>
-    <li class="nav-item" (click)="mostrarSeccion('s4')" *ngIf="!allSectionsVisible">
-      <a class="nav-link" [ngClass]="{'active': showSection.s4}" >Antecedentes Familiares</a>
-    </li>
-    <li class="nav-item" (click)="mostrarSeccion('s5')" *ngIf="!allSectionsVisible">
-      <a class="nav-link" [ngClass]="{'active': showSection.s5}" >Antecedentes Patológicos</a>
-    </li>
-    <li class="nav-item" (click)="mostrarSeccion('s6')" *ngIf="!allSectionsVisible">
-      <a class="nav-link" [ngClass]="{'active': showSection.s6}" >Antecedentes No Patológicos</a>
-    </li>
-    <li class="nav-item" (click)="mostrarSeccion('s7')" *ngIf="!allSectionsVisible">
-      <a class="nav-link" [ngClass]="{'active': showSection.s7}" >Gineco-obstétricos</a>
-    </li>
-    <li class="nav-item" (click)="mostrarSeccion('s8')" *ngIf="!allSectionsVisible">
-      <a class="nav-link" [ngClass]="{'active': showSection.s8}" >Pediátricos</a>
-    </li>
-    <li class="nav-item" (click)="mostrarSeccion('s9')" *ngIf="!allSectionsVisible">
-      <a class="nav-link" [ngClass]="{'active': showSection.s9}" >Observaciones</a>
-    </li>
-</ul>
 <div class="content-tabs">
   <app-s1datos-generales *ngIf="showSection.s1 || allSectionsVisible"></app-s1datos-generales>
   <app-s2px-deportivo *ngIf="showSection.s2 || allSectionsVisible"></app-s2px-deportivo>
