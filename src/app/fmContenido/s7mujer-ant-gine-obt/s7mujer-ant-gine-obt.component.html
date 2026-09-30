@@ -1,3 +1,11 @@
+<!-- Fecha de última actualización alineada a la derecha -->
+<div class="d-flex justify-content-end mb-1" *ngIf="!isLoading && body.updated">
+  <small class="text-muted">
+    Última actualización: {{ body.updated | date:'dd/MM/yyyy HH:mm:ss' }}
+  </small>
+</div>
+
+<!-- Tus botones de edición existentes -->
 <div class="d-flex justify-content-end gap-2 mb-3" *ngIf="!isLoading">
   <button *ngIf="!isEditing" type="button" class="btn btn-outline-primary" (click)="iniciarEdicion()">Editar</button>
   <ng-container *ngIf="isEditing">

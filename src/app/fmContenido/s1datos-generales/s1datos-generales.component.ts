@@ -22,7 +22,8 @@ export class S1datosGeneralesComponent implements OnInit, OnDestroy {
     tel_contacto_de_emergencia: "",
     medico_tratante: "",
     lugar_de_residencia: "",
-    remision: ""
+    remision: "",
+    updated: "" // <-- 1. Agregado aquí para recibir la fecha del PHP
   };
   private originalBody = { ...this.body };
   isEditing = false;
@@ -50,9 +51,7 @@ export class S1datosGeneralesComponent implements OnInit, OnDestroy {
     private utilService: UtilService,
     private authService: AuthService,
     private sharedDataService: SharedDataService
-  ) {
-   
-  }
+  ) {}
 
   ngOnInit(): void {
     this.isLoading = true; 
@@ -63,22 +62,20 @@ export class S1datosGeneralesComponent implements OnInit, OnDestroy {
       this.checkCurrentPxId();
     });
   }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-    // console.log('Suscripción destruida ✅ S1');
   }
+
   checkCurrentPxId(): void {
-    // this.isLoading = true; 
     let currentPxId = sessionStorage.getItem('currentPxId');
     if (!!currentPxId) {
-      console.log('ID actual del paciente', currentPxId);
-      
       const apiCall = this.authService.getById('datosGeneralesFm', 'id_paciente', currentPxId);
       this.sharedDataService.loadSectionData('s1', apiCall, this.initBody).subscribe(
         (response) => {
             this.body = response.length > 0 ? response[0] : this.initBody;
-            this.llenarDatosGen(currentPxId)   
+            this.llenarDatosGen(currentPxId);   
         },
         (error) => {
           console.error('Error al obtener los datos del paciente:', error);
@@ -94,21 +91,17 @@ export class S1datosGeneralesComponent implements OnInit, OnDestroy {
     if (currentPxId !== null) {
       this.authService.getById('pacientes', 'id', currentPxId)
         .subscribe(response => {
-          console.log('Respuesta de la API para infoPx:', response);
           if (response.length > 0) {
             this.infoPx = response[0]; 
-            this.isLoading = false
+            this.isLoading = false;
           } else {
-            console.warn('No se encontraron datos para el ID del paciente:', currentPxId);
-            this.isLoading = false
+            this.isLoading = false;
           }
         }, error => {
           console.error('Error al obtener los datos:', error);
-          this.isLoading = false
-
+          this.isLoading = false;
         });
     } 
-    
   }
 
   onlyText(event: KeyboardEvent): boolean {
@@ -146,6 +139,9 @@ export class S1datosGeneralesComponent implements OnInit, OnDestroy {
         this.isEditing = false;
         this.isSaving = false;
         this.hasUnsavedChanges = false;
+        
+        // Opcional: Actualizar la fecha localmente de inmediato tras guardar con éxito
+        this.body.updated = new Date().toISOString(); 
       },
       error => {
         console.error('Error al guardar Datos Generales:', error);

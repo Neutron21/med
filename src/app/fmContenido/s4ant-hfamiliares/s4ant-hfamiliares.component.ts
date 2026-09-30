@@ -44,6 +44,7 @@ formData =  {
       endocrinologas_e:'',
       otras_p:'',
       otras_e:'', 
+      updated: ""
   }
   initBody = JSON.parse(JSON.stringify(this.body)); 
   isEditing = false;
@@ -119,6 +120,7 @@ formData =  {
         this.isEditing = false;
         this.isSaving = false;
         this.hasUnsavedChanges = false;
+        this.body.updated = new Date().toISOString();
       },
       error => {
         console.error('Error al guardar Antecedentes Familiares:', error);

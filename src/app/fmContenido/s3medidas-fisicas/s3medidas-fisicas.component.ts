@@ -20,7 +20,8 @@ export class S3medidasFisicasComponent implements OnInit, OnDestroy {
   temperatura: '',
   f_cardiaca: '',
   f_respiratoria: '',
-  tension_arterial: ''
+  tension_arterial: '',
+  updated: ''
  }
  isEditing = false;
  isSaving = false;
@@ -104,6 +105,7 @@ export class S3medidasFisicasComponent implements OnInit, OnDestroy {
         this.isEditing = false;
         this.isSaving = false;
         this.hasUnsavedChanges = false;
+        this.body.updated = new Date().toISOString();
       },
       error => {
         console.error('Error al guardar Medidas Físicas:', error);

@@ -18,7 +18,8 @@ export class S9observacionesComponent implements OnInit, OnDestroy {
     mecanismoLesion: '',
     tratamientosPrevios: '',
     observaciones: '',
-    tratamiento: ""
+    tratamiento: "",
+    updated: ""
   }
   initBody = JSON.parse(JSON.stringify(this.body)); 
   isEditing = false;
@@ -93,6 +94,7 @@ export class S9observacionesComponent implements OnInit, OnDestroy {
         this.isEditing = false;
         this.isSaving = false;
         this.hasUnsavedChanges = false;
+        this.body.updated = new Date().toISOString();
       },
       error => {
         console.error('Error al guardar Observaciones:', error);

@@ -7,5 +7,6 @@ export interface GinecoObs {
     cesareas_e: string,
     abortos_e: string,
     nacidosVivos_e: string,
-    menopausia_e: string
+    menopausia_e: string,
+    updated: string
 }

@@ -45,7 +45,8 @@ export class S6antNopatologicosComponent implements OnInit, OnDestroy {
     ocupacion_p: "",
     ocupacion_e: "",
     actividadOcio_p: "",
-    actividadOcio_e: ""
+    actividadOcio_e: "",
+    updated: ""
   }
   
   initBody = JSON.parse(JSON.stringify(this.body)); 
@@ -139,6 +140,7 @@ export class S6antNopatologicosComponent implements OnInit, OnDestroy {
         this.isEditing = false;
         this.isSaving = false;
         this.hasUnsavedChanges = false;
+        this.body.updated = new Date().toISOString();
       },
       error => {
         console.error('Error al guardar Antecedentes No Patológicos:', error);

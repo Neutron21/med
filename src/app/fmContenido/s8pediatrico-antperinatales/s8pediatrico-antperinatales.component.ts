@@ -42,7 +42,8 @@ export class S8pediatricoAntperinatalesComponent implements OnInit, OnDestroy {
     incubadora_e:'',    
     pesoMedida_e:'',  
     tamizMetabolico_e:'', 
-    PuntajeAPGAR_e:'' 
+    PuntajeAPGAR_e:'',
+    updated: "" 
   }
   initBody = JSON.parse(JSON.stringify(this.body)); 
   isEditing = false;
@@ -129,22 +130,23 @@ export class S8pediatricoAntperinatalesComponent implements OnInit, OnDestroy {
     this.isEditing = false;
     this.hasUnsavedChanges = false;
   }
-
-  guardarCambios(): void {
-    if (this.isSaving) return;
-    this.isSaving = true;
-    this.sharedDataService.saveSection('s8', { ...this.body }).subscribe(
-      () => {
-        this.isEditing = false;
-        this.isSaving = false;
-        this.hasUnsavedChanges = false;
-      },
-      error => {
-        console.error('Error al guardar Antecedentes Pediátricos:', error);
-        this.isSaving = false;
-      }
-    );
-  }
+guardarCambios(): void {
+  if (this.isSaving) return;
+  this.isSaving = true;
+  this.sharedDataService.saveSection('s8', { ...this.body }).subscribe(
+    () => {
+      this.isEditing = false;
+      this.isSaving = false;
+      this.hasUnsavedChanges = false;
+      this.body.updated = new Date().toISOString();
+    },
+    error => {
+      // Usa error.error o error.message para ver qué viene
+      console.log('Texto exacto que envió PHP:', error.error?.text || error.error);
+      this.isSaving = false;
+    }
+  );
+}
 
   limpiar($event: any,id: keyof Pediatrico) {
     if (!$event) {

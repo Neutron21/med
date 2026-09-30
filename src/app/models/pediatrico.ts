@@ -11,5 +11,6 @@ export interface Pediatrico  {
     incubadora_e:string,    
     pesoMedida_e:string,  
     tamizMetabolico_e:string, 
-    PuntajeAPGAR_e:string 
+    PuntajeAPGAR_e:string,
+    updated: string 
     }

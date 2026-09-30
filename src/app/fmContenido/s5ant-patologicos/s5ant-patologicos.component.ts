@@ -61,7 +61,8 @@ export class S5antPatologicosComponent implements OnInit, OnDestroy {
   hospitalizacionesPrevias_p:'',
   hospitalizacionesPrevias_e:'',
   otras_p:'',
-  otras_e:''
+  otras_e:'',
+  updated: ""
 }
 initBody = JSON.parse(JSON.stringify(this.body)); 
 isEditing = false;
@@ -154,6 +155,7 @@ private destroy$ = new Subject<void>();
         this.isEditing = false;
         this.isSaving = false;
         this.hasUnsavedChanges = false;
+        this.body.updated = new Date().toISOString();
       },
       error => {
         console.error('Error al guardar Antecedentes Patológicos:', error);

@@ -34,7 +34,9 @@ export class S7mujerAntGineObtComponent implements OnInit, OnDestroy {
       cesareas_e:'',
       abortos_e:'',
       nacidosVivos_e:'',
-      menopausia_e:''
+      menopausia_e:'',
+      updated: ''
+      
   }
   initBody = JSON.parse(JSON.stringify(this.body)); 
   isEditing = false;
@@ -127,6 +129,7 @@ export class S7mujerAntGineObtComponent implements OnInit, OnDestroy {
         this.isEditing = false;
         this.isSaving = false;
         this.hasUnsavedChanges = false;
+        this.body.updated = new Date().toISOString();
       },
       error => {
         console.error('Error al guardar Antecedentes Gineco-Obstétricos:', error);

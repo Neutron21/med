@@ -18,7 +18,8 @@ export class S2pxDeportivoComponent implements OnInit, OnDestroy {
     arte_competitivo: "",
     categoria: "",
     nombre_del_entrenador: "",
-    club_o_liga_deportiva: ""
+    club_o_liga_deportiva: "",
+    updated: ""
   }
   isEditing = false;
   isSaving = false;
@@ -98,6 +99,7 @@ export class S2pxDeportivoComponent implements OnInit, OnDestroy {
         this.isEditing = false;
         this.isSaving = false;
         this.hasUnsavedChanges = false;
+        this.body.updated = new Date().toISOString();
       },
       error => {
         console.error('Error al guardar PX Deportivo:', error);
