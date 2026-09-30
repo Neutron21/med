@@ -51,16 +51,8 @@ export class FichaMedicaComponent implements OnInit, OnDestroy {
   mostrarSeccion(seccion: keyof Secciones) {
 
     if (this.allSectionsVisible) {
-      Object.keys(this.showSection).forEach(key => {
-        this.sharedDataService.seccionesCompletadas(key);
-      });
-      this.sharedDataService.cleanSessionStorage();
       this.allSectionsVisible = false;
     }
-    const currSec = sessionStorage.getItem('currentSection');
-    console.log('Estabas en ' + currSec);
-    this.sharedDataService.seccionesCompletadas(currSec);
-    console.log('Ahora estas en')
 
     const nuevaSeccion: Secciones = {
       s1: false,  

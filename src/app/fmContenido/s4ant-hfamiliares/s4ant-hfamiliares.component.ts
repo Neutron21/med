@@ -46,6 +46,10 @@ formData =  {
       otras_e:'', 
   }
   initBody = JSON.parse(JSON.stringify(this.body)); 
+  isEditing = false;
+  isSaving = false;
+  hasUnsavedChanges = false;
+  private originalState: any;
   idPx: number|null = null;
   isLoading: boolean = false;
   private destroy$ = new Subject<void>();
@@ -91,7 +95,36 @@ formData =  {
   
 
   guardar() {
-    sessionStorage.setItem('s4', JSON.stringify(this.body));
+    this.hasUnsavedChanges = true;
+  }
+
+  iniciarEdicion(): void {
+    this.originalState = JSON.parse(JSON.stringify({ body: this.body, formData: this.formData }));
+    this.hasUnsavedChanges = false;
+    this.isEditing = true;
+  }
+
+  cancelarEdicion(): void {
+    this.body = this.originalState.body;
+    this.formData = this.originalState.formData;
+    this.isEditing = false;
+    this.hasUnsavedChanges = false;
+  }
+
+  guardarCambios(): void {
+    if (this.isSaving) return;
+    this.isSaving = true;
+    this.sharedDataService.saveSection('s4', { ...this.body }).subscribe(
+      () => {
+        this.isEditing = false;
+        this.isSaving = false;
+        this.hasUnsavedChanges = false;
+      },
+      error => {
+        console.error('Error al guardar Antecedentes Familiares:', error);
+        this.isSaving = false;
+      }
+    );
   }
   updateFormData() {
     this.formData.diabetesSiNo = Boolean (this.body.diabetes_p || this.body.diabetes_e);

@@ -20,6 +20,10 @@ export class S2pxDeportivoComponent implements OnInit, OnDestroy {
     nombre_del_entrenador: "",
     club_o_liga_deportiva: ""
   }
+  isEditing = false;
+  isSaving = false;
+  hasUnsavedChanges = false;
+  private originalState: any;
   initBody = JSON.parse(JSON.stringify(this.body)); 
   idPx: number|null = null;
   isLoading: boolean = false;
@@ -70,7 +74,36 @@ export class S2pxDeportivoComponent implements OnInit, OnDestroy {
 
   }
   guardar() {
-    sessionStorage.setItem('s2', JSON.stringify(this.body));
+    this.hasUnsavedChanges = true;
+  }
+
+  iniciarEdicion(): void {
+    this.originalState = JSON.parse(JSON.stringify({ body: this.body, formData: this.formData }));
+    this.hasUnsavedChanges = false;
+    this.isEditing = true;
+  }
+
+  cancelarEdicion(): void {
+    this.body = this.originalState.body;
+    this.formData = this.originalState.formData;
+    this.isEditing = false;
+    this.hasUnsavedChanges = false;
+  }
+
+  guardarCambios(): void {
+    if (this.isSaving) return;
+    this.isSaving = true;
+    this.sharedDataService.saveSection('s2', { ...this.body }).subscribe(
+      () => {
+        this.isEditing = false;
+        this.isSaving = false;
+        this.hasUnsavedChanges = false;
+      },
+      error => {
+        console.error('Error al guardar PX Deportivo:', error);
+        this.isSaving = false;
+      }
+    );
   }
 
 }

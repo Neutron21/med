@@ -121,14 +121,8 @@ buscarPx() {
     this.sharedDataService.cambiarIdPaciente(id);
   }
 
-  async resetModal() { // GUARDAMOS Y BORRAMOS DATOS DE FICHA MEDICA en SessionStorage
+  resetModal() {
     console.log('verTodo',this.sharedDataService.verTodo);
-    
-    await Object.keys(this.secciones).forEach(key => {
-      console.log(key);
-       this.sharedDataService.seccionesCompletadas(key);
-    });
- 
     this.sharedDataService.cleanSessionStorage();
     sessionStorage.removeItem('currentPxId');
     this.showFichaMedica = false;

@@ -49,6 +49,10 @@ export class S6antNopatologicosComponent implements OnInit, OnDestroy {
   }
   
   initBody = JSON.parse(JSON.stringify(this.body)); 
+  isEditing = false;
+  isSaving = false;
+  hasUnsavedChanges = false;
+  private originalState: any;
   idPx: number|null = null;
   isLoading: boolean = false;
   private destroy$ = new Subject<void>();
@@ -111,7 +115,36 @@ export class S6antNopatologicosComponent implements OnInit, OnDestroy {
   };
 
   guardar() {
-    sessionStorage.setItem('s6', JSON.stringify(this.body));
+    this.hasUnsavedChanges = true;
+  }
+
+  iniciarEdicion(): void {
+    this.originalState = JSON.parse(JSON.stringify({ body: this.body, formData: this.formData }));
+    this.hasUnsavedChanges = false;
+    this.isEditing = true;
+  }
+
+  cancelarEdicion(): void {
+    this.body = this.originalState.body;
+    this.formData = this.originalState.formData;
+    this.isEditing = false;
+    this.hasUnsavedChanges = false;
+  }
+
+  guardarCambios(): void {
+    if (this.isSaving) return;
+    this.isSaving = true;
+    this.sharedDataService.saveSection('s6', { ...this.body }).subscribe(
+      () => {
+        this.isEditing = false;
+        this.isSaving = false;
+        this.hasUnsavedChanges = false;
+      },
+      error => {
+        console.error('Error al guardar Antecedentes No Patológicos:', error);
+        this.isSaving = false;
+      }
+    );
   }
   limpiar($event: any,id: string) {
     console.log($event);

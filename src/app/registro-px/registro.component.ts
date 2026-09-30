@@ -164,14 +164,9 @@ export class RegistroComponent implements OnInit {
 
     this.fichaModal.show();
   }
-  async resetModal() { // GUARDAMOS Y BORRAMOS DATOS DE FICHA MEDICA en SessionStorage
+  resetModal() {
   
     this.fichaModal.hide();
-    await Object.keys(this.secciones).forEach(key => {
-      console.log(key);
-       this.sharedDataService.seccionesCompletadas(key);
-    });
- 
     this.sharedDataService.cleanSessionStorage();
     sessionStorage.removeItem('currentPxId');
   }

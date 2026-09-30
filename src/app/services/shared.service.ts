@@ -65,109 +65,19 @@ export class SharedDataService {
     this.resetHistorial.next(showSeccion);
   }
 
-  seccionesCompletadas(seccion: string | null) {
-    let body = {};
-    switch (seccion) {
-      case 's1':
-       body = JSON.parse(sessionStorage.getItem('s1')+'');
-       if (!!body) {
-        this.pxService.datosGeneralesPost(body).subscribe((response: any) => {
-          console.log("datosGeneralesPost registrado con éxito, " + response.message);    
-        }, (error: any) =>{
-          console.log("Error al registrar paciente: " + error.error.error);
-        });
-      }
-        break;
-      case 's2':
-        body = JSON.parse(sessionStorage.getItem('s2')+'');
-        if (!!body) {
-        this.pxService.deportivoFm(body).subscribe((response: any) => {
-          console.log("deportivoFm registrado con éxito, " + response.message);    
-        }, (error: any) =>{
-          console.log("Error al registrar paciente: " + error.error.error);
-        });
-      }
-        break;
-      case 's3':
-        body = JSON.parse(sessionStorage.getItem('s3')+'');
-        if (!!body) {
-        this.pxService.medidasFm(body).subscribe((response: any) => {
-          console.log("medidasFm registrado con éxito, " + response.message);    
-        }, (error: any) =>{
-          console.log("Error al registrar paciente: " + error.error.error);
-        });
-      }
-        break;
-      case 's4':
-        body = JSON.parse(sessionStorage.getItem('s4')+'');
-        if (!!body) {
-        this.pxService.antecedentesFm(body).subscribe((response: any) => {
-          console.log("antecedentesFm registrado con éxito, " + response.message);    
-        }, (error: any) =>{
-          console.log("Error al registrar paciente: " + error.error.error);
-        });
-      }
-        break;
-      case 's5':
-        body = JSON.parse(sessionStorage.getItem('s5')+'');
-        if (!!body) {
-          this.pxService.antecedentesPatFm(body).subscribe((response: any) => {
-            console.log("antecedentesPatFm registrado con éxito, " + response.message);    
-          }, (error: any) =>{
-            console.log("Error al registrar paciente: " + error.error.error);
-          });
-          this.pxService.datosGeneralesPost(body).subscribe(
-            (response: any) => {
-              console.log('datosGeneralesPost registrado con éxito, ' + response.message);
-            },
-            (error: any) => {
-              console.log('Error al registrar paciente: ' + error.error.error);
-            }
-          );
-        }
-        break;
-      case 's6':
-        body = JSON.parse(sessionStorage.getItem('s6')+'');
-        if (!!body) {
-        this.pxService.antecedentesNoPatFm(body).subscribe((response: any) => {
-          console.log("antecedentesNoPatFm registrado con éxito, " + response.message);    
-        }, (error: any) =>{
-          console.log("Error al registrar paciente: " + error.error.error);
-        });
-      }
-        break;
-      case 's7':
-        body = JSON.parse(sessionStorage.getItem('s7')+'');
-        if (!!body) {
-        this.pxService.mujerFm(body).subscribe((response: any) => {
-          console.log("mujerFm registrado con éxito, " + response.message);    
-        }, (error: any) =>{
-          console.log("Error al registrar paciente: " + error.error.error);
-        });
-      }
-        break;
-      case 's8':
-        body = JSON.parse(sessionStorage.getItem('s8')+'');
-        if (!!body) {
-        this.pxService.pediatricoFm(body).subscribe((response: any) => {
-          console.log("pediatricoFm registrado con éxito, " + response.message);    
-        }, (error: any) =>{
-          console.log("Error al registrar paciente: " + error.error.error);
-        });   
-      }     
-        break;
-      case 's9':
-        body = JSON.parse(sessionStorage.getItem('s9')+'');
-        if (!!body) {
-        this.pxService.fichamedicaAuxFm(body).subscribe((response: any) => {
-          console.log("fichamedicaAuxFm registrado con éxito, " + response.message);    
-        }, (error: any) =>{
-          console.log("Error al registrar paciente: " + error.error.error);
-        });  
-      }     
-         break;
+  saveSection(section: keyof Secciones, body: any) {
+    switch (section) {
+      case 's1': return this.pxService.datosGeneralesPost(body);
+      case 's2': return this.pxService.deportivoFm(body);
+      case 's3': return this.pxService.medidasFm(body);
+      case 's4': return this.pxService.antecedentesFm(body);
+      case 's5': return this.pxService.antecedentesPatFm(body);
+      case 's6': return this.pxService.antecedentesNoPatFm(body);
+      case 's7': return this.pxService.mujerFm(body);
+      case 's8': return this.pxService.pediatricoFm(body);
+      case 's9': return this.pxService.fichamedicaAuxFm(body);
     }
-  };
+  }
 
   cleanSessionStorage() {
     Object.keys(this.showSeccion).forEach((key) => {

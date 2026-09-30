@@ -21,6 +21,10 @@ export class S9observacionesComponent implements OnInit, OnDestroy {
     tratamiento: ""
   }
   initBody = JSON.parse(JSON.stringify(this.body)); 
+  isEditing = false;
+  isSaving = false;
+  hasUnsavedChanges = false;
+  private originalBody = { ...this.body };
   idPx: number|null = null;
   isLoading: boolean = false;
   private destroy$ = new Subject<void>();
@@ -65,7 +69,36 @@ export class S9observacionesComponent implements OnInit, OnDestroy {
   }
 
   guardar() {
-    sessionStorage.setItem('s9', JSON.stringify(this.body));
+    this.hasUnsavedChanges = true;
+  }
+
+  iniciarEdicion(): void {
+    this.originalBody = { ...this.body };
+    this.hasUnsavedChanges = false;
+    this.isEditing = true;
+  }
+
+  cancelarEdicion(): void {
+    this.body = { ...this.originalBody };
+    this.isEditing = false;
+    this.hasUnsavedChanges = false;
+  }
+
+  guardarCambios(): void {
+    if (this.isSaving) return;
+    this.isSaving = true;
+    this.sharedDataService.saveSection('s9', { ...this.body }).subscribe(
+      () => {
+        this.originalBody = { ...this.body };
+        this.isEditing = false;
+        this.isSaving = false;
+        this.hasUnsavedChanges = false;
+      },
+      error => {
+        console.error('Error al guardar Observaciones:', error);
+        this.isSaving = false;
+      }
+    );
   }
    // TEXT AREA AUTO AJUSTE
    adjustTextareaHeight(id: string): void {

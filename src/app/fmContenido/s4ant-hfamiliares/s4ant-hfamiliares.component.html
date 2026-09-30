@@ -1,3 +1,11 @@
+<div class="d-flex justify-content-end gap-2 mb-3" *ngIf="!isLoading">
+  <button *ngIf="!isEditing" type="button" class="btn btn-outline-primary" (click)="iniciarEdicion()">Editar</button>
+  <ng-container *ngIf="isEditing">
+    <button type="button" class="btn btn-outline-secondary" (click)="cancelarEdicion()" [disabled]="isSaving">Cancelar</button>
+    <button type="button" class="btn btn-primary" (click)="guardarCambios()" [disabled]="isSaving">{{ isSaving ? 'Guardando...' : 'Guardar' }}</button>
+  </ng-container>
+</div>
+<fieldset [disabled]="!isEditing || isSaving" class="border-0 p-0 m-0">
 <div class="container">
   <h4>Antecedentes Heredofamiliares</h4>
   <div *ngIf="isLoading" class="spinner-overlay">
@@ -116,3 +124,4 @@
     </tbody>
   </table>
 </div>
+</fieldset>

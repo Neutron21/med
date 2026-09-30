@@ -22,6 +22,10 @@ export class S3medidasFisicasComponent implements OnInit, OnDestroy {
   f_respiratoria: '',
   tension_arterial: ''
  }
+ isEditing = false;
+ isSaving = false;
+ hasUnsavedChanges = false;
+ private originalBody = { ...this.body };
  initBody = JSON.parse(JSON.stringify(this.body)); 
  idPx: number|null = null;
  isLoading: boolean = false;
@@ -76,7 +80,36 @@ export class S3medidasFisicasComponent implements OnInit, OnDestroy {
 
   }
   guardar() {
-    sessionStorage.setItem('s3', JSON.stringify(this.body));
+    this.hasUnsavedChanges = true;
+  }
+
+  iniciarEdicion(): void {
+    this.originalBody = { ...this.body };
+    this.hasUnsavedChanges = false;
+    this.isEditing = true;
+  }
+
+  cancelarEdicion(): void {
+    this.body = { ...this.originalBody };
+    this.isEditing = false;
+    this.hasUnsavedChanges = false;
+  }
+
+  guardarCambios(): void {
+    if (this.isSaving) return;
+    this.isSaving = true;
+    this.sharedDataService.saveSection('s3', { ...this.body }).subscribe(
+      () => {
+        this.originalBody = { ...this.body };
+        this.isEditing = false;
+        this.isSaving = false;
+        this.hasUnsavedChanges = false;
+      },
+      error => {
+        console.error('Error al guardar Medidas Físicas:', error);
+        this.isSaving = false;
+      }
+    );
   }
 
 }

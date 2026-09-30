@@ -24,6 +24,10 @@ export class S1datosGeneralesComponent implements OnInit, OnDestroy {
     lugar_de_residencia: "",
     remision: ""
   };
+  private originalBody = { ...this.body };
+  isEditing = false;
+  isSaving = false;
+  hasUnsavedChanges = false;
   initBody = JSON.parse(JSON.stringify(this.body)); 
   infoPx = {
     nombre: "",
@@ -115,8 +119,39 @@ export class S1datosGeneralesComponent implements OnInit, OnDestroy {
     return this.utilService.onlyNumbers(event);
   }
 
+  iniciarEdicion(): void {
+    this.originalBody = { ...this.body };
+    this.isEditing = true;
+  }
+
+  cancelarEdicion(): void {
+    this.body = { ...this.originalBody };
+    this.showPhoneError = false;
+    this.isEditing = false;
+    this.hasUnsavedChanges = false;
+  }
+
+  marcarCambios(): void {
+    this.hasUnsavedChanges = true;
+  }
+
   guardar(): void {
-    sessionStorage.setItem('s1', JSON.stringify(this.body));
+    if (this.isSaving) {
+      return;
+    }
+    this.isSaving = true;
+    this.sharedDataService.saveSection('s1', { ...this.body }).subscribe(
+      () => {
+        this.originalBody = { ...this.body };
+        this.isEditing = false;
+        this.isSaving = false;
+        this.hasUnsavedChanges = false;
+      },
+      error => {
+        console.error('Error al guardar Datos Generales:', error);
+        this.isSaving = false;
+      }
+    );
   }
 
   validatePhoneNumber(): void {
