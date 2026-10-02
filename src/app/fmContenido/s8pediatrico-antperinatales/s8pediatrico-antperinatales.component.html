@@ -1,211 +1,216 @@
-<div class="d-flex justify-content-end mb-1" *ngIf="!isLoading && body.updated">
-  <small class="text-muted">
-    Última actualización: {{ body.updated | date:'dd/MM/yyyy HH:mm:ss' }}
-  </small>
-</div>
-<div class="d-flex justify-content-end gap-2 mb-3" *ngIf="!isLoading">
-  <button *ngIf="!isEditing" type="button" class="btn btn-outline-primary" (click)="iniciarEdicion()">Editar</button>
-  <ng-container *ngIf="isEditing">
-    <button type="button" class="btn btn-outline-secondary" (click)="cancelarEdicion()" [disabled]="isSaving">Cancelar</button>
-    <button type="button" class="btn btn-primary" (click)="guardarCambios()" [disabled]="isSaving">{{ isSaving ? 'Guardando...' : 'Guardar' }}</button>
-  </ng-container>
-</div>
-<fieldset [disabled]="!isEditing || isSaving" class="border-0 p-0 m-0">
-<div class="container">
-  <div class="d-flex align-items-center mb-3">
-    <h4 class="me-3">En caso de ser Pediátrico (Antecedentes Perinatales)</h4>
-    <div *ngIf="isLoading" class="spinner-overlay">
-      <img alt="spiner" src="../../assets/doctor.gif" class="spinner-image"/>
-    </div>
-    <div class="form-check form-switch">
-      <input class="form-check-input" type="checkbox" id="switchPerinatales" [(ngModel)]="showPerinatalesTable">
-      <label class="form-check-label" for="switchPerinatales">{{ showPerinatalesTable ? 'Si' : 'No' }}</label>
-    </div>
+<div style="min-height: 70px;">
+  <div class="d-flex justify-content-end ultima" [class.invisible]="isLoading">
+    <small class="text-muted">
+      Última actualización: <strong>{{ body.updated ? (body.updated | date:'dd/MM/yyyy HH:mm:ss') : 'Sin fecha registrada' }}</strong>
+    </small>
   </div>
+  <div class="d-flex justify-content-end gap-2 mb-3" [class.invisible]="isLoading">
+    <button *ngIf="!isEditing" type="button" class="btn btn-outline-primary" (click)="iniciarEdicion()">Editar</button>
+    <ng-container *ngIf="isEditing">
+      <button type="button" class="btn btn-outline-secondary" (click)="cancelarEdicion()" [disabled]="isSaving">Cancelar</button>
+      <button type="button" class="btn btn-primary" (click)="guardarCambios()" [disabled]="isSaving">{{ isSaving ? 'Guardando...' : 'Guardar' }}</button>
+    </ng-container>
+  </div>
+</div>
 
-  <div *ngIf="!isLoading">
-  <div *ngIf="showPerinatalesTable">
-    <table class="table table-bordered responsive-table">
-      <thead>
-        <tr>
-          <th class="w-25">Antecedente</th>
-          <th class="text-center w-10">Si / No</th>
-          <th>Especifique</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Núm de embarazo</td>
-          <td class="text-center"><input type="checkbox" name="numEmbarazoSiNo" [(ngModel)]="formData.numEmbarazoSiNo" (ngModelChange)="limpiar($event, 'numEmbarazo_e')"></td>
-          <td>
-            <textarea id='numEmbarazo_e' rows="1"
-            style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
-            class="form-control"
-            [(ngModel)]="body.numEmbarazo_e"
-            [disabled]="!formData.numEmbarazoSiNo" (focus)="adjustTextareaHeight('numEmbarazo_e')"
-            (input)="adjustTextareaHeight('numEmbarazo_e')" (ngModelChange)="guardar()"></textarea>
-          </td>
-        </tr>
-        <tr>
-          <td>Embarazo múltiple</td>
-          <td class="text-center"><input type="checkbox" name="embarazoMultipleSiNo" [(ngModel)]="formData.embarazoMultipleSiNo"(ngModelChange)="limpiar($event, 'embarazoMultiple_e')"></td>
-          <td>
-            <textarea id='embarazoMultiple_e' rows="1"
-            style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
-            class="form-control"
-            [(ngModel)]="body.embarazoMultiple_e"
-            [disabled]="!formData.embarazoMultipleSiNo" (focus)="adjustTextareaHeight('embarazoMultiple_e')"
-            (input)="adjustTextareaHeight('embarazoMultiple_e')" (ngModelChange)="guardar()"></textarea>
-          </td>
-        </tr>
-        <tr>
-          <td>Alimentación durante el embarazo</td>
-          <td class="text-center"><input type="checkbox" name="alimentacionEmbarazoSiNo" [(ngModel)]="formData.alimentacionEmbarazoSiNo" (ngModelChange)="limpiar($event, 'alimentacionEmbarazo_e')"></td>
-          <td>
-            <textarea id='alimentacionEmbarazo_e' rows="1"
-            style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
-            class="form-control"
-            [(ngModel)]="body.alimentacionEmbarazo_e"
-            [disabled]="!formData.alimentacionEmbarazoSiNo" (focus)="adjustTextareaHeight('alimentacionEmbarazo_e')"
-            (input)="adjustTextareaHeight('alimentacionEmbarazo_e')" (ngModelChange)="guardar()"></textarea>
-          </td>
-        </tr>
-        <tr>
-          <td>Control perinatal</td>
-          <td class="text-center"><input type="checkbox" name="controlPerinatalSiNo" [(ngModel)]="formData.controlPerinatalSiNo" (ngModelChange)="limpiar($event, 'controlPerinatal_e')"></td>
-          <td>
-            <textarea id='controlPerinatal_e' rows="1"
-            style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
-            class="form-control"
-            [(ngModel)]="body.controlPerinatal_e"
-            [disabled]="!formData.controlPerinatalSiNo" (focus)="adjustTextareaHeight('controlPerinatal_e')"
-            (input)="adjustTextareaHeight('controlPerinatal_e')" (ngModelChange)="guardar()"></textarea>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Periodo de vida uterina
-            <ul class="custom-list">
-              <li><span class="bold-text">Inmaduro:</span> <span class="small-text">21 a 28 semanas de gestación (500 a 1000 gr)</span></li>
-              <li><span class="bold-text">Pretermino:</span> <span class="small-text">28 a 37 semanas de gestación (1000 a 2500 gr)</span></li>
-              <li><span class="bold-text">Termino:</span> <span class="small-text">37 a 41 semanas de gestación (2500 a más gr)</span></li>
-              <li><span class="bold-text">Postermino:</span> <span class="small-text">42 en adelante</span></li>
-            </ul>
-          </td>
-          <td class="text-center"><input type="checkbox" name="vidaUterinaSiNo" [(ngModel)]="formData.vidaUterinaSiNo" (ngModelChange)="limpiar($event, 'vidaUterina_e')"></td>
-          <td>
-            <textarea id='vidaUterina_e' rows="1"
-            style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
-            class="form-control"
-            [(ngModel)]="body.vidaUterina_e"
-            [disabled]="!formData.vidaUterinaSiNo" (focus)="adjustTextareaHeight('vidaUterina_e')"
-            (input)="adjustTextareaHeight('vidaUterina_e')" (ngModelChange)="guardar()"></textarea>
-          </td>
-        </tr>
-        <tr>
-          <td>Parto o cesárea</td>
-          <td class="text-center"><input type="checkbox" name="partoCesareaSiNo" [(ngModel)]="formData.partoCesareaSiNo" (ngModelChange)="limpiar($event, 'partoCesarea_e')"></td>
-          <td>
-            <textarea id='partoCesarea_e' rows="1"
-            style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
-            class="form-control"
-            [(ngModel)]="body.partoCesarea_e"
-            [disabled]="!formData.partoCesareaSiNo" (focus)="adjustTextareaHeight('partoCesarea_e')"
-            (input)="adjustTextareaHeight('partoCesarea_e')" (ngModelChange)="guardar()"></textarea>
-          </td>
-        </tr>
-        <tr>
-          <td>Problemas durante el embarazo o parto</td>
-          <td class="text-center"><input type="checkbox" name="problemasEmbarazoPartoSiNo" [(ngModel)]="formData.problemasEmbarazoPartoSiNo" (ngModelChange)="limpiar($event, 'problemasEmbarazoParto_e')"></td>
-          <td>
-            <textarea id='problemasEmbarazoParto_e' rows="1"
+<fieldset [disabled]="!isEditing || isSaving" class="border-0 p-0 m-0">
+  <div class="container titulo">
+    
+    <div class="d-flex align-items-center mb-3 position-relative">
+      
+      <div *ngIf="isLoading" class="position-absolute w-100 h-100 d-flex justify-content-center align-items-center bg-white" style="z-index: 5;">
+        <img alt="spinner" src="../../assets/doctor.gif" class="spinner-image" style="height: 30px;" />
+      </div>
+
+      <h4 class="me-3 mb-0">En caso de ser Pediátrico (Antecedentes Perinatales)</h4>
+      <div class="form-check form-switch mb-0">
+        <input class="form-check-input" type="checkbox" id="switchPerinatales" [(ngModel)]="showPerinatalesTable">
+        <label class="form-check-label" for="switchPerinatales">{{ showPerinatalesTable ? 'Si' : 'No' }}</label>
+      </div>
+    </div>
+
+    <div *ngIf="showPerinatalesTable">
+      <table class="table table-bordered responsive-table tabla">
+        <thead>
+          <tr>
+            <th class="w-25">Antecedente</th>
+            <th class="text-center w-10">Si / No</th>
+            <th>Especifique</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Núm de embarazo</td>
+            <td class="text-center"><input type="checkbox" name="numEmbarazoSiNo" [(ngModel)]="formData.numEmbarazoSiNo" (ngModelChange)="limpiar($event, 'numEmbarazo_e')"></td>
+            <td>
+              <textarea id='numEmbarazo_e' rows="1"
               style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
               class="form-control"
-              [(ngModel)]="body.problemasEmbarazoParto_e"
-              [disabled]="!formData.problemasEmbarazoPartoSiNo" (focus)="adjustTextareaHeight('problemasEmbarazoParto_e')"
-              (input)="adjustTextareaHeight('problemasEmbarazoParto_e')" (ngModelChange)="guardar()"></textarea>
-          </td>
-        </tr>
-        <tr>
-          <td>Traumatismo durante el embarazo o parto</td>
-          <td class="text-center"><input type="checkbox" name="traumatismoEmbarazoPartoSiNo" [(ngModel)]="formData.traumatismoEmbarazoPartoSiNo" (ngModelChange)="limpiar($event, 'traumatismoEmbarazoParto_e')"></td>
-          <td>
-            <textarea id='traumatismoEmbarazoParto_e' rows="1"
+              [(ngModel)]="body.numEmbarazo_e"
+              [disabled]="!formData.numEmbarazoSiNo" (focus)="adjustTextareaHeight('numEmbarazo_e')"
+              (input)="adjustTextareaHeight('numEmbarazo_e')" (ngModelChange)="guardar()"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>Embarazo múltiple</td>
+            <td class="text-center"><input type="checkbox" name="embarazoMultipleSiNo" [(ngModel)]="formData.embarazoMultipleSiNo"(ngModelChange)="limpiar($event, 'embarazoMultiple_e')"></td>
+            <td>
+              <textarea id='embarazoMultiple_e' rows="1"
               style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
               class="form-control"
-              [(ngModel)]="body.traumatismoEmbarazoParto_e"
-              [disabled]="!formData.traumatismoEmbarazoPartoSiNo" (focus)="adjustTextareaHeight('traumatismoEmbarazoParto_e')"
-              (input)="adjustTextareaHeight('traumatismoEmbarazoParto_e')" (ngModelChange)="guardar()"></textarea>
-          </td>
-        </tr>
-        <tr>
-          <td>Ameritó maniobras de reanimación especiales</td>
-          <td class="text-center"><input type="checkbox" name="maniobrasReanimacionSiNo" [(ngModel)]="formData.maniobrasReanimacionSiNo" (ngModelChange)="limpiar($event, 'maniobrasReanimacion_e')"></td>
-          <td>
-            <textarea id='maniobrasReanimacion_e' rows="1"
-            style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
-            class="form-control"
-            [(ngModel)]="body.maniobrasReanimacion_e"
-            [disabled]="!formData.maniobrasReanimacionSiNo" (focus)="adjustTextareaHeight('maniobrasReanimacion_e')"
-            (input)="adjustTextareaHeight('maniobrasReanimacion_e')" (ngModelChange)="guardar()"></textarea>
-          </td>
-        </tr>
-        <tr>
-          <td>Ameritó estar en incubadora</td>
-          <td class="text-center"><input type="checkbox" name="incubadoraSiNo" [(ngModel)]="formData.incubadoraSiNo" (ngModelChange)="limpiar($event, 'incubadora_e')"></td>
-          <td>
-            <textarea id='incubadora_e' rows="1"
-            style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
-            class="form-control"
-            [(ngModel)]="body.incubadora_e"
-            [disabled]="!formData.incubadoraSiNo" (focus)="adjustTextareaHeight('incubadora_e')"
-            (input)="adjustTextareaHeight('incubadora_e')" (ngModelChange)="guardar()"></textarea>
-          </td>
-        </tr>
-        <tr>
-          <td>Peso y medida del niño</td>
-          <td class="text-center"><input type="checkbox" name="pesoMedidaSiNo" [(ngModel)]="formData.pesoMedidaSiNo" (ngModelChange)="limpiar($event, 'pesoMedida_e')"></td>
-          <td>
-            <textarea id='pesoMedida_e' rows="1"
-            style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
-            class="form-control"
-            [(ngModel)]="body.pesoMedida_e"
-            [disabled]="!formData.pesoMedidaSiNo" (focus)="adjustTextareaHeight('pesoMedida_e')"
-            (input)="adjustTextareaHeight('pesoMedida_e')" (ngModelChange)="guardar()"></textarea>
-          </td>
-        </tr>
-        <tr>
-          <td>Tamiz metabólico: Calificación</td>
-          <td class="text-center"><input type="checkbox" name="tamizMetabolicoSiNo" [(ngModel)]="formData.tamizMetabolicoSiNo" (ngModelChange)="limpiar($event, 'tamizMetabolico_e')"></td>
-          <td>
-            <textarea id='tamizMetabolico_e' rows="1"
-            style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
-            class="form-control"
-            [(ngModel)]="body.tamizMetabolico_e"
-            [disabled]="!formData.tamizMetabolicoSiNo" (focus)="adjustTextareaHeight('tamizMetabolico_e')"
-            (input)="adjustTextareaHeight('tamizMetabolico_e')" (ngModelChange)="guardar()"></textarea>
-          </td>
-        </tr>
-        <tr>
-          <td>Puntaje de la escala de APGAR
-            <ul class="custom-list">
-              <li><span class="bold-text">7 puntos a mas:</span> <span class="small-text">Normal</span></li>
-              <li><span class="bold-text">6 o menos:</span> <span class="small-text">Atención a nivel hospitalario</span></li>
-            </ul>
-          </td>
-          <td class="text-center"><input type="checkbox" name="puntajeApgarSiNo" [(ngModel)]="formData.puntajeApgarSiNo" (ngModelChange)="limpiar($event, 'PuntajeAPGAR_e')"></td>
-          <td>
-            <textarea id='PuntajeAPGAR_e' rows="1"
-            style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
-            class="form-control"
-            [(ngModel)]="body.PuntajeAPGAR_e"
-            [disabled]="!formData.puntajeApgarSiNo" (focus)="adjustTextareaHeight('PuntajeAPGAR_e')"
-            (input)="adjustTextareaHeight('PuntajeAPGAR_e')" (ngModelChange)="guardar()"></textarea>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+              [(ngModel)]="body.embarazoMultiple_e"
+              [disabled]="!formData.embarazoMultipleSiNo" (focus)="adjustTextareaHeight('embarazoMultiple_e')"
+              (input)="adjustTextareaHeight('embarazoMultiple_e')" (ngModelChange)="guardar()"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>Alimentación durante el embarazo</td>
+            <td class="text-center"><input type="checkbox" name="alimentacionEmbarazoSiNo" [(ngModel)]="formData.alimentacionEmbarazoSiNo" (ngModelChange)="limpiar($event, 'alimentacionEmbarazo_e')"></td>
+            <td>
+              <textarea id='alimentacionEmbarazo_e' rows="1"
+              style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
+              class="form-control"
+              [(ngModel)]="body.alimentacionEmbarazo_e"
+              [disabled]="!formData.alimentacionEmbarazoSiNo" (focus)="adjustTextareaHeight('alimentacionEmbarazo_e')"
+              (input)="adjustTextareaHeight('alimentacionEmbarazo_e')" (ngModelChange)="guardar()"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>Control perinatal</td>
+            <td class="text-center"><input type="checkbox" name="controlPerinatalSiNo" [(ngModel)]="formData.controlPerinatalSiNo" (ngModelChange)="limpiar($event, 'controlPerinatal_e')"></td>
+            <td>
+              <textarea id='controlPerinatal_e' rows="1"
+              style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
+              class="form-control"
+              [(ngModel)]="body.controlPerinatal_e"
+              [disabled]="!formData.controlPerinatalSiNo" (focus)="adjustTextareaHeight('controlPerinatal_e')"
+              (input)="adjustTextareaHeight('controlPerinatal_e')" (ngModelChange)="guardar()"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Periodo de vida uterina
+              <ul class="custom-list">
+                <li><span class="bold-text">Inmaduro:</span> <span class="small-text">21 a 28 semanas de gestación (500 a 1000 gr)</span></li>
+                <li><span class="bold-text">Pretermino:</span> <span class="small-text">28 a 37 semanas de gestación (1000 a 2500 gr)</span></li>
+                <li><span class="bold-text">Termino:</span> <span class="small-text">37 a 41 semanas de gestación (2500 a más gr)</span></li>
+                <li><span class="bold-text">Postermino:</span> <span class="small-text">42 en adelante</span></li>
+              </ul>
+            </td>
+            <td class="text-center"><input type="checkbox" name="vidaUterinaSiNo" [(ngModel)]="formData.vidaUterinaSiNo" (ngModelChange)="limpiar($event, 'vidaUterina_e')"></td>
+            <td>
+              <textarea id='vidaUterina_e' rows="1"
+              style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
+              class="form-control"
+              [(ngModel)]="body.vidaUterina_e"
+              [disabled]="!formData.vidaUterinaSiNo" (focus)="adjustTextareaHeight('vidaUterina_e')"
+              (input)="adjustTextareaHeight('vidaUterina_e')" (ngModelChange)="guardar()"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>Parto o cesárea</td>
+            <td class="text-center"><input type="checkbox" name="partoCesareaSiNo" [(ngModel)]="formData.partoCesareaSiNo" (ngModelChange)="limpiar($event, 'partoCesarea_e')"></td>
+            <td>
+              <textarea id='partoCesarea_e' rows="1"
+              style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
+              class="form-control"
+              [(ngModel)]="body.partoCesarea_e"
+              [disabled]="!formData.partoCesareaSiNo" (focus)="adjustTextareaHeight('partoCesarea_e')"
+              (input)="adjustTextareaHeight('partoCesarea_e')" (ngModelChange)="guardar()"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>Problemas durante el embarazo o parto</td>
+            <td class="text-center"><input type="checkbox" name="problemasEmbarazoPartoSiNo" [(ngModel)]="formData.problemasEmbarazoPartoSiNo" (ngModelChange)="limpiar($event, 'problemasEmbarazoParto_e')"></td>
+            <td>
+              <textarea id='problemasEmbarazoParto_e' rows="1"
+                style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
+                class="form-control"
+                [(ngModel)]="body.problemasEmbarazoParto_e"
+                [disabled]="!formData.problemasEmbarazoPartoSiNo" (focus)="adjustTextareaHeight('problemasEmbarazoParto_e')"
+                (input)="adjustTextareaHeight('problemasEmbarazoParto_e')" (ngModelChange)="guardar()"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>Traumatismo durante el embarazo o parto</td>
+            <td class="text-center"><input type="checkbox" name="traumatismoEmbarazoPartoSiNo" [(ngModel)]="formData.traumatismoEmbarazoPartoSiNo" (ngModelChange)="limpiar($event, 'traumatismoEmbarazoParto_e')"></td>
+            <td>
+              <textarea id='traumatismoEmbarazoParto_e' rows="1"
+                style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
+                class="form-control"
+                [(ngModel)]="body.traumatismoEmbarazoParto_e"
+                [disabled]="!formData.traumatismoEmbarazoPartoSiNo" (focus)="adjustTextareaHeight('traumatismoEmbarazoParto_e')"
+                (input)="adjustTextareaHeight('traumatismoEmbarazoParto_e')" (ngModelChange)="guardar()"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>Ameritó maniobras de reanimación especiales</td>
+            <td class="text-center"><input type="checkbox" name="maniobrasReanimacionSiNo" [(ngModel)]="formData.maniobrasReanimacionSiNo" (ngModelChange)="limpiar($event, 'maniobrasReanimacion_e')"></td>
+            <td>
+              <textarea id='maniobrasReanimacion_e' rows="1"
+              style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
+              class="form-control"
+              [(ngModel)]="body.maniobrasReanimacion_e"
+              [disabled]="!formData.maniobrasReanimacionSiNo" (focus)="adjustTextareaHeight('maniobrasReanimacion_e')"
+              (input)="adjustTextareaHeight('maniobrasReanimacion_e')" (ngModelChange)="guardar()"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>Ameritó estar en incubadora</td>
+            <td class="text-center"><input type="checkbox" name="incubadoraSiNo" [(ngModel)]="formData.incubadoraSiNo" (ngModelChange)="limpiar($event, 'incubadora_e')"></td>
+            <td>
+              <textarea id='incubadora_e' rows="1"
+              style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
+              class="form-control"
+              [(ngModel)]="body.incubadora_e"
+              [disabled]="!formData.incubadoraSiNo" (focus)="adjustTextareaHeight('incubadora_e')"
+              (input)="adjustTextareaHeight('incubadora_e')" (ngModelChange)="guardar()"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>Peso y medida del niño</td>
+            <td class="text-center"><input type="checkbox" name="pesoMedidaSiNo" [(ngModel)]="formData.pesoMedidaSiNo" (ngModelChange)="limpiar($event, 'pesoMedida_e')"></td>
+            <td>
+              <textarea id='pesoMedida_e' rows="1"
+              style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
+              class="form-control"
+              [(ngModel)]="body.pesoMedida_e"
+              [disabled]="!formData.pesoMedidaSiNo" (focus)="adjustTextareaHeight('pesoMedida_e')"
+              (input)="adjustTextareaHeight('pesoMedida_e')" (ngModelChange)="guardar()"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>Tamiz metabólico: Calificación</td>
+            <td class="text-center"><input type="checkbox" name="tamizMetabolicoSiNo" [(ngModel)]="formData.tamizMetabolicoSiNo" (ngModelChange)="limpiar($event, 'tamizMetabolico_e')"></td>
+            <td>
+              <textarea id='tamizMetabolico_e' rows="1"
+              style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
+              class="form-control"
+              [(ngModel)]="body.tamizMetabolico_e"
+              [disabled]="!formData.tamizMetabolicoSiNo" (focus)="adjustTextareaHeight('tamizMetabolico_e')"
+              (input)="adjustTextareaHeight('tamizMetabolico_e')" (ngModelChange)="guardar()"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>Puntaje de la escala de APGAR
+              <ul class="custom-list">
+                <li><span class="bold-text">7 puntos a mas:</span> <span class="small-text">Normal</span></li>
+                <li><span class="bold-text">6 o menos:</span> <span class="small-text">Atención a nivel hospitalario</span></li>
+              </ul>
+            </td>
+            <td class="text-center"><input type="checkbox" name="puntajeApgarSiNo" [(ngModel)]="formData.puntajeApgarSiNo" (ngModelChange)="limpiar($event, 'PuntajeAPGAR_e')"></td>
+            <td>
+              <textarea id='PuntajeAPGAR_e' rows="1"
+              style="resize: none; overflow: hidden; width: 100%; box-sizing: border-box;"
+              class="form-control"
+              [(ngModel)]="body.PuntajeAPGAR_e"
+              [disabled]="!formData.puntajeApgarSiNo" (focus)="adjustTextareaHeight('PuntajeAPGAR_e')"
+              (input)="adjustTextareaHeight('PuntajeAPGAR_e')" (ngModelChange)="guardar()"></textarea>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
-</div>
-</div>
 </fieldset>

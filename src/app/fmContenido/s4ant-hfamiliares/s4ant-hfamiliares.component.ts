@@ -44,7 +44,8 @@ formData =  {
       endocrinologas_e:'',
       otras_p:'',
       otras_e:'', 
-      updated: ""
+      updated: null as string | null
+
   }
   initBody = JSON.parse(JSON.stringify(this.body)); 
   isEditing = false;

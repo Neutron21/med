@@ -1,7 +1,26 @@
+/* Contenedor flotante para alinear fecha y botones a la derecha exactamente a la altura del título */
+.header-actions-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: right;
+}
+
+/* Estilo mejorado para la etiqueta de última actualización */
+.update-badge {
+    font-size: 0.8rem;
+    background-color: #f8f9fa;
+    padding: 3px 8px;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+    display: inline-block;
+}
+
 .data-px {
     font-size: 1.1rem;
     font-weight: 200;
 }
+
 .spinner-overlay {
     position: fixed;
     top: 0;
@@ -12,10 +31,17 @@
     justify-content: center;
     align-items: center;
     z-index: 9999;
-  }
+}
   
-  .spinner-image {
+.spinner-image {
     width: 100px;
     height: 100px;
-  }
-  
+}
+.titulo{
+  margin-top: 20px;
+}
+.botones{
+    margin-bottom: 73px;
+    margin-top: -32px;
+}
+

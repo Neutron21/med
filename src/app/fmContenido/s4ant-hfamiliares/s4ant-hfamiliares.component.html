@@ -1,136 +1,139 @@
-<!-- Fecha de última actualización alineada a la derecha -->
-<div class="d-flex justify-content-end mb-1" *ngIf="!isLoading && body.updated">
-  <small class="text-muted">
-    Última actualización: {{ body.updated | date:'dd/MM/yyyy HH:mm:ss' }}
-  </small>
-</div>
+<div class="d-flex justify-content-between align-items-center mb-4" *ngIf="!isLoading">
+  <h4 class="mb-0">Antecedentes Heredofamiliares</h4>
+  
+  <div class="d-flex flex-column align-items-end">
+    <small class="text-muted update-text mb-1">
+      <i class="bi bi-clock-history me-1"></i>
+      Última actualización: <strong>{{ body.updated ? (body.updated | date:'dd/MM/yyyy HH:mm:ss') : 'Sin fecha registrada' }}</strong>
+    </small>
 
-<!-- Tus botones de edición existentes -->
-<div class="d-flex justify-content-end gap-2 mb-3" *ngIf="!isLoading">
-  <button *ngIf="!isEditing" type="button" class="btn btn-outline-primary" (click)="iniciarEdicion()">Editar</button>
-  <ng-container *ngIf="isEditing">
-    <button type="button" class="btn btn-outline-secondary" (click)="cancelarEdicion()" [disabled]="isSaving">Cancelar</button>
-    <button type="button" class="btn btn-primary" (click)="guardarCambios()" [disabled]="isSaving">{{ isSaving ? 'Guardando...' : 'Guardar' }}</button>
-  </ng-container>
-</div>
-
-<fieldset [disabled]="!isEditing || isSaving" class="border-0 p-0 m-0">
-<div class="container">
-  <h4>Antecedentes Heredofamiliares</h4>
-  <div *ngIf="isLoading" class="spinner-overlay">
-    <img alt="spiner" src="../../assets/doctor.gif" class="spinner-image"/>
+    <div class="d-flex gap-2">
+      <button *ngIf="!isEditing" type="button" class="btn btn-outline-primary btn-sm" (click)="iniciarEdicion()">Editar</button>
+      <ng-container *ngIf="isEditing">
+        <button type="button" class="btn btn-outline-secondary btn-sm" (click)="cancelarEdicion()" [disabled]="isSaving">Cancelar</button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="guardarCambios()" [disabled]="isSaving">{{ isSaving ? 'Guardando...' : 'Guardar' }}</button>
+      </ng-container>
+    </div>
   </div>
-  <table class="table table-bordered" *ngIf="!isLoading">
-    <thead>
-      <tr>
-        <th>Enfermedad</th>
-        <th>Si / No</th>
-        <th>Parentesco</th>
-        <th>Especifique</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Diabetes</td>
-        <td class="text-center">
-            <input type="checkbox" name="diabetesSiNo" [(ngModel)]="formData.diabetesSiNo" (ngModelChange)="limpiar($event, 'diabetes')">
-        </td>
-        <td><input type="text" class="form-control" name="diabetesParentesco" [(ngModel)]="body.diabetes_p" [disabled]="!formData.diabetesSiNo"
-           (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="diabetesEspecifique" [(ngModel)]="body.diabetes_e" [disabled]="!formData.diabetesSiNo"
-           (ngModelChange)="guardar()"></td>
-    </tr>
-      <tr>
-        <td>Neurológica</td>
-        <td class="text-center">
-          <input type="checkbox" name="neurologicasSiNo" [(ngModel)]="formData.neurologicasSiNo" (ngModelChange)="limpiar($event ,'neurologicas')" >
-        </td>
-        <td><input type="text" class="form-control" name="neurologicaParentesco" [(ngModel)]="body.neurologicas_p" [disabled]="!formData.neurologicasSiNo"
-          (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="neurologicaEspecifique" [(ngModel)]="body.neurologicas_e" [disabled]="!formData.neurologicasSiNo"
-          (ngModelChange)="guardar()" ></td>
-      </tr>
-      <tr>
-        <td>HAS</td>
-        <td class="text-center">
-          <input type="checkbox" name="accidentesSiNo" [(ngModel)]="formData.hasSiNo" (ngModelChange)="limpiar($event ,'has')">
-        </td>
-        <td><input type="text" class="form-control" name="accidentesParentesco" [(ngModel)]="body.has_p" [disabled]="!formData.hasSiNo"
-          (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="accidentesEspecifique" [(ngModel)]="body.has_e" [disabled]="!formData.hasSiNo"
-          (ngModelChange)="guardar()" ></td>
-      </tr>
-      <tr>
-        <td>Neoplasias</td>
-        <td class="text-center">
-          <input type="checkbox" name="neoplasiasSiNo" [(ngModel)]="formData.neoplasiasSiNo" (ngModelChange)="limpiar($event ,'neoplasias')">
-        </td>
-        <td><input type="text" class="form-control" name="neoplasiasParentesco" [(ngModel)]="body.neoplasias_p" [disabled]="!formData.neoplasiasSiNo"
-          (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="neoplasiasEspecifique" [(ngModel)]="body.neoplasias_e" [disabled]="!formData.neoplasiasSiNo"
-          (ngModelChange)="guardar()" ></td>
-      </tr>
-      <tr>
-        <td>Cardiopatías</td>
-        <td class="text-center">
-          <input type="checkbox" name="cardiopatiasSiNo" [(ngModel)]="formData.cardiopatiasSiNo" (ngModelChange)="limpiar($event ,'cardiopatias')">
-        </td>
-        <td><input type="text" class="form-control" name="cardiopatiasParentesco" [(ngModel)]="body.cardiopatias_p" [disabled]="!formData.cardiopatiasSiNo"
-          (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="cardiopatiasEspecifique" [(ngModel)]="body.cardiopatias_e" [disabled]="!formData.cardiopatiasSiNo"
-          (ngModelChange)="guardar()" ></td>
-      </tr>
-      <tr>
-        <td>Reumáticas</td>
-        <td class="text-center">
-          <input type="checkbox" name="cirugiasSiNo" [(ngModel)]="formData.reumaticasSiNo" (ngModelChange)="limpiar($event ,'reumaticas')">
-        </td>
-        <td><input type="text" class="form-control" name="cirugiasParentesco" [(ngModel)]="body.reumaticas_p" [disabled]="!formData.reumaticasSiNo"
-          (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="cirugiasEspecifique" [(ngModel)]="body.reumaticas_e" [disabled]="!formData.reumaticasSiNo"
-          (ngModelChange)="guardar()" ></td>
-      </tr>
-      <tr>
-        <td>Respiratorias</td>
-        <td class="text-center">
-          <input type="checkbox" name="respiratoriasSiNo" [(ngModel)]="formData.respiratoriasSiNo" (ngModelChange)="limpiar($event ,'respiratorias')">
-        </td>
-        <td><input type="text" class="form-control" name="respiratoriasParentesco" [(ngModel)]="body.respiratorias_p" [disabled]="!formData.respiratoriasSiNo"
-          (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="respiratoriasEspecifique" [(ngModel)]="body.respiratorias_e" [disabled]="!formData.respiratoriasSiNo"
-          (ngModelChange)="guardar()" ></td>
-      </tr>
-      <tr>
-        <td>Geneticas</td>
-        <td class="text-center">
-          <input type="checkbox" name="reumaticasSiNo" [(ngModel)]="formData.geneticasSiNo" (ngModelChange)="limpiar($event ,'geneticas')">
-        </td>
-        <td><input type="text" class="form-control" name="geneticasParentesco" [(ngModel)]="body.geneticas_p" [disabled]="!formData.geneticasSiNo"
-          (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="geneticasEspecifique" [(ngModel)]="body.geneticas_e" [disabled]="!formData.geneticasSiNo"
-          (ngModelChange)="guardar()" ></td>
-      </tr>
-      <tr>
-        <td>Endocrinologas</td>
-        <td class="text-center">
-          <input type="checkbox" name="endocrinologasSiNo" [(ngModel)]="formData.endocrinologasSiNo" (ngModelChange)="limpiar($event ,'endocrinologas')">
-        </td>
-        <td><input type="text" class="form-control" name="endocrinologasParentesco" [(ngModel)]="body.endocrinologas_p" [disabled]="!formData.endocrinologasSiNo"
-          (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="endocrinologasEspecifique" [(ngModel)]="body.endocrinologas_e" [disabled]="!formData.endocrinologasSiNo"
-          (ngModelChange)="guardar()" ></td>
-      </tr>
-      <tr>
-        <td>Otras</td>
-        <td class="text-center">
-          <input type="checkbox" name="otrasSiNo" [(ngModel)]="formData.otrasSiNo" (ngModelChange)="limpiar($event ,'otras')">
-        </td>
-        <td><input type="text" class="form-control" name="otras_p" [(ngModel)]="body.otras_p" [disabled]="!formData.otrasSiNo"
-          (ngModelChange)="guardar()"></td>
-        <td><input type="text" class="form-control" name="otras_e" [(ngModel)]="body.otras_e" [disabled]="!formData.otrasSiNo"
-          (ngModelChange)="guardar()" ></td>
-      </tr>
-    </tbody>
-  </table>
 </div>
-</fieldset>
+
+<div *ngIf="isLoading" class="spinner-overlay">
+  <img alt="spiner" src="../../assets/doctor.gif" class="spinner-image"/>
+</div>
+
+<div class="container px-0" *ngIf="!isLoading">
+  <fieldset [disabled]="!isEditing || isSaving" class="border-0 p-0 m-0">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Enfermedad</th>
+          <th>Si / No</th>
+          <th>Parentesco</th>
+          <th>Especifique</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Diabetes</td>
+          <td class="text-center">
+              <input type="checkbox" name="diabetesSiNo" [(ngModel)]="formData.diabetesSiNo" (ngModelChange)="limpiar($event, 'diabetes')">
+          </td>
+          <td><input type="text" class="form-control" name="diabetesParentesco" [(ngModel)]="body.diabetes_p" [disabled]="!formData.diabetesSiNo"
+             (ngModelChange)="guardar()"></td>
+          <td><input type="text" class="form-control" name="diabetesEspecifique" [(ngModel)]="body.diabetes_e" [disabled]="!formData.diabetesSiNo"
+             (ngModelChange)="guardar()"></td>
+      </tr>
+        <tr>
+          <td>Neurológica</td>
+          <td class="text-center">
+            <input type="checkbox" name="neurologicasSiNo" [(ngModel)]="formData.neurologicasSiNo" (ngModelChange)="limpiar($event ,'neurologicas')" >
+          </td>
+          <td><input type="text" class="form-control" name="neurologicaParentesco" [(ngModel)]="body.neurologicas_p" [disabled]="!formData.neurologicasSiNo"
+            (ngModelChange)="guardar()"></td>
+          <td><input type="text" class="form-control" name="neurologicaEspecifique" [(ngModel)]="body.neurologicas_e" [disabled]="!formData.neurologicasSiNo"
+            (ngModelChange)="guardar()" ></td>
+        </tr>
+        <tr>
+          <td>HAS</td>
+          <td class="text-center">
+            <input type="checkbox" name="accidentesSiNo" [(ngModel)]="formData.hasSiNo" (ngModelChange)="limpiar($event ,'has')">
+          </td>
+          <td><input type="text" class="form-control" name="accidentesParentesco" [(ngModel)]="body.has_p" [disabled]="!formData.hasSiNo"
+            (ngModelChange)="guardar()"></td>
+          <td><input type="text" class="form-control" name="accidentesEspecifique" [(ngModel)]="body.has_e" [disabled]="!formData.hasSiNo"
+            (ngModelChange)="guardar()" ></td>
+        </tr>
+        <tr>
+          <td>Neoplasias</td>
+          <td class="text-center">
+            <input type="checkbox" name="neoplasiasSiNo" [(ngModel)]="formData.neoplasiasSiNo" (ngModelChange)="limpiar($event ,'neoplasias')">
+          </td>
+          <td><input type="text" class="form-control" name="neoplasiasParentesco" [(ngModel)]="body.neoplasias_p" [disabled]="!formData.neoplasiasSiNo"
+            (ngModelChange)="guardar()"></td>
+          <td><input type="text" class="form-control" name="neoplasiasEspecifique" [(ngModel)]="body.neoplasias_e" [disabled]="!formData.neoplasiasSiNo"
+            (ngModelChange)="guardar()" ></td>
+        </tr>
+        <tr>
+          <td>Cardiopatías</td>
+          <td class="text-center">
+            <input type="checkbox" name="cardiopatiasSiNo" [(ngModel)]="formData.cardiopatiasSiNo" (ngModelChange)="limpiar($event ,'cardiopatias')">
+          </td>
+          <td><input type="text" class="form-control" name="cardiopatiasParentesco" [(ngModel)]="body.cardiopatias_p" [disabled]="!formData.cardiopatiasSiNo"
+            (ngModelChange)="guardar()"></td>
+          <td><input type="text" class="form-control" name="cardiopatiasEspecifique" [(ngModel)]="body.cardiopatias_e" [disabled]="!formData.cardiopatiasSiNo"
+            (ngModelChange)="guardar()" ></td>
+        </tr>
+        <tr>
+          <td>Reumáticas</td>
+          <td class="text-center">
+            <input type="checkbox" name="cirugiasSiNo" [(ngModel)]="formData.reumaticasSiNo" (ngModelChange)="limpiar($event ,'reumaticas')">
+          </td>
+          <td><input type="text" class="form-control" name="cirugiasParentesco" [(ngModel)]="body.reumaticas_p" [disabled]="!formData.reumaticasSiNo"
+            (ngModelChange)="guardar()"></td>
+          <td><input type="text" class="form-control" name="cirugiasEspecifique" [(ngModel)]="body.reumaticas_e" [disabled]="!formData.reumaticasSiNo"
+            (ngModelChange)="guardar()" ></td>
+        </tr>
+        <tr>
+          <td>Respiratorias</td>
+          <td class="text-center">
+            <input type="checkbox" name="respiratoriasSiNo" [(ngModel)]="formData.respiratoriasSiNo" (ngModelChange)="limpiar($event ,'respiratorias')">
+          </td>
+          <td><input type="text" class="form-control" name="respiratoriasParentesco" [(ngModel)]="body.respiratorias_p" [disabled]="!formData.respiratoriasSiNo"
+            (ngModelChange)="guardar()"></td>
+          <td><input type="text" class="form-control" name="respiratoriasEspecifique" [(ngModel)]="body.respiratorias_e" [disabled]="!formData.respiratoriasSiNo"
+            (ngModelChange)="guardar()" ></td>
+        </tr>
+        <tr>
+          <td>Geneticas</td>
+          <td class="text-center">
+            <input type="checkbox" name="reumaticasSiNo" [(ngModel)]="formData.geneticasSiNo" (ngModelChange)="limpiar($event ,'geneticas')">
+          </td>
+          <td><input type="text" class="form-control" name="geneticasParentesco" [(ngModel)]="body.geneticas_p" [disabled]="!formData.geneticasSiNo"
+            (ngModelChange)="guardar()"></td>
+          <td><input type="text" class="form-control" name="geneticasEspecifique" [(ngModel)]="body.geneticas_e" [disabled]="!formData.geneticasSiNo"
+            (ngModelChange)="guardar()" ></td>
+        </tr>
+        <tr>
+          <td>Endocrinologas</td>
+          <td class="text-center">
+            <input type="checkbox" name="endocrinologasSiNo" [(ngModel)]="formData.endocrinologasSiNo" (ngModelChange)="limpiar($event ,'endocrinologas')">
+          </td>
+          <td><input type="text" class="form-control" name="endocrinologasParentesco" [(ngModel)]="body.endocrinologas_p" [disabled]="!formData.endocrinologasSiNo"
+            (ngModelChange)="guardar()"></td>
+          <td><input type="text" class="form-control" name="endocrinologasEspecifique" [(ngModel)]="body.endocrinologas_e" [disabled]="!formData.endocrinologasSiNo"
+            (ngModelChange)="guardar()" ></td>
+        </tr>
+        <tr>
+          <td>Otras</td>
+          <td class="text-center">
+            <input type="checkbox" name="otrasSiNo" [(ngModel)]="formData.otrasSiNo" (ngModelChange)="limpiar($event ,'otras')">
+          </td>
+          <td><input type="text" class="form-control" name="otras_p" [(ngModel)]="body.otras_p" [disabled]="!formData.otrasSiNo"
+            (ngModelChange)="guardar()"></td>
+          <td><input type="text" class="form-control" name="otras_e" [(ngModel)]="body.otras_e" [disabled]="!formData.otrasSiNo"
+            (ngModelChange)="guardar()" ></td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+</div>
