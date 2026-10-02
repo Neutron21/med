@@ -1,7 +1,5 @@
-<!-- Cabecera unificada y fija: Título, switch, fecha y botones viven juntos en el mismo bloque -->
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4 pb-3 border-bottom">
   
-  <!-- Lado Izquierdo: Título y Switch -->
   <div class="d-flex align-items-center gap-3 flex-wrap">
     <h4 class="mb-0">En caso de ser Mujer (Antecedentes Gineco-Obstétricos)</h4>
     <div class="form-check form-switch mb-0">
@@ -10,11 +8,11 @@
     </div>
   </div>
 
-  <!-- Lado Derecho: Fecha de actualización y Botones de Edición -->
   <div class="d-flex flex-column align-items-md-end gap-1">
-    <small class="text-muted">
-      Última actualización: <strong>{{ body.updated ? (body.updated | date:'dd/MM/yyyy HH:mm:ss') : 'Sin fecha registrada' }}</strong>
-    </small>
+    <small class="text-muted mb-1 update-text">
+    <i class="bi bi-clock-history me-1"></i>
+    Última actualización: <strong>{{ body.updated ? (body.updated | date:'dd/MM/yyyy HH:mm:ss') : 'Sin fecha registrada' }}</strong>
+  </small>
     <div class="d-flex gap-2">
       <button *ngIf="!isEditing" type="button" class="btn btn-outline-primary btn-sm" (click)="iniciarEdicion()">Editar</button>
       <ng-container *ngIf="isEditing">
@@ -26,12 +24,10 @@
 
 </div>
 
-<!-- Spinner de carga centralizado que flota o se muestra sin desplazar los textos superiores -->
 <div *ngIf="isLoading" class="text-center py-5 my-3">
   <img alt="spinner" src="../../assets/doctor.gif" class="spinner-image" style="width: 50px; height: 50px;"/>
 </div>
 
-<!-- Contenido de la tabla envuelto de forma limpia -->
 <fieldset [disabled]="!isEditing || isSaving" class="border-0 p-0 m-0" *ngIf="!isLoading">
 <div class="container px-0">
   <div *ngIf="showTable">
