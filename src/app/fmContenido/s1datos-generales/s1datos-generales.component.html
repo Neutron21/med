@@ -46,7 +46,7 @@
       <div class="col-md-4">
         <label for="telEmergencia" class="form-label">Contacto de Emergencia:</label>
         <input type="tel" class="form-control" id="telEmergencia" name="telEmergencia" [(ngModel)]="body.contacto_de_emergencia" 
-        (ngModelChange)="guardar()" (keypress)="onlyText($event)">
+        (ngModelChange)="marcarCambios()" (keypress)="onlyText($event)">
       </div>
       <div class="col-md-4">
         <label for="nombreTel" class="form-label">Tel. Contacto de Emergencia:</label>

@@ -28,26 +28,26 @@
         <label for="peso" class="form-label">Peso:</label>
         <div class="input-group">
           <input type="text" class="form-control" id="peso" name="peso" [(ngModel)]="body.peso" 
-          (ngModelChange)="guardar()" (keypress)="onlyNumbers($event)">
+          (ngModelChange)="marcarCambios()" (keypress)="onlyNumbers($event)">
           <span class="input-group-text">kg</span>
         </div>
       </div>
       <div class="col-md-3 mb-3">
         <label for="glucosa" class="form-label">Glucosa:</label>
         <input type="text" class="form-control" id="glucosa" name="glucosa" [(ngModel)]="body.glucosa" 
-        (ngModelChange)="guardar()" (keypress)="onlyNumbers($event)">
+        (ngModelChange)="marcarCambios()" (keypress)="onlyNumbers($event)">
       </div>
       <div class="col-md-3 mb-3">
         <label for="estatura" class="form-label">Estatura:</label>
         <div class="input-group">
           <input type="text" class="form-control" id="estatura" name="estatura" [(ngModel)]="body.estatura" 
-          (ngModelChange)="guardar()">
+          (ngModelChange)="marcarCambios()">
           <span class="input-group-text">cm</span>
         </div>
       </div>
       <div class="col-md-3 mb-3">
         <label for="imc" class="form-label">IMC:</label>
-        <input type="text" class="form-control" id="imc" name="imc" [(ngModel)]="body.imc" (ngModelChange)="guardar()">
+        <input type="text" class="form-control" id="imc" name="imc" [(ngModel)]="body.imc" (ngModelChange)="marcarCambios()">
       </div>
     </div>
 
@@ -56,24 +56,24 @@
         <label for="temperatura" class="form-label">Temperatura:</label>
         <div class="input-group">
           <input type="text" class="form-control" id="temperatura" name="temperatura" [(ngModel)]="body.temperatura" 
-          (ngModelChange)="guardar()">
+          (ngModelChange)="marcarCambios()">
           <span class="input-group-text">°C</span>
         </div>
       </div>
       <div class="col-md-3 mb-3">
         <label for="fCardiaca" class="form-label">F. Cardiaca:</label>
         <input type="text" class="form-control" id="fCardiaca" name="fCardiaca" [(ngModel)]="body.f_cardiaca" 
-        (ngModelChange)="guardar()">
+        (ngModelChange)="marcarCambios()">
       </div>
       <div class="col-md-3 mb-3">
         <label for="fRespiratoria" class="form-label">F. Respiratoria:</label>
         <input type="text" class="form-control" id="fRespiratoria" name="fRespiratoria" [(ngModel)]="body.f_respiratoria" 
-        (ngModelChange)="guardar()">
+        (ngModelChange)="marcarCambios()">
       </div>
       <div class="col-md-3 mb-3">
         <label for="tensionArterial" class="form-label">Tensión Arterial:</label>
         <input type="text" class="form-control" id="tensionArterial" name="tensionArterial" [(ngModel)]="body.tension_arterial" 
-        (ngModelChange)="guardar()">
+        (ngModelChange)="marcarCambios()">
       </div>
     </div>
   </fieldset>

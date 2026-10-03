@@ -115,7 +115,7 @@ export class S6antNopatologicosComponent implements OnInit, OnDestroy {
     this.formData.actividadOcioSiNo = Boolean(this.body.actividadOcio_p || this.body.actividadOcio_e);
   };
 
-  guardar() {
+  marcarCambios() {
     this.hasUnsavedChanges = true;
   }
 
@@ -196,7 +196,7 @@ export class S6antNopatologicosComponent implements OnInit, OnDestroy {
         this.body.actividadOcio_e = '';
         break;
     }
-    this.guardar();
+    this.marcarCambios();
   }
   
   

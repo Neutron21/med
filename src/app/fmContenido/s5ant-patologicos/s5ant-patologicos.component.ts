@@ -130,7 +130,7 @@ private destroy$ = new Subject<void>();
 }
 
 
-  guardar() {
+  marcarCambios() {
     this.hasUnsavedChanges = true;
   };
 
@@ -232,7 +232,7 @@ private destroy$ = new Subject<void>();
         this.body.otras_e = '';
         break;
     }
-    this.guardar();
+    this.marcarCambios();
 
   }
 }

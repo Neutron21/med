@@ -80,7 +80,7 @@ export class S3medidasFisicasComponent implements OnInit, OnDestroy {
     this.utilService.onlyNumbers(event);
 
   }
-  guardar() {
+  marcarCambios() {
     this.hasUnsavedChanges = true;
   }
 

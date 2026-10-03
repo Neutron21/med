@@ -96,7 +96,7 @@ formData =  {
   }
   
 
-  guardar() {
+  marcarCambios() {
     this.hasUnsavedChanges = true;
   }
 
@@ -160,33 +160,33 @@ formData =  {
       case 'neoplasias':
         this.body.neoplasias_p = '';
         this.body.neoplasias_e = '';
-    break;
-    case 'cardiopatias':
-      this.body.cardiopatias_p = '';
-      this.body.cardiopatias_e = '';
-  break;
-  case 'reumaticas':
-    this.body.reumaticas_p = '';
-    this.body.reumaticas_e = '';
-   break;
-   case 'respiratorias':
-  this.body.respiratorias_p = '';
-  this.body.respiratorias_e = '';
-   break;
-   case 'geneticas':
-   this.body.geneticas_p = '';
-  this.body.geneticas_e = '';
-  break;
-  case 'endocrinologas':
-  this.body.endocrinologas_p = '';
-  this.body.endocrinologas_e = '';
-  break;
-  case 'otras':
-  this.body.otras_p = '';
-  this.body.otras_e = '';
-  break;
+      break;
+      case 'cardiopatias':
+        this.body.cardiopatias_p = '';
+        this.body.cardiopatias_e = '';
+      break;
+      case 'reumaticas':
+        this.body.reumaticas_p = '';
+        this.body.reumaticas_e = '';
+      break;
+      case 'respiratorias':
+        this.body.respiratorias_p = '';
+        this.body.respiratorias_e = '';
+      break;
+      case 'geneticas':
+        this.body.geneticas_p = '';
+        this.body.geneticas_e = '';
+      break;
+      case 'endocrinologas':
+        this.body.endocrinologas_p = '';
+        this.body.endocrinologas_e = '';
+      break;
+      case 'otras':
+        this.body.otras_p = '';
+        this.body.otras_e = '';
+      break;
   }
-  this.guardar();
+  this.marcarCambios();
 
   }
 
