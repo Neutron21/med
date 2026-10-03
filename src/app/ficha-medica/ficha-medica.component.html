@@ -14,12 +14,12 @@
     <option value="s5">Antecedentes Patológicos</option>
     <option value="s6">Antecedentes No Patológicos</option>
     <option value="s7">Gineco-obstétricos</option>
-    <option value="s8">Pediátricos</option>
+    <option value="s8">Antecedentes Perinatales</option>
     <option value="s9">Observaciones</option>
     <option value="all">Ver todo</option>
   </select>
 </div>
-<div class="content-tabs">
+<div >
   <app-s1datos-generales *ngIf="showSection.s1 || allSectionsVisible"></app-s1datos-generales>
   <app-s2px-deportivo *ngIf="showSection.s2 || allSectionsVisible"></app-s2px-deportivo>
   <app-s3medidas-fisicas *ngIf="showSection.s3 || allSectionsVisible"></app-s3medidas-fisicas>
