@@ -21,6 +21,7 @@ export class S9observacionesComponent implements OnInit, OnDestroy {
     tratamiento: "",
     updated: ""
   }
+  showSuccessModal = false;
   initBody = JSON.parse(JSON.stringify(this.body)); 
   isEditing = false;
   isSaving = false;
@@ -86,22 +87,30 @@ export class S9observacionesComponent implements OnInit, OnDestroy {
   }
 
   guardarCambios(): void {
-    if (this.isSaving) return;
-    this.isSaving = true;
-    this.sharedDataService.saveSection('s9', { ...this.body }).subscribe(
-      () => {
-        this.originalBody = { ...this.body };
-        this.isEditing = false;
-        this.isSaving = false;
-        this.hasUnsavedChanges = false;
-        this.body.updated = new Date().toISOString();
-      },
-      error => {
-        console.error('Error al guardar Observaciones:', error);
-        this.isSaving = false;
-      }
-    );
-  }
+  if (this.isLoading) return;
+  
+  this.isLoading = true;         
+  this.showSuccessModal = false;  
+
+  this.sharedDataService.saveSection('s9', { ...this.body }).subscribe(
+    () => {
+      this.isEditing = false;
+      this.isLoading = false;     
+      this.hasUnsavedChanges = false;
+      this.body.updated = new Date().toISOString();
+
+      this.showSuccessModal = true; 
+    },
+    error => {
+      console.error('Error al guardar PX Deportivo:', error);
+      this.isLoading = false;     
+    }
+  );
+}
+
+cerrarModalExito(): void {
+  this.showSuccessModal = false;
+}
    // TEXT AREA AUTO AJUSTE
    adjustTextareaHeight(id: string): void {
     this.utilService.adjustTextAreaH(id);

@@ -64,6 +64,7 @@ export class S5antPatologicosComponent implements OnInit, OnDestroy {
   otras_e:'',
   updated: ""
 }
+showSuccessModal = false;
 initBody = JSON.parse(JSON.stringify(this.body)); 
 isEditing = false;
 isSaving = false;
@@ -147,22 +148,31 @@ private destroy$ = new Subject<void>();
     this.hasUnsavedChanges = false;
   }
 
-  guardarCambios(): void {
-    if (this.isSaving) return;
-    this.isSaving = true;
-    this.sharedDataService.saveSection('s5', { ...this.body }).subscribe(
-      () => {
-        this.isEditing = false;
-        this.isSaving = false;
-        this.hasUnsavedChanges = false;
-        this.body.updated = new Date().toISOString();
-      },
-      error => {
-        console.error('Error al guardar Antecedentes Patológicos:', error);
-        this.isSaving = false;
-      }
-    );
-  }
+guardarCambios(): void {
+  if (this.isLoading) return;
+  
+  this.isLoading = true;          
+  this.showSuccessModal = false; 
+
+  this.sharedDataService.saveSection('s5', { ...this.body }).subscribe(
+    () => {
+      this.isEditing = false;
+      this.isLoading = false;     
+      this.hasUnsavedChanges = false;
+      this.body.updated = new Date().toISOString();
+
+      this.showSuccessModal = true; 
+    },
+    error => {
+      console.error('Error al guardar Antecedentes Familiares:', error);
+      this.isLoading = false;     
+    }
+  );
+}
+
+cerrarModalExito(): void {
+  this.showSuccessModal = false;
+}
   
    limpiar($event: any,id: string) {
     console.log($event);

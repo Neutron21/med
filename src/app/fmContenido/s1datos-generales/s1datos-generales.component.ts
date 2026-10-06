@@ -40,6 +40,7 @@ export class S1datosGeneralesComponent implements OnInit, OnDestroy {
     tipo_sangre: "",
     telefono: ""
   };
+  showSuccessModal = false;
 
   showPhoneError: boolean = false;
   idPx: number | null = null;
@@ -129,26 +130,32 @@ export class S1datosGeneralesComponent implements OnInit, OnDestroy {
   }
 
   guardar(): void {
-    if (this.isSaving) {
-      return;
-    }
-    this.isSaving = true;
-    this.sharedDataService.saveSection('s1', { ...this.body }).subscribe(
-      () => {
-        this.originalBody = { ...this.body };
-        this.isEditing = false;
-        this.isSaving = false;
-        this.hasUnsavedChanges = false;
-        
-        // Opcional: Actualizar la fecha localmente de inmediato tras guardar con éxito
-        this.body.updated = new Date().toISOString(); 
-      },
-      error => {
-        console.error('Error al guardar Datos Generales:', error);
-        this.isSaving = false;
-      }
-    );
+  if (this.isLoading) {
+    return;
   }
+  this.isLoading = true;
+
+  this.sharedDataService.saveSection('s1', { ...this.body }).subscribe(
+    () => {
+      this.originalBody = { ...this.body };
+      this.isEditing = false;
+      this.isLoading = false; 
+      this.hasUnsavedChanges = false;
+      
+      this.body.updated = new Date().toISOString(); 
+
+      this.showSuccessModal = true;
+    },
+    error => {
+      console.error('Error al guardar Datos Generales:', error);
+      this.isLoading = false; 
+    }
+  );
+}
+
+cerrarModalExito(): void {
+  this.showSuccessModal = false;
+}
 
   validatePhoneNumber(): void {
     if (this.body.tel_contacto_de_emergencia?.length !== 10) {

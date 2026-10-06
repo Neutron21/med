@@ -45,6 +45,8 @@ export class S8pediatricoAntperinatalesComponent implements OnInit, OnDestroy {
     PuntajeAPGAR_e:'',
     updated: "" 
   }
+  showSuccessModal = false;
+
   initBody = JSON.parse(JSON.stringify(this.body)); 
   isEditing = false;
   isSaving = false;
@@ -131,21 +133,29 @@ export class S8pediatricoAntperinatalesComponent implements OnInit, OnDestroy {
     this.hasUnsavedChanges = false;
   }
 guardarCambios(): void {
-  if (this.isSaving) return;
-  this.isSaving = true;
+  if (this.isLoading) return;
+  
+  this.isLoading = true;         
+  this.showSuccessModal = false;  
+
   this.sharedDataService.saveSection('s8', { ...this.body }).subscribe(
     () => {
       this.isEditing = false;
-      this.isSaving = false;
+      this.isLoading = false;     
       this.hasUnsavedChanges = false;
       this.body.updated = new Date().toISOString();
+
+      this.showSuccessModal = true; 
     },
     error => {
-      // Usa error.error o error.message para ver qué viene
-      console.log('Texto exacto que envió PHP:', error.error?.text || error.error);
-      this.isSaving = false;
+      console.error('Error al guardar PX Deportivo:', error);
+      this.isLoading = false;     
     }
   );
+}
+
+cerrarModalExito(): void {
+  this.showSuccessModal = false;
 }
 
   limpiar($event: any,id: keyof Pediatrico) {

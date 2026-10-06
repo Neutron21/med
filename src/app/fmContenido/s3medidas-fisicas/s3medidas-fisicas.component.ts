@@ -23,6 +23,8 @@ export class S3medidasFisicasComponent implements OnInit, OnDestroy {
   tension_arterial: '',
   updated: ''
  }
+ showSuccessModal = false;
+
  isEditing = false;
  isSaving = false;
  hasUnsavedChanges = false;
@@ -95,23 +97,30 @@ export class S3medidasFisicasComponent implements OnInit, OnDestroy {
     this.isEditing = false;
     this.hasUnsavedChanges = false;
   }
+guardarCambios(): void {
+  if (this.isLoading) return;
+  
+  this.isLoading = true;         
+  this.showSuccessModal = false;  
 
-  guardarCambios(): void {
-    if (this.isSaving) return;
-    this.isSaving = true;
-    this.sharedDataService.saveSection('s3', { ...this.body }).subscribe(
-      () => {
-        this.originalBody = { ...this.body };
-        this.isEditing = false;
-        this.isSaving = false;
-        this.hasUnsavedChanges = false;
-        this.body.updated = new Date().toISOString();
-      },
-      error => {
-        console.error('Error al guardar Medidas Físicas:', error);
-        this.isSaving = false;
-      }
-    );
-  }
+  this.sharedDataService.saveSection('s3', { ...this.body }).subscribe(
+    () => {
+      this.isEditing = false;
+      this.isLoading = false;     
+      this.hasUnsavedChanges = false;
+      this.body.updated = new Date().toISOString();
+
+      this.showSuccessModal = true; 
+    },
+    error => {
+      console.error('Error al guardar PX Deportivo:', error);
+      this.isLoading = false;     
+    }
+  );
+}
+
+cerrarModalExito(): void {
+  this.showSuccessModal = false;
+}
 
 }
